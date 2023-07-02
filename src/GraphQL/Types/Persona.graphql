@@ -1,0 +1,24 @@
+type Persona {
+  id_persona: ID!
+  nb_persona: String!
+  grupo: String!
+  id_grupo: ID!
+  telefono: String!
+}
+
+type Query {
+  getPersonas: [Persona]!
+}
+
+type Mutation {
+  savePersona(input: InputPersona!): Boolean!
+  deletePersona(id: ID!): Boolean!
+  deletePersonas(ids: [ID]!): Boolean!
+}
+
+input InputPersona {
+  id_persona: ID
+  nb_persona: String!
+  telefono: String!
+  id_grupo: ID!
+}

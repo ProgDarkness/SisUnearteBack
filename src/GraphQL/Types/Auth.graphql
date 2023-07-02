@@ -1,0 +1,10 @@
+type Query {
+  login(input: InputLogin): String!
+  user: String!
+}
+
+input InputLogin {
+  usuario: String!
+  clave: String!
+  rol: Int
+}
