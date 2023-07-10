@@ -1,0 +1,46 @@
+type Query {
+  getUsuarios: [Usuario]
+  getRoles: [roles]
+}
+
+type Mutation {
+  saveUsuario(input: InputSaveUser): Result!
+  deleteUsuario(input: InputDeleteUser): Result!
+  cambiarEstatus(input: InputDeleteUser): Result!
+}
+
+input InputSaveUser {
+  usuario: String!
+  clave: String!
+  rol: Int!
+  nombre: String!
+  apellido: String!
+  cedula: Int!
+}
+
+input InputDeleteUser {
+  id_usuario: Int!
+}
+
+type Usuario {
+  id_usuario: Int!
+  user_name: String!
+  bl_status: Boolean!
+  rol: String!
+  ced_usuario: Int!
+  nomb_usuario: String!
+  ape_usuario: String!
+  created_at: String!
+  updated_at: String!
+}
+
+type roles {
+  id_rol: Int!
+  nb_rol: String!
+}
+
+type Result {
+  status: Int!
+  type: String!
+  message: String!
+}
