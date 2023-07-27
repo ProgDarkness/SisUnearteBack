@@ -11,8 +11,8 @@ export default {
       if (!auth) throw new ApolloError('Sesión no Válida')
 
       try {
-        return await dbp.manyOrNone(`SELECT u.id_usuario, u.user_name, u.bl_status, r.nb_rol as rol, u.ced_usuario, u.nomb_usuario, u.ape_usuario, u.created_at, u.updated_at
-                                      FROM public.usuarios u,public.roles r
+        return await dbp.manyOrNone(`SELECT u.id_usuario, u.user_name, u.bl_status, r.nb_rol as rol, u.ced_usuario, u.nb_usuario, u.ape_usuario, u.created_at, u.updated_at
+                                      FROM public.t001t_usuarios u, public.t002t_roles r
                                         WHERE u.rol = r.id_rol;`)
       } catch (e) {
         throw new ApolloError(e.message)
@@ -23,7 +23,7 @@ export default {
 
       try {
         return await dbp.manyOrNone(`SELECT id_rol, nb_rol
-                                      FROM public.roles;`)
+                                      FROM public.t002t_roles;`)
       } catch (e) {
         throw new ApolloError(e.message)
       }
@@ -44,8 +44,8 @@ export default {
 
         try {
           await dbp.none(
-            `INSERT INTO public.usuarios(
-              tx_clave, user_name, bl_status, rol, ced_usuario, nomb_usuario, ape_usuario)
+            `INSERT INTO public.t001t_usuarios(
+              tx_clave, user_name, bl_status, rol, ced_usuario, nb_usuario, ape_usuario)
               VALUES ( $1, $2, $3, $4, $5, $6, $7);`,
             [hashClave, usuario, true, rol, cedula, nombre, apellido]
           )
@@ -76,7 +76,7 @@ export default {
 
       try {
         await dbp.none(
-          `DELETE FROM public.usuarios
+          `DELETE FROM public.t001t_usuarios
           WHERE id_usuario =$1`,
           [id_usuario]
         )
@@ -94,7 +94,7 @@ export default {
         let changeStatus = null
         const status = await dbp.oneOrNone(
           `SELECT bl_status
-          FROM public.usuarios
+          FROM public.t001t_usuarios
           WHERE id_usuario=$1;`,
           [id_usuario]
         )
@@ -106,7 +106,7 @@ export default {
         }
 
         await dbp.none(
-          `UPDATE public.usuarios
+          `UPDATE public.t001t_usuarios
           SET  bl_status=$2, updated_at=now()
           WHERE id_usuario =$1`,
           [id_usuario, changeStatus]

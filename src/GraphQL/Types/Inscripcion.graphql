@@ -1,0 +1,28 @@
+type Materia {
+    id: ID!
+    nombre: String!
+}
+
+type ResultMaterias {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Materia]
+}
+
+type Carrera {
+    id: ID!
+    nombre: String!
+}
+
+type ResultCarreras {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Carrera]
+}
+
+type Query {
+    getMaterias: ResultMaterias,
+    getCarreras: ResultCarreras
+}

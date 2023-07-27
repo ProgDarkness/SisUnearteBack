@@ -21,7 +21,7 @@ export default {
 
         const login = await dbp.oneOrNone(
           `SELECT id_usuario, user_name, bl_status, rol, created_at, updated_at
-          FROM public.usuarios WHERE user_name = $1 AND tx_clave = $2;`,
+          FROM public.t001t_usuarios WHERE user_name = $1 AND tx_clave = $2;`,
           [usuario, hashClave]
         )
 

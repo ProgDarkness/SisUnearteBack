@@ -1,7 +1,7 @@
 {
   "host": "localhost",
   "port": 5432,
-  "database": "plantilla",
+  "database": "unearte",
   "user": "postgres",
-  "password": "1234"
+  "password": "123456"
 }
