@@ -71,6 +71,12 @@ export default {
               type: 'error',
               message: 'La cedula de usuario ya se encuentra en uso'
             }
+          } else if (e.constraint === 'uk_ced_estudiante') {
+            return {
+              status: 403,
+              type: 'error',
+              message: 'La cedula del estudiante ya se encuentra en uso'
+            }
           }
         }
 
