@@ -30,10 +30,10 @@ export default {
     }
   },
   Mutation: {
-    saveUsuario: async (_, { input }, { auth }) => {
-      if (!auth) throw new ApolloError('Sesión no Válida')
+    saveUsuario: async (_, { input }) => {
       const { SECRET_KEY } = process.env
-      const { usuario, clave, rol, nombre, apellido, cedula } = input
+      const { usuario, clave, rol, nombre, apellido, cedula, nacionalidad } =
+        input
 
       try {
         const claveDesencriptada = CryptoJS.AES.decrypt(
@@ -49,6 +49,15 @@ export default {
               VALUES ( $1, $2, $3, $4, $5, $6, $7);`,
             [hashClave, usuario, true, rol, cedula, nombre, apellido]
           )
+
+          if (rol === 3) {
+            await dbp.none(
+              `INSERT INTO public.t004t_estudiantes(
+                nac_estudiante, ced_estudiante, nb_estudiante, ape_estudiante)
+                VALUES ($1, $2, $3, $4);`,
+              [nacionalidad, cedula, nombre, apellido]
+            )
+          }
         } catch (e) {
           if (e.constraint === 'user_name_unique') {
             return {
