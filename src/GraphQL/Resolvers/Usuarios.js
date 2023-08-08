@@ -13,7 +13,7 @@ export default {
       try {
         return await dbp.manyOrNone(`SELECT u.id_usuario, u.user_name, u.bl_status, r.nb_rol as rol, u.ced_usuario, u.nb_usuario, u.ape_usuario, u.created_at, u.updated_at
                                       FROM public.t001t_usuarios u, public.t002t_roles r
-                                        WHERE u.rol = r.id_rol;`)
+                                        WHERE u.id_rol = r.id_rol;`)
       } catch (e) {
         throw new ApolloError(e.message)
       }
@@ -32,8 +32,10 @@ export default {
   Mutation: {
     saveUsuario: async (_, { input }) => {
       const { SECRET_KEY } = process.env
-      const { usuario, clave, rol, nombre, apellido, cedula, nacionalidad } =
+      const { usuario, clave, id_rol, nombre, apellido, cedula, nacionalidad } =
         input
+
+      console.log(input)
 
       try {
         const claveDesencriptada = CryptoJS.AES.decrypt(
@@ -45,15 +47,15 @@ export default {
         try {
           await dbp.none(
             `INSERT INTO public.t001t_usuarios(
-              tx_clave, user_name, bl_status, rol, ced_usuario, nb_usuario, ape_usuario)
+              tx_clave, user_name, bl_status, id_rol, ced_usuario, nb_usuario, ape_usuario)
               VALUES ( $1, $2, $3, $4, $5, $6, $7);`,
-            [hashClave, usuario, true, rol, cedula, nombre, apellido]
+            [hashClave, usuario, true, id_rol, cedula, nombre, apellido]
           )
 
-          if (rol === 3) {
+          if (id_rol === 3) {
             await dbp.none(
               `INSERT INTO public.t004t_estudiantes(
-                nac_estudiante, ced_estudiante, nb_estudiante, ape_estudiante)
+                id_nac_estudiante, ced_estudiante, nb_estudiante, ape_estudiante)
                 VALUES ($1, $2, $3, $4);`,
               [nacionalidad, cedula, nombre, apellido]
             )

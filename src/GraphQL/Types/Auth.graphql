@@ -6,5 +6,5 @@ type Query {
 input InputLogin {
   usuario: String!
   clave: String!
-  rol: Int
+  id_rol: Int
 }

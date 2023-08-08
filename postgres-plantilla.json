@@ -3,5 +3,5 @@
   "port": 5432,
   "database": "unearte",
   "user": "postgres",
-  "password": "123456"
+  "password": "1234"
 }

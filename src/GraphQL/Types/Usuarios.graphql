@@ -13,7 +13,7 @@ input InputSaveUser {
   nacionalidad: String!
   usuario: String!
   clave: String!
-  rol: Int!
+  id_rol: Int!
   nombre: String!
   apellido: String!
   cedula: Int!
@@ -29,7 +29,7 @@ type Usuario {
   bl_status: Boolean!
   rol: String!
   ced_usuario: Int!
-  nomb_usuario: String!
+  nb_usuario: String!
   ape_usuario: String!
   created_at: String!
   updated_at: String!
