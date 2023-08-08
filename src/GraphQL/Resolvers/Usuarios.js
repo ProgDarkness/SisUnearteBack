@@ -35,8 +35,6 @@ export default {
       const { usuario, clave, id_rol, nombre, apellido, cedula, nacionalidad } =
         input
 
-      console.log(input)
-
       try {
         const claveDesencriptada = CryptoJS.AES.decrypt(
           clave,
