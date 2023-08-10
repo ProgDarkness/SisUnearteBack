@@ -23,6 +23,38 @@ type ResultCarreras {
 }
 
 type Query {
-    getMaterias: ResultMaterias,
-    getCarreras: ResultCarreras
+    obtenerMaterias: ResultMaterias,
+    obtenerCarreras: ResultCarreras
+}
+
+type Mutation {
+    obtenerEstudiante(input: InputConsultaEstudiante!): ResultEstudiante
+    crearEstudiante(input: InputEstudiante!): ResultEstudiante
+}
+
+input InputConsultaEstudiante {
+    nacionalidad: Int!
+    cedula: Int!
+}
+
+input InputEstudiante {
+  nacionalidad: Int!
+  cedula: Int!
+  nombre: String!
+  apellido: String!
+  sexo: Int!
+}
+
+type Estudiante {
+    id: ID!
+    nombre: String!
+    apellido: String!
+    sexo: String!
+}
+
+type ResultEstudiante {
+    status: Int!
+    message: String!
+    type: String!
+    response: Estudiante
 }
