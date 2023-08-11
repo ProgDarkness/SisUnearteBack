@@ -1,0 +1,75 @@
+=================== 10/08/2023 ==========================
+
+query sexos {
+  obtenerSexos {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+query discapacidades {
+  obtenerDiscapacidades {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+query estados {
+  obtenerEstados {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+query municipios {
+  obtenerMunicipios {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+query parroquias {
+  obtenerParroquias {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+query ofertas {
+  obtenerOfertaAcademica {
+    response {
+      id
+      periodo
+      anio
+      carrera
+      cupos
+      estatus
+    }
+  }
+}
+
+mutation carrera {
+  obtenerDetalleCarrera (
+    input:{
+      carrera: 8
+    }){
+      response{
+        id
+        carrera
+        trayecto
+        materia
+        personal
+        estatus
+      }
+    }
+}
