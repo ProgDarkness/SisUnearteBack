@@ -22,6 +22,19 @@ type ResultCarreras {
     response: [Carrera]
 }
 
+type Nacionalidad {
+    id: ID!
+    codigo: String!
+    nombre: String!
+}
+
+type ResultNacionalidades {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Nacionalidad]
+}
+
 type Sexo {
     id: ID!
     nombre: String!
@@ -85,6 +98,7 @@ type ResultParroquias {
 type Query {
     obtenerMaterias: ResultMaterias,
     obtenerCarreras: ResultCarreras,
+    obtenerNacionalidades: ResultNacionalidades,
     obtenerSexos: ResultSexos,
     obtenerDiscapacidades: ResultDiscapacidades,
     obtenerEstados: ResultEstados,

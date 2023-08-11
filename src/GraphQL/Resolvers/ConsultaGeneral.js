@@ -18,6 +18,14 @@ export default {
                 return {status: 500, message: e.message, type: "error"}
             }
         },
+        obtenerNacionalidades: async () => {
+            try {
+                const nacionalidades = await dbp.manyOrNone(`SELECT id_nacionalidad as id, co_nacionalidad as codigo, nb_nacionalidad as nombre FROM m028t_tipo_nacionalidad;`);
+                return {status: 200, message: 'Nacionalidades encontradas', type: "success", response: nacionalidades}
+            } catch (e) {
+                return {status: 500, message: e.message, type: "error"}
+            }
+        },
         obtenerSexos: async () => {
             try {
                 const sexos = await dbp.manyOrNone(`SELECT id_tp_sexo as id, nb_tp_sexo as nombre FROM m026t_tipo_sexo;`);
