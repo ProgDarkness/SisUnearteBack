@@ -1,0 +1,94 @@
+type Materia {
+    id: ID!
+    nombre: String!
+}
+
+type ResultMaterias {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Materia]
+}
+
+type Carrera {
+    id: ID!
+    nombre: String!
+}
+
+type ResultCarreras {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Carrera]
+}
+
+type Sexo {
+    id: ID!
+    nombre: String!
+}
+
+type ResultSexos {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Sexo]
+}
+
+type Discapacidad {
+    id: ID!
+    nombre: String!
+}
+
+type ResultDiscapacidades {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Discapacidad]
+}
+
+type Estado {
+    id: ID!
+    nombre: String!
+}
+
+type ResultEstados {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Estado]
+}
+
+type Municipio {
+    id: ID!
+    nombre: String!
+}
+
+type ResultMunicipios {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Municipio]
+}
+
+type Parroquia {
+    id: ID!
+    nombre: String!
+}
+
+type ResultParroquias {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Parroquia]
+}
+
+type Query {
+    obtenerMaterias: ResultMaterias,
+    obtenerCarreras: ResultCarreras,
+    obtenerSexos: ResultSexos,
+    obtenerDiscapacidades: ResultDiscapacidades,
+    obtenerEstados: ResultEstados,
+    obtenerMunicipios: ResultMunicipios,
+    obtenerParroquias: ResultParroquias,
+    obtenerOfertaAcademica: ResultOferta
+}

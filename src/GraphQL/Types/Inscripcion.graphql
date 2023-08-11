@@ -1,40 +1,16 @@
-type Materia {
-    id: ID!
-    nombre: String!
-}
-
-type ResultMaterias {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Materia]
-}
-
-type Carrera {
-    id: ID!
-    nombre: String!
-}
-
-type ResultCarreras {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Carrera]
-}
-
-type Query {
-    obtenerMaterias: ResultMaterias,
-    obtenerCarreras: ResultCarreras
-}
-
 type Mutation {
     obtenerEstudiante(input: InputConsultaEstudiante!): ResultEstudiante
     crearEstudiante(input: InputEstudiante!): ResultEstudiante
+    obtenerDetalleCarrera(input: InputCarrera!): ResultCarrera
 }
 
 input InputConsultaEstudiante {
     nacionalidad: Int!
     cedula: Int!
+}
+
+input InputCarrera {
+    carrera: Int!
 }
 
 input InputEstudiante {
@@ -57,4 +33,36 @@ type ResultEstudiante {
     message: String!
     type: String!
     response: Estudiante
+}
+
+type Oferta {
+    id: ID!
+    periodo: Int!
+    anio: Int!
+    carrera: String!
+    cupos: Int!
+    estatus: String!
+}
+
+type ResultOferta {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Oferta]
+}
+
+type DetalleCarrera {
+    id: ID!
+    carrera: String!
+    trayecto: String!
+    materia: String!
+    personal: String!
+    estatus: String!
+}
+
+type ResultCarrera {
+    status: Int!
+    message: String!
+    type: String!
+    response: [DetalleCarrera]
 }
