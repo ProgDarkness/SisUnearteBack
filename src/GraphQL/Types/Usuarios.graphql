@@ -10,7 +10,7 @@ type Mutation {
 }
 
 input InputSaveUser {
-  nacionalidad: String!
+  nacionalidad: Int!
   usuario: String!
   clave: String!
   id_rol: Int!
