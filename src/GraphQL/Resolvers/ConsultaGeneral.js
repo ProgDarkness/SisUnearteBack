@@ -106,6 +106,14 @@ export default {
                 return {status: 500, message: e.message, type: "error"}
             }
         },
+        obtenerTipoDocumento: async () => {
+            try {
+                const tiposdocumentos = await dbp.manyOrNone(`SELECT id_tp_documento as id, nb_tp_documento as nombre FROM m047t_tipo_documento;`);
+                return {status: 200, message: 'Tipos de Documentos encontrados', type: "success", response: tiposdocumentos}
+            } catch (e) {
+                return {status: 500, message: e.message, type: "error"}
+            }
+        },
         obtenerOfertaAcademica: async () => {
             try {
                 const ofertas = await dbp.manyOrNone(`

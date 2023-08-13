@@ -157,6 +157,18 @@ type ResultCodigoPostal {
     response: [CodigoPostal]
 }
 
+type TipoDocumento {
+    id: ID!
+    nombre: String!
+}
+
+type ResultTipoDocumento {
+    status: Int!
+    message: String!
+    type: String!
+    response: [TipoDocumento]
+}
+
 type Query {
     obtenerMaterias: ResultMaterias,
     obtenerCarreras: ResultCarreras,
@@ -171,5 +183,6 @@ type Query {
     obtenerTipoZona: ResultZonas,
     obtenerTipoVivienda: ResultViviendas,
     obtenerPaises: ResultPaises,
-    obtenerCodigoPostal: ResultCodigoPostal
+    obtenerCodigoPostal: ResultCodigoPostal,
+    obtenerTipoDocumento: ResultTipoDocumento
 }

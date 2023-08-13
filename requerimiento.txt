@@ -54,6 +54,15 @@ query codigopostales {
     }
   }
 }
+
+query tiposdocumentos {
+  obtenerTipoDocumento {
+    response {
+      id
+      nombre
+    }
+  }
+}
 =================== 10/08/2023 ==========================
 
 query sexos {
