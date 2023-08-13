@@ -95,6 +95,68 @@ type ResultParroquias {
     response: [Parroquia]
 }
 
+type Via {
+    id: ID!
+    nombre: String!
+}
+
+type ResultVias {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Via]
+}
+
+type Zona {
+    id: ID!
+    nombre: String!
+}
+
+type ResultZonas {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Zona]
+}
+
+type Vivienda {
+    id: ID!
+    nombre: String!
+}
+
+type ResultViviendas {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Vivienda]
+}
+
+type Pais {
+    id: ID!
+    nombre: String!
+}
+
+type ResultPaises {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Pais]
+}
+
+type CodigoPostal {
+    id: ID!
+    nombre: String!
+    parroquia: Int!
+    codigo: Int!
+}
+
+type ResultCodigoPostal {
+    status: Int!
+    message: String!
+    type: String!
+    response: [CodigoPostal]
+}
+
 type Query {
     obtenerMaterias: ResultMaterias,
     obtenerCarreras: ResultCarreras,
@@ -104,5 +166,10 @@ type Query {
     obtenerEstados: ResultEstados,
     obtenerMunicipios: ResultMunicipios,
     obtenerParroquias: ResultParroquias,
-    obtenerOfertaAcademica: ResultOferta
+    obtenerOfertaAcademica: ResultOferta,
+    obtenerTipoVia: ResultVias,
+    obtenerTipoZona: ResultZonas,
+    obtenerTipoVivienda: ResultViviendas,
+    obtenerPaises: ResultPaises,
+    obtenerCodigoPostal: ResultCodigoPostal
 }

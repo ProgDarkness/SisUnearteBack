@@ -66,6 +66,46 @@ export default {
                 return {status: 500, message: e.message, type: "error"}
             }
         },
+        obtenerTipoVia: async () => {
+            try {
+                const vias = await dbp.manyOrNone(`SELECT id_tp_via as id, nb_tp_via as nombre FROM m025t_tipo_via;`);
+                return {status: 200, message: 'Vias encontradas', type: "success", response: vias}
+            } catch (e) {
+                return {status: 500, message: e.message, type: "error"}
+            }
+        },
+        obtenerTipoZona: async () => {
+            try {
+                const zonas = await dbp.manyOrNone(`SELECT id_tp_zona as id, nb_tp_zona as nombre FROM m024t_tipo_zona;`);
+                return {status: 200, message: 'Zonas encontradas', type: "success", response: zonas}
+            } catch (e) {
+                return {status: 500, message: e.message, type: "error"}
+            }
+        },
+        obtenerTipoVivienda: async () => {
+            try {
+                const viviendas = await dbp.manyOrNone(`SELECT id_tp_vivienda as id, nb_tp_vivienda as nombre FROM m021t_tipo_vivienda;`);
+                return {status: 200, message: 'Viviendas encontradas', type: "success", response: viviendas}
+            } catch (e) {
+                return {status: 500, message: e.message, type: "error"}
+            }
+        },
+        obtenerPaises: async () => {
+            try {
+                const paises = await dbp.manyOrNone(`SELECT id_pais as id, nb_pais as nombre FROM m022t_paises;`);
+                return {status: 200, message: 'Paises encontrados', type: "success", response: paises}
+            } catch (e) {
+                return {status: 500, message: e.message, type: "error"}
+            }
+        },
+        obtenerCodigoPostal: async () => {
+            try {
+                const postales = await dbp.manyOrNone(`SELECT id_zona as id, id_parroquia as parroquia, nb_zona as nombre, codigo_postal as codigo FROM m023t_zona;`);
+                return {status: 200, message: 'Codigos Postales encontrados', type: "success", response: postales}
+            } catch (e) {
+                return {status: 500, message: e.message, type: "error"}
+            }
+        },
         obtenerOfertaAcademica: async () => {
             try {
                 const ofertas = await dbp.manyOrNone(`

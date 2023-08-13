@@ -1,0 +1,15 @@
+type EstatuPostulacion {
+    id: ID!
+    nombre: String!
+}
+
+type ResultEstatuPostulacion {
+    status: Int!
+    message: String!
+    type: String!
+    response: [EstatuPostulacion]
+}
+
+type Query {
+    obtenerEstatusPostulacion: ResultEstatuPostulacion
+}

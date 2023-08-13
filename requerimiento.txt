@@ -1,3 +1,59 @@
+=================== 12/08/2023 ==========================
+query estatuspostulacion {
+  obtenerEstatusPostulacion {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+query vias {
+  obtenerTipoVia {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+query zonas {
+  obtenerTipoZona {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+query viviendas {
+  obtenerTipoVivienda {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+query paises {
+  obtenerPaises {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+query codigopostales {
+  obtenerCodigoPostal {
+    response {
+      id
+      nombre
+      parroquia
+      codigo
+    }
+  }
+}
 =================== 10/08/2023 ==========================
 
 query sexos {
