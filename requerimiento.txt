@@ -1,3 +1,88 @@
+=================== 13/08/2023 ==========================
+
+query tiposcarreras {
+  obtenerTipoCarrera {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+query postulados {
+  obtenerListadoPostuladoCarrera {
+    response {
+      id
+      nacionalidad
+      cedula
+      nombre
+      apellido
+      fepostulacion
+      carrera
+      periodo
+      tperiodo
+      estatus
+    }
+  }
+}
+
+query ciudades {
+  obtenerCiudades {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+mutation ciudades {
+  obtenerCiudadesPorEstado (
+    input:{
+      estado: 14
+    }){
+      response{
+        id
+        nombre
+      }
+    }
+}
+
+mutation estadospaises {
+  obtenerEstadosPorPais (
+    input:{
+      pais: 239
+    }){
+      response{
+        id
+        nombre
+      }
+    }
+}
+
+mutation municipioestado {
+  obtenerMunicipiosPorEstado (
+    input:{
+      estado: 14
+    }){
+      response{
+        id
+        nombre
+      }
+    }
+}
+
+mutation parroquiamunicipio {
+  obtenerParrquiasPorMunicipio (
+    input:{
+      municipio: 181
+    }){
+      response{
+        id
+        nombre
+      }
+    }
+}
+
 =================== 12/08/2023 ==========================
 query estatuspostulacion {
   obtenerEstatusPostulacion {

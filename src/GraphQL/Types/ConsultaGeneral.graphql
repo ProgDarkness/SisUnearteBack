@@ -22,6 +22,18 @@ type ResultCarreras {
     response: [Carrera]
 }
 
+type TipoCarrera {
+    id: ID!
+    nombre: String!
+}
+
+type ResultTipoCarreras {
+    status: Int!
+    message: String!
+    type: String!
+    response: [TipoCarrera]
+}
+
 type Nacionalidad {
     id: ID!
     codigo: String!
@@ -57,6 +69,18 @@ type ResultDiscapacidades {
     message: String!
     type: String!
     response: [Discapacidad]
+}
+
+type Ciudad {
+    id: ID!
+    nombre: String!
+}
+
+type ResultCiudades {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Ciudad]
 }
 
 type Estado {
@@ -172,9 +196,11 @@ type ResultTipoDocumento {
 type Query {
     obtenerMaterias: ResultMaterias,
     obtenerCarreras: ResultCarreras,
+    obtenerTipoCarrera: ResultTipoCarreras
     obtenerNacionalidades: ResultNacionalidades,
     obtenerSexos: ResultSexos,
     obtenerDiscapacidades: ResultDiscapacidades,
+    obtenerCiudades: ResultCiudades,
     obtenerEstados: ResultEstados,
     obtenerMunicipios: ResultMunicipios,
     obtenerParroquias: ResultParroquias,
@@ -186,3 +212,71 @@ type Query {
     obtenerCodigoPostal: ResultCodigoPostal,
     obtenerTipoDocumento: ResultTipoDocumento
 }
+
+type Mutation {
+    obtenerCiudadesPorEstado(input: InputEstado!): ResultCiudad
+    obtenerEstadosPorPais(input: InputPais!): ResultPais
+    obtenerMunicipiosPorEstado(input: InputEstado!): ResultMunicipiosEstado
+    obtenerParrquiasPorMunicipio(input: InputMunicipio!): ResultParroquiasMunicipio
+}
+
+input InputEstado {
+    estado: Int!
+}
+
+type Ciudades {
+    id: ID!
+    nombre: String!
+}
+
+type ResultCiudad {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Ciudades]
+}
+
+input InputPais {
+    pais: Int!
+}
+
+type Paises {
+    id: ID!
+    nombre: String!
+}
+
+type ResultPais {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Paises]
+}
+
+type MunicipioEstado {
+    id: ID!
+    nombre: String!
+}
+
+type ResultMunicipiosEstado {
+    status: Int!
+    message: String!
+    type: String!
+    response: [MunicipioEstado]
+}
+
+input InputMunicipio {
+    municipio: Int!
+}
+
+type ParroquiaMunicipio {
+    id: ID!
+    nombre: String!
+}
+
+type ResultParroquiasMunicipio {
+    status: Int!
+    message: String!
+    type: String!
+    response: [ParroquiaMunicipio]
+}
+

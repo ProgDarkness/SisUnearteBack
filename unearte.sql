@@ -5,7 +5,7 @@
 -- Dumped from database version 14.8
 -- Dumped by pg_dump version 14.8
 
--- Started on 2023-08-10 20:22:17
+-- Started on 2023-08-14 12:40:51
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -17,25 +17,6 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
-
---
--- TOC entry 3 (class 2615 OID 2200)
--- Name: public; Type: SCHEMA; Schema: -; Owner: postgres
---
-
-CREATE SCHEMA public;
-
-
-ALTER SCHEMA public OWNER TO postgres;
-
---
--- TOC entry 3934 (class 0 OID 0)
--- Dependencies: 3
--- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
---
-
-COMMENT ON SCHEMA public IS 'standard public schema';
-
 
 --
 -- TOC entry 243 (class 1259 OID 25217)
@@ -253,13 +234,13 @@ CREATE SEQUENCE public.m007t_tipo_periodo_id_seq
 ALTER TABLE public.m007t_tipo_periodo_id_seq OWNER TO postgres;
 
 --
--- TOC entry 304 (class 1259 OID 25713)
+-- TOC entry 301 (class 1259 OID 25713)
 -- Name: m007t_tipo_periodo; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.m007t_tipo_periodo (
     id_tp_periodo integer DEFAULT nextval('public.m007t_tipo_periodo_id_seq'::regclass) NOT NULL,
-    cod_tp_periodo integer NOT NULL,
+    co_tp_periodo integer NOT NULL,
     nb_tp_periodo character varying(50) NOT NULL,
     tx_descripcion character varying(50) NOT NULL,
     visible boolean,
@@ -287,7 +268,7 @@ CREATE SEQUENCE public.m008t_tipopersonal_id_seq
 ALTER TABLE public.m008t_tipopersonal_id_seq OWNER TO postgres;
 
 --
--- TOC entry 292 (class 1259 OID 25650)
+-- TOC entry 291 (class 1259 OID 25650)
 -- Name: m008t_tipo_personal; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -322,7 +303,7 @@ CREATE SEQUENCE public.m009t_discapacidad_id_seq
 ALTER TABLE public.m009t_discapacidad_id_seq OWNER TO postgres;
 
 --
--- TOC entry 314 (class 1259 OID 25787)
+-- TOC entry 311 (class 1259 OID 25787)
 -- Name: m009t_tipo_discapacidad; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -355,7 +336,7 @@ CREATE SEQUENCE public.m010t_estatus_id_seq
 ALTER TABLE public.m010t_estatus_id_seq OWNER TO postgres;
 
 --
--- TOC entry 291 (class 1259 OID 25644)
+-- TOC entry 290 (class 1259 OID 25644)
 -- Name: m010t_estatus_personal; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -387,7 +368,7 @@ CREATE SEQUENCE public.m011t_profesion_id_seq
 ALTER TABLE public.m011t_profesion_id_seq OWNER TO postgres;
 
 --
--- TOC entry 269 (class 1259 OID 25446)
+-- TOC entry 268 (class 1259 OID 25446)
 -- Name: m011t_profesion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -416,7 +397,7 @@ CREATE SEQUENCE public.m012t_tipo_materia_id_seq
 ALTER TABLE public.m012t_tipo_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 300 (class 1259 OID 25694)
+-- TOC entry 299 (class 1259 OID 25694)
 -- Name: m012t_tipo_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -451,7 +432,7 @@ CREATE SEQUENCE public.m013t_dias_id_seq
 ALTER TABLE public.m013t_dias_id_seq OWNER TO postgres;
 
 --
--- TOC entry 281 (class 1259 OID 25546)
+-- TOC entry 280 (class 1259 OID 25546)
 -- Name: m013t_dias; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -484,7 +465,7 @@ CREATE SEQUENCE public.m014t_estatus_estudiante_id_seq
 ALTER TABLE public.m014t_estatus_estudiante_id_seq OWNER TO postgres;
 
 --
--- TOC entry 286 (class 1259 OID 25609)
+-- TOC entry 285 (class 1259 OID 25609)
 -- Name: m014t_estatus_estudiante; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -533,7 +514,7 @@ CREATE TABLE public.m015t_secciones (
 ALTER TABLE public.m015t_secciones OWNER TO postgres;
 
 --
--- TOC entry 320 (class 1259 OID 25918)
+-- TOC entry 317 (class 1259 OID 25918)
 -- Name: m016t_aulas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -567,7 +548,7 @@ CREATE SEQUENCE public.m017t_trayectos_id_seq
 ALTER TABLE public.m017t_trayectos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 248 (class 1259 OID 25300)
+-- TOC entry 328 (class 1259 OID 32808)
 -- Name: m017t_trayectos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -575,6 +556,8 @@ CREATE TABLE public.m017t_trayectos (
     id_trayecto integer DEFAULT nextval('public.m017t_trayectos_id_seq'::regclass) NOT NULL,
     nb_trayecto character varying(50) NOT NULL,
     tx_descripcion character varying(50) NOT NULL,
+    mes_duracion integer,
+    visible boolean,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -583,7 +566,7 @@ CREATE TABLE public.m017t_trayectos (
 ALTER TABLE public.m017t_trayectos OWNER TO postgres;
 
 --
--- TOC entry 251 (class 1259 OID 25342)
+-- TOC entry 250 (class 1259 OID 25342)
 -- Name: m018t_area_materia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -599,7 +582,7 @@ CREATE SEQUENCE public.m018t_area_materia_id_seq
 ALTER TABLE public.m018t_area_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 252 (class 1259 OID 25343)
+-- TOC entry 251 (class 1259 OID 25343)
 -- Name: m018t_area_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -617,7 +600,7 @@ CREATE TABLE public.m018t_area_materia (
 ALTER TABLE public.m018t_area_materia OWNER TO postgres;
 
 --
--- TOC entry 253 (class 1259 OID 25349)
+-- TOC entry 252 (class 1259 OID 25349)
 -- Name: m019t_clase_materia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -633,7 +616,7 @@ CREATE SEQUENCE public.m019t_clase_materia_id_seq
 ALTER TABLE public.m019t_clase_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 254 (class 1259 OID 25350)
+-- TOC entry 253 (class 1259 OID 25350)
 -- Name: m019t_clase_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -651,7 +634,7 @@ CREATE TABLE public.m019t_clase_materia (
 ALTER TABLE public.m019t_clase_materia OWNER TO postgres;
 
 --
--- TOC entry 257 (class 1259 OID 25388)
+-- TOC entry 256 (class 1259 OID 25388)
 -- Name: m020t_ciudades_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -667,7 +650,7 @@ CREATE SEQUENCE public.m020t_ciudades_id_seq
 ALTER TABLE public.m020t_ciudades_id_seq OWNER TO postgres;
 
 --
--- TOC entry 259 (class 1259 OID 25402)
+-- TOC entry 258 (class 1259 OID 25402)
 -- Name: m020t_ciudades; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -682,7 +665,7 @@ CREATE TABLE public.m020t_ciudades (
 ALTER TABLE public.m020t_ciudades OWNER TO postgres;
 
 --
--- TOC entry 258 (class 1259 OID 25395)
+-- TOC entry 257 (class 1259 OID 25395)
 -- Name: m021t_tipo_vivienda_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -698,20 +681,20 @@ CREATE SEQUENCE public.m021t_tipo_vivienda_id_seq
 ALTER TABLE public.m021t_tipo_vivienda_id_seq OWNER TO postgres;
 
 --
--- TOC entry 268 (class 1259 OID 25440)
+-- TOC entry 267 (class 1259 OID 25440)
 -- Name: m021t_tipo_vivienda; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.m021t_tipo_vivienda (
-    id_tpvivienda integer DEFAULT nextval('public.m021t_tipo_vivienda_id_seq'::regclass) NOT NULL,
-    nb_tpvivienda character varying(50) NOT NULL
+    id_tp_vivienda integer DEFAULT nextval('public.m021t_tipo_vivienda_id_seq'::regclass) NOT NULL,
+    nb_tp_vivienda character varying(50) NOT NULL
 );
 
 
 ALTER TABLE public.m021t_tipo_vivienda OWNER TO postgres;
 
 --
--- TOC entry 260 (class 1259 OID 25411)
+-- TOC entry 259 (class 1259 OID 25411)
 -- Name: m022t_paises_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -727,7 +710,7 @@ CREATE SEQUENCE public.m022t_paises_id_seq
 ALTER TABLE public.m022t_paises_id_seq OWNER TO postgres;
 
 --
--- TOC entry 261 (class 1259 OID 25412)
+-- TOC entry 260 (class 1259 OID 25412)
 -- Name: m022t_paises; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -740,7 +723,7 @@ CREATE TABLE public.m022t_paises (
 ALTER TABLE public.m022t_paises OWNER TO postgres;
 
 --
--- TOC entry 262 (class 1259 OID 25418)
+-- TOC entry 261 (class 1259 OID 25418)
 -- Name: m023t_zona_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -756,7 +739,7 @@ CREATE SEQUENCE public.m023t_zona_id_seq
 ALTER TABLE public.m023t_zona_id_seq OWNER TO postgres;
 
 --
--- TOC entry 263 (class 1259 OID 25419)
+-- TOC entry 262 (class 1259 OID 25419)
 -- Name: m023t_zona; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -771,7 +754,7 @@ CREATE TABLE public.m023t_zona (
 ALTER TABLE public.m023t_zona OWNER TO postgres;
 
 --
--- TOC entry 264 (class 1259 OID 25426)
+-- TOC entry 263 (class 1259 OID 25426)
 -- Name: m024t_tipo_zona_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -787,20 +770,20 @@ CREATE SEQUENCE public.m024t_tipo_zona_id_seq
 ALTER TABLE public.m024t_tipo_zona_id_seq OWNER TO postgres;
 
 --
--- TOC entry 265 (class 1259 OID 25427)
+-- TOC entry 264 (class 1259 OID 25427)
 -- Name: m024t_tipo_zona; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.m024t_tipo_zona (
-    id_tpzona integer DEFAULT nextval('public.m024t_tipo_zona_id_seq'::regclass) NOT NULL,
-    nb_tpzona character varying(100) NOT NULL
+    id_tp_zona integer DEFAULT nextval('public.m024t_tipo_zona_id_seq'::regclass) NOT NULL,
+    nb_tp_zona character varying(100) NOT NULL
 );
 
 
 ALTER TABLE public.m024t_tipo_zona OWNER TO postgres;
 
 --
--- TOC entry 266 (class 1259 OID 25433)
+-- TOC entry 265 (class 1259 OID 25433)
 -- Name: m025t_tipo_via_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -816,20 +799,20 @@ CREATE SEQUENCE public.m025t_tipo_via_id_seq
 ALTER TABLE public.m025t_tipo_via_id_seq OWNER TO postgres;
 
 --
--- TOC entry 267 (class 1259 OID 25434)
+-- TOC entry 266 (class 1259 OID 25434)
 -- Name: m025t_tipo_via; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.m025t_tipo_via (
-    id_tpvia integer DEFAULT nextval('public.m025t_tipo_via_id_seq'::regclass) NOT NULL,
-    nb_tpvia character varying(100) NOT NULL
+    id_tp_via integer DEFAULT nextval('public.m025t_tipo_via_id_seq'::regclass) NOT NULL,
+    nb_tp_via character varying(100) NOT NULL
 );
 
 
 ALTER TABLE public.m025t_tipo_via OWNER TO postgres;
 
 --
--- TOC entry 270 (class 1259 OID 25457)
+-- TOC entry 269 (class 1259 OID 25457)
 -- Name: m026t_tipo_sexo_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -845,7 +828,7 @@ CREATE SEQUENCE public.m026t_tipo_sexo_id_seq
 ALTER TABLE public.m026t_tipo_sexo_id_seq OWNER TO postgres;
 
 --
--- TOC entry 271 (class 1259 OID 25465)
+-- TOC entry 270 (class 1259 OID 25465)
 -- Name: m026t_tipo_sexo; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -859,7 +842,7 @@ CREATE TABLE public.m026t_tipo_sexo (
 ALTER TABLE public.m026t_tipo_sexo OWNER TO postgres;
 
 --
--- TOC entry 272 (class 1259 OID 25471)
+-- TOC entry 271 (class 1259 OID 25471)
 -- Name: m027t_estado_civil_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -875,7 +858,7 @@ CREATE SEQUENCE public.m027t_estado_civil_id_seq
 ALTER TABLE public.m027t_estado_civil_id_seq OWNER TO postgres;
 
 --
--- TOC entry 273 (class 1259 OID 25472)
+-- TOC entry 272 (class 1259 OID 25472)
 -- Name: m027t_estado_civil; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -888,7 +871,7 @@ CREATE TABLE public.m027t_estado_civil (
 ALTER TABLE public.m027t_estado_civil OWNER TO postgres;
 
 --
--- TOC entry 274 (class 1259 OID 25479)
+-- TOC entry 273 (class 1259 OID 25479)
 -- Name: m028t_tipo_nacionalidad_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -904,7 +887,7 @@ CREATE SEQUENCE public.m028t_tipo_nacionalidad_id_seq
 ALTER TABLE public.m028t_tipo_nacionalidad_id_seq OWNER TO postgres;
 
 --
--- TOC entry 275 (class 1259 OID 25486)
+-- TOC entry 274 (class 1259 OID 25486)
 -- Name: m028t_tipo_nacionalidad; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -920,7 +903,7 @@ CREATE TABLE public.m028t_tipo_nacionalidad (
 ALTER TABLE public.m028t_tipo_nacionalidad OWNER TO postgres;
 
 --
--- TOC entry 276 (class 1259 OID 25525)
+-- TOC entry 275 (class 1259 OID 25525)
 -- Name: m029t_bloque_horario_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -936,7 +919,7 @@ CREATE SEQUENCE public.m029t_bloque_horario_id_seq
 ALTER TABLE public.m029t_bloque_horario_id_seq OWNER TO postgres;
 
 --
--- TOC entry 277 (class 1259 OID 25526)
+-- TOC entry 276 (class 1259 OID 25526)
 -- Name: m029t_bloque_horario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -954,7 +937,7 @@ CREATE TABLE public.m029t_bloque_horario (
 ALTER TABLE public.m029t_bloque_horario OWNER TO postgres;
 
 --
--- TOC entry 278 (class 1259 OID 25533)
+-- TOC entry 277 (class 1259 OID 25533)
 -- Name: m030t_turnos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -970,7 +953,7 @@ CREATE SEQUENCE public.m030t_turnos_id_seq
 ALTER TABLE public.m030t_turnos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 279 (class 1259 OID 25534)
+-- TOC entry 278 (class 1259 OID 25534)
 -- Name: m030t_turnos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -986,7 +969,7 @@ CREATE TABLE public.m030t_turnos (
 ALTER TABLE public.m030t_turnos OWNER TO postgres;
 
 --
--- TOC entry 283 (class 1259 OID 25571)
+-- TOC entry 282 (class 1259 OID 25571)
 -- Name: m032t_tipo_ingreso_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1002,7 +985,7 @@ CREATE SEQUENCE public.m032t_tipo_ingreso_id_seq
 ALTER TABLE public.m032t_tipo_ingreso_id_seq OWNER TO postgres;
 
 --
--- TOC entry 284 (class 1259 OID 25572)
+-- TOC entry 283 (class 1259 OID 25572)
 -- Name: m032t_tipo_ingreso; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1017,7 +1000,7 @@ CREATE TABLE public.m032t_tipo_ingreso (
 ALTER TABLE public.m032t_tipo_ingreso OWNER TO postgres;
 
 --
--- TOC entry 288 (class 1259 OID 25621)
+-- TOC entry 287 (class 1259 OID 25621)
 -- Name: m033t_estatus_inscripcion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1033,7 +1016,7 @@ CREATE SEQUENCE public.m033t_estatus_inscripcion_id_seq
 ALTER TABLE public.m033t_estatus_inscripcion_id_seq OWNER TO postgres;
 
 --
--- TOC entry 290 (class 1259 OID 25638)
+-- TOC entry 289 (class 1259 OID 25638)
 -- Name: m033t_estatus_inscripcion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1049,7 +1032,7 @@ CREATE TABLE public.m033t_estatus_inscripcion (
 ALTER TABLE public.m033t_estatus_inscripcion OWNER TO postgres;
 
 --
--- TOC entry 289 (class 1259 OID 25631)
+-- TOC entry 288 (class 1259 OID 25631)
 -- Name: m034t_estatus_inscripto_materia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1065,7 +1048,7 @@ CREATE SEQUENCE public.m034t_estatus_inscripto_materia_id_seq
 ALTER TABLE public.m034t_estatus_inscripto_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 295 (class 1259 OID 25664)
+-- TOC entry 294 (class 1259 OID 25664)
 -- Name: m034t_estatus_inscripto_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1081,7 +1064,7 @@ CREATE TABLE public.m034t_estatus_inscripto_materia (
 ALTER TABLE public.m034t_estatus_inscripto_materia OWNER TO postgres;
 
 --
--- TOC entry 293 (class 1259 OID 25657)
+-- TOC entry 292 (class 1259 OID 25657)
 -- Name: m035t_estatus_docente_materia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1097,7 +1080,7 @@ CREATE SEQUENCE public.m035t_estatus_docente_materia_id_seq
 ALTER TABLE public.m035t_estatus_docente_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 294 (class 1259 OID 25658)
+-- TOC entry 293 (class 1259 OID 25658)
 -- Name: m035t_estatus_docente_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1113,7 +1096,7 @@ CREATE TABLE public.m035t_estatus_docente_materia (
 ALTER TABLE public.m035t_estatus_docente_materia OWNER TO postgres;
 
 --
--- TOC entry 296 (class 1259 OID 25675)
+-- TOC entry 295 (class 1259 OID 25675)
 -- Name: m036t_tipo_carrera_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1129,13 +1112,13 @@ CREATE SEQUENCE public.m036t_tipo_carrera_id_seq
 ALTER TABLE public.m036t_tipo_carrera_id_seq OWNER TO postgres;
 
 --
--- TOC entry 297 (class 1259 OID 25676)
+-- TOC entry 296 (class 1259 OID 25676)
 -- Name: m036t_tipo_carrera; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.m036t_tipo_carrera (
     id_tp_carrera integer DEFAULT nextval('public.m036t_tipo_carrera_id_seq'::regclass) NOT NULL,
-    nb_tp_carrera integer NOT NULL,
+    nb_tp_carrera character varying(50) NOT NULL,
     tx_descripcion character varying(50) NOT NULL,
     visible boolean,
     created_at timestamp without time zone,
@@ -1146,7 +1129,7 @@ CREATE TABLE public.m036t_tipo_carrera (
 ALTER TABLE public.m036t_tipo_carrera OWNER TO postgres;
 
 --
--- TOC entry 298 (class 1259 OID 25687)
+-- TOC entry 297 (class 1259 OID 25687)
 -- Name: m037t_estatus_materia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1162,7 +1145,7 @@ CREATE SEQUENCE public.m037t_estatus_materia_id_seq
 ALTER TABLE public.m037t_estatus_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 299 (class 1259 OID 25688)
+-- TOC entry 298 (class 1259 OID 25688)
 -- Name: m037t_estatus_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1179,7 +1162,7 @@ CREATE TABLE public.m037t_estatus_materia (
 ALTER TABLE public.m037t_estatus_materia OWNER TO postgres;
 
 --
--- TOC entry 305 (class 1259 OID 25719)
+-- TOC entry 302 (class 1259 OID 25719)
 -- Name: m039t_estatus_horario_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1195,7 +1178,7 @@ CREATE SEQUENCE public.m039t_estatus_horario_id_seq
 ALTER TABLE public.m039t_estatus_horario_id_seq OWNER TO postgres;
 
 --
--- TOC entry 306 (class 1259 OID 25720)
+-- TOC entry 303 (class 1259 OID 25720)
 -- Name: m039t_estatus_horario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1212,7 +1195,7 @@ CREATE TABLE public.m039t_estatus_horario (
 ALTER TABLE public.m039t_estatus_horario OWNER TO postgres;
 
 --
--- TOC entry 307 (class 1259 OID 25727)
+-- TOC entry 304 (class 1259 OID 25727)
 -- Name: m040t_estatus_seccion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1228,7 +1211,7 @@ CREATE SEQUENCE public.m040t_estatus_seccion_id_seq
 ALTER TABLE public.m040t_estatus_seccion_id_seq OWNER TO postgres;
 
 --
--- TOC entry 308 (class 1259 OID 25728)
+-- TOC entry 305 (class 1259 OID 25728)
 -- Name: m040t_estatus_seccion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1245,7 +1228,7 @@ CREATE TABLE public.m040t_estatus_seccion (
 ALTER TABLE public.m040t_estatus_seccion OWNER TO postgres;
 
 --
--- TOC entry 309 (class 1259 OID 25734)
+-- TOC entry 306 (class 1259 OID 25734)
 -- Name: m041t_estatus_aula_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1261,7 +1244,7 @@ CREATE SEQUENCE public.m041t_estatus_aula_id_seq
 ALTER TABLE public.m041t_estatus_aula_id_seq OWNER TO postgres;
 
 --
--- TOC entry 310 (class 1259 OID 25735)
+-- TOC entry 307 (class 1259 OID 25735)
 -- Name: m041t_estatus_aula; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1278,7 +1261,7 @@ CREATE TABLE public.m041t_estatus_aula (
 ALTER TABLE public.m041t_estatus_aula OWNER TO postgres;
 
 --
--- TOC entry 311 (class 1259 OID 25741)
+-- TOC entry 308 (class 1259 OID 25741)
 -- Name: m042t_estatus_oferta_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1294,7 +1277,7 @@ CREATE SEQUENCE public.m042t_estatus_oferta_id_seq
 ALTER TABLE public.m042t_estatus_oferta_id_seq OWNER TO postgres;
 
 --
--- TOC entry 312 (class 1259 OID 25742)
+-- TOC entry 309 (class 1259 OID 25742)
 -- Name: m042t_estatus_oferta; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1311,7 +1294,7 @@ CREATE TABLE public.m042t_estatus_oferta (
 ALTER TABLE public.m042t_estatus_oferta OWNER TO postgres;
 
 --
--- TOC entry 316 (class 1259 OID 25890)
+-- TOC entry 313 (class 1259 OID 25890)
 -- Name: m043t_ciclos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1327,7 +1310,7 @@ CREATE SEQUENCE public.m043t_ciclos_id_seq
 ALTER TABLE public.m043t_ciclos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 317 (class 1259 OID 25891)
+-- TOC entry 314 (class 1259 OID 25891)
 -- Name: m043t_ciclos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1344,7 +1327,7 @@ CREATE TABLE public.m043t_ciclos (
 ALTER TABLE public.m043t_ciclos OWNER TO postgres;
 
 --
--- TOC entry 318 (class 1259 OID 25911)
+-- TOC entry 315 (class 1259 OID 25911)
 -- Name: m044t_estatus_periodo_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1360,7 +1343,7 @@ CREATE SEQUENCE public.m044t_estatus_periodo_id_seq
 ALTER TABLE public.m044t_estatus_periodo_id_seq OWNER TO postgres;
 
 --
--- TOC entry 319 (class 1259 OID 25912)
+-- TOC entry 316 (class 1259 OID 25912)
 -- Name: m044t_estatus_periodo; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1377,7 +1360,7 @@ CREATE TABLE public.m044t_estatus_periodo (
 ALTER TABLE public.m044t_estatus_periodo OWNER TO postgres;
 
 --
--- TOC entry 324 (class 1259 OID 26048)
+-- TOC entry 321 (class 1259 OID 26048)
 -- Name: m045_estatus_carrera_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1393,11 +1376,11 @@ CREATE SEQUENCE public.m045_estatus_carrera_id_seq
 ALTER TABLE public.m045_estatus_carrera_id_seq OWNER TO postgres;
 
 --
--- TOC entry 325 (class 1259 OID 26049)
--- Name: m045_estatus_carrera; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 322 (class 1259 OID 26049)
+-- Name: m045t_estatus_carrera; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.m045_estatus_carrera (
+CREATE TABLE public.m045t_estatus_carrera (
     id_estatus_carrera integer DEFAULT nextval('public.m045_estatus_carrera_id_seq'::regclass) NOT NULL,
     nb_estatus_carrera character varying(30),
     tx_descripcion character varying(30),
@@ -1407,7 +1390,137 @@ CREATE TABLE public.m045_estatus_carrera (
 );
 
 
-ALTER TABLE public.m045_estatus_carrera OWNER TO postgres;
+ALTER TABLE public.m045t_estatus_carrera OWNER TO postgres;
+
+--
+-- TOC entry 323 (class 1259 OID 32772)
+-- Name: m046t_estatus_postulacion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.m046t_estatus_postulacion_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.m046t_estatus_postulacion_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 324 (class 1259 OID 32773)
+-- Name: m046t_estatus_postulacion; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.m046t_estatus_postulacion (
+    id_estatus_postulacion integer DEFAULT nextval('public.m046t_estatus_postulacion_id_seq'::regclass) NOT NULL,
+    nb_estatus_postulacion character varying(50) NOT NULL,
+    tx_descripcion character varying(50) NOT NULL,
+    visible boolean,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.m046t_estatus_postulacion OWNER TO postgres;
+
+--
+-- TOC entry 326 (class 1259 OID 32791)
+-- Name: m047t_tipo_documento_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.m047t_tipo_documento_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.m047t_tipo_documento_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 327 (class 1259 OID 32798)
+-- Name: m047t_tipo_documento; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.m047t_tipo_documento (
+    id_tp_documento integer DEFAULT nextval('public.m047t_tipo_documento_id_seq'::regclass) NOT NULL,
+    co_tp_documento character varying(10),
+    nb_tp_documento character varying(50),
+    tx_descripcion character varying(50),
+    visible boolean,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.m047t_tipo_documento OWNER TO postgres;
+
+--
+-- TOC entry 329 (class 1259 OID 32820)
+-- Name: m048t_tipo_estudio_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.m048t_tipo_estudio_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.m048t_tipo_estudio_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 330 (class 1259 OID 32821)
+-- Name: m048t_tipo_estudio; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.m048t_tipo_estudio (
+    id_tp_estudio integer DEFAULT nextval('public.m048t_tipo_estudio_id_seq'::regclass) NOT NULL,
+    nb_tp_estudio character varying(50) NOT NULL,
+    tx_descripcion character varying(50) NOT NULL,
+    visible boolean,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.m048t_tipo_estudio OWNER TO postgres;
+
+--
+-- TOC entry 336 (class 1259 OID 32868)
+-- Name: m049t_estado_mundo_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.m049t_estado_mundo_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.m049t_estado_mundo_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 337 (class 1259 OID 32888)
+-- Name: m049t_estado_mundo; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.m049t_estado_mundo (
+    id_estado_mundo integer DEFAULT nextval('public.m049t_estado_mundo_id_seq'::regclass) NOT NULL,
+    nb_estado_mundo character varying(100),
+    id_pais integer
+);
+
+
+ALTER TABLE public.m049t_estado_mundo OWNER TO postgres;
 
 --
 -- TOC entry 216 (class 1259 OID 24743)
@@ -1462,7 +1575,7 @@ CREATE SEQUENCE public.r002t_carrera_materia_id_seq
 ALTER TABLE public.r002t_carrera_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 249 (class 1259 OID 25306)
+-- TOC entry 248 (class 1259 OID 25306)
 -- Name: r002t_carrera_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1498,7 +1611,7 @@ CREATE SEQUENCE public.r003t_inscripcion_materia_id_seq
 ALTER TABLE public.r003t_inscripcion_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 315 (class 1259 OID 25839)
+-- TOC entry 312 (class 1259 OID 25839)
 -- Name: r003t_inscripcion_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1516,7 +1629,7 @@ CREATE TABLE public.r003t_inscripcion_materia (
 ALTER TABLE public.r003t_inscripcion_materia OWNER TO postgres;
 
 --
--- TOC entry 322 (class 1259 OID 26018)
+-- TOC entry 319 (class 1259 OID 26018)
 -- Name: r004t_oferta_materia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1532,7 +1645,7 @@ CREATE SEQUENCE public.r004t_oferta_materia_id_seq
 ALTER TABLE public.r004t_oferta_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 323 (class 1259 OID 26019)
+-- TOC entry 320 (class 1259 OID 26019)
 -- Name: r004t_oferta_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1546,6 +1659,42 @@ CREATE TABLE public.r004t_oferta_materia (
 
 
 ALTER TABLE public.r004t_oferta_materia OWNER TO postgres;
+
+--
+-- TOC entry 331 (class 1259 OID 32833)
+-- Name: r005t_fecha_estatus_postulacion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.r005t_fecha_estatus_postulacion_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.r005t_fecha_estatus_postulacion_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 332 (class 1259 OID 32834)
+-- Name: r005t_fecha_estatus_postulacion; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.r005t_fecha_estatus_postulacion (
+    id_estatus_fe_postulacion integer DEFAULT nextval('public.r005t_fecha_estatus_postulacion_id_seq'::regclass) NOT NULL,
+    id_postulacion integer NOT NULL,
+    id_estatus_postulacion integer,
+    id_usuario_aprobacion integer,
+    fe_aprobacion timestamp without time zone,
+    st_activo boolean,
+    tx_observacion character varying(50),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.r005t_fecha_estatus_postulacion OWNER TO postgres;
 
 --
 -- TOC entry 209 (class 1259 OID 24577)
@@ -1564,7 +1713,7 @@ CREATE SEQUENCE public.t001t_usuarios_id_seq
 ALTER TABLE public.t001t_usuarios_id_seq OWNER TO postgres;
 
 --
--- TOC entry 313 (class 1259 OID 25753)
+-- TOC entry 310 (class 1259 OID 25753)
 -- Name: t001t_usuarios; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1691,7 +1840,7 @@ CREATE SEQUENCE public.t004t_estudiantes_id_seq
 ALTER TABLE public.t004t_estudiantes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 287 (class 1259 OID 25615)
+-- TOC entry 286 (class 1259 OID 25615)
 -- Name: t004t_estudiantes; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1701,7 +1850,7 @@ CREATE TABLE public.t004t_estudiantes (
     ced_estudiante integer NOT NULL,
     nb_estudiante character varying(100) NOT NULL,
     ape_estudiante character varying(100) NOT NULL,
-    id_sexo_estudiante integer NOT NULL,
+    id_sexo_estudiante integer,
     id_estado_civil integer,
     fe_nac_estudiante timestamp without time zone,
     id_ciudad_nac integer,
@@ -1772,7 +1921,7 @@ CREATE SEQUENCE public.t006t_periodos_id_seq
 ALTER TABLE public.t006t_periodos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 250 (class 1259 OID 25328)
+-- TOC entry 249 (class 1259 OID 25328)
 -- Name: t006t_periodo_lectivo; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1830,7 +1979,7 @@ CREATE SEQUENCE public.t007t_horario_id_seq
 ALTER TABLE public.t007t_horario_id_seq OWNER TO postgres;
 
 --
--- TOC entry 280 (class 1259 OID 25540)
+-- TOC entry 279 (class 1259 OID 25540)
 -- Name: t007t_horario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1869,7 +2018,7 @@ CREATE SEQUENCE public.t008t_oferta_academica_id_seq
 ALTER TABLE public.t008t_oferta_academica_id_seq OWNER TO postgres;
 
 --
--- TOC entry 321 (class 1259 OID 25924)
+-- TOC entry 318 (class 1259 OID 25924)
 -- Name: t008t_oferta_academica; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1891,7 +2040,7 @@ CREATE TABLE public.t008t_oferta_academica (
 ALTER TABLE public.t008t_oferta_academica OWNER TO postgres;
 
 --
--- TOC entry 255 (class 1259 OID 25362)
+-- TOC entry 254 (class 1259 OID 25362)
 -- Name: t009t_notas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1907,7 +2056,7 @@ CREATE SEQUENCE public.t009t_notas_id_seq
 ALTER TABLE public.t009t_notas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 256 (class 1259 OID 25371)
+-- TOC entry 255 (class 1259 OID 25371)
 -- Name: t009t_notas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1923,7 +2072,7 @@ CREATE TABLE public.t009t_notas (
 ALTER TABLE public.t009t_notas OWNER TO postgres;
 
 --
--- TOC entry 285 (class 1259 OID 25578)
+-- TOC entry 284 (class 1259 OID 25578)
 -- Name: t010t_geografico_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1939,13 +2088,21 @@ CREATE SEQUENCE public.t010t_geografico_id_seq
 ALTER TABLE public.t010t_geografico_id_seq OWNER TO postgres;
 
 --
--- TOC entry 303 (class 1259 OID 25707)
+-- TOC entry 334 (class 1259 OID 32856)
 -- Name: t010t_geografico_estudiante; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.t010t_geografico_estudiante (
     id_geografico_estudiante integer DEFAULT nextval('public.t010t_geografico_id_seq'::regclass) NOT NULL,
+    id_tp_via integer,
+    nb_via character varying(50),
+    id_tp_zona integer,
+    nb_zona character varying(50),
+    id_tp_vivienda integer,
+    nu_vivienda integer NOT NULL,
     tx_direccion character varying(50) NOT NULL,
+    id_zona_postal integer,
+    id_ciudad integer,
     id_estado integer NOT NULL,
     id_municipio integer NOT NULL,
     id_parroquia integer NOT NULL,
@@ -1973,7 +2130,7 @@ CREATE SEQUENCE public.t011t_sedes_id_seq
 ALTER TABLE public.t011t_sedes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 282 (class 1259 OID 25556)
+-- TOC entry 281 (class 1259 OID 25556)
 -- Name: t011t_sedes; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1991,7 +2148,7 @@ CREATE TABLE public.t011t_sedes (
 ALTER TABLE public.t011t_sedes OWNER TO postgres;
 
 --
--- TOC entry 301 (class 1259 OID 25700)
+-- TOC entry 300 (class 1259 OID 25700)
 -- Name: t012t_geografico_sede_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2007,13 +2164,19 @@ CREATE SEQUENCE public.t012t_geografico_sede_id_seq
 ALTER TABLE public.t012t_geografico_sede_id_seq OWNER TO postgres;
 
 --
--- TOC entry 302 (class 1259 OID 25701)
+-- TOC entry 335 (class 1259 OID 32862)
 -- Name: t012t_geografico_sede; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.t012t_geografico_sede (
     id_geografico_sede integer DEFAULT nextval('public.t012t_geografico_sede_id_seq'::regclass) NOT NULL,
+    id_tp_via integer,
+    nb_via character varying(50),
+    id_tp_zona integer,
+    nb_zona character varying(50),
     tx_direccion character varying(50) NOT NULL,
+    id_zona_postal integer,
+    id_ciudad integer,
     id_estado integer NOT NULL,
     id_municipio integer NOT NULL,
     id_parroquia integer NOT NULL,
@@ -2025,7 +2188,41 @@ CREATE TABLE public.t012t_geografico_sede (
 ALTER TABLE public.t012t_geografico_sede OWNER TO postgres;
 
 --
--- TOC entry 3831 (class 0 OID 25024)
+-- TOC entry 325 (class 1259 OID 32784)
+-- Name: t013t_postulacion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.t013t_postulacion_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.t013t_postulacion_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 333 (class 1259 OID 32850)
+-- Name: t013t_postulacion; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.t013t_postulacion (
+    id_postulacion integer DEFAULT nextval('public.t013t_postulacion_id_seq'::regclass) NOT NULL,
+    id_usuario integer,
+    id_carrera integer,
+    id_periodo integer,
+    fe_postulacion timestamp without time zone,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.t013t_postulacion OWNER TO postgres;
+
+--
+-- TOC entry 3878 (class 0 OID 25024)
 -- Dependencies: 228
 -- Data for Name: m001t_estados; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2060,7 +2257,7 @@ COPY public.m001t_estados (id_estado, id_region, nb_estado, cod_estado) FROM std
 
 
 --
--- TOC entry 3832 (class 0 OID 25036)
+-- TOC entry 3879 (class 0 OID 25036)
 -- Dependencies: 229
 -- Data for Name: m002t_municipios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2405,7 +2602,7 @@ COPY public.m002t_municipios (id_municipio, id_estado, nb_municipio, cod_municip
 
 
 --
--- TOC entry 3833 (class 0 OID 25048)
+-- TOC entry 3880 (class 0 OID 25048)
 -- Dependencies: 230
 -- Data for Name: m003t_parroquias; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3548,7 +3745,7 @@ COPY public.m003t_parroquias (id_parroquia, nb_parroquia, cod_parroquia, id_muni
 
 
 --
--- TOC entry 3826 (class 0 OID 24811)
+-- TOC entry 3873 (class 0 OID 24811)
 -- Dependencies: 223
 -- Data for Name: m004t_regiones; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3566,7 +3763,7 @@ COPY public.m004t_regiones (id_region, nb_region) FROM stdin;
 
 
 --
--- TOC entry 3848 (class 0 OID 25269)
+-- TOC entry 3895 (class 0 OID 25269)
 -- Dependencies: 245
 -- Data for Name: m005t_materias; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3586,7 +3783,7 @@ COPY public.m005t_materias (id_materia, co_materia, nb_materia, nu_credito, id_t
 
 
 --
--- TOC entry 3849 (class 0 OID 25293)
+-- TOC entry 3896 (class 0 OID 25293)
 -- Dependencies: 246
 -- Data for Name: m006t_carreras; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3603,19 +3800,19 @@ COPY public.m006t_carreras (id_carrera, co_carrera, nb_carrera, id_tp_carrera, i
 
 
 --
--- TOC entry 3907 (class 0 OID 25713)
--- Dependencies: 304
+-- TOC entry 3951 (class 0 OID 25713)
+-- Dependencies: 301
 -- Data for Name: m007t_tipo_periodo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.m007t_tipo_periodo (id_tp_periodo, cod_tp_periodo, nb_tp_periodo, tx_descripcion, visible, created_at, updated_at) FROM stdin;
+COPY public.m007t_tipo_periodo (id_tp_periodo, co_tp_periodo, nb_tp_periodo, tx_descripcion, visible, created_at, updated_at) FROM stdin;
 1	1	Regular	Periodo regular	t	\N	\N
 \.
 
 
 --
--- TOC entry 3895 (class 0 OID 25650)
--- Dependencies: 292
+-- TOC entry 3941 (class 0 OID 25650)
+-- Dependencies: 291
 -- Data for Name: m008t_tipo_personal; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3625,8 +3822,8 @@ COPY public.m008t_tipo_personal (id_tp_personal, co_tp_personal, nb_tp_personal,
 
 
 --
--- TOC entry 3917 (class 0 OID 25787)
--- Dependencies: 314
+-- TOC entry 3961 (class 0 OID 25787)
+-- Dependencies: 311
 -- Data for Name: m009t_tipo_discapacidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3638,8 +3835,8 @@ COPY public.m009t_tipo_discapacidad (id_tp_discapacidad, nb_tp_discapacidad, tx_
 
 
 --
--- TOC entry 3894 (class 0 OID 25644)
--- Dependencies: 291
+-- TOC entry 3940 (class 0 OID 25644)
+-- Dependencies: 290
 -- Data for Name: m010t_estatus_personal; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3649,8 +3846,8 @@ COPY public.m010t_estatus_personal (id_estatus_personal, nb_estatus_personal, tx
 
 
 --
--- TOC entry 3872 (class 0 OID 25446)
--- Dependencies: 269
+-- TOC entry 3918 (class 0 OID 25446)
+-- Dependencies: 268
 -- Data for Name: m011t_profesion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3875,8 +4072,8 @@ COPY public.m011t_profesion (id_profesion, nb_profesion) FROM stdin;
 
 
 --
--- TOC entry 3903 (class 0 OID 25694)
--- Dependencies: 300
+-- TOC entry 3949 (class 0 OID 25694)
+-- Dependencies: 299
 -- Data for Name: m012t_tipo_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3885,8 +4082,8 @@ COPY public.m012t_tipo_materia (id_tp_materia, co_tp_materia, nb_tp_materia, tx_
 
 
 --
--- TOC entry 3884 (class 0 OID 25546)
--- Dependencies: 281
+-- TOC entry 3930 (class 0 OID 25546)
+-- Dependencies: 280
 -- Data for Name: m013t_dias; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3900,8 +4097,8 @@ COPY public.m013t_dias (id_dia, nb_dia, visible, id_estatus, created_at, updated
 
 
 --
--- TOC entry 3889 (class 0 OID 25609)
--- Dependencies: 286
+-- TOC entry 3935 (class 0 OID 25609)
+-- Dependencies: 285
 -- Data for Name: m014t_estatus_estudiante; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3910,7 +4107,7 @@ COPY public.m014t_estatus_estudiante (id_estatus_estudiante, nb_activo, tx_descr
 
 
 --
--- TOC entry 3847 (class 0 OID 25231)
+-- TOC entry 3894 (class 0 OID 25231)
 -- Dependencies: 244
 -- Data for Name: m015t_secciones; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3920,8 +4117,8 @@ COPY public.m015t_secciones (id_seccion, nb_seccion, cap_seccion, id_estatus_sec
 
 
 --
--- TOC entry 3923 (class 0 OID 25918)
--- Dependencies: 320
+-- TOC entry 3967 (class 0 OID 25918)
+-- Dependencies: 317
 -- Data for Name: m016t_aulas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3930,20 +4127,23 @@ COPY public.m016t_aulas (id_aula, co_aula, nb_aula, cap_aula, id_estatus_aula, c
 
 
 --
--- TOC entry 3851 (class 0 OID 25300)
--- Dependencies: 248
+-- TOC entry 3978 (class 0 OID 32808)
+-- Dependencies: 328
 -- Data for Name: m017t_trayectos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.m017t_trayectos (id_trayecto, nb_trayecto, tx_descripcion, created_at, updated_at) FROM stdin;
-1	Trayecto I	Semestre I	2023-07-27 15:26:56	2023-07-27 15:26:56
-2	Trayecto II	Semestre II	2023-07-27 15:26:56	2023-07-27 15:26:56
+COPY public.m017t_trayectos (id_trayecto, nb_trayecto, tx_descripcion, mes_duracion, visible, created_at, updated_at) FROM stdin;
+6	Trayecto II	Trayecto II	12	\N	\N	\N
+7	Trayecto III	Trayecto III	12	\N	\N	\N
+8	Trayecto IV	Trayecto IV	12	\N	\N	\N
+5	Trayecto Inicial	Trayecto Inicial	12	\N	\N	\N
+4	Trayecto I	Trayecto I	6	\N	\N	\N
 \.
 
 
 --
--- TOC entry 3855 (class 0 OID 25343)
--- Dependencies: 252
+-- TOC entry 3901 (class 0 OID 25343)
+-- Dependencies: 251
 -- Data for Name: m018t_area_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3952,8 +4152,8 @@ COPY public.m018t_area_materia (id_area_materia, co_area_materia, nb_area_materi
 
 
 --
--- TOC entry 3857 (class 0 OID 25350)
--- Dependencies: 254
+-- TOC entry 3903 (class 0 OID 25350)
+-- Dependencies: 253
 -- Data for Name: m019t_clase_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3962,8 +4162,8 @@ COPY public.m019t_clase_materia (id_clase_materia, co_clase_materia, nb_clase_ma
 
 
 --
--- TOC entry 3862 (class 0 OID 25402)
--- Dependencies: 259
+-- TOC entry 3908 (class 0 OID 25402)
+-- Dependencies: 258
 -- Data for Name: m020t_ciudades; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -4969,12 +5169,12 @@ COPY public.m020t_ciudades (id_ciudad, id_estado, id_municipio, nb_ciudad) FROM 
 
 
 --
--- TOC entry 3871 (class 0 OID 25440)
--- Dependencies: 268
+-- TOC entry 3917 (class 0 OID 25440)
+-- Dependencies: 267
 -- Data for Name: m021t_tipo_vivienda; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.m021t_tipo_vivienda (id_tpvivienda, nb_tpvivienda) FROM stdin;
+COPY public.m021t_tipo_vivienda (id_tp_vivienda, nb_tp_vivienda) FROM stdin;
 1	EDIFICIO
 2	QUINTA
 3	CASA
@@ -4982,8 +5182,8 @@ COPY public.m021t_tipo_vivienda (id_tpvivienda, nb_tpvivienda) FROM stdin;
 
 
 --
--- TOC entry 3864 (class 0 OID 25412)
--- Dependencies: 261
+-- TOC entry 3910 (class 0 OID 25412)
+-- Dependencies: 260
 -- Data for Name: m022t_paises; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -5195,8 +5395,8 @@ COPY public.m022t_paises (id_pais, nb_pais) FROM stdin;
 
 
 --
--- TOC entry 3866 (class 0 OID 25419)
--- Dependencies: 263
+-- TOC entry 3912 (class 0 OID 25419)
+-- Dependencies: 262
 -- Data for Name: m023t_zona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40292,12 +40492,12 @@ COPY public.m023t_zona (id_zona, id_parroquia, nb_zona, codigo_postal) FROM stdi
 
 
 --
--- TOC entry 3868 (class 0 OID 25427)
--- Dependencies: 265
+-- TOC entry 3914 (class 0 OID 25427)
+-- Dependencies: 264
 -- Data for Name: m024t_tipo_zona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.m024t_tipo_zona (id_tpzona, nb_tpzona) FROM stdin;
+COPY public.m024t_tipo_zona (id_tp_zona, nb_tp_zona) FROM stdin;
 1	URBANIZACIÓN
 2	RESIDENCIA
 3	SECTOR
@@ -40308,12 +40508,12 @@ COPY public.m024t_tipo_zona (id_tpzona, nb_tpzona) FROM stdin;
 
 
 --
--- TOC entry 3870 (class 0 OID 25434)
--- Dependencies: 267
+-- TOC entry 3916 (class 0 OID 25434)
+-- Dependencies: 266
 -- Data for Name: m025t_tipo_via; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.m025t_tipo_via (id_tpvia, nb_tpvia) FROM stdin;
+COPY public.m025t_tipo_via (id_tp_via, nb_tp_via) FROM stdin;
 1	CALLE
 2	AVENIDA
 3	VEREDA
@@ -40323,8 +40523,8 @@ COPY public.m025t_tipo_via (id_tpvia, nb_tpvia) FROM stdin;
 
 
 --
--- TOC entry 3874 (class 0 OID 25465)
--- Dependencies: 271
+-- TOC entry 3920 (class 0 OID 25465)
+-- Dependencies: 270
 -- Data for Name: m026t_tipo_sexo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40335,8 +40535,8 @@ COPY public.m026t_tipo_sexo (id_tp_sexo, co_tp_sexo, nb_tp_sexo) FROM stdin;
 
 
 --
--- TOC entry 3876 (class 0 OID 25472)
--- Dependencies: 273
+-- TOC entry 3922 (class 0 OID 25472)
+-- Dependencies: 272
 -- Data for Name: m027t_estado_civil; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40349,8 +40549,8 @@ COPY public.m027t_estado_civil (id_civil, nb_civil) FROM stdin;
 
 
 --
--- TOC entry 3878 (class 0 OID 25486)
--- Dependencies: 275
+-- TOC entry 3924 (class 0 OID 25486)
+-- Dependencies: 274
 -- Data for Name: m028t_tipo_nacionalidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40361,8 +40561,8 @@ COPY public.m028t_tipo_nacionalidad (id_nacionalidad, co_nacionalidad, nb_nacion
 
 
 --
--- TOC entry 3880 (class 0 OID 25526)
--- Dependencies: 277
+-- TOC entry 3926 (class 0 OID 25526)
+-- Dependencies: 276
 -- Data for Name: m029t_bloque_horario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40377,8 +40577,8 @@ COPY public.m029t_bloque_horario (id_bloque, nu_bloque, hr_inicio, hr_fin, id_tu
 
 
 --
--- TOC entry 3882 (class 0 OID 25534)
--- Dependencies: 279
+-- TOC entry 3928 (class 0 OID 25534)
+-- Dependencies: 278
 -- Data for Name: m030t_turnos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40387,8 +40587,8 @@ COPY public.m030t_turnos (id_turno, nb_turno, id_estatus, created_at, updated_at
 
 
 --
--- TOC entry 3887 (class 0 OID 25572)
--- Dependencies: 284
+-- TOC entry 3933 (class 0 OID 25572)
+-- Dependencies: 283
 -- Data for Name: m032t_tipo_ingreso; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40399,8 +40599,8 @@ COPY public.m032t_tipo_ingreso (id_tp_ingreso, nb_tp_ingreso, created_at, update
 
 
 --
--- TOC entry 3893 (class 0 OID 25638)
--- Dependencies: 290
+-- TOC entry 3939 (class 0 OID 25638)
+-- Dependencies: 289
 -- Data for Name: m033t_estatus_inscripcion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40409,8 +40609,8 @@ COPY public.m033t_estatus_inscripcion (id_estatus_inscripcion, nb_estatus_inscri
 
 
 --
--- TOC entry 3898 (class 0 OID 25664)
--- Dependencies: 295
+-- TOC entry 3944 (class 0 OID 25664)
+-- Dependencies: 294
 -- Data for Name: m034t_estatus_inscripto_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40419,8 +40619,8 @@ COPY public.m034t_estatus_inscripto_materia (id_estatus_inscripto_materia, nb_es
 
 
 --
--- TOC entry 3897 (class 0 OID 25658)
--- Dependencies: 294
+-- TOC entry 3943 (class 0 OID 25658)
+-- Dependencies: 293
 -- Data for Name: m035t_estatus_docente_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40429,18 +40629,20 @@ COPY public.m035t_estatus_docente_materia (id_estatus_docente_materia, nb_estatu
 
 
 --
--- TOC entry 3900 (class 0 OID 25676)
--- Dependencies: 297
+-- TOC entry 3946 (class 0 OID 25676)
+-- Dependencies: 296
 -- Data for Name: m036t_tipo_carrera; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.m036t_tipo_carrera (id_tp_carrera, nb_tp_carrera, tx_descripcion, visible, created_at, updated_at) FROM stdin;
+1	Pregrado	Pregrado	t	\N	\N
+2	Postgrado	Postgrado	t	\N	\N
 \.
 
 
 --
--- TOC entry 3902 (class 0 OID 25688)
--- Dependencies: 299
+-- TOC entry 3948 (class 0 OID 25688)
+-- Dependencies: 298
 -- Data for Name: m037t_estatus_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40449,8 +40651,8 @@ COPY public.m037t_estatus_materia (id_estatus_materia, nb_estatus_materia, tx_de
 
 
 --
--- TOC entry 3909 (class 0 OID 25720)
--- Dependencies: 306
+-- TOC entry 3953 (class 0 OID 25720)
+-- Dependencies: 303
 -- Data for Name: m039t_estatus_horario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40459,8 +40661,8 @@ COPY public.m039t_estatus_horario (id_estatus_horario, nb_estatus_horario, tx_de
 
 
 --
--- TOC entry 3911 (class 0 OID 25728)
--- Dependencies: 308
+-- TOC entry 3955 (class 0 OID 25728)
+-- Dependencies: 305
 -- Data for Name: m040t_estatus_seccion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40469,8 +40671,8 @@ COPY public.m040t_estatus_seccion (id_estatus_seccion, nb_estatus_seccion, tx_de
 
 
 --
--- TOC entry 3913 (class 0 OID 25735)
--- Dependencies: 310
+-- TOC entry 3957 (class 0 OID 25735)
+-- Dependencies: 307
 -- Data for Name: m041t_estatus_aula; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40479,8 +40681,8 @@ COPY public.m041t_estatus_aula (id_estatus_aula, nb_estatus_aula, tx_descripcion
 
 
 --
--- TOC entry 3915 (class 0 OID 25742)
--- Dependencies: 312
+-- TOC entry 3959 (class 0 OID 25742)
+-- Dependencies: 309
 -- Data for Name: m042t_estatus_oferta; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40490,8 +40692,8 @@ COPY public.m042t_estatus_oferta (id_estatus_oferta, nb_estatus_oferta, tx_descr
 
 
 --
--- TOC entry 3920 (class 0 OID 25891)
--- Dependencies: 317
+-- TOC entry 3964 (class 0 OID 25891)
+-- Dependencies: 314
 -- Data for Name: m043t_ciclos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40502,8 +40704,8 @@ COPY public.m043t_ciclos (id_ciclo, nb_ciclo, tx_descripcion, visible, created_a
 
 
 --
--- TOC entry 3922 (class 0 OID 25912)
--- Dependencies: 319
+-- TOC entry 3966 (class 0 OID 25912)
+-- Dependencies: 316
 -- Data for Name: m044t_estatus_periodo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40513,18 +40715,4945 @@ COPY public.m044t_estatus_periodo (id_estatus_periodo, nb_estatus_periodo, tx_de
 
 
 --
--- TOC entry 3928 (class 0 OID 26049)
--- Dependencies: 325
--- Data for Name: m045_estatus_carrera; Type: TABLE DATA; Schema: public; Owner: postgres
+-- TOC entry 3972 (class 0 OID 26049)
+-- Dependencies: 322
+-- Data for Name: m045t_estatus_carrera; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.m045_estatus_carrera (id_estatus_carrera, nb_estatus_carrera, tx_descripcion, visible, updated_at, created_at) FROM stdin;
+COPY public.m045t_estatus_carrera (id_estatus_carrera, nb_estatus_carrera, tx_descripcion, visible, updated_at, created_at) FROM stdin;
 1	Activo	Activo	t	\N	\N
 \.
 
 
 --
--- TOC entry 3835 (class 0 OID 25088)
+-- TOC entry 3974 (class 0 OID 32773)
+-- Dependencies: 324
+-- Data for Name: m046t_estatus_postulacion; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.m046t_estatus_postulacion (id_estatus_postulacion, nb_estatus_postulacion, tx_descripcion, visible, created_at, updated_at) FROM stdin;
+2	Aprobado	Aprobado	t	\N	\N
+3	Rechazado	Rechazado	t	\N	\N
+4	Pendiente por ser revisado	Pendiente por ser revisado	t	\N	\N
+\.
+
+
+--
+-- TOC entry 3977 (class 0 OID 32798)
+-- Dependencies: 327
+-- Data for Name: m047t_tipo_documento; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.m047t_tipo_documento (id_tp_documento, co_tp_documento, nb_tp_documento, tx_descripcion, visible, created_at, updated_at) FROM stdin;
+1	1	Partida de nacimiento	\N	t	\N	\N
+2	2	Notas Certificadas	\N	t	\N	\N
+3	3	Tìtulo de Bachiller	\N	t	\N	\N
+\.
+
+
+--
+-- TOC entry 3980 (class 0 OID 32821)
+-- Dependencies: 330
+-- Data for Name: m048t_tipo_estudio; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.m048t_tipo_estudio (id_tp_estudio, nb_tp_estudio, tx_descripcion, visible, created_at, updated_at) FROM stdin;
+1	Presencial	Presencial	t	\N	\N
+2	Distancia	Distancia	t	\N	\N
+\.
+
+
+--
+-- TOC entry 3987 (class 0 OID 32888)
+-- Dependencies: 337
+-- Data for Name: m049t_estado_mundo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.m049t_estado_mundo (id_estado_mundo, nb_estado_mundo, id_pais) FROM stdin;
+3901	Badakhshan	1
+3871	Badghis	1
+3875	Baghlan	1
+3884	Balkh	1
+3872	Bamyan	1
+3892	Daykundi	1
+3899	Farah	1
+3889	Faryab	1
+3870	Ghazni	1
+3888	Ghōr	1
+3873	Helmand	1
+3887	Herat	1
+3886	Jowzjan	1
+3902	Kabul	1
+3890	Kandahar	1
+3879	Kapisa	1
+3878	Khost	1
+3876	Kunar	1
+3900	Kunduz Province	1
+3891	Laghman	1
+3897	Logar	1
+3882	Nangarhar	1
+3896	Nimruz	1
+3880	Nuristan	1
+3894	Paktia	1
+3877	Paktika	1
+3881	Panjshir	1
+3895	Parwan	1
+3883	Samangan	1
+3885	Sar-e Pol	1
+3893	Takhar	1
+3898	Urozgan	1
+3874	Zabul	1
+603	Berat County	3
+629	Berat District	3
+607	Bulqizë District	3
+618	Delvinë District	3
+608	Devoll District	3
+610	Dibër County	3
+605	Dibër District	3
+632	Durrës County	3
+639	Durrës District	3
+598	Elbasan County	3
+631	Fier County	3
+627	Fier District	3
+604	Gjirokastër County	3
+621	Gjirokastër District	3
+617	Gramsh District	3
+600	Has District	3
+594	Kavajë District	3
+628	Kolonjë District	3
+630	Korçë County	3
+597	Korçë District	3
+614	Krujë District	3
+612	Kuçovë District	3
+601	Kukës County	3
+623	Kukës District	3
+622	Kurbin District	3
+609	Lezhë County	3
+595	Lezhë District	3
+596	Librazhd District	3
+599	Lushnjë District	3
+602	Malësi e Madhe District	3
+637	Mallakastër District	3
+635	Mat District	3
+638	Mirditë District	3
+619	Peqin District	3
+625	Përmet District	3
+606	Pogradec District	3
+620	Pukë District	3
+624	Sarandë District	3
+611	Shkodër County	3
+626	Shkodër District	3
+593	Skrapar District	3
+616	Tepelenë District	3
+615	Tirana County	3
+633	Tirana District	3
+636	Tropojë District	3
+634	Vlorë County	3
+613	Vlorë District	3
+1118	Adrar	4
+1119	Aïn Defla	4
+1122	Aïn Témouchent	4
+1144	Algiers	4
+1103	Annaba	4
+1142	Batna	4
+1108	Béchar	4
+1128	Béjaïa	4
+4909	Béni Abbès	4
+1114	Biskra	4
+1111	Blida	4
+4908	Bordj Baji Mokhtar	4
+1116	Bordj Bou Arréridj	4
+1104	Bouïra	4
+1125	Boumerdès	4
+1105	Chlef	4
+1121	Constantine	4
+4912	Djanet	4
+1098	Djelfa	4
+1129	El Bayadh	4
+4905	El M'ghair	4
+4906	El Menia	4
+1099	El Oued	4
+1100	El Tarf	4
+1127	Ghardaïa	4
+1137	Guelma	4
+1112	Illizi	4
+4914	In Guezzam	4
+4913	In Salah	4
+1113	Jijel	4
+1126	Khenchela	4
+1138	Laghouat	4
+1134	M'Sila	4
+1124	Mascara	4
+1109	Médéa	4
+1132	Mila	4
+1140	Mostaganem	4
+1102	Naama	4
+1101	Oran	4
+1139	Ouargla	4
+4907	Ouled Djellal	4
+1136	Oum El Bouaghi	4
+1130	Relizane	4
+1123	Saïda	4
+1141	Sétif	4
+4902	Sidi Bel Abbès	4
+1110	Skikda	4
+1143	Souk Ahras	4
+1135	Tamanghasset	4
+1117	Tébessa	4
+1106	Tiaret	4
+4910	Timimoun	4
+1120	Tindouf	4
+1115	Tipasa	4
+1133	Tissemsilt	4
+1131	Tizi Ouzou	4
+1107	Tlemcen	4
+4911	Touggourt	4
+488	Andorra la Vella	6
+489	Canillo	6
+487	Encamp	6
+492	Escaldes-Engordany	6
+493	La Massana	6
+491	Ordino	6
+490	Sant Julià de Lòria	6
+221	Bengo Province	7
+218	Benguela Province	7
+212	Bié Province	7
+228	Cabinda Province	7
+226	Cuando Cubango Province	7
+217	Cuanza Norte Province	7
+216	Cuanza Sul	7
+215	Cunene Province	7
+213	Huambo Province	7
+225	Huíla Province	7
+222	Luanda Province	7
+223	Lunda Norte Province	7
+220	Lunda Sul Province	7
+227	Malanje Province	7
+219	Moxico Province	7
+224	Uíge Province	7
+214	Zaire Province	7
+3708	Barbuda	10
+3703	Redonda	10
+3709	Saint George Parish	10
+3706	Saint John Parish	10
+3707	Saint Mary Parish	10
+3705	Saint Paul Parish	10
+3704	Saint Peter Parish	10
+3710	Saint Philip Parish	10
+4880	Autonomous City Of Buenos Aires	11
+3656	Buenos Aires Province	11
+3647	Catamarca Province	11
+3640	Chaco Province	11
+3651	Chubut Province	11
+3642	Córdoba Province	11
+3638	Corrientes	11
+3654	Entre Ríos Province	11
+3652	Formosa Province	11
+3645	Jujuy Province	11
+3655	La Pampa	11
+3653	La Rioja Province	11
+3646	Mendoza	11
+3644	Misiones Province	11
+3648	Neuquén Province	11
+3639	Río Negro Province	11
+3643	Salta Province	11
+3634	San Juan Province	11
+3636	San Luis Province	11
+3649	Santa Cruz Province	11
+3641	Santa Fe Province	11
+3635	Santiago del Estero Province	11
+3650	Tierra del Fuego Province	11
+3637	Tucumán Province	11
+2023	Aragatsotn Region	12
+2024	Ararat Province	12
+2026	Armavir Region	12
+2028	Gegharkunik Province	12
+2033	Kotayk Region	12
+2029	Lori Region	12
+2031	Shirak Region	12
+2027	Syunik Province	12
+2032	Tavush Region	12
+2025	Vayots Dzor Region	12
+2030	Yerevan	12
+3907	Australian Capital Territory	14
+3909	New South Wales	14
+3910	Northern Territory	14
+3905	Queensland	14
+3904	South Australia	14
+3908	Tasmania	14
+3903	Victoria	14
+3906	Western Australia	14
+2062	Burgenland	15
+2057	Carinthia	15
+2065	Lower Austria	15
+2061	Salzburg	15
+2059	Styria	15
+2064	Tyrol	15
+2058	Upper Austria	15
+2060	Vienna	15
+2063	Vorarlberg	15
+540	Absheron District	16
+559	Agdam District	16
+553	Agdash District	16
+577	Aghjabadi District	16
+543	Agstafa District	16
+547	Agsu District	16
+528	Astara District	16
+575	Babek District	16
+552	Baku	16
+560	Balakan District	16
+569	Barda District	16
+554	Beylagan District	16
+532	Bilasuvar District	16
+561	Dashkasan District	16
+527	Fizuli District	16
+585	Ganja	16
+589	Gədəbəy	16
+573	Gobustan District	16
+551	Goranboy District	16
+531	Goychay	16
+574	Goygol District	16
+571	Hajigabul District	16
+544	Imishli District	16
+564	Ismailli District	16
+570	Jabrayil District	16
+578	Jalilabad District	16
+572	Julfa District	16
+525	Kalbajar District	16
+567	Kangarli District	16
+590	Khachmaz District	16
+537	Khizi District	16
+524	Khojali District	16
+549	Kurdamir District	16
+541	Lachin District	16
+587	Lankaran	16
+558	Lankaran District	16
+546	Lerik District	16
+568	Martuni	16
+555	Masally District	16
+580	Mingachevir	16
+562	Nakhchivan Autonomous Republic	16
+530	Neftchala District	16
+556	Oghuz District	16
+534	Ordubad District	16
+542	Qabala District	16
+526	Qakh District	16
+521	Qazakh District	16
+563	Quba District	16
+548	Qubadli District	16
+588	Qusar District	16
+557	Saatly District	16
+565	Sabirabad District	16
+522	Sadarak District	16
+545	Salyan District	16
+536	Samukh District	16
+591	Shabran District	16
+579	Shahbuz District	16
+518	Shaki	16
+586	Shaki District	16
+529	Shamakhi District	16
+583	Shamkir District	16
+535	Sharur District	16
+520	Shirvan	16
+592	Shusha District	16
+584	Siazan District	16
+582	Sumqayit	16
+519	Tartar District	16
+533	Tovuz District	16
+539	Ujar District	16
+550	Yardymli District	16
+538	Yevlakh	16
+523	Yevlakh District	16
+581	Zangilan District	16
+566	Zaqatala District	16
+576	Zardab District	16
+3601	Acklins	17
+3628	Acklins and Crooked Islands	17
+3593	Berry Islands	17
+3629	Bimini	17
+3605	Black Point	17
+3611	Cat Island	17
+3603	Central Abaco	17
+3631	Central Andros	17
+3596	Central Eleuthera	17
+3621	Crooked Island	17
+3614	East Grand Bahama	17
+3612	Exuma	17
+3626	Freeport	17
+3619	Fresh Creek	17
+3597	Governor's Harbour	17
+3632	Grand Cay	17
+3595	Green Turtle Cay	17
+3613	Harbour Island	17
+3598	High Rock	17
+3624	Hope Town	17
+3609	Inagua	17
+3618	Kemps Bay	17
+3610	Long Island	17
+3625	Mangrove Cay	17
+3604	Marsh Harbour	17
+3633	Mayaguana District	17
+4881	New Providence	17
+3594	Nichollstown and Berry Islands	17
+3616	North Abaco	17
+3617	North Andros	17
+3602	North Eleuthera	17
+3615	Ragged Island	17
+3623	Rock Sound	17
+3600	Rum Cay District	17
+3620	San Salvador and Rum Cay	17
+3627	San Salvador Island	17
+3606	Sandy Point	17
+3608	South Abaco	17
+3622	South Andros	17
+3607	South Eleuthera	17
+3630	Spanish Wells	17
+3599	West Grand Bahama	17
+1992	Capital Governorate	18
+1996	Central Governorate	18
+1995	Muharraq Governorate	18
+1994	Northern Governorate	18
+1993	Southern Governorate	18
+796	Bagerhat District	19
+802	Bahadia	19
+752	Bandarban District	19
+784	Barguna District	19
+818	Barisal District	19
+807	Barisal Division	19
+756	Bhola District	19
+797	Bogra District	19
+810	Brahmanbaria District	19
+768	Chandpur District	19
+761	Chapai Nawabganj District	19
+785	Chittagong District	19
+803	Chittagong Division	19
+788	Chuadanga District	19
+763	Comilla District	19
+751	Cox's Bazar District	19
+771	Dhaka District	19
+760	Dhaka Division	19
+783	Dinajpur District	19
+762	Faridpur District	19
+816	Feni District	19
+795	Gaibandha District	19
+798	Gazipur District	19
+792	Gopalganj District	19
+805	Habiganj District	19
+808	Jamalpur District	19
+757	Jessore District	19
+778	Jhalokati District	19
+789	Jhenaidah District	19
+806	Joypurhat District	19
+786	Khagrachari District	19
+811	Khulna District	19
+775	Khulna Division	19
+779	Kishoreganj District	19
+793	Kurigram District	19
+774	Kushtia District	19
+819	Lakshmipur District	19
+780	Lalmonirhat District	19
+817	Madaripur District	19
+776	Meherpur District	19
+794	Moulvibazar District	19
+790	Munshiganj District	19
+766	Mymensingh District	19
+758	Mymensingh Division	19
+814	Naogaon District	19
+769	Narail District	19
+770	Narayanganj District	19
+787	Natore District	19
+764	Netrokona District	19
+772	Nilphamari District	19
+815	Noakhali District	19
+754	Pabna District	19
+800	Panchagarh District	19
+777	Patuakhali District	19
+791	Pirojpur District	19
+773	Rajbari District	19
+813	Rajshahi District	19
+753	Rajshahi Division	19
+809	Rangamati Hill District	19
+759	Rangpur District	19
+750	Rangpur Division	19
+799	Satkhira District	19
+801	Shariatpur District	19
+755	Sherpur District	19
+781	Sirajganj District	19
+812	Sunamganj District	19
+767	Sylhet District	19
+765	Sylhet Division	19
+782	Tangail District	19
+804	Thakurgaon District	19
+1228	Christ Church	20
+1229	Saint Andrew	20
+1226	Saint George	20
+1224	Saint James	20
+1227	Saint John	20
+1223	Saint Joseph	20
+1221	Saint Lucy	20
+1230	Saint Michael	20
+1222	Saint Peter	20
+1220	Saint Philip	20
+1225	Saint Thomas	20
+2959	Brest Region	21
+2955	Gomel Region	21
+2956	Grodno Region	21
+2958	Minsk	21
+2957	Minsk Region	21
+2954	Mogilev Region	21
+2960	Vitebsk Region	21
+1381	Antwerp	22
+1376	Brussels-Capital Region	22
+1377	East Flanders	22
+1373	Flanders	22
+1374	Flemish Brabant	22
+1375	Hainaut	22
+1384	Liège	22
+1372	Limburg	22
+1379	Luxembourg	22
+1378	Namur	22
+1380	Wallonia	22
+1382	Walloon Brabant	22
+1383	West Flanders	22
+264	Belize District	23
+269	Cayo District	23
+266	Corozal District	23
+268	Orange Walk District	23
+265	Stann Creek District	23
+267	Toledo District	23
+3077	Alibori Department	24
+3076	Atakora Department	24
+3079	Atlantique Department	24
+3078	Borgou Department	24
+3070	Collines Department	24
+3072	Donga Department	24
+3071	Kouffo Department	24
+3081	Littoral Department	24
+3075	Mono Department	24
+3080	Ouémé Department	24
+3074	Plateau Department	24
+3073	Zou Department	24
+4860	Devonshire Parish	25
+4862	Hamilton Municipality	25
+4861	Hamilton Parish	25
+4863	Paget Parish	25
+4864	Pembroke Parish	25
+4865	Saint George's Municipality	25
+4866	Saint George's Parish	25
+4867	Sandys Parish	25
+4868	Smith's Parish,	25
+4869	Southampton Parish	25
+4870	Warwick Parish	25
+240	Bumthang District	26
+239	Chukha District	26
+238	Dagana District	26
+229	Gasa District	26
+232	Haa District	26
+234	Lhuntse District	26
+242	Mongar District	26
+237	Paro District	26
+244	Pemagatshel District	26
+235	Punakha District	26
+243	Samdrup Jongkhar District	26
+246	Samtse District	26
+247	Sarpang District	26
+241	Thimphu District	26
+236	Trashigang District	26
+245	Trongsa District	26
+230	Tsirang District	26
+231	Wangdue Phodrang District	26
+233	Zhemgang District	26
+3375	Beni Department	27
+3382	Chuquisaca Department	27
+3381	Cochabamba Department	27
+3380	La Paz Department	27
+3376	Oruro Department	27
+3379	Pando Department	27
+3383	Potosí Department	27
+3377	Santa Cruz Department	27
+3378	Tarija Department	27
+472	Bosnian Podrinje Canton	28
+460	Brčko District	28
+471	Canton 10	28
+462	Central Bosnia Canton	28
+467	Federation of Bosnia and Herzegovina	28
+463	Herzegovina-Neretva Canton	28
+464	Posavina Canton	28
+470	Republika Srpska	28
+466	Sarajevo Canton	28
+461	Tuzla Canton	28
+465	Una-Sana Canton	28
+469	West Herzegovina Canton	28
+468	Zenica-Doboj Canton	28
+3067	Central District	29
+3061	Ghanzi District	29
+3066	Kgalagadi District	29
+3062	Kgatleng District	29
+3069	Kweneng District	29
+3060	Ngamiland	29
+3068	North-East District	29
+3065	North-West District	29
+3064	South-East District	29
+3063	Southern District	29
+2012	Acre	31
+2007	Alagoas	31
+1999	Amapá	31
+2004	Amazonas	31
+2002	Bahia	31
+2016	Ceará	31
+2018	Espírito Santo	31
+2017	Federal District	31
+2000	Goiás	31
+2015	Maranhão	31
+2011	Mato Grosso	31
+2010	Mato Grosso do Sul	31
+1998	Minas Gerais	31
+2009	Pará	31
+2005	Paraíba	31
+2022	Paraná	31
+2006	Pernambuco	31
+2008	Piauí	31
+1997	Rio de Janeiro	31
+2019	Rio Grande do Norte	31
+2001	Rio Grande do Sul	31
+2013	Rondônia	31
+4858	Roraima	31
+2014	Santa Catarina	31
+2021	São Paulo	31
+2003	Sergipe	31
+2020	Tocantins	31
+1217	Belait District	33
+1216	Brunei-Muara District	33
+1218	Temburong District	33
+1219	Tutong District	33
+4699	Blagoevgrad Province	34
+4715	Burgas Province	34
+4718	Dobrich Province	34
+4693	Gabrovo Province	34
+4704	Haskovo Province	34
+4702	Kardzhali Province	34
+4703	Kyustendil Province	34
+4710	Lovech Province	34
+4696	Montana Province	34
+4712	Pazardzhik Province	34
+4695	Pernik Province	34
+4706	Pleven Province	34
+4701	Plovdiv Province	34
+4698	Razgrad Province	34
+4713	Ruse Province	34
+4882	Shumen	34
+4708	Silistra Province	34
+4700	Sliven Province	34
+4694	Smolyan Province	34
+4705	Sofia City Province	34
+4719	Sofia Province	34
+4707	Stara Zagora Province	34
+4714	Targovishte Province	34
+4717	Varna Province	34
+4709	Veliko Tarnovo Province	34
+4697	Vidin Province	34
+4711	Vratsa Province	34
+4716	Yambol Province	34
+3160	Balé Province	35
+3155	Bam Province	35
+3120	Banwa Province	35
+3152	Bazèga Province	35
+3138	Boucle du Mouhoun Region	35
+3121	Bougouriba Province	35
+3131	Boulgou	35
+3153	Cascades Region	35
+3136	Centre	35
+3162	Centre-Est Region	35
+3127	Centre-Nord Region	35
+3115	Centre-Ouest Region	35
+3149	Centre-Sud Region	35
+3167	Comoé Province	35
+3158	Est Region	35
+3148	Ganzourgou Province	35
+3122	Gnagna Province	35
+3143	Gourma Province	35
+3165	Hauts-Bassins Region	35
+3129	Houet Province	35
+3135	Ioba Province	35
+3168	Kadiogo Province	35
+3112	Kénédougou Province	35
+3132	Komondjari Province	35
+3157	Kompienga Province	35
+3146	Kossi Province	35
+3133	Koulpélogo Province	35
+3161	Kouritenga Province	35
+3147	Kourwéogo Province	35
+3159	Léraba Province	35
+3151	Loroum Province	35
+3123	Mouhoun	35
+3116	Nahouri Province	35
+3113	Namentenga Province	35
+3142	Nayala Province	35
+3164	Nord Region, Burkina Faso	35
+3156	Noumbiel Province	35
+3141	Oubritenga Province	35
+3144	Oudalan Province	35
+3117	Passoré Province	35
+3125	Plateau-Central Region	35
+3163	Poni Province	35
+3114	Sahel Region	35
+3154	Sanguié Province	35
+3126	Sanmatenga Province	35
+3139	Séno Province	35
+3119	Sissili Province	35
+3166	Soum Province	35
+3137	Sourou Province	35
+3140	Sud-Ouest Region	35
+3128	Tapoa Province	35
+3134	Tuy Province	35
+3124	Yagha Province	35
+3150	Yatenga Province	35
+3145	Ziro Province	35
+3130	Zondoma Province	35
+3118	Zoundwéogo Province	35
+3196	Bubanza Province	36
+3198	Bujumbura Mairie Province	36
+3200	Bujumbura Rural Province	36
+3202	Bururi Province	36
+3201	Cankuzo Province	36
+3190	Cibitoke Province	36
+3197	Gitega Province	36
+3194	Karuzi Province	36
+3192	Kayanza Province	36
+3195	Kirundo Province	36
+3188	Makamba Province	36
+3193	Muramvya Province	36
+3186	Muyinga Province	36
+3187	Mwaro Province	36
+3199	Ngozi Province	36
+3185	Rumonge Province	36
+3189	Rutana Province	36
+3191	Ruyigi Province	36
+3984	Banteay Meanchey Province	37
+3976	Battambang Province	37
+3991	Kampong Cham Province	37
+3979	Kampong Chhnang Province	37
+3988	Kampong Speu Province	37
+3981	Kampot Province	37
+3983	Kandal Province	37
+3978	Kep Province	37
+3982	Koh Kong Province	37
+3986	Kratié Province	37
+3985	Mondulkiri Province	37
+3987	Oddar Meanchey Province	37
+3980	Pailin Province	37
+3994	Phnom Penh	37
+3973	Preah Vihear Province	37
+3974	Prey Veng Province	37
+3977	Pursat Province	37
+3990	Ratanakiri Province	37
+3992	Siem Reap Province	37
+3989	Sihanoukville Province	37
+3993	Stung Treng Province	37
+3972	Svay Rieng Province	37
+3975	Takéo Province	37
+2663	Adamawa	38
+2660	Centre	38
+2661	East	38
+2656	Far North	38
+2662	Littoral	38
+2665	North	38
+2657	Northwest	38
+2659	South	38
+2658	Southwest	38
+2664	West	38
+872	Alberta	39
+875	British Columbia	39
+867	Manitoba	39
+868	New Brunswick	39
+877	Newfoundland and Labrador	39
+878	Northwest Territories	39
+874	Nova Scotia	39
+876	Nunavut	39
+866	Ontario	39
+871	Prince Edward Island	39
+873	Quebec	39
+870	Saskatchewan	39
+869	Yukon	39
+2994	Barlavento Islands	40
+2999	Boa Vista	40
+2996	Brava	40
+2991	Maio Municipality	40
+2987	Mosteiros	40
+2997	Paul	40
+2989	Porto Novo	40
+2988	Praia	40
+2982	Ribeira Brava Municipality	40
+3002	Ribeira Grande	40
+2984	Ribeira Grande de Santiago	40
+2998	Sal	40
+2985	Santa Catarina	40
+2995	Santa Catarina do Fogo	40
+3004	Santa Cruz	40
+2986	São Domingos	40
+3000	São Filipe	40
+2993	São Lourenço dos Órgãos	40
+2990	São Miguel	40
+3001	São Vicente	40
+2992	Sotavento Islands	40
+2983	Tarrafal	40
+3003	Tarrafal de São Nicolau	40
+1259	Bamingui-Bangoran Prefecture	42
+1262	Bangui	42
+1264	Basse-Kotto Prefecture	42
+1258	Haut-Mbomou Prefecture	42
+1268	Haute-Kotto Prefecture	42
+1263	Kémo Prefecture	42
+1256	Lobaye Prefecture	42
+1257	Mambéré-Kadéï	42
+1266	Mbomou Prefecture	42
+1253	Nana-Grébizi Economic Prefecture	42
+1260	Nana-Mambéré Prefecture	42
+1255	Ombella-M'Poko Prefecture	42
+1265	Ouaka Prefecture	42
+1254	Ouham Prefecture	42
+1267	Ouham-Pendé Prefecture	42
+1252	Sangha-Mbaéré	42
+1261	Vakaga Prefecture	42
+3583	Bahr el Gazel	43
+3590	Batha Region	43
+3574	Borkou	43
+3578	Ennedi Region	43
+3575	Ennedi-Est	43
+3584	Ennedi-Ouest	43
+3576	Guéra Region	43
+3573	Hadjer-Lamis	43
+3588	Kanem Region	43
+3577	Lac Region	43
+3585	Logone Occidental Region	43
+3591	Logone Oriental Region	43
+3589	Mandoul Region	43
+3580	Mayo-Kebbi Est Region	43
+3571	Mayo-Kebbi Ouest Region	43
+3570	Moyen-Chari Region	43
+3586	N'Djamena	43
+3582	Ouaddaï Region	43
+3592	Salamat Region	43
+3572	Sila Region	43
+3579	Tandjilé Region	43
+3587	Tibesti Region	43
+3581	Wadi Fira Region	43
+2832	Antofagasta Region	44
+2826	Araucanía Region	44
+2829	Arica y Parinacota Region	44
+2823	Atacama Region	44
+2828	Aysén Region	44
+2827	Bío Bío Region	44
+2825	Coquimbo Region	44
+2835	Los Lagos Region	44
+2834	Los Ríos Region	44
+2836	Magellan and the Chilean Antarctic Region	44
+2833	Maule Region	44
+2831	Ñuble Region	44
+2838	O'Higgins	44
+2824	Santiago Metropolitan Region	44
+2837	Tarapacá Region	44
+2830	Valparaíso	44
+2251	Anhui	45
+2257	Beijing	45
+2271	Chongqing	45
+2248	Fujian	45
+2275	Gansu	45
+2279	Guangdong	45
+2278	Guangxi Zhuang Autonomous Region	45
+2261	Guizhou	45
+2273	Hainan	45
+2280	Hebei	45
+2265	Heilongjiang	45
+2259	Henan	45
+2267	Hong Kong	45
+2274	Hubei	45
+2258	Hunan	45
+2269	Inner Mongolia	45
+2250	Jiangsu	45
+2256	Jiangxi	45
+2253	Jilin	45
+2276	Keelung	45
+2268	Liaoning	45
+2266	Macau	45
+2262	Ningxia Hui Autonomous Region	45
+2270	Qinghai	45
+2272	Shaanxi	45
+2252	Shandong	45
+2249	Shanghai	45
+2254	Shanxi	45
+2277	Sichuan	45
+2255	Taiwan Province, People's Republic of China	45
+2264	Tibet Autonomous Region	45
+2263	Xinjiang	45
+2260	Yunnan	45
+2247	Zhejiang	45
+2895	Amazonas Department	48
+2890	Antioquia Department	48
+2881	Arauca Department	48
+2900	Archipelago of Saint Andréws, Providence and Saint Catalina	48
+2880	Atlántico Department	48
+2893	Bolívar Department	48
+2903	Boyacá Department	48
+2887	Caldas Department	48
+2891	Caquetá Department	48
+2892	Casanare Department	48
+2884	Cauca Department	48
+2899	Cesar Department	48
+2876	Chocó Department	48
+2898	Córdoba Department	48
+2875	Cundinamarca Department	48
+2882	Guainía Department	48
+2888	Guaviare Department	48
+4871	Huila Department	48
+2889	La Guajira Department	48
+2886	Magdalena Department	48
+2878	Meta	48
+2897	Nariño Department	48
+2877	Norte de Santander Department	48
+2896	Putumayo Department	48
+2874	Quindío Department	48
+2879	Risaralda Department	48
+2901	Santander Department	48
+2902	Sucre Department	48
+2883	Tolima Department	48
+2904	Valle del Cauca Department	48
+2885	Vaupés Department	48
+2894	Vichada Department	48
+2821	Anjouan	49
+2822	Grande Comore	49
+2820	Mohéli	49
+2866	Bouenza Department	50
+2870	Brazzaville	50
+2864	Cuvette Department	50
+2869	Cuvette-Ouest Department	50
+2867	Kouilou Department	50
+2868	Lékoumou Department	50
+2865	Likouala Department	50
+2872	Niari Department	50
+2862	Plateaux Department	50
+2863	Pointe-Noire	50
+2873	Pool Department	50
+2871	Sangha Department	50
+2754	Bandundu Province	51
+2746	Bas-Congo province	51
+2753	Bas-Uele	51
+2744	Équateur	51
+2750	Haut-Katanga Province	51
+2758	Haut-Lomami District	51
+2734	Haut-Uele	51
+2751	Ituri Interim Administration	51
+2757	Kasaï District	51
+2737	Kasaï-Occidental	51
+2735	Kasaï-Oriental	51
+2742	Katanga Province	51
+2741	Kinshasa	51
+2740	Kwango District	51
+2759	Kwilu District	51
+2747	Lomami Province	51
+2755	Mai-Ndombe Province	51
+2745	Maniema	51
+2752	Mongala District	51
+2739	Nord-Ubangi District	51
+2749	North Kivu	51
+2736	Orientale Province	51
+2743	Sankuru District	51
+2738	South Kivu	51
+2748	Sud-Ubangi	51
+2733	Tanganyika Province	51
+2756	Tshopo District	51
+2732	Tshuapa District	51
+1215	Alajuela Province	53
+1209	Guanacaste Province	53
+1212	Heredia Province	53
+1213	Limón Province	53
+1211	Provincia de Cartago	53
+1210	Puntarenas Province	53
+1214	San José Province	53
+2634	Abidjan	54
+2626	Agnéby	54
+2636	Bafing Region	54
+2643	Bas-Sassandra District	54
+2635	Bas-Sassandra Region	54
+2654	Comoé District	54
+2644	Denguélé District	54
+2642	Denguélé Region	54
+2645	Dix-Huit Montagnes	54
+2633	Fromager	54
+2651	Gôh-Djiboua District	54
+2638	Haut-Sassandra	54
+2632	Lacs District	54
+2640	Lacs Region	54
+2627	Lagunes District	54
+2639	Lagunes region	54
+2631	Marahoué Region	54
+2629	Montagnes District	54
+2646	Moyen-Cavally	54
+2630	Moyen-Comoé	54
+2655	N'zi-Comoé	54
+2648	Sassandra-Marahoué District	54
+2625	Savanes Region	54
+2628	Sud-Bandama	54
+2652	Sud-Comoé	54
+2637	Vallée du Bandama District	54
+2647	Vallée du Bandama Region	54
+2650	Woroba District	54
+2649	Worodougou	54
+2653	Yamoussoukro	54
+2641	Zanzan Region	54
+734	Bjelovar-Bilogora County	55
+737	Brod-Posavina County	55
+728	Dubrovnik-Neretva County	55
+743	Istria County	55
+742	Koprivnica-Križevci County	55
+729	Krapina-Zagorje County	55
+731	Lika-Senj County	55
+726	Međimurje County	55
+740	Osijek-Baranja County	55
+724	Požega-Slavonia County	55
+735	Primorje-Gorski Kotar County	55
+730	Šibenik-Knin County	55
+733	Sisak-Moslavina County	55
+725	Split-Dalmatia County	55
+739	Varaždin County	55
+732	Virovitica-Podravina County	55
+741	Vukovar-Syrmia County	55
+727	Zadar County	55
+738	Zagreb	55
+736	Zagreb County	55
+283	Artemisa Province	56
+286	Camagüey Province	56
+282	Ciego de Ávila Province	56
+287	Cienfuegos Province	56
+275	Granma Province	56
+285	Guantánamo Province	56
+272	Havana Province	56
+279	Holguín Province	56
+278	Isla de la Juventud	56
+281	Las Tunas Province	56
+284	Matanzas Province	56
+276	Mayabeque Province	56
+277	Pinar del Río Province	56
+274	Sancti Spíritus Province	56
+273	Santiago de Cuba Province	56
+280	Villa Clara Province	56
+749	Famagusta District	57
+744	Kyrenia District	57
+747	Larnaca District	57
+748	Limassol District	57
+745	Nicosia District	57
+746	Paphos District	57
+4627	Benešov District	58
+4620	Beroun District	58
+4615	Blansko District	58
+4542	Břeclav District	58
+4568	Brno-City District	58
+4545	Brno-Country District	58
+4644	Bruntál District	58
+4554	Central Bohemian Region	58
+4633	Česká Lípa District	58
+4556	České Budějovice District	58
+4543	Český Krumlov District	58
+4573	Cheb District	58
+4553	Chomutov District	58
+4634	Chrudim District	58
+4609	Děčín District	58
+4641	Domažlice District	58
+4559	Frýdek-Místek District	58
+4611	Havlíčkův Brod District	58
+4561	Hodonín District	58
+4577	Horní Počernice	58
+4580	Hradec Králové District	58
+4614	Hradec Králové Region	58
+4612	Jablonec nad Nisou District	58
+4625	Jeseník District	58
+4640	Jičín District	58
+4613	Jihlava District	58
+4624	Jindřichův Hradec District	58
+4604	Karlovy Vary District	58
+4581	Karlovy Vary Region	58
+4586	Karviná District	58
+4631	Kladno District	58
+4591	Klatovy District	58
+4618	Kolín District	58
+4593	Kroměříž District	58
+4590	Liberec District	58
+4601	Liberec Region	58
+4605	Litoměřice District	58
+4617	Louny District	58
+4638	Mělník District	58
+4643	Mladá Boleslav District	58
+4600	Moravian-Silesian Region	58
+4629	Most District	58
+4550	Náchod District	58
+4548	Nový Jičín District	58
+4582	Nymburk District	58
+4574	Olomouc District	58
+4589	Olomouc Region	58
+4623	Opava District	58
+4584	Ostrava-City District	58
+4547	Pardubice District	58
+4588	Pardubice Region	58
+4645	Pelhřimov District	58
+4560	Písek District	58
+4607	Plzeň Region	58
+4544	Plzeň-City District	58
+4564	Plzeň-North District	58
+4608	Plzeň-South District	58
+4578	Prachatice District	58
+4598	Prague	58
+4562	Prague 1	58
+4603	Prague 10	58
+4570	Prague 11	58
+4549	Prague 12	58
+4555	Prague 13	58
+4585	Prague 14	58
+4637	Prague 15	58
+4567	Prague 16	58
+4616	Prague 2	58
+4632	Prague 21	58
+4635	Prague 3	58
+4587	Prague 4	58
+4557	Prague 5	58
+4569	Prague 6	58
+4610	Prague 7	58
+4594	Prague 8	58
+4566	Prague 9	58
+4606	Prague-East District	58
+4619	Prague-West District	58
+4626	Přerov District	58
+4546	Příbram District	58
+4551	Prostějov District	58
+4558	Rakovník District	58
+4583	Rokycany District	58
+4636	Rychnov nad Kněžnou District	58
+4596	Semily District	58
+4595	Sokolov District	58
+4639	South Bohemian Region	58
+4602	South Moravian Region	58
+4628	Strakonice District	58
+4642	Šumperk District	58
+4571	Svitavy District	58
+4565	Tábor District	58
+4646	Tachov District	58
+4621	Teplice District	58
+4597	Třebíč District	58
+4579	Trutnov District	58
+4592	Uherské Hradiště District	58
+4599	Ústí nad Labem District	58
+4576	Ústí nad Labem Region	58
+4647	Ústí nad Orlicí District	58
+4572	Vsetín District	58
+4622	Vyškov District	58
+4575	Vysočina Region	58
+4648	Žďár nad Sázavou District	58
+4563	Zlín District	58
+4552	Zlín Region	58
+4630	Znojmo District	58
+1530	Capital Region of Denmark	59
+1531	Central Denmark Region	59
+1532	North Denmark Region	59
+1529	Region of Southern Denmark	59
+1528	Region Zealand	59
+2933	Ali Sabieh Region	60
+2932	Arta Region	60
+2930	Dikhil Region	60
+2929	Djibouti	60
+2928	Obock Region	60
+2931	Tadjourah Region	60
+4082	Saint Andrew Parish	61
+4078	Saint David Parish	61
+4079	Saint George Parish	61
+4076	Saint John Parish	61
+4085	Saint Joseph Parish	61
+4083	Saint Luke Parish	61
+4077	Saint Mark Parish	61
+4080	Saint Patrick Parish	61
+4084	Saint Paul Parish	61
+4081	Saint Peter Parish	61
+4114	Azua Province	62
+4105	Baoruco Province	62
+4090	Barahona Province	62
+4107	Dajabón Province	62
+4095	Distrito Nacional	62
+4113	Duarte Province	62
+4086	El Seibo Province	62
+4102	Espaillat Province	62
+4106	Hato Mayor Province	62
+4089	Hermanas Mirabal Province	62
+4097	Independencia	62
+4109	La Altagracia Province	62
+4087	La Romana Province	62
+4116	La Vega Province	62
+4094	María Trinidad Sánchez Province	62
+4099	Monseñor Nouel Province	62
+4115	Monte Cristi Province	62
+4111	Monte Plata Province	62
+4101	Pedernales Province	62
+4096	Peravia Province	62
+4092	Puerto Plata Province	62
+4103	Samaná Province	62
+4091	San Cristóbal Province	62
+4112	San José de Ocoa Province	62
+4098	San Juan Province	62
+4110	San Pedro de Macorís	62
+4088	Sánchez Ramírez Province	62
+4108	Santiago Province	62
+4100	Santiago Rodríguez Province	62
+4093	Santo Domingo Province	62
+4104	Valverde Province	62
+4520	Aileu municipality	63
+4518	Ainaro Municipality	63
+4521	Baucau Municipality	63
+4525	Bobonaro Municipality	63
+4522	Cova Lima Municipality	63
+4524	Dili municipality	63
+4516	Ermera District	63
+4523	Lautém Municipality	63
+4515	Liquiçá Municipality	63
+4517	Manatuto District	63
+4519	Manufahi Municipality	63
+4514	Viqueque Municipality	63
+2923	Azuay Province	64
+2920	Bolívar Province	64
+2917	Cañar Province	64
+2915	Carchi Province	64
+2925	Chimborazo Province	64
+2921	Cotopaxi Province	64
+2924	El Oro Province	64
+2922	Esmeraldas	64
+2905	Galápagos Province	64
+2914	Guayas Province	64
+2911	Imbabura Province	64
+2910	Los Ríos Province	64
+2913	Manabí Province	64
+2918	Morona-Santiago Province	64
+2916	Napo Province	64
+2926	Orellana Province	64
+2907	Pastaza Province	64
+2927	Pichincha Province	64
+2912	Santa Elena Province	64
+2919	Santo Domingo de los Tsáchilas Province	64
+2906	Sucumbíos Province	64
+2908	Tungurahua Province	64
+2909	Zamora-Chinchipe Province	64
+3235	Alexandria Governorate	65
+3225	Aswan Governorate	65
+3236	Asyut Governorate	65
+3241	Beheira Governorate	65
+3230	Beni Suef Governorate	65
+3223	Cairo Governorate	65
+3245	Dakahlia Governorate	65
+3224	Damietta Governorate	65
+3238	Faiyum Governorate	65
+3234	Gharbia Governorate	65
+3239	Giza Governorate	65
+3244	Ismailia Governorate	65
+3222	Kafr el-Sheikh Governorate	65
+3242	Luxor Governorate	65
+3231	Matrouh Governorate	65
+3243	Minya Governorate	65
+3228	Monufia Governorate	65
+3246	New Valley Governorate	65
+3227	North Sinai Governorate	65
+3229	Port Said Governorate	65
+3232	Qalyubia Governorate	65
+3247	Qena Governorate	65
+3240	Red Sea Governorate	65
+3226	Sohag Governorate	65
+3237	South Sinai Governorate	65
+3233	Suez Governorate	65
+4139	Ahuachapán Department	66
+4132	Cabañas Department	66
+4131	Chalatenango Department	66
+4137	Cuscatlán Department	66
+4134	La Libertad Department	66
+4136	La Paz Department	66
+4138	La Unión Department	66
+4130	Morazán Department	66
+4135	San Miguel Department	66
+4133	San Salvador Department	66
+4127	San Vicente Department	66
+4128	Santa Ana Department	66
+4140	Sonsonate Department	66
+4129	Usulután Department	66
+3444	Annobón Province	67
+3446	Bioko Norte Province	67
+3443	Bioko Sur Province	67
+3445	Centro Sur Province	67
+3442	Insular Region	67
+3439	Kié-Ntem Province	67
+3441	Litoral Province	67
+3438	Río Muni	67
+3440	Wele-Nzas Province	67
+3425	Anseba Region	68
+3427	Debub Region	68
+3428	Gash-Barka Region	68
+3426	Maekel Region	68
+3424	Northern Red Sea Region	68
+3429	Southern Red Sea Region	68
+3567	Harju County	69
+3555	Hiiu County	69
+3569	Ida-Viru County	69
+3566	Järva County	69
+3565	Jõgeva County	69
+3568	Lääne County	69
+3564	Lääne-Viru County	69
+3562	Pärnu County	69
+3563	Põlva County	69
+3559	Rapla County	69
+3561	Saare County	69
+3557	Tartu County	69
+3558	Valga County	69
+3556	Viljandi County	69
+3560	Võru County	69
+11	Addis Ababa	70
+6	Afar Region	70
+3	Amhara Region	70
+9	Benishangul-Gumuz Region	70
+8	Dire Dawa	70
+10	Gambela Region	70
+7	Harari Region	70
+5	Oromia Region	70
+2	Somali Region	70
+1	Southern Nations, Nationalities, and Peoples' Region	70
+4	Tigray Region	70
+1917	Ba	73
+1930	Bua	73
+1924	Cakaudrove	73
+1929	Central Division	73
+1932	Eastern Division	73
+1934	Kadavu	73
+1933	Lau	73
+1916	Lomaiviti	73
+1922	Macuata	73
+1919	Nadroga-Navosa	73
+1927	Naitasiri	73
+1928	Namosi	73
+1921	Northern Division	73
+1926	Ra	73
+1920	Rewa	73
+1931	Rotuma	73
+1925	Serua	73
+1918	Tailevu	73
+1923	Western Division	73
+1509	Åland Islands	74
+1511	Central Finland	74
+1494	Central Ostrobothnia	74
+1492	Eastern Finland Province	74
+1507	Finland Proper	74
+1496	Kainuu	74
+1512	Kymenlaakso	74
+1500	Lapland	74
+1504	North Karelia	74
+1505	Northern Ostrobothnia	74
+1503	Northern Savonia	74
+1508	Ostrobothnia	74
+1499	Oulu Province	74
+1502	Päijänne Tavastia	74
+1506	Pirkanmaa	74
+1501	Satakunta	74
+1497	South Karelia	74
+1498	Southern Ostrobothnia	74
+1495	Southern Savonia	74
+1493	Tavastia Proper	74
+1510	Uusimaa	74
+4800	Alo	75
+4811	Alsace	75
+4808	Aquitaine	75
+4789	Auvergne	75
+4798	Auvergne-Rhône-Alpes	75
+4825	Bourgogne-Franche-Comté	75
+4807	Brittany	75
+4788	Burgundy	75
+4818	Centre-Val de Loire	75
+4791	Champagne-Ardenne	75
+4806	Corsica	75
+4805	Franche-Comté	75
+4822	French Guiana	75
+4824	French Polynesia	75
+4820	Grand Est	75
+4829	Guadeloupe	75
+4828	Hauts-de-France	75
+4796	Île-de-France	75
+4803	Languedoc-Roussillon	75
+4792	Limousin	75
+4801	Lorraine	75
+4814	Lower Normandy	75
+4827	Martinique	75
+4797	Mayotte	75
+4793	Nord-Pas-de-Calais	75
+4804	Normandy	75
+4795	Nouvelle-Aquitaine	75
+4799	Occitania	75
+4816	Paris	75
+4802	Pays de la Loire	75
+4790	Picardy	75
+4815	Poitou-Charentes	75
+4812	Provence-Alpes-Côte d'Azur	75
+4823	Réunion	75
+4813	Rhône-Alpes	75
+4794	Saint Barthélemy	75
+4809	Saint Martin	75
+4821	Saint Pierre and Miquelon	75
+4819	Sigave	75
+4826	Upper Normandy	75
+4817	Uvea	75
+4810	Wallis and Futuna	75
+2727	Estuaire Province	79
+2726	Haut-Ogooué Province	79
+2730	Moyen-Ogooué Province	79
+2731	Ngounié Province	79
+2725	Nyanga Province	79
+2724	Ogooué-Ivindo Province	79
+2729	Ogooué-Lolo Province	79
+2728	Ogooué-Maritime Province	79
+2723	Woleu-Ntem Province	79
+2666	Banjul	80
+2669	Central River Division	80
+2670	Lower River Division	80
+2671	North Bank Division	80
+2668	Upper River Division	80
+2667	West Coast Division	80
+900	Adjara	81
+901	Autonomous Republic of Abkhazia	81
+907	Guria	81
+905	Imereti	81
+910	Kakheti	81
+897	Khelvachauri Municipality	81
+904	Kvemo Kartli	81
+902	Mtskheta-Mtianeti	81
+909	Racha-Lechkhumi and Kvemo Svaneti	81
+908	Samegrelo-Zemo Svaneti	81
+906	Samtskhe-Javakheti	81
+898	Senaki Municipality	81
+903	Shida Kartli	81
+899	Tbilisi	81
+3006	Baden-Württemberg	82
+3009	Bavaria	82
+3010	Berlin	82
+3013	Brandenburg	82
+3014	Bremen	82
+3016	Hamburg	82
+3018	Hesse	82
+3008	Lower Saxony	82
+3007	Mecklenburg-Vorpommern	82
+3017	North Rhine-Westphalia	82
+3019	Rhineland-Palatinate	82
+3020	Saarland	82
+3021	Saxony	82
+3011	Saxony-Anhalt	82
+3005	Schleswig-Holstein	82
+3015	Thuringia	82
+48	Ashanti Region	83
+53	Brong-Ahafo Region	83
+52	Central Region	83
+50	Eastern Region	83
+54	Greater Accra Region	83
+51	Northern Region	83
+55	Upper East Region	83
+57	Upper West Region	83
+56	Volta Region	83
+49	Western Region	83
+2116	Achaea Regional Unit	85
+2123	Aetolia-Acarnania Regional Unit	85
+2098	Arcadia Prefecture	85
+2105	Argolis Regional Unit	85
+2122	Attica Region	85
+2126	Boeotia Regional Unit	85
+2128	Central Greece Region	85
+2125	Central Macedonia	85
+2115	Chania Regional Unit	85
+2124	Corfu Prefecture	85
+2129	Corinthia Regional Unit	85
+2109	Crete Region	85
+2130	Drama Regional Unit	85
+2120	East Attica Regional Unit	85
+2117	East Macedonia and Thrace	85
+2110	Epirus Region	85
+2101	Euboea	85
+2102	Grevena Prefecture	85
+2099	Imathia Regional Unit	85
+2113	Ioannina Regional Unit	85
+2131	Ionian Islands Region	85
+2095	Karditsa Regional Unit	85
+2100	Kastoria Regional Unit	85
+2127	Kefalonia Prefecture	85
+2111	Kilkis Regional Unit	85
+2112	Kozani Prefecture	85
+2106	Laconia	85
+2132	Larissa Prefecture	85
+2104	Lefkada Regional Unit	85
+2107	Pella Regional Unit	85
+2119	Peloponnese Region	85
+2114	Phthiotis Prefecture	85
+2103	Preveza Prefecture	85
+2121	Serres Prefecture	85
+2118	South Aegean	85
+2097	Thessaloniki Regional Unit	85
+2096	West Greece Region	85
+2108	West Macedonia Region	85
+3867	Carriacou and Petite Martinique	87
+3865	Saint Andrew Parish	87
+3869	Saint David Parish	87
+3864	Saint George Parish	87
+3868	Saint John Parish	87
+3866	Saint Mark Parish	87
+3863	Saint Patrick Parish	87
+3671	Alta Verapaz Department	90
+3674	Baja Verapaz Department	90
+3675	Chimaltenango Department	90
+3666	Chiquimula Department	90
+3662	El Progreso Department	90
+3677	Escuintla Department	90
+3672	Guatemala Department	90
+3670	Huehuetenango Department	90
+3659	Izabal Department	90
+3658	Jalapa Department	90
+3673	Jutiapa Department	90
+3669	Petén Department	90
+3668	Quetzaltenango Department	90
+3657	Quiché Department	90
+3664	Retalhuleu Department	90
+3676	Sacatepéquez Department	90
+3667	San Marcos Department	90
+3665	Santa Rosa Department	90
+3661	Sololá Department	90
+3660	Suchitepéquez Department	90
+3663	Totonicapán Department	90
+2672	Beyla Prefecture	92
+2699	Boffa Prefecture	92
+2709	Boké Prefecture	92
+2676	Boké Region	92
+2686	Conakry	92
+2705	Coyah Prefecture	92
+2679	Dabola Prefecture	92
+2706	Dalaba Prefecture	92
+2688	Dinguiraye Prefecture	92
+2681	Dubréka Prefecture	92
+2682	Faranah Prefecture	92
+2683	Forécariah Prefecture	92
+2675	Fria Prefecture	92
+2685	Gaoual Prefecture	92
+2711	Guéckédou Prefecture	92
+2704	Kankan Prefecture	92
+2697	Kankan Region	92
+2710	Kérouané Prefecture	92
+2693	Kindia Prefecture	92
+2701	Kindia Region	92
+2691	Kissidougou Prefecture	92
+2692	Koubia Prefecture	92
+2703	Koundara Prefecture	92
+2695	Kouroussa Prefecture	92
+2680	Labé Prefecture	92
+2677	Labé Region	92
+2690	Lélouma Prefecture	92
+2708	Lola Prefecture	92
+2702	Macenta Prefecture	92
+2700	Mali Prefecture	92
+2689	Mamou Prefecture	92
+2698	Mamou Region	92
+2673	Mandiana Prefecture	92
+2678	Nzérékoré Prefecture	92
+2684	Nzérékoré Region	92
+2694	Pita Prefecture	92
+2707	Siguiri Prefecture	92
+2687	Télimélé Prefecture	92
+2696	Tougué Prefecture	92
+2674	Yomou Prefecture	92
+2720	Bafatá	93
+2714	Biombo Region	93
+2722	Bolama Region	93
+2713	Cacheu Region	93
+2719	Gabú Region	93
+2721	Leste Province	93
+2717	Norte Province	93
+2718	Oio Region	93
+2715	Quinara Region	93
+2716	Sul Province	93
+2712	Tombali Region	93
+2764	Barima-Waini	94
+2760	Cuyuni-Mazaruni	94
+2767	Demerara-Mahaica	94
+2766	East Berbice-Corentyne	94
+2768	Essequibo Islands-West Demerara	94
+2762	Mahaica-Berbice	94
+2765	Pomeroon-Supenaam	94
+2761	Potaro-Siparuni	94
+2763	Upper Demerara-Berbice	94
+2769	Upper Takutu-Upper Essequibo	94
+4123	Artibonite	95
+4125	Centre	95
+4119	Grand'Anse	95
+4118	Nippes	95
+4117	Nord	95
+4121	Nord-Est	95
+4126	Nord-Ouest	95
+4120	Ouest	95
+4122	Sud	95
+4124	Sud-Est	95
+4047	Atlántida Department	97
+4045	Bay Islands Department	97
+4041	Choluteca Department	97
+4051	Colón Department	97
+4042	Comayagua Department	97
+4049	Copán Department	97
+4046	Cortés Department	97
+4043	El Paraíso Department	97
+4052	Francisco Morazán Department	97
+4048	Gracias a Dios Department	97
+4044	Intibucá Department	97
+4058	La Paz Department	97
+4054	Lempira Department	97
+4056	Ocotepeque Department	97
+4050	Olancho Department	97
+4053	Santa Bárbara Department	97
+4055	Valle Department	97
+4057	Yoro Department	97
+4889	Central and Western District	98
+4891	Eastern	98
+4888	Islands District	98
+4895	Kowloon City	98
+4898	Kwai Tsing	98
+4897	Kwun Tong	98
+4900	North	98
+4887	Sai Kung District	98
+4901	Sha Tin	98
+4894	Sham Shui Po	98
+4892	Southern	98
+4885	Tai Po District	98
+4884	Tsuen Wan District	98
+4899	Tuen Mun	98
+4890	Wan Chai	98
+4896	Wong Tai Sin	98
+4893	Yau Tsim Mong	98
+4883	Yuen Long District	98
+1048	Bács-Kiskun County	99
+1055	Baranya County	99
+1060	Békés County	99
+1036	Békéscsaba	99
+1058	Borsod-Abaúj-Zemplén County	99
+1064	Budapest	99
+1031	Csongrád County	99
+1032	Debrecen	99
+1049	Dunaújváros	99
+1037	Eger	99
+1028	Érd	99
+1044	Fejér County	99
+1041	Győr	99
+1042	Győr-Moson-Sopron County	99
+1063	Hajdú-Bihar County	99
+1040	Heves County	99
+1027	Hódmezővásárhely	99
+1043	Jász-Nagykun-Szolnok County	99
+1067	Kaposvár	99
+1056	Kecskemét	99
+1065	Miskolc	99
+1030	Nagykanizsa	99
+1051	Nógrád County	99
+1034	Nyíregyháza	99
+1053	Pécs	99
+1059	Pest County	99
+1068	Salgótarján	99
+1035	Somogy County	99
+1057	Sopron	99
+1045	Szabolcs-Szatmár-Bereg County	99
+1029	Szeged	99
+1033	Székesfehérvár	99
+1061	Szekszárd	99
+1047	Szolnok	99
+1052	Szombathely	99
+1066	Tatabánya	99
+1038	Tolna County	99
+1039	Vas County	99
+1062	Veszprém	99
+1054	Veszprém County	99
+1046	Zala County	99
+1050	Zalaegerszeg	99
+3431	Capital Region	100
+3433	Eastern Region	100
+3437	Northeastern Region	100
+3435	Northwestern Region	100
+3430	Southern Peninsula Region	100
+3434	Southern Region	100
+3436	Western Region	100
+3432	Westfjords	100
+4023	Andaman and Nicobar Islands	101
+4017	Andhra Pradesh	101
+4024	Arunachal Pradesh	101
+4027	Assam	101
+4037	Bihar	101
+4031	Chandigarh	101
+4040	Chhattisgarh	101
+4033	Dadra and Nagar Haveli and Daman and Diu	101
+4021	Delhi	101
+4009	Goa	101
+4030	Gujarat	101
+4007	Haryana	101
+4020	Himachal Pradesh	101
+4029	Jammu and Kashmir	101
+4025	Jharkhand	101
+4026	Karnataka	101
+4028	Kerala	101
+4852	Ladakh	101
+4019	Lakshadweep	101
+4039	Madhya Pradesh	101
+4008	Maharashtra	101
+4010	Manipur	101
+4006	Meghalaya	101
+4036	Mizoram	101
+4018	Nagaland	101
+4013	Odisha	101
+4011	Puducherry	101
+4015	Punjab	101
+4014	Rajasthan	101
+4034	Sikkim	101
+4035	Tamil Nadu	101
+4012	Telangana	101
+4038	Tripura	101
+4022	Uttar Pradesh	101
+4016	Uttarakhand	101
+4853	West Bengal	101
+1822	Aceh	102
+1826	Bali	102
+1820	Bangka Belitung Islands	102
+1810	Banten	102
+1793	Bengkulu	102
+1802	Central Java	102
+1794	Central Kalimantan	102
+1813	Central Sulawesi	102
+1827	East Java	102
+1804	East Kalimantan	102
+1818	East Nusa Tenggara	102
+1812	Gorontalo	102
+1805	Jakarta	102
+1815	Jambi	102
+1806	Kalimantan	102
+1811	Lampung	102
+1821	Lesser Sunda Islands	102
+1800	Maluku	102
+1823	Maluku Islands	102
+1824	North Kalimantan	102
+1801	North Maluku	102
+1808	North Sulawesi	102
+1792	North Sumatra	102
+1798	Papua	102
+1809	Riau	102
+1807	Riau Islands	102
+1819	South Kalimantan	102
+1795	South Sulawesi	102
+1816	South Sumatra	102
+1796	Southeast Sulawesi	102
+1829	Special Region of Yogyakarta	102
+1803	Sulawesi	102
+1797	Sumatra	102
+1825	West Java	102
+1814	West Nusa Tenggara	102
+1799	West Papua	102
+1817	West Sulawesi	102
+1828	West Sumatra	102
+3929	Alborz Province	103
+3934	Ardabil Province	103
+3932	Bushehr Province	103
+3921	Chaharmahal and Bakhtiari Province	103
+3944	East Azerbaijan Province	103
+3939	Fars Province	103
+3920	Gilan Province	103
+3933	Golestan Province	103
+4920	Hamadan Province	103
+3937	Hormozgan Province	103
+3918	Ilam Province	103
+3923	Isfahan Province	103
+3943	Kerman Province	103
+3919	Kermanshah Province	103
+3917	Khuzestan Province	103
+3926	Kohgiluyeh and Boyer-Ahmad Province	103
+3935	Kurdistan Province	103
+3928	Lorestan Province	103
+3916	Markazi Province	103
+3938	Mazandaran Province	103
+3942	North Khorasan Province	103
+3941	Qazvin Province	103
+3922	Qom Province	103
+3927	Razavi Khorasan Province	103
+3940	Semnan Province	103
+3931	Sistan and Baluchestan	103
+3930	South Khorasan Province	103
+3945	Tehran Province	103
+3924	West Azarbaijan Province	103
+3936	Yazd Province	103
+3925	Zanjan Province	103
+3964	Al Anbar Governorate	104
+3958	Al Muthanna Governorate	104
+3956	Al-Qādisiyyah Governorate	104
+3955	Babylon Governorate	104
+3959	Baghdad Governorate	104
+3960	Basra Governorate	104
+3954	Dhi Qar Governorate	104
+3965	Diyala Governorate	104
+3967	Dohuk Governorate	104
+3968	Erbil Governorate	104
+3957	Karbala Governorate	104
+3971	Kirkuk Governorate	104
+3966	Maysan Governorate	104
+3962	Najaf Governorate	104
+3963	Nineveh Governorate	104
+3961	Saladin Governorate	104
+3969	Sulaymaniyah Governorate	104
+3970	Wasit Governorate	104
+1087	Connacht	105
+1095	County Carlow	105
+1088	County Cavan	105
+1091	County Clare	105
+1074	County Cork	105
+1071	County Donegal	105
+1072	County Dublin	105
+1079	County Galway	105
+1077	County Kerry	105
+1082	County Kildare	105
+1090	County Kilkenny	105
+1096	County Laois	105
+1094	County Limerick	105
+1076	County Longford	105
+1083	County Louth	105
+1084	County Mayo	105
+1092	County Meath	105
+1075	County Monaghan	105
+1078	County Offaly	105
+1081	County Roscommon	105
+1070	County Sligo	105
+1069	County Tipperary	105
+1089	County Waterford	105
+1097	County Westmeath	105
+1093	County Wexford	105
+1085	County Wicklow	105
+1073	Leinster	105
+1080	Munster	105
+1086	Ulster	105
+1367	Central District	106
+1369	Haifa District	106
+1370	Jerusalem District	106
+1366	Northern District	106
+1368	Southern District	106
+1371	Tel Aviv District	106
+1679	Abruzzo	107
+1716	Aosta Valley	107
+1688	Apulia	107
+1706	Basilicata	107
+1701	Benevento Province	107
+1703	Calabria	107
+1669	Campania	107
+1773	Emilia-Romagna	107
+1756	Friuli–Venezia Giulia	107
+1678	Lazio	107
+1727	Libero consorzio comunale di Agrigento	107
+1718	Libero consorzio comunale di Caltanissetta	107
+1723	Libero consorzio comunale di Enna	107
+1729	Libero consorzio comunale di Ragusa	107
+1667	Libero consorzio comunale di Siracusa	107
+1733	Libero consorzio comunale di Trapani	107
+1768	Liguria	107
+1705	Lombardy	107
+1670	Marche	107
+1772	Metropolitan City of Bari	107
+1684	Metropolitan City of Bologna	107
+1682	Metropolitan City of Cagliari	107
+1766	Metropolitan City of Catania	107
+1680	Metropolitan City of Florence	107
+1699	Metropolitan City of Genoa	107
+1770	Metropolitan City of Messina	107
+1698	Metropolitan City of Milan	107
+1724	Metropolitan City of Naples	107
+1668	Metropolitan City of Palermo	107
+1671	Metropolitan City of Reggio Calabria	107
+1711	Metropolitan City of Rome	107
+1710	Metropolitan City of Turin	107
+1673	Metropolitan City of Venice	107
+1695	Molise	107
+1693	Pesaro and Urbino Province	107
+1702	Piedmont	107
+1783	Province of Alessandria	107
+1672	Province of Ancona	107
+1681	Province of Ascoli Piceno	107
+1780	Province of Asti	107
+1692	Province of Avellino	107
+1686	Province of Barletta-Andria-Trani	107
+1689	Province of Belluno	107
+1704	Province of Bergamo	107
+1778	Province of Biella	107
+1717	Province of Brescia	107
+1714	Province of Brindisi	107
+1721	Province of Campobasso	107
+1730	Province of Carbonia-Iglesias	107
+1731	Province of Caserta	107
+1728	Province of Catanzaro	107
+1739	Province of Chieti	107
+1740	Province of Como	107
+1742	Province of Cosenza	107
+1751	Province of Cremona	107
+1754	Province of Crotone	107
+1775	Province of Cuneo	107
+1744	Province of Fermo	107
+1746	Province of Ferrara	107
+1771	Province of Foggia	107
+1779	Province of Forlì-Cesena	107
+1776	Province of Frosinone	107
+1777	Province of Gorizia	107
+1787	Province of Grosseto	107
+1788	Province of Imperia	107
+1789	Province of Isernia	107
+1781	Province of L'Aquila	107
+1791	Province of La Spezia	107
+1674	Province of Latina	107
+1675	Province of Lecce	107
+1677	Province of Lecco	107
+1745	Province of Livorno	107
+1747	Province of Lodi	107
+1749	Province of Lucca	107
+1750	Province of Macerata	107
+1758	Province of Mantua	107
+1759	Province of Massa and Carrara	107
+1760	Province of Matera	107
+1761	Province of Medio Campidano	107
+1757	Province of Modena	107
+1769	Province of Monza and Brianza	107
+1774	Province of Novara	107
+1790	Province of Nuoro	107
+1782	Province of Ogliastra	107
+1784	Province of Olbia-Tempio	107
+1786	Province of Oristano	107
+1665	Province of Padua	107
+1666	Province of Parma	107
+1676	Province of Pavia	107
+1691	Province of Perugia	107
+1694	Province of Pescara	107
+1696	Province of Piacenza	107
+1685	Province of Pisa	107
+1687	Province of Pistoia	107
+1690	Province of Pordenone	107
+1697	Province of Potenza	107
+1700	Province of Prato	107
+1707	Province of Ravenna	107
+1708	Province of Reggio Emilia	107
+1712	Province of Rieti	107
+1713	Province of Rimini	107
+1719	Province of Rovigo	107
+1720	Province of Salerno	107
+1722	Province of Sassari	107
+1732	Province of Savona	107
+1734	Province of Siena	107
+1741	Province of Sondrio	107
+1743	Province of Taranto	107
+1752	Province of Teramo	107
+1755	Province of Terni	107
+1762	Province of Treviso	107
+1763	Province of Trieste	107
+1764	Province of Udine	107
+1765	Province of Varese	107
+1726	Province of Verbano-Cusio-Ossola	107
+1785	Province of Vercelli	107
+1736	Province of Verona	107
+1737	Province of Vibo Valentia	107
+1738	Province of Vicenza	107
+1735	Province of Viterbo	107
+1715	Sardinia	107
+1709	Sicily	107
+1767	South Tyrol	107
+1748	Trentino	107
+1725	Trentino-South Tyrol	107
+1664	Tuscany	107
+1683	Umbria	107
+1753	Veneto	107
+3753	Clarendon Parish	108
+3749	Hanover Parish	108
+3748	Kingston Parish	108
+3754	Manchester Parish	108
+3752	Portland Parish	108
+3751	Saint Andrew	108
+3744	Saint Ann Parish	108
+3746	Saint Catherine Parish	108
+3743	Saint Elizabeth Parish	108
+3745	Saint James Parish	108
+3747	Saint Mary Parish	108
+3750	Saint Thomas Parish	108
+3755	Trelawny Parish	108
+3742	Westmoreland Parish	108
+827	Aichi Prefecture	109
+829	Akita Prefecture	109
+839	Aomori Prefecture	109
+821	Chiba Prefecture	109
+865	Ehime Prefecture	109
+848	Fukui Prefecture	109
+861	Fukuoka Prefecture	109
+847	Fukushima Prefecture	109
+858	Gifu Prefecture	109
+862	Gunma Prefecture	109
+828	Hiroshima Prefecture	109
+832	Hokkaidō Prefecture	109
+831	Hyōgo Prefecture	109
+851	Ibaraki Prefecture	109
+830	Ishikawa Prefecture	109
+856	Iwate Prefecture	109
+864	Kagawa Prefecture	109
+840	Kagoshima Prefecture	109
+842	Kanagawa Prefecture	109
+846	Kumamoto Prefecture	109
+834	Kyōto Prefecture	109
+833	Mie Prefecture	109
+857	Miyagi Prefecture	109
+855	Miyazaki Prefecture	109
+843	Nagano Prefecture	109
+849	Nagasaki Prefecture	109
+824	Nara Prefecture	109
+841	Niigata Prefecture	109
+822	Ōita Prefecture	109
+820	Okayama Prefecture	109
+853	Okinawa Prefecture	109
+859	Ōsaka Prefecture	109
+863	Saga Prefecture	109
+860	Saitama Prefecture	109
+845	Shiga Prefecture	109
+826	Shimane Prefecture	109
+825	Shizuoka Prefecture	109
+854	Tochigi Prefecture	109
+836	Tokushima Prefecture	109
+823	Tokyo	109
+850	Tottori Prefecture	109
+838	Toyama Prefecture	109
+844	Wakayama Prefecture	109
+837	Yamagata Prefecture	109
+835	Yamaguchi Prefecture	109
+852	Yamanashi Prefecture	109
+963	Ajloun Governorate	111
+965	Amman Governorate	111
+959	Aqaba Governorate	111
+961	Balqa Governorate	111
+960	Irbid Governorate	111
+966	Jerash Governorate	111
+956	Karak Governorate	111
+964	Ma'an Governorate	111
+958	Madaba Governorate	111
+962	Mafraq Governorate	111
+957	Tafilah Governorate	111
+967	Zarqa Governorate	111
+145	Akmola Region	112
+151	Aktobe Region	112
+152	Almaty	112
+143	Almaty Region	112
+153	Atyrau Region	112
+155	Baikonur	112
+154	East Kazakhstan Region	112
+147	Jambyl Region	112
+150	Karaganda Region	112
+157	Kostanay Region	112
+142	Kyzylorda Region	112
+141	Mangystau Region	112
+144	North Kazakhstan Region	112
+156	Nur-Sultan	112
+146	Pavlodar Region	112
+149	Turkestan Region	112
+148	West Kazakhstan Province	112
+181	Baringo County	113
+210	Bomet County	113
+168	Bungoma County	113
+161	Busia County	113
+160	Central Province	113
+172	Coast Province	113
+189	Eastern Province	113
+201	Elgeyo-Marakwet County	113
+163	Embu County	113
+196	Garissa County	113
+195	Homa Bay County	113
+170	Isiolo County	113
+197	Kajiado County	113
+158	Kakamega County	113
+193	Kericho County	113
+199	Kiambu County	113
+174	Kilifi County	113
+167	Kirinyaga County	113
+159	Kisii County	113
+171	Kisumu County	113
+211	Kitui County	113
+173	Kwale County	113
+164	Laikipia County	113
+166	Lamu County	113
+184	Machakos County	113
+188	Makueni County	113
+187	Mandera County	113
+194	Marsabit County	113
+198	Meru County	113
+190	Migori County	113
+200	Mombasa County	113
+178	Muranga County	113
+191	Nairobi	113
+203	Nakuru District	113
+165	Nandi District	113
+175	Narok County	113
+162	North Eastern Province	113
+209	Nyamira District	113
+192	Nyandarua County	113
+204	Nyanza Province	113
+180	Nyeri County	113
+179	Rift Valley Province	113
+207	Samburu County	113
+186	Siaya County	113
+176	Taita–Taveta County	113
+205	Tana River County	113
+185	Tharaka Nithi County	113
+183	Trans-Nzoia District	113
+206	Turkana County	113
+169	Uasin Gishu District	113
+202	Vihiga District	113
+182	Wajir County	113
+208	West Pokot County	113
+177	Western Province	113
+1831	Gilbert Islands	114
+1832	Line Islands	114
+1830	Phoenix Islands	114
+3998	Chagang Province	115
+3999	Kangwon Province	115
+3995	North Hamgyong Province	115
+4004	North Hwanghae Province	115
+4002	North Pyongan Province	115
+4005	Pyongyang	115
+4001	Rason	115
+3996	Ryanggang Province	115
+4000	South Hamgyong Province	115
+4003	South Hwanghae Province	115
+3997	South Pyongan Province	115
+3860	Busan	116
+3846	Daegu	116
+3850	Daejeon	116
+3862	Gangwon Province	116
+3858	Gwangju	116
+3847	Gyeonggi Province	116
+3848	Incheon	116
+3853	Jeju	116
+3854	North Chungcheong Province	116
+3855	North Gyeongsang Province	116
+3851	North Jeolla Province	116
+3861	Sejong City	116
+3849	Seoul	116
+3859	South Chungcheong Province	116
+3857	South Gyeongsang Province	116
+3856	South Jeolla Province	116
+3852	Ulsan	116
+4876	Đakovica District (Gjakove)	248
+4877	Gjilan District	248
+4878	Kosovska Mitrovica District	248
+3738	Peć District	248
+4879	Pristina (Priştine)	248
+3723	Prizren District	248
+4874	Uroševac District (Ferizaj)	248
+977	Al Ahmadi Governorate	117
+975	Al Farwaniyah Governorate	117
+972	Al Jahra Governorate	117
+976	Capital Governorate	117
+973	Hawalli Governorate	117
+974	Mubarak Al-Kabeer Governorate	117
+998	Batken Region	118
+1001	Bishkek	118
+1004	Chuy Region	118
+1002	Issyk-Kul Region	118
+1000	Jalal-Abad Region	118
+999	Naryn Region	118
+1003	Osh	118
+1005	Osh Region	118
+997	Talas Region	118
+982	Attapeu Province	119
+991	Bokeo Province	119
+985	Bolikhamsai Province	119
+996	Champasak Province	119
+989	Houaphanh Province	119
+986	Khammouane Province	119
+992	Luang Namtha Province	119
+978	Luang Prabang Province	119
+988	Oudomxay Province	119
+987	Phongsaly Province	119
+993	Sainyabuli Province	119
+981	Salavan Province	119
+990	Savannakhet Province	119
+984	Sekong Province	119
+979	Vientiane Prefecture	119
+980	Vientiane Province	119
+994	Xaisomboun	119
+983	Xaisomboun Province	119
+995	Xiangkhouang Province	119
+4445	Aglona Municipality	120
+4472	Aizkraukle Municipality	120
+4496	Aizpute Municipality	120
+4499	Aknīste Municipality	120
+4484	Aloja Municipality	120
+4485	Alsunga Municipality	120
+4487	Alūksne Municipality	120
+4497	Amata Municipality	120
+4457	Ape Municipality	120
+4481	Auce Municipality	120
+4427	Babīte Municipality	120
+4482	Baldone Municipality	120
+4498	Baltinava Municipality	120
+4505	Balvi Municipality	120
+4465	Bauska Municipality	120
+4471	Beverīna Municipality	120
+4468	Brocēni Municipality	120
+4411	Burtnieki Municipality	120
+4454	Carnikava Municipality	120
+4469	Cēsis Municipality	120
+4414	Cesvaine Municipality	120
+4410	Cibla Municipality	120
+4504	Dagda Municipality	120
+4463	Daugavpils	120
+4492	Daugavpils Municipality	120
+4437	Dobele Municipality	120
+4428	Dundaga Municipality	120
+4458	Durbe Municipality	120
+4448	Engure Municipality	120
+4444	Ērgļi Municipality	120
+4510	Garkalne Municipality	120
+4470	Grobiņa Municipality	120
+4400	Gulbene Municipality	120
+4441	Iecava Municipality	120
+4511	Ikšķile Municipality	120
+4399	Ilūkste Municipality	120
+4449	Inčukalns Municipality	120
+4475	Jaunjelgava Municipality	120
+4407	Jaunpiebalga Municipality	120
+4489	Jaunpils Municipality	120
+4464	Jēkabpils	120
+4438	Jēkabpils Municipality	120
+4500	Jelgava	120
+4424	Jelgava Municipality	120
+4446	Jūrmala	120
+4420	Kandava Municipality	120
+4453	Kārsava Municipality	120
+4412	Ķegums Municipality	120
+4435	Ķekava Municipality	120
+4495	Kocēni Municipality	120
+4452	Koknese Municipality	120
+4474	Krāslava Municipality	120
+4422	Krimulda Municipality	120
+4413	Krustpils Municipality	120
+4490	Kuldīga Municipality	120
+4512	Lielvārde Municipality	120
+4460	Liepāja	120
+4488	Līgatne Municipality	120
+4418	Limbaži Municipality	120
+4401	Līvāni Municipality	120
+4419	Lubāna Municipality	120
+4501	Ludza Municipality	120
+4433	Madona Municipality	120
+4461	Mālpils Municipality	120
+4450	Mārupe Municipality	120
+4513	Mazsalaca Municipality	120
+4451	Mērsrags Municipality	120
+4398	Naukšēni Municipality	120
+4432	Nereta Municipality	120
+4436	Nīca Municipality	120
+4416	Ogre Municipality	120
+4417	Olaine Municipality	120
+4442	Ozolnieki Municipality	120
+4507	Pārgauja Municipality	120
+4467	Pāvilosta Municipality	120
+4405	Pļaviņas Municipality	120
+4483	Preiļi Municipality	120
+4429	Priekule Municipality	120
+4506	Priekuļi Municipality	120
+4479	Rauna Municipality	120
+4509	Rēzekne	120
+4455	Rēzekne Municipality	120
+4502	Riebiņi Municipality	120
+4491	Riga	120
+4440	Roja Municipality	120
+4493	Ropaži Municipality	120
+4503	Rucava Municipality	120
+4423	Rugāji Municipality	120
+4426	Rūjiena Municipality	120
+4404	Rundāle Municipality	120
+4434	Sala Municipality	120
+4396	Salacgrīva Municipality	120
+4402	Salaspils Municipality	120
+4439	Saldus Municipality	120
+4443	Saulkrasti Municipality	120
+4408	Sēja Municipality	120
+4476	Sigulda Municipality	120
+4415	Skrīveri Municipality	120
+4447	Skrunda Municipality	120
+4462	Smiltene Municipality	120
+4478	Stopiņi Municipality	120
+4494	Strenči Municipality	120
+4459	Talsi Municipality	120
+4480	Tērvete Municipality	120
+4409	Tukums Municipality	120
+4508	Vaiņode Municipality	120
+4425	Valka Municipality	120
+4473	Valmiera	120
+4431	Varakļāni Municipality	120
+4406	Vārkava Municipality	120
+4466	Vecpiebalga Municipality	120
+4397	Vecumnieki Municipality	120
+4421	Ventspils	120
+4403	Ventspils Municipality	120
+4456	Viesīte Municipality	120
+4477	Viļaka Municipality	120
+4486	Viļāni Municipality	120
+4430	Zilupe Municipality	120
+2285	Akkar Governorate	121
+2283	Baalbek-Hermel Governorate	121
+2286	Beirut Governorate	121
+2287	Beqaa Governorate	121
+2282	Mount Lebanon Governorate	121
+2288	Nabatieh Governorate	121
+2284	North Governorate	121
+2281	South Governorate	121
+3030	Berea District	122
+3029	Butha-Buthe District	122
+3026	Leribe District	122
+3022	Mafeteng District	122
+3028	Maseru District	122
+3023	Mohale's Hoek District	122
+3024	Mokhotlong District	122
+3025	Qacha's Nek District	122
+3027	Quthing District	122
+3031	Thaba-Tseka District	122
+3041	Bomi County	123
+3034	Bong County	123
+3044	Gbarpolu County	123
+3040	Grand Bassa County	123
+3036	Grand Cape Mount County	123
+3039	Grand Gedeh County	123
+3045	Grand Kru County	123
+3037	Lofa County	123
+3043	Margibi County	123
+3042	Maryland County	123
+3032	Montserrado County	123
+3046	Nimba	123
+3033	River Cess County	123
+3038	River Gee County	123
+3035	Sinoe County	123
+2964	Al Wahat District	124
+2981	Benghazi	124
+2966	Derna District	124
+2969	Ghat District	124
+2980	Jabal al Akhdar	124
+2974	Jabal al Gharbi District	124
+2979	Jafara	124
+2970	Jufra	124
+2972	Kufra District	124
+2968	Marj District	124
+2978	Misrata District	124
+2961	Murqub	124
+2967	Murzuq District	124
+2976	Nalut District	124
+2962	Nuqat al Khams	124
+2965	Sabha District	124
+2977	Sirte District	124
+2971	Tripoli District	124
+2973	Wadi al Hayaa District	124
+2975	Wadi al Shatii District	124
+2963	Zawiya District	124
+458	Balzers	125
+451	Eschen	125
+457	Gamprin	125
+455	Mauren	125
+454	Planken	125
+453	Ruggell	125
+450	Schaan	125
+449	Schellenberg	125
+459	Triesen	125
+456	Triesenberg	125
+452	Vaduz	125
+1561	Akmenė District Municipality	126
+1605	Alytus City Municipality	126
+1574	Alytus County	126
+1599	Alytus District Municipality	126
+1603	Birštonas Municipality	126
+1566	Biržai District Municipality	126
+1579	Druskininkai municipality	126
+1559	Elektrėnai municipality	126
+1562	Ignalina District Municipality	126
+1567	Jonava District Municipality	126
+1581	Joniškis District Municipality	126
+1555	Jurbarkas District Municipality	126
+1583	Kaišiadorys District Municipality	126
+1591	Kalvarija municipality	126
+1580	Kaunas City Municipality	126
+1556	Kaunas County	126
+1565	Kaunas District Municipality	126
+1575	Kazlų Rūda municipality	126
+1584	Kėdainiai District Municipality	126
+1618	Kelmė District Municipality	126
+1597	Klaipeda City Municipality	126
+1600	Klaipėda County	126
+1604	Klaipėda District Municipality	126
+1571	Kretinga District Municipality	126
+1585	Kupiškis District Municipality	126
+1611	Lazdijai District Municipality	126
+1570	Marijampolė County	126
+1610	Marijampolė Municipality	126
+1557	Mažeikiai District Municipality	126
+1582	Molėtai District Municipality	126
+1563	Neringa Municipality	126
+1612	Pagėgiai municipality	126
+1595	Pakruojis District Municipality	126
+1588	Palanga City Municipality	126
+1589	Panevėžys City Municipality	126
+1558	Panevėžys County	126
+1614	Panevėžys District Municipality	126
+1616	Pasvalys District Municipality	126
+1553	Plungė District Municipality	126
+1578	Prienai District Municipality	126
+1568	Radviliškis District Municipality	126
+1587	Raseiniai District Municipality	126
+1590	Rietavas municipality	126
+1615	Rokiškis District Municipality	126
+1576	Šakiai District Municipality	126
+1577	Šalčininkai District Municipality	126
+1609	Šiauliai City Municipality	126
+1586	Šiauliai County	126
+1554	Šiauliai District Municipality	126
+1613	Šilalė District Municipality	126
+1607	Šilutė District Municipality	126
+1594	Širvintos District Municipality	126
+1617	Skuodas District Municipality	126
+1560	Švenčionys District Municipality	126
+1573	Tauragė County	126
+1572	Tauragė District Municipality	126
+1569	Telšiai County	126
+1608	Telšiai District Municipality	126
+1593	Trakai District Municipality	126
+1596	Ukmergė District Municipality	126
+1621	Utena County	126
+1598	Utena District Municipality	126
+1602	Varėna District Municipality	126
+1620	Vilkaviškis District Municipality	126
+1606	Vilnius City Municipality	126
+1601	Vilnius County	126
+1592	Vilnius District Municipality	126
+1564	Visaginas Municipality	126
+1619	Zarasai District Municipality	126
+1518	Canton of Capellen	127
+1521	Canton of Clervaux	127
+1513	Canton of Diekirch	127
+1515	Canton of Echternach	127
+1517	Canton of Esch-sur-Alzette	127
+1525	Canton of Grevenmacher	127
+1527	Canton of Luxembourg	127
+1522	Canton of Mersch	127
+1516	Canton of Redange	127
+1519	Canton of Remich	127
+1523	Canton of Vianden	127
+1526	Canton of Wiltz	127
+1524	Diekirch District	127
+1520	Grevenmacher District	127
+1514	Luxembourg District	127
+703	Aerodrom Municipality	129
+656	Aračinovo Municipality	129
+716	Berovo Municipality	129
+679	Bitola Municipality	129
+649	Bogdanci Municipality	129
+721	Bogovinje Municipality	129
+652	Bosilovo Municipality	129
+660	Brvenica Municipality	129
+694	Butel Municipality	129
+704	Čair Municipality	129
+676	Čaška Municipality	129
+702	Centar Municipality	129
+720	Centar Župa Municipality	129
+644	Češinovo-Obleševo Municipality	129
+715	Čučer-Sandevo Municipality	129
+645	Debarca Municipality	129
+695	Delčevo Municipality	129
+687	Demir Hisar Municipality	129
+655	Demir Kapija Municipality	129
+697	Dojran Municipality	129
+675	Dolneni Municipality	129
+657	Drugovo Municipality	129
+707	Gazi Baba Municipality	129
+648	Gevgelija Municipality	129
+722	Gjorče Petrov Municipality	129
+693	Gostivar Municipality	129
+708	Gradsko Municipality	129
+684	Greater Skopje	129
+690	Ilinden Municipality	129
+678	Jegunovce Municipality	129
+674	Karbinci	129
+681	Karpoš Municipality	129
+713	Kavadarci Municipality	129
+688	Kičevo Municipality	129
+686	Kisela Voda Municipality	129
+723	Kočani Municipality	129
+665	Konče Municipality	129
+641	Kratovo Municipality	129
+677	Kriva Palanka Municipality	129
+647	Krivogaštani Municipality	129
+714	Kruševo Municipality	129
+683	Kumanovo Municipality	129
+659	Lipkovo Municipality	129
+705	Lozovo Municipality	129
+701	Makedonska Kamenica Municipality	129
+692	Makedonski Brod Municipality	129
+669	Mavrovo and Rostuša Municipality	129
+653	Mogila Municipality	129
+664	Negotino Municipality	129
+696	Novaci Municipality	129
+718	Novo Selo Municipality	129
+699	Ohrid Municipality	129
+682	Oslomej Municipality	129
+685	Pehčevo Municipality	129
+698	Petrovec Municipality	129
+670	Plasnica Municipality	129
+666	Prilep Municipality	129
+646	Probištip Municipality	129
+709	Radoviš Municipality	129
+717	Rankovce Municipality	129
+712	Resen Municipality	129
+691	Rosoman Municipality	129
+667	Saraj Municipality	129
+719	Sopište Municipality	129
+643	Staro Nagoričane Municipality	129
+661	Štip Municipality	129
+700	Struga Municipality	129
+710	Strumica Municipality	129
+711	Studeničani Municipality	129
+680	Šuto Orizari Municipality	129
+640	Sveti Nikole Municipality	129
+654	Tearce Municipality	129
+663	Tetovo Municipality	129
+671	Valandovo Municipality	129
+658	Vasilevo Municipality	129
+651	Veles Municipality	129
+662	Vevčani Municipality	129
+672	Vinica Municipality	129
+650	Vraneštica Municipality	129
+689	Vrapčište Municipality	129
+642	Zajas Municipality	129
+706	Zelenikovo Municipality	129
+668	Želino Municipality	129
+673	Zrnovci Municipality	129
+2951	Antananarivo Province	130
+2950	Antsiranana Province	130
+2948	Fianarantsoa Province	130
+2953	Mahajanga Province	130
+2952	Toamasina Province	130
+2949	Toliara Province	130
+3096	Balaka District	131
+3102	Blantyre District	131
+3092	Central Region	131
+3107	Chikwawa District	131
+3109	Chiradzulu District	131
+3087	Chitipa district	131
+3097	Dedza District	131
+3090	Dowa District	131
+3091	Karonga District	131
+3094	Kasungu District	131
+3093	Likoma District	131
+3101	Lilongwe District	131
+3082	Machinga District	131
+3110	Mangochi District	131
+3099	Mchinji District	131
+3103	Mulanje District	131
+3084	Mwanza District	131
+3104	Mzimba District	131
+3095	Nkhata Bay District	131
+3100	Nkhotakota District	131
+3105	Northern Region	131
+3085	Nsanje District	131
+3088	Ntcheu District	131
+3111	Ntchisi District	131
+3108	Phalombe District	131
+3089	Rumphi District	131
+3086	Salima District	131
+3106	Southern Region	131
+3098	Thyolo District	131
+3083	Zomba District	131
+1950	Johor	132
+1947	Kedah	132
+1946	Kelantan	132
+1949	Kuala Lumpur	132
+1935	Labuan	132
+1941	Malacca	132
+1948	Negeri Sembilan	132
+1940	Pahang	132
+1939	Penang	132
+1943	Perak	132
+1938	Perlis	132
+1945	Putrajaya	132
+1936	Sabah	132
+1937	Sarawak	132
+1944	Selangor	132
+1942	Terengganu	132
+2594	Addu Atoll	133
+2587	Alif Alif Atoll	133
+2600	Alif Dhaal Atoll	133
+2604	Central Province	133
+2590	Dhaalu Atoll	133
+2599	Faafu Atoll	133
+2598	Gaafu Alif Atoll	133
+2603	Gaafu Dhaalu Atoll	133
+2595	Gnaviyani Atoll	133
+2586	Haa Alif Atoll	133
+2597	Haa Dhaalu Atoll	133
+2596	Kaafu Atoll	133
+2601	Laamu Atoll	133
+2607	Lhaviyani Atoll	133
+2609	Malé	133
+2608	Meemu Atoll	133
+2592	Noonu Atoll	133
+2589	North Central Province	133
+2588	North Province	133
+2602	Raa Atoll	133
+2585	Shaviyani Atoll	133
+2606	South Central Province	133
+2605	South Province	133
+2591	Thaa Atoll	133
+2593	Upper South Province	133
+2584	Vaavu Atoll	133
+253	Bamako	134
+258	Gao Region	134
+252	Kayes Region	134
+257	Kidal Region	134
+250	Koulikoro Region	134
+251	Ménaka Region	134
+255	Mopti Region	134
+249	Ségou Region	134
+254	Sikasso Region	134
+256	Taoudénit Region	134
+248	Tombouctou Region	134
+110	Attard	135
+108	Balzan	135
+107	Birgu	135
+97	Birkirkara	135
+88	Birżebbuġa	135
+138	Cospicua	135
+117	Dingli	135
+129	Fgura	135
+84	Floriana	135
+134	Fontana	135
+130	Għajnsielem	135
+92	Għarb	135
+120	Għargħur	135
+106	Għasri	135
+124	Għaxaq	135
+118	Gudja	135
+113	Gżira	135
+105	Ħamrun	135
+93	Iklin	135
+99	Kalkara	135
+91	Kerċem	135
+82	Kirkop	135
+126	Lija	135
+77	Luqa	135
+128	Marsa	135
+137	Marsaskala	135
+78	Marsaxlokk	135
+89	Mdina	135
+102	Mellieħa	135
+109	Mġarr	135
+140	Mosta	135
+74	Mqabba	135
+96	Msida	135
+131	Mtarfa	135
+132	Munxar	135
+133	Nadur	135
+112	Naxxar	135
+115	Paola	135
+125	Pembroke	135
+127	Pietà	135
+79	Qala	135
+119	Qormi	135
+111	Qrendi	135
+83	Rabat	135
+87	Saint Lawrence	135
+75	San Ġwann	135
+116	Sannat	135
+94	Santa Luċija	135
+90	Santa Venera	135
+136	Senglea	135
+98	Siġġiewi	135
+104	Sliema	135
+100	St. Julian's	135
+139	St. Paul's Bay	135
+86	Swieqi	135
+122	Ta' Xbiex	135
+103	Tarxien	135
+95	Valletta	135
+101	Victoria	135
+114	Xagħra	135
+121	Xewkija	135
+81	Xgħajra	135
+123	Żabbar	135
+85	Żebbuġ Gozo	135
+80	Żebbuġ Malta	135
+135	Żejtun	135
+76	Żurrieq	135
+2574	Ralik Chain	137
+2573	Ratak Chain	137
+3344	Adrar Region	139
+3349	Assaba Region	139
+3339	Brakna Region	139
+3346	Dakhlet Nouadhibou	139
+3341	Gorgol Region	139
+3350	Guidimaka Region	139
+3338	Hodh Ech Chargui Region	139
+3351	Hodh El Gharbi Region	139
+3342	Inchiri Region	139
+3343	Nouakchott-Nord Region	139
+3352	Nouakchott-Ouest Region	139
+3347	Nouakchott-Sud Region	139
+3345	Tagant Region	139
+3340	Tiris Zemmour Region	139
+3348	Trarza Region	139
+3248	Agaléga	140
+3262	Beau Bassin-Rose Hill	140
+3251	Cargados Carajos	140
+3255	Curepipe	140
+3254	Flacq District	140
+3264	Grand Port District	140
+3253	Moka District	140
+3250	Pamplemousses District	140
+3263	Plaines Wilhems District	140
+3256	Port Louis	140
+3260	Port Louis District	140
+3258	Quatre Bornes	140
+3261	Rivière du Rempart District	140
+3259	Rivière Noire District	140
+3249	Rodrigues	140
+3257	Savanne District	140
+3252	Vacoas-Phoenix	140
+3456	Aguascalientes	142
+3457	Baja California	142
+3460	Baja California Sur	142
+3475	Campeche	142
+3451	Chiapas	142
+3447	Chihuahua	142
+3471	Coahuila	142
+3472	Colima	142
+3453	Durango	142
+3469	Guanajuato	142
+3459	Guerrero	142
+3470	Hidalgo	142
+4857	Jalisco	142
+3450	México	142
+3473	Mexico City	142
+3474	Michoacán	142
+3465	Morelos	142
+3477	Nayarit	142
+3452	Nuevo León	142
+3448	Oaxaca	142
+3476	Puebla	142
+3455	Querétaro	142
+3467	Quintana Roo	142
+3461	San Luis Potosí	142
+3449	Sinaloa	142
+3468	Sonora	142
+3454	Tabasco	142
+3463	Tamaulipas	142
+3458	Tlaxcala	142
+3464	Veracruz	142
+3466	Yucatán	142
+3462	Zacatecas	142
+2580	Chuuk State	143
+2583	Kosrae State	143
+2581	Pohnpei State	143
+2582	Yap State	143
+4368	Anenii Noi District	144
+4393	Bălți Municipality	144
+4379	Basarabeasca District	144
+4362	Bender Municipality	144
+4375	Briceni District	144
+4391	Cahul District	144
+4366	Călărași District	144
+4380	Cantemir District	144
+4365	Căușeni District	144
+4373	Chișinău Municipality	144
+4360	Cimișlia District	144
+4390	Criuleni District	144
+4384	Dondușeni District	144
+4392	Drochia District	144
+4383	Dubăsari District	144
+4387	Edineț District	144
+4381	Fălești District	144
+4370	Florești District	144
+4385	Gagauzia	144
+4367	Glodeni District	144
+4382	Hîncești District	144
+4369	Ialoveni District	144
+4363	Nisporeni District	144
+4389	Ocnița District	144
+4361	Orhei District	144
+4394	Rezina District	144
+4376	Rîșcani District	144
+4364	Sîngerei District	144
+4388	Șoldănești District	144
+4374	Soroca District	144
+4378	Ștefan Vodă District	144
+4377	Strășeni District	144
+4372	Taraclia District	144
+4371	Telenești District	144
+4395	Transnistria autonomous territorial unit	144
+4386	Ungheni District	144
+4917	La Colle	145
+4918	La Condamine	145
+4919	Moneghetti	145
+1973	Arkhangai Province	146
+1969	Bayan-Ölgii Province	146
+1976	Bayankhongor Province	146
+1961	Bulgan Province	146
+1962	Darkhan-Uul Province	146
+1963	Dornod Province	146
+1981	Dornogovi Province	146
+1970	Dundgovi Province	146
+1972	Govi-Altai Province	146
+1978	Govisümber Province	146
+1974	Khentii Province	146
+1964	Khovd Province	146
+1975	Khövsgöl Province	146
+1967	Ömnögovi Province	146
+1966	Orkhon Province	146
+1965	Övörkhangai Province	146
+1980	Selenge Province	146
+1977	Sükhbaatar Province	146
+1968	Töv Province	146
+1971	Uvs Province	146
+1979	Zavkhan Province	146
+23	Andrijevica Municipality	147
+13	Bar Municipality	147
+21	Berane Municipality	147
+25	Bijelo Polje Municipality	147
+30	Budva Municipality	147
+14	Danilovgrad Municipality	147
+24	Gusinje Municipality	147
+31	Kolašin Municipality	147
+26	Kotor Municipality	147
+22	Mojkovac Municipality	147
+17	Nikšić Municipality	147
+28	Old Royal Capital Cetinje	147
+12	Petnjica Municipality	147
+19	Plav Municipality	147
+20	Pljevlja Municipality	147
+16	Plužine Municipality	147
+27	Podgorica Municipality	147
+15	Rožaje Municipality	147
+18	Šavnik Municipality	147
+29	Tivat Municipality	147
+33	Ulcinj Municipality	147
+32	Žabljak Municipality	147
+3320	Al Haouz Province	149
+3267	Al Hoceïma Province	149
+3266	Aousserd Province	149
+3297	Assa-Zag Province	149
+3321	Azilal Province	149
+3304	Ben Slimane Province	149
+3278	Béni Mellal-Khénifra	149
+3272	Béni-Mellal Province	149
+3285	Berkane Province	149
+3275	Boujdour Province	149
+3270	Boulemane Province	149
+3303	Casablanca-Settat	149
+3310	Chefchaouen Province	149
+3274	Chichaoua Province	149
+3306	Dakhla-Oued Ed-Dahab	149
+3290	Drâa-Tafilalet	149
+3291	El Hajeb Province	149
+3280	El Jadida Province	149
+3299	Errachidia Province	149
+3292	Es Semara Province	149
+3316	Essaouira Province	149
+3300	Fahs Anjra Province	149
+3313	Fès-Meknès	149
+3301	Figuig Province	149
+3265	Guelmim Province	149
+3305	Guelmim-Oued Noun	149
+3325	Ifrane Province	149
+3294	Inezgane-Aït Melloul Prefecture	149
+3307	Jerada Province	149
+3309	Kelaat Sraghna Province	149
+3308	Kénitra Province	149
+3276	Khémisset Province	149
+3317	Khénifra Province	149
+3326	Khouribga Province	149
+3293	Laâyoune Province	149
+3298	Laâyoune-Sakia El Hamra	149
+3268	Larache Province	149
+3288	Marrakesh-Safi	149
+3284	Mediouna Province	149
+3315	Moulay Yacoub Province	149
+3281	Nador Province	149
+3287	Nouaceur Province	149
+3271	Oriental	149
+3269	Ouarzazate Province	149
+3319	Oued Ed-Dahab Province	149
+3311	Safi Province	149
+3289	Sefrou Province	149
+3282	Settat Province	149
+3302	Shtouka Ait Baha Province	149
+3279	Sidi Kacem Province	149
+3273	Sidi Youssef Ben Ali	149
+3295	Souss-Massa	149
+3286	Tan-Tan Province	149
+3324	Tanger-Tétouan-Al Hoceïma	149
+3323	Taounate Province	149
+3322	Taourirt Province	149
+3314	Taroudant Province	149
+3312	Tata Province	149
+3296	Taza Province	149
+3318	Tétouan Province	149
+3277	Tiznit Province	149
+3283	Zagora Province	149
+3327	Cabo Delgado Province	150
+3329	Gaza Province	150
+3330	Inhambane Province	150
+3337	Manica Province	150
+3335	Maputo	150
+3332	Maputo Province	150
+3336	Nampula Province	150
+3333	Niassa Province	150
+3331	Sofala Province	150
+3334	Tete Province	150
+3328	Zambezia Province	150
+2142	Ayeyarwady Region	151
+2141	Bago	151
+2137	Chin State	151
+2143	Kachin State	151
+2144	Kayah State	151
+2133	Kayin State	151
+2136	Magway Region	151
+2134	Mandalay Region	151
+2147	Mon State	151
+2146	Naypyidaw Union Territory	151
+2138	Rakhine State	151
+2145	Sagaing Region	151
+2139	Shan State	151
+2140	Tanintharyi Region	151
+2135	Yangon Region	151
+43	Erongo Region	152
+38	Hardap Region	152
+45	Karas Region	152
+36	Kavango East Region	152
+35	Kavango West Region	152
+44	Khomas Region	152
+34	Kunene Region	152
+40	Ohangwena Region	152
+41	Omaheke Region	152
+39	Omusati Region	152
+37	Oshana Region	152
+42	Oshikoto Region	152
+46	Otjozondjupa Region	152
+47	Zambezi Region	152
+4656	Aiwo District	153
+4658	Anabar District	153
+4667	Anetan District	153
+4663	Anibare District	153
+4660	Baiti District	153
+4665	Boe District	153
+4662	Buada District	153
+4666	Denigomodu District	153
+4654	Ewa District	153
+4661	Ijuw District	153
+4657	Meneng District	153
+4659	Nibok District	153
+4655	Uaboe District	153
+4664	Yaren District	153
+2082	Bagmati Zone	154
+2071	Bheri Zone	154
+2073	Central Region	154
+2080	Dhaulagiri Zone	154
+2069	Eastern Development Region	154
+2068	Far-Western Development Region	154
+2081	Gandaki Zone	154
+2076	Janakpur Zone	154
+2079	Karnali Zone	154
+2072	Kosi Zone	154
+2074	Lumbini Zone	154
+2083	Mahakali Zone	154
+2070	Mechi Zone	154
+2066	Mid-Western Region	154
+2075	Narayani Zone	154
+2077	Rapti Zone	154
+2084	Sagarmatha Zone	154
+2078	Seti Zone	154
+2067	Western Region	154
+2624	Bonaire	156
+2613	Drenthe	156
+2619	Flevoland	156
+2622	Friesland	156
+2611	Gelderland	156
+2617	Groningen	156
+2615	Limburg	156
+2623	North Brabant	156
+2612	North Holland	156
+2618	Overijssel	156
+2621	Saba	156
+2616	Sint Eustatius	156
+2614	South Holland	156
+2610	Utrecht	156
+2620	Zeeland	156
+4072	Auckland Region	158
+4074	Bay of Plenty Region	158
+4066	Canterbury Region	158
+4067	Chatham Islands	158
+4068	Gisborne District	158
+4075	Hawke's Bay Region	158
+4060	Manawatu-Wanganui Region	158
+4063	Marlborough Region	158
+4070	Nelson Region	158
+4059	Northland Region	158
+4062	Otago Region	158
+4071	Southland Region	158
+4069	Taranaki Region	158
+4073	Tasman District	158
+4061	Waikato Region	158
+4065	Wellington Region	158
+4064	West Coast Region	158
+946	Boaco Department	159
+950	Carazo Department	159
+954	Chinandega Department	159
+940	Chontales Department	159
+945	Estelí Department	159
+943	Granada Department	159
+955	Jinotega Department	159
+944	León Department	159
+948	Madriz Department	159
+941	Managua Department	159
+953	Masaya Department	159
+947	Matagalpa Department	159
+951	North Caribbean Coast Autonomous Region	159
+949	Río San Juan Department	159
+942	Rivas Department	159
+952	South Caribbean Coast Autonomous Region	159
+71	Agadez Region	160
+72	Diffa Region	160
+68	Dosso Region	160
+70	Maradi Region	160
+73	Tahoua Region	160
+67	Tillabéri Region	160
+69	Zinder Region	160
+303	Abia State	161
+320	Adamawa State	161
+304	Akwa Ibom State	161
+315	Anambra State	161
+312	Bauchi State	161
+305	Bayelsa State	161
+291	Benue State	161
+307	Borno State	161
+314	Cross River State	161
+316	Delta State	161
+311	Ebonyi State	161
+318	Edo State	161
+309	Ekiti State	161
+289	Enugu State	161
+293	Federal Capital Territory	161
+310	Gombe State	161
+308	Imo State	161
+288	Jigawa State	161
+294	Kaduna State	161
+300	Kano State	161
+313	Katsina State	161
+290	Kebbi State	161
+298	Kogi State	161
+295	Kwara State	161
+306	Lagos	161
+301	Nasarawa State	161
+317	Niger State	161
+323	Ogun State	161
+321	Ondo State	161
+322	Osun State	161
+296	Oyo State	161
+302	Plateau State	161
+292	Sokoto State	161
+319	Taraba State	161
+297	Yobe State	161
+299	Zamfara State	161
+1017	Akershus	165
+1011	Buskerud	165
+1016	Finnmark	165
+1019	Hedmark	165
+1023	Hordaland	165
+1026	Jan Mayen	165
+1020	Møre og Romsdal	165
+1012	Nord-Trøndelag	165
+1025	Nordland	165
+1009	Oppland	165
+1007	Oslo	165
+1022	Østfold	165
+1021	Rogaland	165
+1018	Sogn og Fjordane	165
+1010	Sør-Trøndelag	165
+1013	Svalbard	165
+1024	Telemark	165
+1015	Troms	165
+1006	Trøndelag	165
+1014	Vest-Agder	165
+1008	Vestfold	165
+3058	Ad Dakhiliyah Governorate	166
+3047	Ad Dhahirah Governorate	166
+3048	Al Batinah North Governorate	166
+3050	Al Batinah Region	166
+3049	Al Batinah South Governorate	166
+3059	Al Buraimi Governorate	166
+3056	Al Wusta Governorate	166
+3053	Ash Sharqiyah North Governorate	166
+3051	Ash Sharqiyah Region	166
+3054	Ash Sharqiyah South Governorate	166
+3057	Dhofar Governorate	166
+3052	Musandam Governorate	166
+3055	Muscat Governorate	166
+3172	Azad Kashmir	167
+3174	Balochistan	167
+3173	Federally Administered Tribal Areas	167
+3170	Gilgit-Baltistan	167
+3169	Islamabad Capital Territory	167
+3171	Khyber Pakhtunkhwa	167
+3176	Punjab	167
+3175	Sindh	167
+4540	Aimeliik	168
+4528	Airai	168
+4538	Angaur	168
+4529	Hatohobei	168
+4539	Kayangel	168
+4532	Koror	168
+4530	Melekeok	168
+4537	Ngaraard	168
+4533	Ngarchelong	168
+4527	Ngardmau	168
+4531	Ngatpang	168
+4536	Ngchesar	168
+4541	Ngeremlengui	168
+4534	Ngiwal	168
+4526	Peleliu	168
+4535	Sonsorol	168
+1393	Bocas del Toro Province	170
+1397	Chiriquí Province	170
+1387	Coclé Province	170
+1386	Colón Province	170
+1385	Darién Province	170
+1396	Emberá-Wounaan Comarca	170
+1388	Guna Yala	170
+1389	Herrera Province	170
+1390	Los Santos Province	170
+1391	Ngöbe-Buglé Comarca	170
+1394	Panamá Oeste Province	170
+1395	Panamá Province	170
+1392	Veraguas Province	170
+4831	Bougainville	171
+4847	Central Province	171
+4846	Chimbu Province	171
+4834	East New Britain	171
+4845	Eastern Highlands Province	171
+4848	Enga Province	171
+4839	Gulf	171
+4833	Hela	171
+4832	Jiwaka Province	171
+4843	Madang Province	171
+4842	Manus Province	171
+4849	Milne Bay Province	171
+4835	Morobe Province	171
+4841	New Ireland Province	171
+4838	Oro Province	171
+4837	Port Moresby	171
+4836	Sandaun Province	171
+4844	Southern Highlands Province	171
+4830	West New Britain Province	171
+4840	Western Highlands Province	171
+4850	Western Province	171
+2785	Alto Paraguay Department	172
+2784	Alto Paraná Department	172
+2782	Amambay Department	172
+2780	Boquerón Department	172
+2773	Caaguazú	172
+2775	Caazapá	172
+2771	Canindeyú	172
+2777	Central Department	172
+2779	Concepción Department	172
+2783	Cordillera Department	172
+2772	Guairá Department	172
+2778	Itapúa	172
+2786	Misiones Department	172
+2781	Ñeembucú Department	172
+2774	Paraguarí Department	172
+2770	Presidente Hayes Department	172
+2776	San Pedro Department	172
+3685	Amazonas	173
+3680	Áncash	173
+3699	Apurímac	173
+3681	Arequipa	173
+3692	Ayacucho	173
+3688	Cajamarca	173
+3701	Callao	173
+3691	Cusco	173
+3679	Huancavelica	173
+3687	Huanuco	173
+3700	Ica	173
+3693	Junín	173
+3683	La Libertad	173
+3702	Lambayeque	173
+3695	Lima	173
+3678	Madre de Dios	173
+3698	Moquegua	173
+3686	Pasco	173
+3697	Piura	173
+3682	Puno	173
+3694	San Martín	173
+3696	Tacna	173
+3689	Tumbes	173
+3684	Ucayali	173
+1324	Abra	174
+1323	Agusan del Norte	174
+1326	Agusan del Sur	174
+1331	Aklan	174
+1337	Albay	174
+1336	Antique	174
+1334	Apayao	174
+1341	Aurora	174
+1316	Autonomous Region in Muslim Mindanao	174
+1346	Basilan	174
+1344	Bataan	174
+1352	Batanes	174
+1359	Batangas	174
+1363	Benguet	174
+1304	Bicol Region	174
+1274	Biliran	174
+1272	Bohol	174
+1270	Bukidnon	174
+1278	Bulacan	174
+1279	Cagayan	174
+1342	Cagayan Valley	174
+1294	Calabarzon	174
+1283	Camarines Norte	174
+1287	Camarines Sur	174
+1285	Camiguin	174
+1292	Capiz	174
+1314	Caraga	174
+1301	Catanduanes	174
+1307	Cavite	174
+1306	Cebu	174
+1345	Central Luzon	174
+1308	Central Visayas	174
+1311	Compostela Valley	174
+1335	Cordillera Administrative Region	174
+1320	Cotabato	174
+1319	Davao del Norte	174
+1318	Davao del Sur	174
+1309	Davao Occidental	174
+1289	Davao Oriental	174
+1340	Davao Region	174
+1291	Dinagat Islands	174
+1290	Eastern Samar	174
+1322	Eastern Visayas	174
+1303	Guimaras	174
+1300	Ifugao	174
+1298	Ilocos Norte	174
+1355	Ilocos Region	174
+1321	Ilocos Sur	174
+1315	Iloilo	174
+1313	Isabela	174
+1312	Kalinga	174
+1317	La Union	174
+1328	Laguna	174
+1327	Lanao del Norte	174
+1333	Lanao del Sur	174
+1332	Leyte	174
+1330	Maguindanao	174
+1329	Marinduque	174
+1338	Masbate	174
+1347	Metro Manila	174
+1299	Mimaropa	174
+1343	Misamis Occidental	174
+1348	Misamis Oriental	174
+1353	Mountain Province	174
+1351	Negros Occidental	174
+1350	Negros Oriental	174
+1339	Northern Mindanao	174
+1349	Northern Samar	174
+1360	Nueva Ecija	174
+1358	Nueva Vizcaya	174
+1356	Occidental Mindoro	174
+1354	Oriental Mindoro	174
+1361	Palawan	174
+1365	Pampanga	174
+1364	Pangasinan	174
+1275	Quezon	174
+1273	Quirino	174
+1271	Rizal	174
+1269	Romblon	174
+1277	Sarangani	174
+1276	Siquijor	174
+1310	Soccsksargen	174
+1281	Sorsogon	174
+1280	South Cotabato	174
+1284	Southern Leyte	174
+1282	Sultan Kudarat	174
+1288	Sulu	174
+1286	Surigao del Norte	174
+1296	Surigao del Sur	174
+1295	Tarlac	174
+1293	Tawi-Tawi	174
+1305	Western Visayas	174
+1297	Zambales	174
+1302	Zamboanga del Norte	174
+1357	Zamboanga del Sur	174
+1325	Zamboanga Peninsula	174
+1362	Zamboanga Sibugay	174
+1634	Greater Poland Voivodeship	176
+1625	Kuyavian-Pomeranian Voivodeship	176
+1635	Lesser Poland Voivodeship	176
+1629	Lower Silesian Voivodeship	176
+1638	Lublin Voivodeship	176
+1631	Lubusz Voivodeship	176
+1636	Łódź Voivodeship	176
+1637	Masovian Voivodeship	176
+1622	Opole Voivodeship	176
+1626	Podkarpackie Voivodeship	176
+1632	Podlaskie Voivodeship	176
+1624	Pomeranian Voivodeship	176
+1623	Silesian Voivodeship	176
+1630	Świętokrzyskie Voivodeship	176
+1628	Warmian-Masurian Voivodeship	176
+1633	West Pomeranian Voivodeship	176
+2233	Açores	177
+2235	Aveiro	177
+2230	Beja	177
+2244	Braga	177
+2229	Bragança	177
+2241	Castelo Branco	177
+2246	Coimbra	177
+2236	Évora	177
+2239	Faro	177
+4859	Guarda	177
+2240	Leiria	177
+2228	Lisbon	177
+2231	Madeira	177
+2232	Portalegre	177
+2243	Porto	177
+2238	Santarém	177
+2242	Setúbal	177
+2245	Viana do Castelo	177
+2234	Vila Real	177
+2237	Viseu	177
+3182	Al Daayen	179
+3183	Al Khor	179
+3177	Al Rayyan Municipality	179
+3179	Al Wakrah	179
+3178	Al-Shahaniya	179
+3181	Doha	179
+3180	Madinat ash Shamal	179
+3184	Umm Salal Municipality	179
+4724	Alba	181
+4739	Arad County	181
+4722	Arges	181
+4744	Bacău County	181
+4723	Bihor County	181
+4733	Bistrița-Năsăud County	181
+4740	Botoșani County	181
+4736	Braila	181
+4759	Brașov County	181
+4730	Bucharest	181
+4756	Buzău County	181
+4732	Călărași County	181
+4753	Caraș-Severin County	181
+4734	Cluj County	181
+4737	Constanța County	181
+4754	Covasna County	181
+4745	Dâmbovița County	181
+4742	Dolj County	181
+4747	Galați County	181
+4726	Giurgiu County	181
+4750	Gorj County	181
+4749	Harghita County	181
+4721	Hunedoara County	181
+4743	Ialomița County	181
+4735	Iași County	181
+4725	Ilfov County	181
+4760	Maramureș County	181
+4751	Mehedinți County	181
+4915	Mureș County	181
+4731	Neamț County	181
+4738	Olt County	181
+4729	Prahova County	181
+4741	Sălaj County	181
+4746	Satu Mare County	181
+4755	Sibiu County	181
+4720	Suceava County	181
+4728	Teleorman County	181
+4748	Timiș County	181
+4727	Tulcea County	181
+4757	Vâlcea County	181
+4752	Vaslui County	181
+4758	Vrancea County	181
+1911	Altai Krai	182
+1876	Altai Republic	182
+1858	Amur Oblast	182
+1849	Arkhangelsk	182
+1866	Astrakhan Oblast	182
+1903	Belgorod Oblast	182
+1867	Bryansk Oblast	182
+1893	Chechen Republic	182
+1845	Chelyabinsk Oblast	182
+1859	Chukotka Autonomous Okrug	182
+1914	Chuvash Republic	182
+1880	Irkutsk	182
+1864	Ivanovo Oblast	182
+1835	Jewish Autonomous Oblast	182
+1892	Kabardino-Balkar Republic	182
+1902	Kaliningrad	182
+1844	Kaluga Oblast	182
+1865	Kamchatka Krai	182
+1869	Karachay-Cherkess Republic	182
+1897	Kemerovo Oblast	182
+1873	Khabarovsk Krai	182
+1838	Khanty-Mansi Autonomous Okrug	182
+1890	Kirov Oblast	182
+1899	Komi Republic	182
+1910	Kostroma Oblast	182
+1891	Krasnodar Krai	182
+1840	Krasnoyarsk Krai	182
+1915	Kurgan Oblast	182
+1855	Kursk Oblast	182
+1896	Leningrad Oblast	182
+1889	Lipetsk Oblast	182
+1839	Magadan Oblast	182
+1870	Mari El Republic	182
+1901	Moscow	182
+1882	Moscow Oblast	182
+1843	Murmansk Oblast	182
+1836	Nenets Autonomous Okrug	182
+1857	Nizhny Novgorod Oblast	182
+1834	Novgorod Oblast	182
+1888	Novosibirsk	182
+1846	Omsk Oblast	182
+1886	Orenburg Oblast	182
+1908	Oryol Oblast	182
+1909	Penza Oblast	182
+1871	Perm Krai	182
+1833	Primorsky Krai	182
+1863	Pskov Oblast	182
+1852	Republic of Adygea	182
+1854	Republic of Bashkortostan	182
+1842	Republic of Buryatia	182
+1850	Republic of Dagestan	182
+1884	Republic of Ingushetia	182
+1883	Republic of Kalmykia	182
+1841	Republic of Karelia	182
+1877	Republic of Khakassia	182
+1898	Republic of Mordovia	182
+1853	Republic of North Ossetia-Alania	182
+1861	Republic of Tatarstan	182
+1837	Rostov Oblast	182
+1905	Ryazan Oblast	182
+1879	Saint Petersburg	182
+1848	Sakha Republic	182
+1875	Sakhalin	182
+1862	Samara Oblast	182
+1887	Saratov Oblast	182
+1912	Sevastopol	182
+1885	Smolensk Oblast	182
+1868	Stavropol Krai	182
+1894	Sverdlovsk	182
+1878	Tambov Oblast	182
+1872	Tomsk Oblast	182
+1895	Tula Oblast	182
+1900	Tuva Republic	182
+1860	Tver Oblast	182
+1907	Tyumen Oblast	182
+1913	Udmurt Republic	182
+1856	Ulyanovsk Oblast	182
+1881	Vladimir Oblast	182
+4916	Volgograd Oblast	182
+1874	Vologda Oblast	182
+1906	Voronezh Oblast	182
+1847	Yamalo-Nenets Autonomous Okrug	182
+1851	Yaroslavl Oblast	182
+1904	Zabaykalsky Krai	182
+261	Eastern Province	183
+262	Kigali district	183
+263	Northern Province	183
+259	Southern Province	183
+260	Western Province	183
+3833	Christ Church Nichola Town Parish	185
+3832	Nevis	185
+3836	Saint Anne Sandy Point Parish	185
+3837	Saint George Gingerland Parish	185
+3835	Saint James Windward Parish	185
+3845	Saint John Capisterre Parish	185
+3840	Saint John Figtree Parish	185
+3841	Saint Kitts	185
+3844	Saint Mary Cayon Parish	185
+3834	Saint Paul Capisterre Parish	185
+3838	Saint Paul Charlestown Parish	185
+3831	Saint Peter Basseterre Parish	185
+3839	Saint Thomas Lowland Parish	185
+3842	Saint Thomas Middle Island Parish	185
+3843	Trinity Palmetto Point Parish	185
+3757	Anse la Raye Quarter	186
+3761	Canaries	186
+3758	Castries Quarter	186
+3760	Choiseul Quarter	186
+3767	Dauphin Quarter	186
+3756	Dennery Quarter	186
+3766	Gros Islet Quarter	186
+3759	Laborie Quarter	186
+3762	Micoud Quarter	186
+3765	Praslin Quarter	186
+3764	Soufrière Quarter	186
+3763	Vieux Fort Quarter	186
+3389	Charlotte Parish	188
+3388	Grenadines Parish	188
+3386	Saint Andrew Parish	188
+3387	Saint David Parish	188
+3384	Saint George Parish	188
+3385	Saint Patrick Parish	188
+4763	A'ana	191
+4761	Aiga-i-le-Tai	191
+4765	Atua	191
+4764	Fa'asaleleaga	191
+4769	Gaga'emauga	191
+4771	Gaga'ifomauga	191
+4767	Palauli	191
+4762	Satupa'itea	191
+4770	Tuamasaga	191
+4768	Va'a-o-Fonoti	191
+4766	Vaisigano	191
+59	Acquaviva	192
+61	Borgo Maggiore	192
+60	Chiesanuova	192
+64	Domagnano	192
+62	Faetano	192
+66	Fiorentino	192
+63	Montegiardino	192
+58	San Marino	192
+65	Serravalle	192
+270	Príncipe Province	193
+271	São Tomé Province	193
+2853	'Asir Region	194
+2859	Al Bahah Region	194
+2857	Al Jawf Region	194
+2851	Al Madinah Region	194
+2861	Al-Qassim Region	194
+2856	Eastern Province	194
+2855	Ha'il Region	194
+2858	Jizan Region	194
+2850	Makkah Region	194
+2860	Najran Region	194
+2854	Northern Borders Region	194
+2849	Riyadh Region	194
+2852	Tabuk Region	194
+473	Dakar	195
+480	Diourbel Region	195
+479	Fatick	195
+475	Kaffrine	195
+483	Kaolack	195
+481	Kédougou	195
+474	Kolda	195
+485	Louga	195
+476	Matam	195
+477	Saint-Louis	195
+482	Sédhiou	195
+486	Tambacounda Region	195
+484	Thiès Region	195
+478	Ziguinchor	195
+3728	Belgrade	196
+3717	Bor District	196
+3732	Braničevo District	196
+3716	Central Banat District	196
+3715	Jablanica District	196
+3724	Kolubara District	196
+3719	Mačva District	196
+3727	Moravica District	196
+3722	Nišava District	196
+3714	North Bačka District	196
+3736	North Banat District	196
+3721	Pčinja District	196
+3712	Pirot District	196
+3741	Podunavlje District	196
+3737	Pomoravlje District	196
+3720	Rasina District	196
+3725	Raška District	196
+3711	South Bačka District	196
+3713	South Banat District	196
+3740	Srem District	196
+3734	Šumadija District	196
+3718	Toplica District	196
+3733	Vojvodina	196
+3726	West Bačka District	196
+3731	Zaječar District	196
+3729	Zlatibor District	196
+513	Anse Boileau	197
+502	Anse Royale	197
+506	Anse-aux-Pins	197
+508	Au Cap	197
+497	Baie Lazare	197
+514	Baie Sainte Anne	197
+512	Beau Vallon	197
+515	Bel Air	197
+505	Bel Ombre	197
+517	Cascade	197
+503	Glacis	197
+500	Grand'Anse Mahé	197
+504	Grand'Anse Praslin	197
+495	La Digue	197
+516	La Rivière Anglaise	197
+499	Les Mamelles	197
+494	Mont Buxton	197
+498	Mont Fleuri	197
+511	Plaisance	197
+510	Pointe La Rue	197
+507	Port Glaud	197
+501	Roche Caiman	197
+496	Saint Louis	197
+509	Takamaka	197
+914	Eastern Province	198
+911	Northern Province	198
+912	Southern Province	198
+913	Western Area	198
+4651	Central Singapore Community Development Council	199
+4649	North East Community Development Council	199
+4653	North West Community Development Council	199
+4650	South East Community Development Council	199
+4652	South West Community Development Council	199
+4352	Banská Bystrica Region	200
+4356	Bratislava Region	200
+4353	Košice Region	200
+4357	Nitra Region	200
+4354	Prešov Region	200
+4358	Trenčín Region	200
+4355	Trnava Region	200
+4359	Žilina Region	200
+4183	Ajdovščina Municipality	201
+4326	Ankaran Municipality	201
+4301	Beltinci Municipality	201
+4166	Benedikt Municipality	201
+4179	Bistrica ob Sotli Municipality	201
+4202	Bled Municipality	201
+4278	Bloke Municipality	201
+4282	Bohinj Municipality	201
+4200	Borovnica Municipality	201
+4181	Bovec Municipality	201
+4141	Braslovče Municipality	201
+4240	Brda Municipality	201
+4215	Brežice Municipality	201
+4165	Brezovica Municipality	201
+4147	Cankova Municipality	201
+4310	Cerklje na Gorenjskem Municipality	201
+4162	Cerknica Municipality	201
+4178	Cerkno Municipality	201
+4176	Cerkvenjak Municipality	201
+4191	City Municipality of Celje	201
+4236	City Municipality of Novo Mesto	201
+4151	Črenšovci Municipality	201
+4232	Črna na Koroškem Municipality	201
+4291	Črnomelj Municipality	201
+4304	Destrnik Municipality	201
+4167	Divača Municipality	201
+4295	Dobje Municipality	201
+4216	Dobrepolje Municipality	201
+4252	Dobrna Municipality	201
+4308	Dobrova–Polhov Gradec Municipality	201
+4189	Dobrovnik Municipality	201
+4173	Dol pri Ljubljani Municipality	201
+4281	Dolenjske Toplice Municipality	201
+4159	Domžale Municipality	201
+4290	Dornava Municipality	201
+4345	Dravograd Municipality	201
+4213	Duplek Municipality	201
+4293	Gorenja Vas–Poljane Municipality	201
+4210	Gorišnica Municipality	201
+4284	Gorje Municipality	201
+4343	Gornja Radgona Municipality	201
+4339	Gornji Grad Municipality	201
+4271	Gornji Petrovci Municipality	201
+4217	Grad Municipality	201
+4336	Grosuplje Municipality	201
+4145	Hajdina Municipality	201
+4175	Hoče–Slivnica Municipality	201
+4327	Hodoš Municipality	201
+4193	Horjul Municipality	201
+4341	Hrastnik Municipality	201
+4321	Hrpelje–Kozina Municipality	201
+4152	Idrija Municipality	201
+4286	Ig Municipality	201
+4305	Ivančna Gorica Municipality	201
+4322	Izola Municipality	201
+4337	Jesenice Municipality	201
+4203	Jezersko Municipality	201
+4266	Juršinci Municipality	201
+4180	Kamnik Municipality	201
+4227	Kanal ob Soči Municipality	201
+4150	Kidričevo Municipality	201
+4243	Kobarid Municipality	201
+4325	Kobilje Municipality	201
+4335	Kočevje Municipality	201
+4315	Komen Municipality	201
+4283	Komenda Municipality	201
+4319	Koper City Municipality	201
+4254	Kostanjevica na Krki Municipality	201
+4331	Kostel Municipality	201
+4186	Kozje Municipality	201
+4287	Kranj City Municipality	201
+4340	Kranjska Gora Municipality	201
+4238	Križevci Municipality	201
+4197	Kungota	201
+4211	Kuzma Municipality	201
+4338	Laško Municipality	201
+4142	Lenart Municipality	201
+4225	Lendava Municipality	201
+4347	Litija Municipality	201
+4270	Ljubljana City Municipality	201
+4294	Ljubno Municipality	201
+4351	Ljutomer Municipality	201
+4306	Log–Dragomer Municipality	201
+4350	Logatec Municipality	201
+4174	Loška Dolina Municipality	201
+4158	Loški Potok Municipality	201
+4156	Lovrenc na Pohorju Municipality	201
+4219	Luče Municipality	201
+4302	Lukovica Municipality	201
+4157	Majšperk Municipality	201
+4224	Makole Municipality	201
+4242	Maribor City Municipality	201
+4244	Markovci Municipality	201
+4349	Medvode Municipality	201
+4348	Mengeš Municipality	201
+4323	Metlika Municipality	201
+4265	Mežica Municipality	201
+4223	Miklavž na Dravskem Polju Municipality	201
+4220	Miren–Kostanjevica Municipality	201
+4298	Mirna Municipality	201
+4237	Mirna Peč Municipality	201
+4212	Mislinja Municipality	201
+4297	Mokronog–Trebelno Municipality	201
+4168	Moravče Municipality	201
+4218	Moravske Toplice Municipality	201
+4190	Mozirje Municipality	201
+4318	Municipality of Apače	201
+4309	Municipality of Cirkulane	201
+4344	Municipality of Ilirska Bistrica	201
+4314	Municipality of Krško	201
+4187	Municipality of Škofljica	201
+4313	Murska Sobota City Municipality	201
+4208	Muta Municipality	201
+4177	Naklo Municipality	201
+4329	Nazarje Municipality	201
+4205	Nova Gorica City Municipality	201
+4320	Odranci Municipality	201
+4143	Oplotnica	201
+4221	Ormož Municipality	201
+4199	Osilnica Municipality	201
+4172	Pesnica Municipality	201
+4201	Piran Municipality	201
+4184	Pivka Municipality	201
+4146	Podčetrtek Municipality	201
+4161	Podlehnik Municipality	201
+4234	Podvelka Municipality	201
+4239	Poljčane Municipality	201
+4272	Polzela Municipality	201
+4330	Postojna Municipality	201
+4188	Prebold Municipality	201
+4303	Preddvor Municipality	201
+4274	Prevalje Municipality	201
+4228	Ptuj City Municipality	201
+4288	Puconci Municipality	201
+4204	Rače–Fram Municipality	201
+4195	Radeče Municipality	201
+4292	Radenci Municipality	201
+4275	Radlje ob Dravi Municipality	201
+4231	Radovljica Municipality	201
+4155	Ravne na Koroškem Municipality	201
+4206	Razkrižje Municipality	201
+4160	Rečica ob Savinji Municipality	201
+4253	Renče–Vogrsko Municipality	201
+4235	Ribnica Municipality	201
+4207	Ribnica na Pohorju Municipality	201
+4233	Rogaška Slatina Municipality	201
+4264	Rogašovci Municipality	201
+4209	Rogatec Municipality	201
+4280	Ruše Municipality	201
+4222	Šalovci Municipality	201
+4230	Selnica ob Dravi Municipality	201
+4346	Semič Municipality	201
+4317	Šempeter–Vrtojba Municipality	201
+4299	Šenčur Municipality	201
+4324	Šentilj Municipality	201
+4241	Šentjernej Municipality	201
+4171	Šentjur Municipality	201
+4311	Šentrupert Municipality	201
+4268	Sevnica Municipality	201
+4149	Sežana Municipality	201
+4170	Škocjan Municipality	201
+4316	Škofja Loka Municipality	201
+4169	Slovenj Gradec City Municipality	201
+4332	Slovenska Bistrica Municipality	201
+4198	Slovenske Konjice Municipality	201
+4285	Šmarje pri Jelšah Municipality	201
+4289	Šmarješke Toplice Municipality	201
+4296	Šmartno ob Paki Municipality	201
+4279	Šmartno pri Litiji Municipality	201
+4277	Sodražica Municipality	201
+4261	Solčava Municipality	201
+4248	Šoštanj Municipality	201
+4263	Središče ob Dravi	201
+4259	Starše Municipality	201
+4185	Štore Municipality	201
+4333	Straža Municipality	201
+4164	Sveta Ana Municipality	201
+4260	Sveta Trojica v Slovenskih Goricah Municipality	201
+4229	Sveti Andraž v Slovenskih Goricah Municipality	201
+4255	Sveti Jurij ob Ščavnici Municipality	201
+4328	Sveti Jurij v Slovenskih Goricah Municipality	201
+4273	Sveti Tomaž Municipality	201
+4194	Tabor Municipality	201
+4312	Tišina Municipality	201
+4247	Tolmin Municipality	201
+4246	Trbovlje Municipality	201
+4214	Trebnje Municipality	201
+4153	Trnovska Vas Municipality	201
+4250	Tržič Municipality	201
+4334	Trzin Municipality	201
+4251	Turnišče Municipality	201
+4267	Velika Polana Municipality	201
+4144	Velike Lašče Municipality	201
+4257	Veržej Municipality	201
+4300	Videm Municipality	201
+4196	Vipava Municipality	201
+4148	Vitanje Municipality	201
+4154	Vodice Municipality	201
+4245	Vojnik Municipality	201
+4163	Vransko Municipality	201
+4262	Vrhnika Municipality	201
+4226	Vuzenica Municipality	201
+4269	Zagorje ob Savi Municipality	201
+4258	Žalec Municipality	201
+4182	Zavrč Municipality	201
+4256	Železniki Municipality	201
+4249	Žetale Municipality	201
+4192	Žiri Municipality	201
+4276	Žirovnica Municipality	201
+4342	Zreče Municipality	201
+4307	Žužemberk Municipality	201
+4784	Central Province	202
+4781	Choiseul Province	202
+4785	Guadalcanal Province	202
+4778	Honiara	202
+4780	Isabel Province	202
+4782	Makira-Ulawa Province	202
+4783	Malaita Province	202
+4787	Rennell and Bellona Province	202
+4779	Temotu Province	202
+4786	Western Province	202
+925	Awdal Region	203
+917	Bakool	203
+927	Banaadir	203
+930	Bari	203
+926	Bay	203
+918	Galguduud	203
+928	Gedo	203
+915	Hiran	203
+924	Lower Juba	203
+921	Lower Shebelle	203
+922	Middle Juba	203
+923	Middle Shebelle	203
+916	Mudug	203
+920	Nugal	203
+919	Sanaag Region	203
+929	Togdheer Region	203
+938	Eastern Cape	204
+932	Free State	204
+936	Gauteng	204
+935	KwaZulu-Natal	204
+933	Limpopo	204
+937	Mpumalanga	204
+934	North West	204
+931	Northern Cape	204
+939	Western Cape	204
+2092	Central Equatoria	206
+2093	Eastern Equatoria	206
+2094	Jonglei State	206
+2090	Lakes	206
+2088	Northern Bahr el Ghazal	206
+2085	Unity	206
+2086	Upper Nile	206
+2087	Warrap	206
+2091	Western Bahr el Ghazal	206
+2089	Western Equatoria	206
+1193	Andalusia	207
+1177	Aragon	207
+1160	Asturias	207
+1189	Ávila	207
+1174	Balearic Islands	207
+1191	Basque Country	207
+1146	Burgos Province	207
+1185	Canary Islands	207
+1170	Cantabria	207
+1184	Castile and León	207
+1205	Castilla La Mancha	207
+1203	Catalonia	207
+1206	Ceuta	207
+1190	Extremadura	207
+1167	Galicia	207
+1171	La Rioja	207
+1200	Léon	207
+1158	Madrid	207
+1159	Melilla	207
+1176	Murcia	207
+1204	Navarra	207
+1157	Palencia Province	207
+1147	Salamanca Province	207
+1192	Segovia Province	207
+1208	Soria Province	207
+1175	Valencia	207
+1183	Valladolid Province	207
+1161	Zamora Province	207
+2799	Ampara District	208
+2816	Anuradhapura District	208
+2790	Badulla District	208
+2818	Batticaloa District	208
+2798	Central Province	208
+2815	Colombo District	208
+2808	Eastern Province	208
+2792	Galle District	208
+2804	Gampaha District	208
+2791	Hambantota District	208
+2787	Jaffna District	208
+2789	Kalutara District	208
+2788	Kandy District	208
+2797	Kegalle District	208
+2793	Kilinochchi District	208
+2805	Mannar District	208
+2810	Matale District	208
+2806	Matara District	208
+2819	Monaragala District	208
+2814	Mullaitivu District	208
+2800	North Central Province	208
+2817	North Western Province	208
+2813	Northern Province	208
+2794	Nuwara Eliya District	208
+2812	Polonnaruwa District	208
+2796	Puttalam District	208
+2807	Ratnapura district	208
+2803	Sabaragamuwa Province	208
+2801	Southern Province	208
+2795	Trincomalee District	208
+2811	Uva Province	208
+2809	Vavuniya District	208
+2802	Western Province	208
+885	Al Jazirah	209
+886	Al Qadarif	209
+887	Blue Nile	209
+896	Central Darfur	209
+892	East Darfur	209
+884	Kassala	209
+881	Khartoum	209
+890	North Darfur	209
+893	North Kordofan	209
+895	Northern	209
+880	Red Sea	209
+891	River Nile	209
+882	Sennar	209
+894	South Darfur	209
+883	South Kordofan	209
+888	West Darfur	209
+889	West Kordofan	209
+879	White Nile	209
+2846	Brokopondo District	210
+2839	Commewijne District	210
+2842	Coronie District	210
+2845	Marowijne District	210
+2840	Nickerie District	210
+2841	Para District	210
+2843	Paramaribo District	210
+2848	Saramacca District	210
+2847	Sipaliwini District	210
+2844	Wanica District	210
+969	Hhohho District	212
+970	Lubombo District	212
+968	Manzini District	212
+971	Shiselweni District	212
+1537	Blekinge	213
+1534	Dalarna County	213
+1533	Gävleborg County	213
+1546	Gotland County	213
+1548	Halland County	213
+1550	Jönköping County	213
+1544	Kalmar County	213
+1542	Kronoberg County	213
+1538	Norrbotten County	213
+1539	Örebro County	213
+1536	Östergötland County	213
+1541	Skåne County	213
+1540	Södermanland County	213
+1551	Stockholm County	213
+1545	Uppsala County	213
+1535	Värmland County	213
+1543	Västerbotten County	213
+1552	Västernorrland County	213
+1549	Västmanland County	213
+1547	Västra Götaland County	213
+1639	Aargau	214
+1655	Appenzell Ausserrhoden	214
+1649	Appenzell Innerrhoden	214
+1641	Basel-Landschaft	214
+1645	canton of Bern	214
+1640	Canton of Fribourg	214
+1647	Canton of Geneva	214
+1658	Canton of Jura	214
+1663	Canton of Lucerne	214
+1659	Canton of Neuchâtel	214
+1654	Canton of Schaffhausen	214
+1662	Canton of Solothurn	214
+1644	Canton of St. Gallen	214
+1648	Canton of Valais	214
+1651	Canton of Vaud	214
+1646	Canton of Zug	214
+1656	canton of Zürich	214
+1661	Glarus	214
+1660	Graubünden	214
+1652	Nidwalden	214
+1650	Obwalden	214
+1653	Schwyz	214
+1657	Thurgau	214
+1643	Ticino	214
+1642	Uri	214
+2941	Al-Hasakah Governorate	215
+2944	Al-Raqqah Governorate	215
+2946	Aleppo Governorate	215
+2936	As-Suwayda Governorate	215
+2939	Damascus Governorate	215
+2945	Daraa Governorate	215
+2937	Deir ez-Zor Governorate	215
+2934	Hama Governorate	215
+2942	Homs Governorate	215
+2940	Idlib Governorate	215
+2938	Latakia Governorate	215
+2943	Quneitra Governorate	215
+2935	Rif Dimashq Governorate	215
+2947	Tartus Governorate	215
+3404	Changhua County	216
+3418	Chiayi City	216
+3408	Chiayi County	216
+3417	Hsinchu	216
+3423	Hsinchu County	216
+3411	Hualien County	216
+3412	Kaohsiung	216
+3409	Kaohsiung County	216
+3415	Kinmen	216
+3420	Lienchiang County	216
+3413	Miaoli County	216
+3407	Nantou County	216
+3403	Penghu County	216
+3405	Pingtung County	216
+3406	Taichung	216
+3414	Taichung County	216
+3421	Tainan	216
+3401	Tainan County	216
+3422	Taipei	216
+3410	Taitung County	216
+3419	Taoyuan City	216
+3402	Yilan County	216
+3416	Yunlin County	216
+3397	districts of Republican Subordination	217
+3399	Gorno-Badakhshan Autonomous Province	217
+3398	Khatlon Province	217
+3400	Sughd Province	217
+1491	Arusha Region	218
+1490	Dar es Salaam Region	218
+1466	Dodoma Region	218
+1481	Geita Region	218
+1489	Iringa Region	218
+1465	Kagera Region	218
+1482	Katavi Region	218
+1478	Kigoma Region	218
+1467	Kilimanjaro Region	218
+1483	Lindi Region	218
+1484	Manyara Region	218
+1468	Mara Region	218
+1470	Morogoro Region	218
+1476	Mtwara Region	218
+1479	Mwanza Region	218
+1480	Njombe Region	218
+1488	North Pemba Region	218
+1485	Pwani Region	218
+1477	Rukwa Region	218
+1486	Ruvuma Region	218
+1463	Shinyanga Region	218
+1464	Simiyu Region	218
+1474	Singida Region	218
+1472	South Pemba Region	218
+1469	Tabora Region	218
+1487	Tanga Region	218
+1471	Zanzibar Central/South Region	218
+1473	Zanzibar North Region	218
+1475	Zanzibar Urban/West Region	218
+3523	Amnat Charoen	219
+3519	Ang Thong	219
+3554	Bangkok	219
+3533	Bueng Kan	219
+3534	Buri Ram	219
+3552	Chachoengsao	219
+3522	Chai Nat	219
+3486	Chanthaburi	219
+3491	Chiang Mai	219
+3498	Chiang Rai	219
+3513	Chon Buri	219
+3526	Chumphon	219
+3550	Kalasin	219
+3516	Kamphaeng Phet	219
+3511	Kanchanaburi	219
+3485	Khon Kaen	219
+3478	Krabi	219
+3544	Lampang	219
+3483	Lamphun	219
+3509	Loei	219
+3543	Lopburi	219
+3505	Mae Hong Son	219
+3517	Maha Sarakham	219
+3546	Mukdahan	219
+3535	Nakhon Nayok	219
+3503	Nakhon Pathom	219
+3548	Nakhon Phanom	219
+3497	Nakhon Ratchasima	219
+3492	Nakhon Sawan	219
+3520	Nakhon Si Thammarat	219
+3530	Nan	219
+3553	Narathiwat	219
+3480	Nong Bua Lam Phu	219
+3484	Nong Khai	219
+3495	Nonthaburi	219
+3500	Pathum Thani	219
+3540	Pattani	219
+3507	Pattaya	219
+3549	Phang Nga	219
+3488	Phatthalung	219
+3538	Phayao	219
+3515	Phetchabun	219
+3532	Phetchaburi	219
+3514	Phichit	219
+3506	Phitsanulok	219
+3494	Phra Nakhon Si Ayutthaya	219
+3528	Phrae	219
+3536	Phuket	219
+3542	Prachin Buri	219
+3508	Prachuap Khiri Khan	219
+3479	Ranong	219
+3499	Ratchaburi	219
+3518	Rayong	219
+3510	Roi Et	219
+3529	Sa Kaeo	219
+3501	Sakon Nakhon	219
+3481	Samut Prakan	219
+3504	Samut Sakhon	219
+3502	Samut Songkhram	219
+3487	Saraburi	219
+3537	Satun	219
+3547	Si Sa Ket	219
+3490	Sing Buri	219
+3539	Songkhla	219
+3545	Sukhothai	219
+3524	Suphanburi	219
+3482	Surat Thani	219
+3531	Surin	219
+3525	Tak	219
+3541	Trang	219
+3496	Trat	219
+3512	Ubon Ratchathani	219
+3527	Udon Thani	219
+3551	Uthai Thani	219
+3489	Uttaradit	219
+3493	Yala	219
+3521	Yasothon	219
+2575	Centrale Region	220
+2579	Kara Region	220
+2576	Maritime	220
+2577	Plateaux Region	220
+2578	Savanes Region	220
+3913	Haʻapai	222
+3915	ʻEua	222
+3914	Niuas	222
+3912	Tongatapu	222
+3911	Vavaʻu	222
+3362	Arima	223
+3366	Chaguanas	223
+3354	Couva-Tabaquite-Talparo Regional Corporation	223
+3367	Diego Martin Regional Corporation	223
+3355	Eastern Tobago	223
+3365	Penal-Debe Regional Corporation	223
+3360	Point Fortin	223
+3363	Port of Spain	223
+3368	Princes Town Regional Corporation	223
+3356	Rio Claro-Mayaro Regional Corporation	223
+3359	San Fernando	223
+3357	San Juan-Laventille Regional Corporation	223
+3361	Sangre Grande Regional Corporation	223
+3364	Siparia Regional Corporation	223
+3358	Tunapuna-Piarco Regional Corporation	223
+3353	Western Tobago	223
+2550	Ariana Governorate	224
+2566	Ben Arous Governorate	224
+2551	Bizerte Governorate	224
+2558	Gabès Governorate	224
+2556	Gafsa Governorate	224
+2552	Jendouba Governorate	224
+2564	Kairouan Governorate	224
+2570	Kasserine Governorate	224
+2572	Kassrine	224
+2562	Kebili Governorate	224
+2561	Kef Governorate	224
+2568	Mahdia Governorate	224
+2555	Manouba Governorate	224
+2560	Medenine Governorate	224
+2553	Monastir Governorate	224
+2557	Sfax Governorate	224
+2567	Sidi Bouzid Governorate	224
+2563	Siliana Governorate	224
+2571	Sousse Governorate	224
+2559	Tataouine Governorate	224
+2569	Tozeur Governorate	224
+2554	Tunis Governorate	224
+2565	Zaghouan Governorate	224
+2212	Adana Province	225
+2155	Adıyaman Province	225
+2179	Afyonkarahisar Province	225
+2193	Ağrı Province	225
+2210	Aksaray Province	225
+2161	Amasya Province	225
+2217	Ankara Province	225
+2169	Antalya Province	225
+2185	Ardahan Province	225
+2191	Artvin Province	225
+2187	Aydın Province	225
+2175	Balıkesir Province	225
+2148	Bartın Province	225
+2194	Batman Province	225
+2177	Bayburt Province	225
+2221	Bilecik Province	225
+2153	Bingöl Province	225
+2215	Bitlis Province	225
+2172	Bolu Province	225
+2209	Burdur Province	225
+2163	Bursa Province	225
+2216	Çanakkale Province	225
+2168	Çankırı Province	225
+2173	Çorum Province	225
+2157	Denizli Province	225
+2226	Diyarbakır Province	225
+2202	Düzce Province	225
+2151	Edirne Province	225
+2159	Elazığ Province	225
+2160	Erzincan Province	225
+2165	Erzurum Province	225
+2164	Eskişehir Province	225
+2203	Gaziantep Province	225
+2186	Giresun Province	225
+2204	Gümüşhane Province	225
+2190	Hakkâri Province	225
+2211	Hatay Province	225
+2166	Iğdır Province	225
+2222	Isparta Province	225
+2170	Istanbul Province	225
+2205	İzmir Province	225
+2227	Kahramanmaraş Province	225
+2223	Karabük Province	225
+2184	Karaman Province	225
+2208	Kars Province	225
+2197	Kastamonu Province	225
+2200	Kayseri Province	225
+2154	Kilis Province	225
+2178	Kırıkkale Province	225
+2176	Kırklareli Province	225
+2180	Kırşehir Province	225
+2195	Kocaeli Province	225
+2171	Konya Province	225
+2149	Kütahya Province	225
+2158	Malatya Province	225
+2198	Manisa Province	225
+2224	Mardin Province	225
+2156	Mersin Province	225
+2182	Muğla Province	225
+2162	Muş Province	225
+2196	Nevşehir Province	225
+2189	Niğde Province	225
+2174	Ordu Province	225
+2214	Osmaniye Province	225
+2219	Rize Province	225
+2150	Sakarya Province	225
+2220	Samsun Province	225
+2183	Şanlıurfa Province	225
+2207	Siirt Province	225
+4854	Sinop Province	225
+2181	Sivas Province	225
+2225	Şırnak Province	225
+2167	Tekirdağ Province	225
+2199	Tokat Province	225
+2206	Trabzon Province	225
+2192	Tunceli Province	225
+2201	Uşak Province	225
+2152	Van Province	225
+2218	Yalova Province	225
+2188	Yozgat Province	225
+2213	Zonguldak Province	225
+3374	Ahal Region	226
+3371	Ashgabat	226
+3372	Balkan Region	226
+3373	Daşoguz Region	226
+3370	Lebap Region	226
+3369	Mary Region	226
+3951	Funafuti	228
+3947	Nanumanga	228
+3949	Nanumea	228
+3946	Niutao Island Council	228
+3948	Nui	228
+3952	Nukufetau	228
+3953	Nukulaelae	228
+3950	Vaitupu	228
+329	Abim District	229
+361	Adjumani District	229
+392	Agago District	229
+344	Alebtong District	229
+416	Amolatar District	229
+353	Amudat District	229
+352	Amuria District	229
+335	Amuru District	229
+328	Apac District	229
+447	Arua District	229
+441	Budaka District	229
+349	Bududa District	229
+387	Bugiri District	229
+391	Buhweju District	229
+377	Buikwe District	229
+343	Bukedea District	229
+375	Bukomansimbi District	229
+385	Bukwo District	229
+428	Bulambuli District	229
+389	Buliisa District	229
+419	Bundibugyo District	229
+381	Bunyangabu District	229
+386	Bushenyi District	229
+431	Busia District	229
+365	Butaleja District	229
+384	Butambala District	229
+388	Butebo District	229
+414	Buvuma District	229
+380	Buyende District	229
+396	Central Region	229
+341	Dokolo District	229
+372	Eastern Region	229
+366	Gomba District	229
+413	Gulu District	229
+339	Ibanda District	229
+340	Iganga District	229
+383	Isingiro District	229
+367	Jinja District	229
+434	Kaabong District	229
+426	Kabale District	229
+326	Kabarole District	229
+336	Kaberamaido District	229
+403	Kagadi District	229
+399	Kakumiro District	229
+405	Kalangala District	229
+398	Kaliro District	229
+394	Kalungu District	229
+382	Kampala District	229
+334	Kamuli District	229
+360	Kamwenge District	229
+373	Kanungu District	229
+432	Kapchorwa District	229
+440	Kasese District	229
+420	Katakwi District	229
+368	Kayunga District	229
+436	Kibaale District	229
+347	Kiboga District	229
+338	Kibuku District	229
+355	Kiruhura District	229
+346	Kiryandongo District	229
+409	Kisoro District	229
+348	Kitgum District	229
+345	Koboko District	229
+401	Kole District	229
+443	Kotido District	229
+425	Kumi District	229
+369	Kween District	229
+325	Kyankwanzi District	229
+437	Kyegegwa District	229
+402	Kyenjojo District	229
+448	Kyotera District	229
+411	Lamwo District	229
+342	Lira District	229
+445	Luuka District	229
+433	Luwero District	229
+417	Lwengo District	229
+376	Lyantonde District	229
+438	Manafwa District	229
+421	Maracha District	229
+356	Masaka District	229
+354	Masindi District	229
+418	Mayuge District	229
+350	Mbale District	229
+415	Mbarara District	229
+435	Mitooma District	229
+364	Mityana District	229
+395	Moroto District	229
+363	Moyo District	229
+327	Mpigi District	229
+371	Mubende District	229
+410	Mukono District	229
+393	Nakapiripirit District	229
+423	Nakaseke District	229
+406	Nakasongola District	229
+351	Namayingo District	229
+400	Namisindwa District	229
+337	Namutumba District	229
+430	Napak District	229
+446	Nebbi District	229
+424	Ngora District	229
+332	Northern Region	229
+422	Ntoroko District	229
+404	Ntungamo District	229
+378	Nwoya District	229
+374	Omoro District	229
+390	Otuke District	229
+397	Oyam District	229
+408	Pader District	229
+357	Pakwach District	229
+412	Pallisa District	229
+439	Rakai District	229
+358	Rubanda District	229
+442	Rubirizi District	229
+331	Rukiga District	229
+324	Rukungiri District	229
+427	Sembabule District	229
+333	Serere District	229
+407	Sheema District	229
+429	Sironko District	229
+444	Soroti District	229
+359	Tororo District	229
+362	Wakiso District	229
+370	Western Region	229
+330	Yumbe District	229
+379	Zombo District	229
+4689	Autonomous Republic of Crimea	230
+4680	Cherkasy Oblast	230
+4692	Chernihiv Oblast	230
+4678	Chernivtsi Oblast	230
+4675	Dnipropetrovsk Oblast	230
+4691	Donetsk Oblast	230
+4682	Ivano-Frankivsk Oblast	230
+4686	Kharkiv Oblast	230
+4684	Kherson Oblast	230
+4681	Khmelnytsky Oblast	230
+4676	Kiev	230
+4677	Kirovohrad Oblast	230
+4671	Kyiv Oblast	230
+4673	Luhansk Oblast	230
+4672	Lviv Oblast	230
+4679	Mykolaiv Oblast	230
+4688	Odessa Oblast	230
+4683	Rivne Oblast	230
+4685	Sumy Oblast	230
+4674	Ternopil Oblast	230
+4669	Vinnytsia Oblast	230
+4690	Volyn Oblast	230
+4670	Zakarpattia Oblast	230
+4687	Zaporizhzhya Oblast	230
+4668	Zhytomyr Oblast	230
+3396	Abu Dhabi Emirate	231
+3395	Ajman Emirate	231
+3391	Dubai	231
+3393	Fujairah	231
+3394	Ras al-Khaimah	231
+3390	Sharjah Emirate	231
+3392	Umm al-Quwain	231
+2463	Aberdeen	232
+2401	Aberdeenshire	232
+2387	Angus	232
+2533	Antrim	232
+2412	Antrim and Newtownabbey	232
+2498	Ards	232
+2523	Ards and North Down	232
+2392	Argyll and Bute	232
+2331	Armagh City and District Council	232
+2324	Armagh, Banbridge and Craigavon	232
+2378	Ascension Island	232
+2363	Ballymena Borough	232
+2361	Ballymoney	232
+2315	Banbridge	232
+2499	Barnsley	232
+2339	Bath and North East Somerset	232
+2507	Bedford	232
+2311	Belfast district	232
+2425	Birmingham	232
+2329	Blackburn with Darwen	232
+2451	Blackpool	232
+2530	Blaenau Gwent County Borough	232
+2504	Bolton	232
+2342	Bournemouth	232
+2470	Bracknell Forest	232
+2529	Bradford	232
+2452	Bridgend County Borough	232
+2395	Brighton and Hove	232
+2405	Buckinghamshire	232
+2459	Bury	232
+2298	Caerphilly County Borough	232
+2517	Calderdale	232
+2423	Cambridgeshire	232
+2484	Carmarthenshire	232
+2439	Carrickfergus Borough Council	232
+2525	Castlereagh	232
+2316	Causeway Coast and Glens	232
+2303	Central Bedfordshire	232
+2509	Ceredigion	232
+2444	Cheshire East	232
+2442	Cheshire West and Chester	232
+2528	City and County of Cardiff	232
+2433	City and County of Swansea	232
+2413	City of Bristol	232
+2485	City of Derby	232
+2475	City of Kingston upon Hull	232
+2318	City of Leicester	232
+2424	City of London	232
+2359	City of Nottingham	232
+2297	City of Peterborough	232
+2514	City of Plymouth	232
+2305	City of Portsmouth	232
+2294	City of Southampton	232
+2506	City of Stoke-on-Trent	232
+2372	City of Sunderland	232
+2357	City of Westminster	232
+2489	City of Wolverhampton	232
+2426	City of York	232
+2450	Clackmannanshire	232
+2461	Coleraine Borough Council	232
+2352	Conwy County Borough	232
+2445	Cookstown District Council	232
+2312	Cornwall	232
+2406	County Durham	232
+2438	Coventry	232
+2449	Craigavon Borough Council	232
+2334	Cumbria	232
+2389	Darlington	232
+2497	Denbighshire	232
+2403	Derbyshire	232
+2446	Derry City and Strabane	232
+2417	Derry City Council	232
+2491	Devon	232
+2364	Doncaster	232
+2345	Dorset	232
+2304	Down District Council	232
+2457	Dudley	232
+2415	Dumfries and Galloway	232
+2511	Dundee	232
+2508	Dungannon and South Tyrone Borough Council	232
+2374	East Ayrshire	232
+2454	East Dunbartonshire	232
+2462	East Lothian	232
+2333	East Renfrewshire	232
+2370	East Riding of Yorkshire	232
+2414	East Sussex	232
+2428	Edinburgh	232
+2336	England	232
+2410	Essex	232
+2344	Falkirk	232
+2366	Fermanagh and Omagh	232
+2531	Fermanagh District Council	232
+2479	Fife	232
+2437	Flintshire	232
+2431	Gateshead	232
+2404	Glasgow	232
+2373	Gloucestershire	232
+2379	Gwynedd	232
+2466	Halton	232
+2435	Hampshire	232
+2309	Hartlepool	232
+2500	Herefordshire	232
+2369	Hertfordshire	232
+2383	Highland	232
+2388	Inverclyde	232
+2289	Isle of Wight	232
+2343	Isles of Scilly	232
+2464	Kent	232
+2371	Kirklees	232
+2330	Knowsley	232
+2495	Lancashire	232
+2515	Larne Borough Council	232
+2503	Leeds	232
+2516	Leicestershire	232
+2382	Limavady Borough Council	232
+2355	Lincolnshire	232
+2460	Lisburn and Castlereagh	232
+2494	Lisburn City Council	232
+2340	Liverpool	232
+2356	London Borough of Barking and Dagenham	232
+2520	London Borough of Barnet	232
+2307	London Borough of Bexley	232
+2291	London Borough of Brent	232
+2490	London Borough of Bromley	232
+2349	London Borough of Camden	232
+2512	London Borough of Croydon	232
+2532	London Borough of Ealing	232
+2476	London Borough of Enfield	232
+2411	London Borough of Hackney	232
+2448	London Borough of Hammersmith and Fulham	232
+2306	London Borough of Haringey	232
+2385	London Borough of Harrow	232
+2347	London Borough of Havering	232
+2376	London Borough of Hillingdon	232
+2380	London Borough of Hounslow	232
+2319	London Borough of Islington	232
+2396	London Borough of Lambeth	232
+2358	London Borough of Lewisham	232
+2483	London Borough of Merton	232
+2418	London Borough of Newham	232
+2397	London Borough of Redbridge	232
+2501	London Borough of Richmond upon Thames	232
+2432	London Borough of Southwark	232
+2313	London Borough of Sutton	232
+2390	London Borough of Tower Hamlets	232
+2326	London Borough of Waltham Forest	232
+2434	London Borough of Wandsworth	232
+2322	Magherafelt District Council	232
+2398	Manchester	232
+2381	Medway	232
+2328	Merthyr Tydfil County Borough	232
+2320	Metropolitan Borough of Wigan	232
+2429	Mid and East Antrim	232
+2399	Mid Ulster	232
+2332	Middlesbrough	232
+2519	Midlothian	232
+2416	Milton Keynes	232
+2402	Monmouthshire	232
+2360	Moray	232
+2348	Moyle District Council	232
+2351	Neath Port Talbot County Borough	232
+2458	Newcastle upon Tyne	232
+2524	Newport	232
+2350	Newry and Mourne District Council	232
+2534	Newry, Mourne and Down	232
+2317	Newtownabbey Borough Council	232
+2473	Norfolk	232
+2535	North Ayrshire	232
+2513	North Down Borough Council	232
+2384	North East Lincolnshire	232
+2487	North Lanarkshire	232
+2453	North Lincolnshire	232
+2430	North Somerset	232
+2521	North Tyneside	232
+2522	North Yorkshire	232
+2480	Northamptonshire	232
+2337	Northern Ireland	232
+2365	Northumberland	232
+2456	Nottinghamshire	232
+2477	Oldham	232
+2314	Omagh District Council	232
+2474	Orkney Islands	232
+2353	Outer Hebrides	232
+2321	Oxfordshire	232
+2486	Pembrokeshire	232
+2325	Perth and Kinross	232
+2302	Poole	232
+2441	Powys	232
+2455	Reading	232
+2527	Redcar and Cleveland	232
+2443	Renfrewshire	232
+2301	Rhondda Cynon Taf	232
+2327	Rochdale	232
+2308	Rotherham	232
+2492	Royal Borough of Greenwich	232
+2368	Royal Borough of Kensington and Chelsea	232
+2481	Royal Borough of Kingston upon Thames	232
+2472	Rutland	232
+2502	Saint Helena	232
+2493	Salford	232
+2341	Sandwell	232
+2335	Scotland	232
+2346	Scottish Borders	232
+2518	Sefton	232
+2295	Sheffield	232
+2300	Shetland Islands	232
+2407	Shropshire	232
+2427	Slough	232
+2469	Solihull	232
+2386	Somerset	232
+2377	South Ayrshire	232
+2400	South Gloucestershire	232
+2362	South Lanarkshire	232
+2409	South Tyneside	232
+2323	Southend-on-Sea	232
+2290	St Helens	232
+2447	Staffordshire	232
+2488	Stirling	232
+2394	Stockport	232
+2421	Stockton-on-Tees	232
+2393	Strabane District Council	232
+2467	Suffolk	232
+2526	Surrey	232
+2422	Swindon	232
+2367	Tameside	232
+2310	Telford and Wrekin	232
+2468	Thurrock	232
+2478	Torbay	232
+2496	Torfaen	232
+2293	Trafford	232
+2375	United Kingdom	232
+2299	Vale of Glamorgan	232
+2465	Wakefield	232
+2338	Wales	232
+2292	Walsall	232
+2420	Warrington	232
+2505	Warwickshire	232
+2471	West Berkshire	232
+2440	West Dunbartonshire	232
+2354	West Lothian	232
+2296	West Sussex	232
+2391	Wiltshire	232
+2482	Windsor and Maidenhead	232
+2408	Wirral	232
+2419	Wokingham	232
+2510	Worcestershire	232
+2436	Wrexham County Borough	232
+1456	Alabama	233
+1400	Alaska	233
+1424	American Samoa	233
+1434	Arizona	233
+1444	Arkansas	233
+1402	Baker Island	233
+1416	California	233
+1450	Colorado	233
+1435	Connecticut	233
+1399	Delaware	233
+1437	District of Columbia	233
+1436	Florida	233
+1455	Georgia	233
+1412	Guam	233
+1411	Hawaii	233
+1398	Howland Island	233
+1460	Idaho	233
+1425	Illinois	233
+1440	Indiana	233
+1459	Iowa	233
+1410	Jarvis Island	233
+1428	Johnston Atoll	233
+1406	Kansas	233
+1419	Kentucky	233
+1403	Kingman Reef	233
+1457	Louisiana	233
+1453	Maine	233
+1401	Maryland	233
+1433	Massachusetts	233
+1426	Michigan	233
+1438	Midway Atoll	233
+1420	Minnesota	233
+1430	Mississippi	233
+1451	Missouri	233
+1446	Montana	233
+1439	Navassa Island	233
+1408	Nebraska	233
+1458	Nevada	233
+1404	New Hampshire	233
+1417	New Jersey	233
+1423	New Mexico	233
+1452	New York	233
+1447	North Carolina	233
+1418	North Dakota	233
+1431	Northern Mariana Islands	233
+4851	Ohio	233
+1421	Oklahoma	233
+1415	Oregon	233
+1448	Palmyra Atoll	233
+1422	Pennsylvania	233
+1449	Puerto Rico	233
+1461	Rhode Island	233
+1443	South Carolina	233
+1445	South Dakota	233
+1454	Tennessee	233
+1407	Texas	233
+1432	United States Minor Outlying Islands	233
+1413	United States Virgin Islands	233
+1414	Utah	233
+1409	Vermont	233
+1427	Virginia	233
+1405	Wake Island	233
+1462	Washington	233
+1429	West Virginia	233
+1441	Wisconsin	233
+1442	Wyoming	233
+3205	Artigas Department	235
+3213	Canelones Department	235
+3211	Cerro Largo Department	235
+3208	Colonia Department	235
+3209	Durazno Department	235
+3203	Flores Department	235
+3217	Florida Department	235
+3215	Lavalleja Department	235
+3206	Maldonado Department	235
+3218	Montevideo Department	235
+3212	Paysandú Department	235
+3210	Río Negro Department	235
+3207	Rivera Department	235
+3216	Rocha Department	235
+3220	Salto Department	235
+3204	San José Department	235
+3219	Soriano Department	235
+3221	Tacuarembó Department	235
+3214	Treinta y Tres Department	235
+2540	Andijan Region	236
+2541	Bukhara Region	236
+2538	Fergana Region	236
+2545	Jizzakh Region	236
+2548	Karakalpakstan	236
+2537	Namangan Region	236
+2542	Navoiy Region	236
+2543	Qashqadaryo Region	236
+2544	Samarqand Region	236
+2547	Sirdaryo Region	236
+2546	Surxondaryo Region	236
+2536	Tashkent	236
+2549	Tashkent Region	236
+2539	Xorazm Region	236
+4775	Malampa	237
+4773	Penama	237
+4776	Sanma	237
+4774	Shefa	237
+4777	Tafea	237
+4772	Torba	237
+2044	Amazonas	239
+2050	Anzoátegui	239
+4856	Apure	239
+2047	Aragua	239
+2049	Barinas	239
+2039	Bolívar	239
+2040	Carabobo	239
+2034	Cojedes	239
+2051	Delta Amacuro	239
+2035	Falcón	239
+2045	Guárico	239
+2038	Lara	239
+2053	Mérida	239
+2037	Miranda	239
+2054	Monagas	239
+2052	Nueva Esparta	239
+2036	Portuguesa	239
+2056	Sucre	239
+2048	Táchira	239
+2043	Trujillo	239
+2041	Yaracuy	239
+2042	Zulia	239
+3794	An Giang	240
+3770	Bà Rịa-Vũng Tàu	240
+3815	Bắc Giang	240
+3822	Bắc Kạn	240
+3804	Bạc Liêu	240
+3791	Bắc Ninh	240
+3796	Bến Tre	240
+3785	Bình Dương	240
+3830	Bình Định	240
+3797	Bình Phước	240
+3787	Bình Thuận	240
+3778	Cà Mau	240
+3782	Cao Bằng	240
+3806	Da Nang	240
+3829	Đắk Lắk	240
+3823	Đắk Nông	240
+3773	Điện Biên	240
+3821	Đồng Nai	240
+3769	Đồng Tháp	240
+3813	Gia Lai	240
+3779	Hà Giang	240
+3802	Hà Nam	240
+3820	Hà Tây	240
+3816	Hà Tĩnh	240
+3827	Hải Dương	240
+3783	Haiphong	240
+3810	Hanoi	240
+3777	Hậu Giang	240
+3811	Ho Chi Minh City	240
+3799	Hòa Bình	240
+3768	Hưng Yên	240
+3793	Khánh Hòa	240
+3800	Kiên Giang	240
+3772	Kon Tum	240
+3825	Lai Châu	240
+3818	Lâm Đồng	240
+3792	Lạng Sơn	240
+3817	Lào Cai	240
+3808	Long An	240
+3789	Nam Định	240
+3780	Nghệ An	240
+3786	Ninh Bình	240
+3788	Ninh Thuận	240
+3801	Phú Thọ	240
+3824	Phú Yên	240
+3809	Quảng Bình	240
+3776	Quảng Nam	240
+3828	Quảng Ngãi	240
+3814	Quảng Ninh	240
+3803	Quảng Trị	240
+3819	Sóc Trăng	240
+3812	Sơn La	240
+3826	Tây Ninh	240
+3775	Thái Bình	240
+3807	Thái Nguyên	240
+3771	Thanh Hóa	240
+3798	Thừa Thiên-Huế	240
+3781	Tiền Giang	240
+3805	Trà Vinh	240
+3795	Tuyên Quang	240
+3790	Vĩnh Long	240
+3774	Vĩnh Phúc	240
+3784	Yên Bái	240
+1242	'Adan Governorate	245
+2046	Dependencias Federales	239
+2055	La Guaira	239
+1250	'Amran Governorate	245
+1237	Abyan Governorate	245
+1240	Al Bayda' Governorate	245
+1241	Al Hudaydah Governorate	245
+1243	Al Jawf Governorate	245
+1251	Al Mahrah Governorate	245
+1235	Al Mahwit Governorate	245
+1246	Dhamar Governorate	245
+1238	Hadhramaut Governorate	245
+1244	Hajjah Governorate	245
+1233	Ibb Governorate	245
+1245	Lahij Governorate	245
+1234	Ma'rib Governorate	245
+1248	Raymah Governorate	245
+1249	Saada Governorate	245
+1232	Sana'a	245
+1236	Sana'a Governorate	245
+1247	Shabwah Governorate	245
+1239	Socotra Governorate	245
+1231	Ta'izz Governorate	245
+1986	Central Province	246
+1984	Copperbelt Province	246
+1991	Eastern Province	246
+1987	Luapula Province	246
+1988	Lusaka Province	246
+1989	Muchinga Province	246
+1982	Northern Province	246
+1985	Northwestern Province	246
+1990	Southern Province	246
+1983	Western Province	246
+1956	Bulawayo Province	247
+1958	Harare Province	247
+1959	Manicaland	247
+1955	Mashonaland Central Province	247
+1951	Mashonaland East Province	247
+1953	Mashonaland West Province	247
+1960	Masvingo Province	247
+1954	Matabeleland North Province	247
+1952	Matabeleland South Province	247
+1957	Midlands Province	247
+4855	Distrito Capital	239
+4921	San Juan	178
+4922	Bayamón	178
+4923	Arecibo	178
+4924	Aguadilla/Mayagüez	178
+4925	Ponce	178
+4926	Guayana	178
+4927	Humacao	178
+4928	Carolina	178
+\.
+
+
+--
+-- TOC entry 3882 (class 0 OID 25088)
 -- Dependencies: 232
 -- Data for Name: r001t_docente_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -40535,8 +45664,8 @@ COPY public.r001t_docente_materia (id_dicta, id_materia, id_personal, id_carrera
 
 
 --
--- TOC entry 3852 (class 0 OID 25306)
--- Dependencies: 249
+-- TOC entry 3898 (class 0 OID 25306)
+-- Dependencies: 248
 -- Data for Name: r002t_carrera_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40546,8 +45675,8 @@ COPY public.r002t_carrera_materia (id_carrema, id_carrera, id_materia, id_sede, 
 
 
 --
--- TOC entry 3918 (class 0 OID 25839)
--- Dependencies: 315
+-- TOC entry 3962 (class 0 OID 25839)
+-- Dependencies: 312
 -- Data for Name: r003t_inscripcion_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40556,8 +45685,8 @@ COPY public.r003t_inscripcion_materia (id_inscrito, id_inscripcion, id_materia, 
 
 
 --
--- TOC entry 3926 (class 0 OID 26019)
--- Dependencies: 323
+-- TOC entry 3970 (class 0 OID 26019)
+-- Dependencies: 320
 -- Data for Name: r004t_oferta_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40566,30 +45695,43 @@ COPY public.r004t_oferta_materia (id_oferta_materia, id_oferta, id_materia, crea
 
 
 --
--- TOC entry 3916 (class 0 OID 25753)
--- Dependencies: 313
--- Data for Name: t001t_usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
+-- TOC entry 3982 (class 0 OID 32834)
+-- Dependencies: 332
+-- Data for Name: r005t_fecha_estatus_postulacion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.t001t_usuarios (id_usuario, tx_clave, user_name, bl_status, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_sexo_usuario, fe_nac_usuario, id_pais_origen, id_estado_civil, correo_usuario, id_estudiante, id_personal, id_tipo_via, nb_via, id_tipo_zona, nb_zona, id_tipo_vivienda, nu_vivienda, id_ciudad_dir, id_estado_dir, id_zona_postal, www_preinscripcion, created_at, updated_at) FROM stdin;
-7	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	gmarcano	t	2	1	28484689	Gabriel	Marcano	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-08-07 20:58:31.11638-04	2023-08-07 20:58:31.11638-04
+COPY public.r005t_fecha_estatus_postulacion (id_estatus_fe_postulacion, id_postulacion, id_estatus_postulacion, id_usuario_aprobacion, fe_aprobacion, st_activo, tx_observacion, created_at, updated_at) FROM stdin;
+1	1	4	\N	\N	t	\N	\N	\N
 \.
 
 
 --
--- TOC entry 3827 (class 0 OID 24877)
+-- TOC entry 3960 (class 0 OID 25753)
+-- Dependencies: 310
+-- Data for Name: t001t_usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.t001t_usuarios (id_usuario, tx_clave, user_name, bl_status, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_sexo_usuario, fe_nac_usuario, id_pais_origen, id_estado_civil, correo_usuario, id_estudiante, id_personal, id_tipo_via, nb_via, id_tipo_zona, nb_zona, id_tipo_vivienda, nu_vivienda, id_ciudad_dir, id_estado_dir, id_zona_postal, www_preinscripcion, created_at, updated_at) FROM stdin;
+9	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	gmarcano	t	2	1	28484689	GABRIEL	MARCANO	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-08-11 14:39:27.398252-04	2023-08-11 14:41:44.21061-04
+10	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	hvalor	t	2	1	17044191	HILDEMAR	VALOR	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-08-11 14:42:28.876778-04	2023-08-11 14:42:28.876778-04
+11	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	manez	t	3	1	22456876	MIGUEL	AÑEZ	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-08-11 16:42:00.590816-04	2023-08-11 16:42:00.590816-04
+\.
+
+
+--
+-- TOC entry 3874 (class 0 OID 24877)
 -- Dependencies: 224
 -- Data for Name: t002t_roles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.t002t_roles (id_rol, nb_rol, created_at, updated_at) FROM stdin;
 2	Administración	2023-07-27 15:26:56	2023-07-27 15:26:56
-3	Inventario	2023-07-27 15:26:56	2023-07-27 15:26:56
+3	Estudiante	2023-07-27 15:26:56	2023-07-27 15:26:56
 \.
 
 
 --
--- TOC entry 3837 (class 0 OID 25114)
+-- TOC entry 3884 (class 0 OID 25114)
 -- Dependencies: 234
 -- Data for Name: t003t_personal; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -40600,19 +45742,21 @@ COPY public.t003t_personal (id_personal, nac_personal, ced_personal, nb_personal
 
 
 --
--- TOC entry 3890 (class 0 OID 25615)
--- Dependencies: 287
+-- TOC entry 3936 (class 0 OID 25615)
+-- Dependencies: 286
 -- Data for Name: t004t_estudiantes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.t004t_estudiantes (id_estudiante, id_nac_estudiante, ced_estudiante, nb_estudiante, ape_estudiante, id_sexo_estudiante, id_estado_civil, fe_nac_estudiante, id_ciudad_nac, id_estado_nac, id_pais_nac, discapacidad, id_tp_discapacidad, id_tp_ingreso, id_estatus_estudiante, created_at, updated_at, id_geografico_estudiante) FROM stdin;
 1	1	12345678	Ana	Acosta	1	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2	1	123456789	ccc	ddds	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+3	1	28484689	GABRIEL	MARCANO	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+4	1	22456876	MIGUEL	AÑEZ	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 \.
 
 
 --
--- TOC entry 3844 (class 0 OID 25195)
+-- TOC entry 3891 (class 0 OID 25195)
 -- Dependencies: 241
 -- Data for Name: t005t_inscripcion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -40622,8 +45766,8 @@ COPY public.t005t_inscripcion (id_inscripcion, id_estudiante, id_periodo, id_est
 
 
 --
--- TOC entry 3853 (class 0 OID 25328)
--- Dependencies: 250
+-- TOC entry 3899 (class 0 OID 25328)
+-- Dependencies: 249
 -- Data for Name: t006t_periodo_lectivo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40633,8 +45777,8 @@ COPY public.t006t_periodo_lectivo (id_periodo, co_periodo, id_tp_periodo, anio_p
 
 
 --
--- TOC entry 3883 (class 0 OID 25540)
--- Dependencies: 280
+-- TOC entry 3929 (class 0 OID 25540)
+-- Dependencies: 279
 -- Data for Name: t007t_horario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40643,8 +45787,8 @@ COPY public.t007t_horario (id_horario, id_personal, id_materia, id_periodo, id_d
 
 
 --
--- TOC entry 3924 (class 0 OID 25924)
--- Dependencies: 321
+-- TOC entry 3968 (class 0 OID 25924)
+-- Dependencies: 318
 -- Data for Name: t008t_oferta_academica; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40654,8 +45798,8 @@ COPY public.t008t_oferta_academica (id_oferta, id_periodo, id_materia, id_carrer
 
 
 --
--- TOC entry 3859 (class 0 OID 25371)
--- Dependencies: 256
+-- TOC entry 3905 (class 0 OID 25371)
+-- Dependencies: 255
 -- Data for Name: t009t_notas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40664,18 +45808,18 @@ COPY public.t009t_notas (id_nota, id_inscrito, nu_nota, created_at, updated_at) 
 
 
 --
--- TOC entry 3906 (class 0 OID 25707)
--- Dependencies: 303
+-- TOC entry 3984 (class 0 OID 32856)
+-- Dependencies: 334
 -- Data for Name: t010t_geografico_estudiante; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.t010t_geografico_estudiante (id_geografico_estudiante, tx_direccion, id_estado, id_municipio, id_parroquia, created_at, updated_at) FROM stdin;
+COPY public.t010t_geografico_estudiante (id_geografico_estudiante, id_tp_via, nb_via, id_tp_zona, nb_zona, id_tp_vivienda, nu_vivienda, tx_direccion, id_zona_postal, id_ciudad, id_estado, id_municipio, id_parroquia, created_at, updated_at) FROM stdin;
 \.
 
 
 --
--- TOC entry 3885 (class 0 OID 25556)
--- Dependencies: 282
+-- TOC entry 3931 (class 0 OID 25556)
+-- Dependencies: 281
 -- Data for Name: t011t_sedes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -40685,17 +45829,28 @@ COPY public.t011t_sedes (id_sede, co_sede, nb_sede, id_geografico_sede, id_estat
 
 
 --
--- TOC entry 3905 (class 0 OID 25701)
--- Dependencies: 302
+-- TOC entry 3985 (class 0 OID 32862)
+-- Dependencies: 335
 -- Data for Name: t012t_geografico_sede; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.t012t_geografico_sede (id_geografico_sede, tx_direccion, id_estado, id_municipio, id_parroquia, created_at, updated_at) FROM stdin;
+COPY public.t012t_geografico_sede (id_geografico_sede, id_tp_via, nb_via, id_tp_zona, nb_zona, tx_direccion, id_zona_postal, id_ciudad, id_estado, id_municipio, id_parroquia, created_at, updated_at) FROM stdin;
 \.
 
 
 --
--- TOC entry 3935 (class 0 OID 0)
+-- TOC entry 3983 (class 0 OID 32850)
+-- Dependencies: 333
+-- Data for Name: t013t_postulacion; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.t013t_postulacion (id_postulacion, id_usuario, id_carrera, id_periodo, fe_postulacion, created_at, updated_at) FROM stdin;
+1	11	8	3	2023-09-13 00:00:00	\N	\N
+\.
+
+
+--
+-- TOC entry 3993 (class 0 OID 0)
 -- Dependencies: 243
 -- Name: aulas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -40704,7 +45859,7 @@ SELECT pg_catalog.setval('public.aulas_id_seq', 1, false);
 
 
 --
--- TOC entry 3936 (class 0 OID 0)
+-- TOC entry 3994 (class 0 OID 0)
 -- Dependencies: 213
 -- Name: m001t_estados_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -40713,7 +45868,7 @@ SELECT pg_catalog.setval('public.m001t_estados_id_seq', 1, false);
 
 
 --
--- TOC entry 3937 (class 0 OID 0)
+-- TOC entry 3995 (class 0 OID 0)
 -- Dependencies: 214
 -- Name: m002t_municipios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -40722,7 +45877,7 @@ SELECT pg_catalog.setval('public.m002t_municipios_id_seq', 1, false);
 
 
 --
--- TOC entry 3938 (class 0 OID 0)
+-- TOC entry 3996 (class 0 OID 0)
 -- Dependencies: 215
 -- Name: m003t_parroquias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -40731,7 +45886,7 @@ SELECT pg_catalog.setval('public.m003t_parroquias_id_seq', 1, false);
 
 
 --
--- TOC entry 3939 (class 0 OID 0)
+-- TOC entry 3997 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: m005t_materias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -40740,7 +45895,7 @@ SELECT pg_catalog.setval('public.m005t_materias_id_seq', 10, true);
 
 
 --
--- TOC entry 3940 (class 0 OID 0)
+-- TOC entry 3998 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: m006t_carreras_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -40749,7 +45904,7 @@ SELECT pg_catalog.setval('public.m006t_carreras_id_seq', 14, true);
 
 
 --
--- TOC entry 3941 (class 0 OID 0)
+-- TOC entry 3999 (class 0 OID 0)
 -- Dependencies: 220
 -- Name: m007t_tipo_periodo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -40758,7 +45913,7 @@ SELECT pg_catalog.setval('public.m007t_tipo_periodo_id_seq', 1, true);
 
 
 --
--- TOC entry 3942 (class 0 OID 0)
+-- TOC entry 4000 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: m008t_tipopersonal_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -40767,7 +45922,7 @@ SELECT pg_catalog.setval('public.m008t_tipopersonal_id_seq', 1, true);
 
 
 --
--- TOC entry 3943 (class 0 OID 0)
+-- TOC entry 4001 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: m009t_discapacidad_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -40776,7 +45931,7 @@ SELECT pg_catalog.setval('public.m009t_discapacidad_id_seq', 4, true);
 
 
 --
--- TOC entry 3944 (class 0 OID 0)
+-- TOC entry 4002 (class 0 OID 0)
 -- Dependencies: 222
 -- Name: m010t_estatus_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -40785,7 +45940,7 @@ SELECT pg_catalog.setval('public.m010t_estatus_id_seq', 1, true);
 
 
 --
--- TOC entry 3945 (class 0 OID 0)
+-- TOC entry 4003 (class 0 OID 0)
 -- Dependencies: 233
 -- Name: m011t_profesion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -40794,7 +45949,7 @@ SELECT pg_catalog.setval('public.m011t_profesion_id_seq', 1, false);
 
 
 --
--- TOC entry 3946 (class 0 OID 0)
+-- TOC entry 4004 (class 0 OID 0)
 -- Dependencies: 236
 -- Name: m012t_tipo_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -40803,7 +45958,7 @@ SELECT pg_catalog.setval('public.m012t_tipo_materia_id_seq', 10, true);
 
 
 --
--- TOC entry 3947 (class 0 OID 0)
+-- TOC entry 4005 (class 0 OID 0)
 -- Dependencies: 237
 -- Name: m013t_dias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -40812,7 +45967,7 @@ SELECT pg_catalog.setval('public.m013t_dias_id_seq', 6, true);
 
 
 --
--- TOC entry 3948 (class 0 OID 0)
+-- TOC entry 4006 (class 0 OID 0)
 -- Dependencies: 238
 -- Name: m014t_estatus_estudiante_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -40821,17 +45976,17 @@ SELECT pg_catalog.setval('public.m014t_estatus_estudiante_id_seq', 1, false);
 
 
 --
--- TOC entry 3949 (class 0 OID 0)
+-- TOC entry 4007 (class 0 OID 0)
 -- Dependencies: 247
 -- Name: m017t_trayectos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.m017t_trayectos_id_seq', 2, true);
+SELECT pg_catalog.setval('public.m017t_trayectos_id_seq', 8, true);
 
 
 --
--- TOC entry 3950 (class 0 OID 0)
--- Dependencies: 251
+-- TOC entry 4008 (class 0 OID 0)
+-- Dependencies: 250
 -- Name: m018t_area_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40839,8 +45994,8 @@ SELECT pg_catalog.setval('public.m018t_area_materia_id_seq', 1, false);
 
 
 --
--- TOC entry 3951 (class 0 OID 0)
--- Dependencies: 253
+-- TOC entry 4009 (class 0 OID 0)
+-- Dependencies: 252
 -- Name: m019t_clase_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40848,8 +46003,8 @@ SELECT pg_catalog.setval('public.m019t_clase_materia_id_seq', 1, false);
 
 
 --
--- TOC entry 3952 (class 0 OID 0)
--- Dependencies: 257
+-- TOC entry 4010 (class 0 OID 0)
+-- Dependencies: 256
 -- Name: m020t_ciudades_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40857,8 +46012,8 @@ SELECT pg_catalog.setval('public.m020t_ciudades_id_seq', 1, false);
 
 
 --
--- TOC entry 3953 (class 0 OID 0)
--- Dependencies: 258
+-- TOC entry 4011 (class 0 OID 0)
+-- Dependencies: 257
 -- Name: m021t_tipo_vivienda_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40866,8 +46021,8 @@ SELECT pg_catalog.setval('public.m021t_tipo_vivienda_id_seq', 1, false);
 
 
 --
--- TOC entry 3954 (class 0 OID 0)
--- Dependencies: 260
+-- TOC entry 4012 (class 0 OID 0)
+-- Dependencies: 259
 -- Name: m022t_paises_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40875,8 +46030,8 @@ SELECT pg_catalog.setval('public.m022t_paises_id_seq', 1, false);
 
 
 --
--- TOC entry 3955 (class 0 OID 0)
--- Dependencies: 262
+-- TOC entry 4013 (class 0 OID 0)
+-- Dependencies: 261
 -- Name: m023t_zona_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40884,8 +46039,8 @@ SELECT pg_catalog.setval('public.m023t_zona_id_seq', 1, false);
 
 
 --
--- TOC entry 3956 (class 0 OID 0)
--- Dependencies: 264
+-- TOC entry 4014 (class 0 OID 0)
+-- Dependencies: 263
 -- Name: m024t_tipo_zona_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40893,8 +46048,8 @@ SELECT pg_catalog.setval('public.m024t_tipo_zona_id_seq', 1, false);
 
 
 --
--- TOC entry 3957 (class 0 OID 0)
--- Dependencies: 266
+-- TOC entry 4015 (class 0 OID 0)
+-- Dependencies: 265
 -- Name: m025t_tipo_via_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40902,8 +46057,8 @@ SELECT pg_catalog.setval('public.m025t_tipo_via_id_seq', 1, false);
 
 
 --
--- TOC entry 3958 (class 0 OID 0)
--- Dependencies: 270
+-- TOC entry 4016 (class 0 OID 0)
+-- Dependencies: 269
 -- Name: m026t_tipo_sexo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40911,8 +46066,8 @@ SELECT pg_catalog.setval('public.m026t_tipo_sexo_id_seq', 2, true);
 
 
 --
--- TOC entry 3959 (class 0 OID 0)
--- Dependencies: 272
+-- TOC entry 4017 (class 0 OID 0)
+-- Dependencies: 271
 -- Name: m027t_estado_civil_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40920,8 +46075,8 @@ SELECT pg_catalog.setval('public.m027t_estado_civil_id_seq', 4, true);
 
 
 --
--- TOC entry 3960 (class 0 OID 0)
--- Dependencies: 274
+-- TOC entry 4018 (class 0 OID 0)
+-- Dependencies: 273
 -- Name: m028t_tipo_nacionalidad_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40929,8 +46084,8 @@ SELECT pg_catalog.setval('public.m028t_tipo_nacionalidad_id_seq', 2, true);
 
 
 --
--- TOC entry 3961 (class 0 OID 0)
--- Dependencies: 276
+-- TOC entry 4019 (class 0 OID 0)
+-- Dependencies: 275
 -- Name: m029t_bloque_horario_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40938,8 +46093,8 @@ SELECT pg_catalog.setval('public.m029t_bloque_horario_id_seq', 6, true);
 
 
 --
--- TOC entry 3962 (class 0 OID 0)
--- Dependencies: 278
+-- TOC entry 4020 (class 0 OID 0)
+-- Dependencies: 277
 -- Name: m030t_turnos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40947,8 +46102,8 @@ SELECT pg_catalog.setval('public.m030t_turnos_id_seq', 1, false);
 
 
 --
--- TOC entry 3963 (class 0 OID 0)
--- Dependencies: 283
+-- TOC entry 4021 (class 0 OID 0)
+-- Dependencies: 282
 -- Name: m032t_tipo_ingreso_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40956,8 +46111,8 @@ SELECT pg_catalog.setval('public.m032t_tipo_ingreso_id_seq', 2, true);
 
 
 --
--- TOC entry 3964 (class 0 OID 0)
--- Dependencies: 288
+-- TOC entry 4022 (class 0 OID 0)
+-- Dependencies: 287
 -- Name: m033t_estatus_inscripcion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40965,8 +46120,8 @@ SELECT pg_catalog.setval('public.m033t_estatus_inscripcion_id_seq', 1, false);
 
 
 --
--- TOC entry 3965 (class 0 OID 0)
--- Dependencies: 289
+-- TOC entry 4023 (class 0 OID 0)
+-- Dependencies: 288
 -- Name: m034t_estatus_inscripto_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40974,8 +46129,8 @@ SELECT pg_catalog.setval('public.m034t_estatus_inscripto_materia_id_seq', 1, fal
 
 
 --
--- TOC entry 3966 (class 0 OID 0)
--- Dependencies: 293
+-- TOC entry 4024 (class 0 OID 0)
+-- Dependencies: 292
 -- Name: m035t_estatus_docente_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -40983,17 +46138,17 @@ SELECT pg_catalog.setval('public.m035t_estatus_docente_materia_id_seq', 1, false
 
 
 --
--- TOC entry 3967 (class 0 OID 0)
--- Dependencies: 296
+-- TOC entry 4025 (class 0 OID 0)
+-- Dependencies: 295
 -- Name: m036t_tipo_carrera_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.m036t_tipo_carrera_id_seq', 1, false);
+SELECT pg_catalog.setval('public.m036t_tipo_carrera_id_seq', 2, true);
 
 
 --
--- TOC entry 3968 (class 0 OID 0)
--- Dependencies: 298
+-- TOC entry 4026 (class 0 OID 0)
+-- Dependencies: 297
 -- Name: m037t_estatus_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -41001,8 +46156,8 @@ SELECT pg_catalog.setval('public.m037t_estatus_materia_id_seq', 1, false);
 
 
 --
--- TOC entry 3969 (class 0 OID 0)
--- Dependencies: 305
+-- TOC entry 4027 (class 0 OID 0)
+-- Dependencies: 302
 -- Name: m039t_estatus_horario_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -41010,8 +46165,8 @@ SELECT pg_catalog.setval('public.m039t_estatus_horario_id_seq', 1, false);
 
 
 --
--- TOC entry 3970 (class 0 OID 0)
--- Dependencies: 307
+-- TOC entry 4028 (class 0 OID 0)
+-- Dependencies: 304
 -- Name: m040t_estatus_seccion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -41019,8 +46174,8 @@ SELECT pg_catalog.setval('public.m040t_estatus_seccion_id_seq', 1, false);
 
 
 --
--- TOC entry 3971 (class 0 OID 0)
--- Dependencies: 309
+-- TOC entry 4029 (class 0 OID 0)
+-- Dependencies: 306
 -- Name: m041t_estatus_aula_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -41028,8 +46183,8 @@ SELECT pg_catalog.setval('public.m041t_estatus_aula_id_seq', 1, false);
 
 
 --
--- TOC entry 3972 (class 0 OID 0)
--- Dependencies: 311
+-- TOC entry 4030 (class 0 OID 0)
+-- Dependencies: 308
 -- Name: m042t_estatus_oferta_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -41037,8 +46192,8 @@ SELECT pg_catalog.setval('public.m042t_estatus_oferta_id_seq', 1, true);
 
 
 --
--- TOC entry 3973 (class 0 OID 0)
--- Dependencies: 316
+-- TOC entry 4031 (class 0 OID 0)
+-- Dependencies: 313
 -- Name: m043t_ciclos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -41046,8 +46201,8 @@ SELECT pg_catalog.setval('public.m043t_ciclos_id_seq', 2, true);
 
 
 --
--- TOC entry 3974 (class 0 OID 0)
--- Dependencies: 318
+-- TOC entry 4032 (class 0 OID 0)
+-- Dependencies: 315
 -- Name: m044t_estatus_periodo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -41055,8 +46210,8 @@ SELECT pg_catalog.setval('public.m044t_estatus_periodo_id_seq', 1, true);
 
 
 --
--- TOC entry 3975 (class 0 OID 0)
--- Dependencies: 324
+-- TOC entry 4033 (class 0 OID 0)
+-- Dependencies: 321
 -- Name: m045_estatus_carrera_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -41064,7 +46219,43 @@ SELECT pg_catalog.setval('public.m045_estatus_carrera_id_seq', 1, true);
 
 
 --
--- TOC entry 3976 (class 0 OID 0)
+-- TOC entry 4034 (class 0 OID 0)
+-- Dependencies: 323
+-- Name: m046t_estatus_postulacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.m046t_estatus_postulacion_id_seq', 4, true);
+
+
+--
+-- TOC entry 4035 (class 0 OID 0)
+-- Dependencies: 326
+-- Name: m047t_tipo_documento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.m047t_tipo_documento_id_seq', 3, true);
+
+
+--
+-- TOC entry 4036 (class 0 OID 0)
+-- Dependencies: 329
+-- Name: m048t_tipo_estudio_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.m048t_tipo_estudio_id_seq', 2, true);
+
+
+--
+-- TOC entry 4037 (class 0 OID 0)
+-- Dependencies: 336
+-- Name: m049t_estado_mundo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.m049t_estado_mundo_id_seq', 822, true);
+
+
+--
+-- TOC entry 4038 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: r001t_docente_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -41073,7 +46264,7 @@ SELECT pg_catalog.setval('public.r001t_docente_materia_id_seq', 3, true);
 
 
 --
--- TOC entry 3977 (class 0 OID 0)
+-- TOC entry 4039 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: r002t_carrera_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -41082,7 +46273,7 @@ SELECT pg_catalog.setval('public.r002t_carrera_materia_id_seq', 1, true);
 
 
 --
--- TOC entry 3978 (class 0 OID 0)
+-- TOC entry 4040 (class 0 OID 0)
 -- Dependencies: 235
 -- Name: r003t_inscripcion_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -41091,8 +46282,8 @@ SELECT pg_catalog.setval('public.r003t_inscripcion_materia_id_seq', 1, false);
 
 
 --
--- TOC entry 3979 (class 0 OID 0)
--- Dependencies: 322
+-- TOC entry 4041 (class 0 OID 0)
+-- Dependencies: 319
 -- Name: r004t_oferta_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -41100,7 +46291,16 @@ SELECT pg_catalog.setval('public.r004t_oferta_materia_id_seq', 1, false);
 
 
 --
--- TOC entry 3980 (class 0 OID 0)
+-- TOC entry 4042 (class 0 OID 0)
+-- Dependencies: 331
+-- Name: r005t_fecha_estatus_postulacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.r005t_fecha_estatus_postulacion_id_seq', 1, true);
+
+
+--
+-- TOC entry 4043 (class 0 OID 0)
 -- Dependencies: 242
 -- Name: secciones_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -41109,16 +46309,16 @@ SELECT pg_catalog.setval('public.secciones_id_seq', 1, false);
 
 
 --
--- TOC entry 3981 (class 0 OID 0)
+-- TOC entry 4044 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: t001t_usuarios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.t001t_usuarios_id_seq', 7, true);
+SELECT pg_catalog.setval('public.t001t_usuarios_id_seq', 11, true);
 
 
 --
--- TOC entry 3982 (class 0 OID 0)
+-- TOC entry 4045 (class 0 OID 0)
 -- Dependencies: 210
 -- Name: t002t_roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -41127,7 +46327,7 @@ SELECT pg_catalog.setval('public.t002t_roles_id_seq', 3, true);
 
 
 --
--- TOC entry 3983 (class 0 OID 0)
+-- TOC entry 4046 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: t003t_personal_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -41136,16 +46336,16 @@ SELECT pg_catalog.setval('public.t003t_personal_id_seq', 3, true);
 
 
 --
--- TOC entry 3984 (class 0 OID 0)
+-- TOC entry 4047 (class 0 OID 0)
 -- Dependencies: 211
 -- Name: t004t_estudiantes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.t004t_estudiantes_id_seq', 2, true);
+SELECT pg_catalog.setval('public.t004t_estudiantes_id_seq', 4, true);
 
 
 --
--- TOC entry 3985 (class 0 OID 0)
+-- TOC entry 4048 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: t005t_inscripcion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -41154,7 +46354,7 @@ SELECT pg_catalog.setval('public.t005t_inscripcion_id_seq', 1, false);
 
 
 --
--- TOC entry 3986 (class 0 OID 0)
+-- TOC entry 4049 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: t006t_periodos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -41163,7 +46363,7 @@ SELECT pg_catalog.setval('public.t006t_periodos_id_seq', 3, true);
 
 
 --
--- TOC entry 3987 (class 0 OID 0)
+-- TOC entry 4050 (class 0 OID 0)
 -- Dependencies: 239
 -- Name: t007t_horario_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -41172,7 +46372,7 @@ SELECT pg_catalog.setval('public.t007t_horario_id_seq', 1, false);
 
 
 --
--- TOC entry 3988 (class 0 OID 0)
+-- TOC entry 4051 (class 0 OID 0)
 -- Dependencies: 240
 -- Name: t008t_oferta_academica_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -41181,8 +46381,8 @@ SELECT pg_catalog.setval('public.t008t_oferta_academica_id_seq', 3, true);
 
 
 --
--- TOC entry 3989 (class 0 OID 0)
--- Dependencies: 255
+-- TOC entry 4052 (class 0 OID 0)
+-- Dependencies: 254
 -- Name: t009t_notas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -41190,8 +46390,8 @@ SELECT pg_catalog.setval('public.t009t_notas_id_seq', 1, false);
 
 
 --
--- TOC entry 3990 (class 0 OID 0)
--- Dependencies: 285
+-- TOC entry 4053 (class 0 OID 0)
+-- Dependencies: 284
 -- Name: t010t_geografico_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -41199,7 +46399,7 @@ SELECT pg_catalog.setval('public.t010t_geografico_id_seq', 1, false);
 
 
 --
--- TOC entry 3991 (class 0 OID 0)
+-- TOC entry 4054 (class 0 OID 0)
 -- Dependencies: 226
 -- Name: t011t_sedes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -41208,8 +46408,8 @@ SELECT pg_catalog.setval('public.t011t_sedes_id_seq', 3, true);
 
 
 --
--- TOC entry 3992 (class 0 OID 0)
--- Dependencies: 301
+-- TOC entry 4055 (class 0 OID 0)
+-- Dependencies: 300
 -- Name: t012t_geografico_sede_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -41217,7 +46417,16 @@ SELECT pg_catalog.setval('public.t012t_geografico_sede_id_seq', 1, false);
 
 
 --
--- TOC entry 3538 (class 2606 OID 25298)
+-- TOC entry 4056 (class 0 OID 0)
+-- Dependencies: 325
+-- Name: t013t_postulacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.t013t_postulacion_id_seq', 1, true);
+
+
+--
+-- TOC entry 3574 (class 2606 OID 25298)
 -- Name: m006t_carreras carreras_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41226,7 +46435,7 @@ ALTER TABLE ONLY public.m006t_carreras
 
 
 --
--- TOC entry 3618 (class 2606 OID 25765)
+-- TOC entry 3648 (class 2606 OID 25765)
 -- Name: t001t_usuarios ced_user_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41235,7 +46444,16 @@ ALTER TABLE ONLY public.t001t_usuarios
 
 
 --
--- TOC entry 3519 (class 2606 OID 25029)
+-- TOC entry 3674 (class 2606 OID 32826)
+-- Name: m048t_tipo_estudio discapacidades_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.m048t_tipo_estudio
+    ADD CONSTRAINT discapacidades_pkey PRIMARY KEY (id_tp_estudio);
+
+
+--
+-- TOC entry 3555 (class 2606 OID 25029)
 -- Name: m001t_estados estados_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41244,7 +46462,7 @@ ALTER TABLE ONLY public.m001t_estados
 
 
 --
--- TOC entry 3586 (class 2606 OID 25620)
+-- TOC entry 3620 (class 2606 OID 25620)
 -- Name: t004t_estudiantes estudiantes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41253,7 +46471,7 @@ ALTER TABLE ONLY public.t004t_estudiantes
 
 
 --
--- TOC entry 3526 (class 2606 OID 25053)
+-- TOC entry 3562 (class 2606 OID 25053)
 -- Name: m003t_parroquias i006t_parroquia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41262,7 +46480,7 @@ ALTER TABLE ONLY public.m003t_parroquias
 
 
 --
--- TOC entry 3532 (class 2606 OID 25200)
+-- TOC entry 3568 (class 2606 OID 25200)
 -- Name: t005t_inscripcion inscripcion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41271,7 +46489,7 @@ ALTER TABLE ONLY public.t005t_inscripcion
 
 
 --
--- TOC entry 3536 (class 2606 OID 25274)
+-- TOC entry 3572 (class 2606 OID 25274)
 -- Name: m005t_materias m005t_materias_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41280,7 +46498,7 @@ ALTER TABLE ONLY public.m005t_materias
 
 
 --
--- TOC entry 3608 (class 2606 OID 25718)
+-- TOC entry 3638 (class 2606 OID 25718)
 -- Name: m007t_tipo_periodo m007t_tipo_periodo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41289,7 +46507,7 @@ ALTER TABLE ONLY public.m007t_tipo_periodo
 
 
 --
--- TOC entry 3592 (class 2606 OID 25655)
+-- TOC entry 3626 (class 2606 OID 25655)
 -- Name: m008t_tipo_personal m008t_tipo_personal_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41298,7 +46516,7 @@ ALTER TABLE ONLY public.m008t_tipo_personal
 
 
 --
--- TOC entry 3622 (class 2606 OID 25792)
+-- TOC entry 3652 (class 2606 OID 25792)
 -- Name: m009t_tipo_discapacidad m009t_tipo_discapacidades_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41307,7 +46525,7 @@ ALTER TABLE ONLY public.m009t_tipo_discapacidad
 
 
 --
--- TOC entry 3590 (class 2606 OID 25649)
+-- TOC entry 3624 (class 2606 OID 25649)
 -- Name: m010t_estatus_personal m010t_estatus_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41316,7 +46534,7 @@ ALTER TABLE ONLY public.m010t_estatus_personal
 
 
 --
--- TOC entry 3564 (class 2606 OID 25451)
+-- TOC entry 3598 (class 2606 OID 25451)
 -- Name: m011t_profesion m011t_profesion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41325,7 +46543,7 @@ ALTER TABLE ONLY public.m011t_profesion
 
 
 --
--- TOC entry 3602 (class 2606 OID 25699)
+-- TOC entry 3636 (class 2606 OID 25699)
 -- Name: m012t_tipo_materia m012t_tipo_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41334,7 +46552,7 @@ ALTER TABLE ONLY public.m012t_tipo_materia
 
 
 --
--- TOC entry 3578 (class 2606 OID 25551)
+-- TOC entry 3612 (class 2606 OID 25551)
 -- Name: m013t_dias m013t_dias_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41343,7 +46561,7 @@ ALTER TABLE ONLY public.m013t_dias
 
 
 --
--- TOC entry 3584 (class 2606 OID 25614)
+-- TOC entry 3618 (class 2606 OID 25614)
 -- Name: m014t_estatus_estudiante m014t_estatus_estudiante_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41352,7 +46570,7 @@ ALTER TABLE ONLY public.m014t_estatus_estudiante
 
 
 --
--- TOC entry 3534 (class 2606 OID 25236)
+-- TOC entry 3570 (class 2606 OID 25236)
 -- Name: m015t_secciones m015t_secciones_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41361,7 +46579,7 @@ ALTER TABLE ONLY public.m015t_secciones
 
 
 --
--- TOC entry 3630 (class 2606 OID 25923)
+-- TOC entry 3660 (class 2606 OID 25923)
 -- Name: m016t_aulas m016t_aulas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41370,7 +46588,7 @@ ALTER TABLE ONLY public.m016t_aulas
 
 
 --
--- TOC entry 3540 (class 2606 OID 25305)
+-- TOC entry 3672 (class 2606 OID 32813)
 -- Name: m017t_trayectos m017t_trayectos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41379,7 +46597,7 @@ ALTER TABLE ONLY public.m017t_trayectos
 
 
 --
--- TOC entry 3546 (class 2606 OID 25348)
+-- TOC entry 3580 (class 2606 OID 25348)
 -- Name: m018t_area_materia m018t_area_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41388,7 +46606,7 @@ ALTER TABLE ONLY public.m018t_area_materia
 
 
 --
--- TOC entry 3548 (class 2606 OID 25355)
+-- TOC entry 3582 (class 2606 OID 25355)
 -- Name: m019t_clase_materia m019t_clase_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41397,7 +46615,7 @@ ALTER TABLE ONLY public.m019t_clase_materia
 
 
 --
--- TOC entry 3552 (class 2606 OID 25407)
+-- TOC entry 3586 (class 2606 OID 25407)
 -- Name: m020t_ciudades m020t_ciudades_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41406,16 +46624,16 @@ ALTER TABLE ONLY public.m020t_ciudades
 
 
 --
--- TOC entry 3562 (class 2606 OID 25445)
+-- TOC entry 3596 (class 2606 OID 25445)
 -- Name: m021t_tipo_vivienda m021t_tipo_vivienda_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.m021t_tipo_vivienda
-    ADD CONSTRAINT m021t_tipo_vivienda_pkey PRIMARY KEY (id_tpvivienda);
+    ADD CONSTRAINT m021t_tipo_vivienda_pkey PRIMARY KEY (id_tp_vivienda);
 
 
 --
--- TOC entry 3554 (class 2606 OID 25417)
+-- TOC entry 3588 (class 2606 OID 25417)
 -- Name: m022t_paises m022t_paises_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41424,7 +46642,7 @@ ALTER TABLE ONLY public.m022t_paises
 
 
 --
--- TOC entry 3556 (class 2606 OID 25424)
+-- TOC entry 3590 (class 2606 OID 25424)
 -- Name: m023t_zona m023t_zona_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41433,25 +46651,25 @@ ALTER TABLE ONLY public.m023t_zona
 
 
 --
--- TOC entry 3558 (class 2606 OID 25432)
+-- TOC entry 3592 (class 2606 OID 25432)
 -- Name: m024t_tipo_zona m024t_tipo_zona_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.m024t_tipo_zona
-    ADD CONSTRAINT m024t_tipo_zona_pkey PRIMARY KEY (id_tpzona);
+    ADD CONSTRAINT m024t_tipo_zona_pkey PRIMARY KEY (id_tp_zona);
 
 
 --
--- TOC entry 3560 (class 2606 OID 25439)
+-- TOC entry 3594 (class 2606 OID 25439)
 -- Name: m025t_tipo_via m025t_tipo_via_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.m025t_tipo_via
-    ADD CONSTRAINT m025t_tipo_via_pkey PRIMARY KEY (id_tpvia);
+    ADD CONSTRAINT m025t_tipo_via_pkey PRIMARY KEY (id_tp_via);
 
 
 --
--- TOC entry 3566 (class 2606 OID 25470)
+-- TOC entry 3600 (class 2606 OID 25470)
 -- Name: m026t_tipo_sexo m026t_tipo_sexo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41460,7 +46678,7 @@ ALTER TABLE ONLY public.m026t_tipo_sexo
 
 
 --
--- TOC entry 3568 (class 2606 OID 25477)
+-- TOC entry 3602 (class 2606 OID 25477)
 -- Name: m027t_estado_civil m027t_estado_civil_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41469,7 +46687,7 @@ ALTER TABLE ONLY public.m027t_estado_civil
 
 
 --
--- TOC entry 3570 (class 2606 OID 25491)
+-- TOC entry 3604 (class 2606 OID 25491)
 -- Name: m028t_tipo_nacionalidad m028t_tipo_nacionalidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41478,7 +46696,7 @@ ALTER TABLE ONLY public.m028t_tipo_nacionalidad
 
 
 --
--- TOC entry 3572 (class 2606 OID 25531)
+-- TOC entry 3606 (class 2606 OID 25531)
 -- Name: m029t_bloque_horario m029t_bloque_horario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41487,7 +46705,7 @@ ALTER TABLE ONLY public.m029t_bloque_horario
 
 
 --
--- TOC entry 3574 (class 2606 OID 25539)
+-- TOC entry 3608 (class 2606 OID 25539)
 -- Name: m030t_turnos m030t_turnos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41496,7 +46714,7 @@ ALTER TABLE ONLY public.m030t_turnos
 
 
 --
--- TOC entry 3580 (class 2606 OID 25561)
+-- TOC entry 3614 (class 2606 OID 25561)
 -- Name: t011t_sedes m031t_sedes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41505,7 +46723,7 @@ ALTER TABLE ONLY public.t011t_sedes
 
 
 --
--- TOC entry 3582 (class 2606 OID 25577)
+-- TOC entry 3616 (class 2606 OID 25577)
 -- Name: m032t_tipo_ingreso m032t_tipo_ingreso_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41514,7 +46732,7 @@ ALTER TABLE ONLY public.m032t_tipo_ingreso
 
 
 --
--- TOC entry 3588 (class 2606 OID 25643)
+-- TOC entry 3622 (class 2606 OID 25643)
 -- Name: m033t_estatus_inscripcion m033t_estatus_inscripcion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41523,7 +46741,7 @@ ALTER TABLE ONLY public.m033t_estatus_inscripcion
 
 
 --
--- TOC entry 3596 (class 2606 OID 25669)
+-- TOC entry 3630 (class 2606 OID 25669)
 -- Name: m034t_estatus_inscripto_materia m034t_estatus_inscripto_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41532,7 +46750,7 @@ ALTER TABLE ONLY public.m034t_estatus_inscripto_materia
 
 
 --
--- TOC entry 3594 (class 2606 OID 25663)
+-- TOC entry 3628 (class 2606 OID 25663)
 -- Name: m035t_estatus_docente_materia m035t_estatus_docente_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41541,7 +46759,7 @@ ALTER TABLE ONLY public.m035t_estatus_docente_materia
 
 
 --
--- TOC entry 3598 (class 2606 OID 25681)
+-- TOC entry 3632 (class 2606 OID 25681)
 -- Name: m036t_tipo_carrera m036t_tipo_carrera_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41550,7 +46768,7 @@ ALTER TABLE ONLY public.m036t_tipo_carrera
 
 
 --
--- TOC entry 3600 (class 2606 OID 25693)
+-- TOC entry 3634 (class 2606 OID 25693)
 -- Name: m037t_estatus_materia m037t_estatus_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41559,7 +46777,7 @@ ALTER TABLE ONLY public.m037t_estatus_materia
 
 
 --
--- TOC entry 3604 (class 2606 OID 25706)
+-- TOC entry 3682 (class 2606 OID 32867)
 -- Name: t012t_geografico_sede m038t_geografico_sede_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41568,7 +46786,7 @@ ALTER TABLE ONLY public.t012t_geografico_sede
 
 
 --
--- TOC entry 3610 (class 2606 OID 25725)
+-- TOC entry 3640 (class 2606 OID 25725)
 -- Name: m039t_estatus_horario m039t_estatus_horario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41577,7 +46795,7 @@ ALTER TABLE ONLY public.m039t_estatus_horario
 
 
 --
--- TOC entry 3612 (class 2606 OID 25733)
+-- TOC entry 3642 (class 2606 OID 25733)
 -- Name: m040t_estatus_seccion m040t_estatus_seccion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41586,7 +46804,7 @@ ALTER TABLE ONLY public.m040t_estatus_seccion
 
 
 --
--- TOC entry 3614 (class 2606 OID 25740)
+-- TOC entry 3644 (class 2606 OID 25740)
 -- Name: m041t_estatus_aula m041t_estatus_aula_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41595,7 +46813,7 @@ ALTER TABLE ONLY public.m041t_estatus_aula
 
 
 --
--- TOC entry 3616 (class 2606 OID 25747)
+-- TOC entry 3646 (class 2606 OID 25747)
 -- Name: m042t_estatus_oferta m042t_estatus_oferta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41604,7 +46822,7 @@ ALTER TABLE ONLY public.m042t_estatus_oferta
 
 
 --
--- TOC entry 3626 (class 2606 OID 25896)
+-- TOC entry 3656 (class 2606 OID 25896)
 -- Name: m043t_ciclos m043t_ciclos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41613,7 +46831,7 @@ ALTER TABLE ONLY public.m043t_ciclos
 
 
 --
--- TOC entry 3628 (class 2606 OID 25917)
+-- TOC entry 3658 (class 2606 OID 25917)
 -- Name: m044t_estatus_periodo m044t_estatus_periodo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41622,16 +46840,43 @@ ALTER TABLE ONLY public.m044t_estatus_periodo
 
 
 --
--- TOC entry 3636 (class 2606 OID 26054)
--- Name: m045_estatus_carrera m045_estatus_carrera_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 3666 (class 2606 OID 26054)
+-- Name: m045t_estatus_carrera m045_estatus_carrera_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.m045_estatus_carrera
+ALTER TABLE ONLY public.m045t_estatus_carrera
     ADD CONSTRAINT m045_estatus_carrera_pkey PRIMARY KEY (id_estatus_carrera);
 
 
 --
--- TOC entry 3523 (class 2606 OID 25041)
+-- TOC entry 3668 (class 2606 OID 32778)
+-- Name: m046t_estatus_postulacion m046t_estatus_postulacion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.m046t_estatus_postulacion
+    ADD CONSTRAINT m046t_estatus_postulacion_pkey PRIMARY KEY (id_estatus_postulacion);
+
+
+--
+-- TOC entry 3670 (class 2606 OID 32803)
+-- Name: m047t_tipo_documento m047t_tipo_documento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.m047t_tipo_documento
+    ADD CONSTRAINT m047t_tipo_documento_pkey PRIMARY KEY (id_tp_documento);
+
+
+--
+-- TOC entry 3684 (class 2606 OID 32893)
+-- Name: m049t_estado_mundo m049t_estado_mundo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.m049t_estado_mundo
+    ADD CONSTRAINT m049t_estado_mundo_pkey PRIMARY KEY (id_estado_mundo);
+
+
+--
+-- TOC entry 3559 (class 2606 OID 25041)
 -- Name: m002t_municipios municipio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41640,7 +46885,7 @@ ALTER TABLE ONLY public.m002t_municipios
 
 
 --
--- TOC entry 3530 (class 2606 OID 25119)
+-- TOC entry 3566 (class 2606 OID 25119)
 -- Name: t003t_personal personal_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41649,7 +46894,7 @@ ALTER TABLE ONLY public.t003t_personal
 
 
 --
--- TOC entry 3528 (class 2606 OID 25093)
+-- TOC entry 3564 (class 2606 OID 25093)
 -- Name: r001t_docente_materia r001t_materia_personal_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41658,7 +46903,7 @@ ALTER TABLE ONLY public.r001t_docente_materia
 
 
 --
--- TOC entry 3542 (class 2606 OID 25311)
+-- TOC entry 3576 (class 2606 OID 25311)
 -- Name: r002t_carrera_materia r002t_carrera_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41667,7 +46912,7 @@ ALTER TABLE ONLY public.r002t_carrera_materia
 
 
 --
--- TOC entry 3624 (class 2606 OID 25844)
+-- TOC entry 3654 (class 2606 OID 25844)
 -- Name: r003t_inscripcion_materia r003t_inscripcion_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41676,7 +46921,7 @@ ALTER TABLE ONLY public.r003t_inscripcion_materia
 
 
 --
--- TOC entry 3634 (class 2606 OID 26024)
+-- TOC entry 3664 (class 2606 OID 26024)
 -- Name: r004t_oferta_materia r004t_oferta_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41685,7 +46930,16 @@ ALTER TABLE ONLY public.r004t_oferta_materia
 
 
 --
--- TOC entry 3515 (class 2606 OID 24815)
+-- TOC entry 3676 (class 2606 OID 32839)
+-- Name: r005t_fecha_estatus_postulacion r005t_fecha_estatus_postulacion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.r005t_fecha_estatus_postulacion
+    ADD CONSTRAINT r005t_fecha_estatus_postulacion_pkey PRIMARY KEY (id_estatus_fe_postulacion);
+
+
+--
+-- TOC entry 3551 (class 2606 OID 24815)
 -- Name: m004t_regiones regiones_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41694,7 +46948,7 @@ ALTER TABLE ONLY public.m004t_regiones
 
 
 --
--- TOC entry 3517 (class 2606 OID 24882)
+-- TOC entry 3553 (class 2606 OID 24882)
 -- Name: t002t_roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41703,7 +46957,7 @@ ALTER TABLE ONLY public.t002t_roles
 
 
 --
--- TOC entry 3544 (class 2606 OID 25333)
+-- TOC entry 3578 (class 2606 OID 25333)
 -- Name: t006t_periodo_lectivo t006t_periodos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41712,7 +46966,7 @@ ALTER TABLE ONLY public.t006t_periodo_lectivo
 
 
 --
--- TOC entry 3576 (class 2606 OID 25545)
+-- TOC entry 3610 (class 2606 OID 25545)
 -- Name: t007t_horario t007t_horario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41721,7 +46975,7 @@ ALTER TABLE ONLY public.t007t_horario
 
 
 --
--- TOC entry 3632 (class 2606 OID 25929)
+-- TOC entry 3662 (class 2606 OID 25929)
 -- Name: t008t_oferta_academica t008t_oferta_academica_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41730,7 +46984,7 @@ ALTER TABLE ONLY public.t008t_oferta_academica
 
 
 --
--- TOC entry 3550 (class 2606 OID 25376)
+-- TOC entry 3584 (class 2606 OID 25376)
 -- Name: t009t_notas t009t_notas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41739,7 +46993,7 @@ ALTER TABLE ONLY public.t009t_notas
 
 
 --
--- TOC entry 3606 (class 2606 OID 25712)
+-- TOC entry 3680 (class 2606 OID 32861)
 -- Name: t010t_geografico_estudiante t010t_geografico_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41748,7 +47002,16 @@ ALTER TABLE ONLY public.t010t_geografico_estudiante
 
 
 --
--- TOC entry 3620 (class 2606 OID 25763)
+-- TOC entry 3678 (class 2606 OID 32855)
+-- Name: t013t_postulacion t013t_postulacion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.t013t_postulacion
+    ADD CONSTRAINT t013t_postulacion_pkey PRIMARY KEY (id_postulacion);
+
+
+--
+-- TOC entry 3650 (class 2606 OID 25763)
 -- Name: t001t_usuarios usuarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41757,7 +47020,7 @@ ALTER TABLE ONLY public.t001t_usuarios
 
 
 --
--- TOC entry 3521 (class 1259 OID 25047)
+-- TOC entry 3557 (class 1259 OID 25047)
 -- Name: fki_FK_estado_munucipio_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -41765,7 +47028,7 @@ CREATE INDEX "fki_FK_estado_munucipio_id" ON public.m002t_municipios USING btree
 
 
 --
--- TOC entry 3520 (class 1259 OID 25035)
+-- TOC entry 3556 (class 1259 OID 25035)
 -- Name: fki_FK_estado_regiones_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -41773,7 +47036,7 @@ CREATE INDEX "fki_FK_estado_regiones_id" ON public.m001t_estados USING btree (id
 
 
 --
--- TOC entry 3524 (class 1259 OID 25059)
+-- TOC entry 3560 (class 1259 OID 25059)
 -- Name: fki_FK_municipio_parroquia_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -41781,7 +47044,7 @@ CREATE INDEX "fki_FK_municipio_parroquia_id" ON public.m003t_parroquias USING bt
 
 
 --
--- TOC entry 3638 (class 2606 OID 25042)
+-- TOC entry 3686 (class 2606 OID 25042)
 -- Name: m002t_municipios FK_estado_munucipio_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41790,7 +47053,7 @@ ALTER TABLE ONLY public.m002t_municipios
 
 
 --
--- TOC entry 3637 (class 2606 OID 25030)
+-- TOC entry 3685 (class 2606 OID 25030)
 -- Name: m001t_estados FK_estado_regiones_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41799,7 +47062,7 @@ ALTER TABLE ONLY public.m001t_estados
 
 
 --
--- TOC entry 3639 (class 2606 OID 25054)
+-- TOC entry 3687 (class 2606 OID 25054)
 -- Name: m003t_parroquias FK_municipio_parroquia_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41808,7 +47071,7 @@ ALTER TABLE ONLY public.m003t_parroquias
 
 
 --
--- TOC entry 3653 (class 2606 OID 25906)
+-- TOC entry 3700 (class 2606 OID 25906)
 -- Name: m005t_materias m005fk_m012t_id_estatus_materia; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41817,7 +47080,7 @@ ALTER TABLE ONLY public.m005t_materias
 
 
 --
--- TOC entry 3652 (class 2606 OID 25897)
+-- TOC entry 3701 (class 2606 OID 25897)
 -- Name: m005t_materias m005fk_m012t_id_tipo_materia; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41826,7 +47089,7 @@ ALTER TABLE ONLY public.m005t_materias
 
 
 --
--- TOC entry 3651 (class 2606 OID 26002)
+-- TOC entry 3699 (class 2606 OID 26002)
 -- Name: m015t_secciones m015t_secciones_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41835,7 +47098,7 @@ ALTER TABLE ONLY public.m015t_secciones
 
 
 --
--- TOC entry 3641 (class 2606 OID 25885)
+-- TOC entry 3688 (class 2606 OID 25885)
 -- Name: r001t_docente_materia r001fk_t003t_id_personal; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41844,7 +47107,7 @@ ALTER TABLE ONLY public.r001t_docente_materia
 
 
 --
--- TOC entry 3640 (class 2606 OID 25958)
+-- TOC entry 3689 (class 2606 OID 25958)
 -- Name: r001t_docente_materia r001t_docente_materia_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41853,7 +47116,7 @@ ALTER TABLE ONLY public.r001t_docente_materia
 
 
 --
--- TOC entry 3668 (class 2606 OID 25850)
+-- TOC entry 3714 (class 2606 OID 25850)
 -- Name: r003t_inscripcion_materia r003fk_m005_id_materia; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41862,7 +47125,7 @@ ALTER TABLE ONLY public.r003t_inscripcion_materia
 
 
 --
--- TOC entry 3670 (class 2606 OID 25860)
+-- TOC entry 3715 (class 2606 OID 25860)
 -- Name: r003t_inscripcion_materia r003fk_m034_id_inscripto_materia; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41871,7 +47134,7 @@ ALTER TABLE ONLY public.r003t_inscripcion_materia
 
 
 --
--- TOC entry 3667 (class 2606 OID 25845)
+-- TOC entry 3716 (class 2606 OID 25845)
 -- Name: r003t_inscripcion_materia r003fk_t004_id_inscripcion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41880,7 +47143,7 @@ ALTER TABLE ONLY public.r003t_inscripcion_materia
 
 
 --
--- TOC entry 3669 (class 2606 OID 25855)
+-- TOC entry 3717 (class 2606 OID 25855)
 -- Name: r003t_inscripcion_materia r003fk_t007_id_horario; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41889,7 +47152,7 @@ ALTER TABLE ONLY public.r003t_inscripcion_materia
 
 
 --
--- TOC entry 3666 (class 2606 OID 25766)
+-- TOC entry 3713 (class 2606 OID 25766)
 -- Name: t001t_usuarios t001fk_t002_id_rol; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41898,7 +47161,7 @@ ALTER TABLE ONLY public.t001t_usuarios
 
 
 --
--- TOC entry 3664 (class 2606 OID 25771)
+-- TOC entry 3711 (class 2606 OID 25771)
 -- Name: t001t_usuarios t001fk_t003_id_personal; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41907,7 +47170,7 @@ ALTER TABLE ONLY public.t001t_usuarios
 
 
 --
--- TOC entry 3665 (class 2606 OID 25776)
+-- TOC entry 3712 (class 2606 OID 25776)
 -- Name: t001t_usuarios t001fk_t004_id_estudiante; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41916,7 +47179,7 @@ ALTER TABLE ONLY public.t001t_usuarios
 
 
 --
--- TOC entry 3644 (class 2606 OID 25880)
+-- TOC entry 3690 (class 2606 OID 25880)
 -- Name: t003t_personal t003fk_m010t_id_estatus; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41925,7 +47188,7 @@ ALTER TABLE ONLY public.t003t_personal
 
 
 --
--- TOC entry 3643 (class 2606 OID 25871)
+-- TOC entry 3691 (class 2606 OID 25871)
 -- Name: t003t_personal t003fk_m011t_id_profesion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41934,7 +47197,7 @@ ALTER TABLE ONLY public.t003t_personal
 
 
 --
--- TOC entry 3642 (class 2606 OID 25953)
+-- TOC entry 3692 (class 2606 OID 25953)
 -- Name: t003t_personal t003t_personal_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41943,7 +47206,7 @@ ALTER TABLE ONLY public.t003t_personal
 
 
 --
--- TOC entry 3661 (class 2606 OID 25793)
+-- TOC entry 3709 (class 2606 OID 25793)
 -- Name: t004t_estudiantes t004fk_m009_id_tp_discapacidad; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41952,7 +47215,7 @@ ALTER TABLE ONLY public.t004t_estudiantes
 
 
 --
--- TOC entry 3662 (class 2606 OID 25798)
+-- TOC entry 3710 (class 2606 OID 25798)
 -- Name: t004t_estudiantes t004fk_m014_id_estatus_estudiante; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41961,16 +47224,7 @@ ALTER TABLE ONLY public.t004t_estudiantes
 
 
 --
--- TOC entry 3663 (class 2606 OID 25803)
--- Name: t004t_estudiantes t004fk_t010_id_geografico_estudiante; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.t004t_estudiantes
-    ADD CONSTRAINT t004fk_t010_id_geografico_estudiante FOREIGN KEY (id_geografico_estudiante) REFERENCES public.t010t_geografico_estudiante(id_geografico_estudiante) NOT VALID;
-
-
---
--- TOC entry 3649 (class 2606 OID 25829)
+-- TOC entry 3697 (class 2606 OID 25829)
 -- Name: t005t_inscripcion t005fk_m006_id_carrera; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41979,7 +47233,7 @@ ALTER TABLE ONLY public.t005t_inscripcion
 
 
 --
--- TOC entry 3650 (class 2606 OID 25834)
+-- TOC entry 3698 (class 2606 OID 25834)
 -- Name: t005t_inscripcion t005fk_m015_id_seccion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41988,7 +47242,7 @@ ALTER TABLE ONLY public.t005t_inscripcion
 
 
 --
--- TOC entry 3648 (class 2606 OID 25824)
+-- TOC entry 3696 (class 2606 OID 25824)
 -- Name: t005t_inscripcion t005fk_m031_id_sede; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -41997,7 +47251,7 @@ ALTER TABLE ONLY public.t005t_inscripcion
 
 
 --
--- TOC entry 3646 (class 2606 OID 25814)
+-- TOC entry 3694 (class 2606 OID 25814)
 -- Name: t005t_inscripcion t005fk_m033_id_estatus_inscripcion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -42006,7 +47260,7 @@ ALTER TABLE ONLY public.t005t_inscripcion
 
 
 --
--- TOC entry 3645 (class 2606 OID 25808)
+-- TOC entry 3693 (class 2606 OID 25808)
 -- Name: t005t_inscripcion t005fk_t004_id_estudiante; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -42015,7 +47269,7 @@ ALTER TABLE ONLY public.t005t_inscripcion
 
 
 --
--- TOC entry 3647 (class 2606 OID 25819)
+-- TOC entry 3695 (class 2606 OID 25819)
 -- Name: t005t_inscripcion t005fk_t006_id_periodo; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -42024,7 +47278,7 @@ ALTER TABLE ONLY public.t005t_inscripcion
 
 
 --
--- TOC entry 3655 (class 2606 OID 25968)
+-- TOC entry 3702 (class 2606 OID 25968)
 -- Name: t006t_periodo_lectivo t006t_estatus_periodo_lectivo_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -42033,7 +47287,7 @@ ALTER TABLE ONLY public.t006t_periodo_lectivo
 
 
 --
--- TOC entry 3654 (class 2606 OID 25963)
+-- TOC entry 3703 (class 2606 OID 25963)
 -- Name: t006t_periodo_lectivo t006t_periodo_lectivo_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -42042,7 +47296,7 @@ ALTER TABLE ONLY public.t006t_periodo_lectivo
 
 
 --
--- TOC entry 3656 (class 2606 OID 25973)
+-- TOC entry 3704 (class 2606 OID 25973)
 -- Name: t007t_horario t007t_horario_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -42051,7 +47305,7 @@ ALTER TABLE ONLY public.t007t_horario
 
 
 --
--- TOC entry 3657 (class 2606 OID 25978)
+-- TOC entry 3705 (class 2606 OID 25978)
 -- Name: t007t_horario t007t_horario_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -42060,7 +47314,7 @@ ALTER TABLE ONLY public.t007t_horario
 
 
 --
--- TOC entry 3658 (class 2606 OID 25983)
+-- TOC entry 3706 (class 2606 OID 25983)
 -- Name: t007t_horario t007t_horario_fk_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -42069,7 +47323,7 @@ ALTER TABLE ONLY public.t007t_horario
 
 
 --
--- TOC entry 3659 (class 2606 OID 25988)
+-- TOC entry 3707 (class 2606 OID 25988)
 -- Name: t007t_horario t007t_horario_fk_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -42078,7 +47332,7 @@ ALTER TABLE ONLY public.t007t_horario
 
 
 --
--- TOC entry 3660 (class 2606 OID 25993)
+-- TOC entry 3708 (class 2606 OID 25993)
 -- Name: t007t_horario t007t_horario_fk_4; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -42087,7 +47341,7 @@ ALTER TABLE ONLY public.t007t_horario
 
 
 --
--- TOC entry 3671 (class 2606 OID 26008)
+-- TOC entry 3718 (class 2606 OID 26008)
 -- Name: t008t_oferta_academica t008t_oferta_academica_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -42096,7 +47350,7 @@ ALTER TABLE ONLY public.t008t_oferta_academica
 
 
 --
--- TOC entry 3672 (class 2606 OID 26013)
+-- TOC entry 3719 (class 2606 OID 26013)
 -- Name: t008t_oferta_academica t008t_oferta_academica_fk_0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -42104,7 +47358,7 @@ ALTER TABLE ONLY public.t008t_oferta_academica
     ADD CONSTRAINT t008t_oferta_academica_fk_0 FOREIGN KEY (id_carrera) REFERENCES public.m006t_carreras(id_carrera);
 
 
--- Completed on 2023-08-10 20:22:18
+-- Completed on 2023-08-14 12:40:53
 
 --
 -- PostgreSQL database dump complete
