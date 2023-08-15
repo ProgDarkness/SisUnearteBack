@@ -7,6 +7,7 @@ type Mutation {
   saveUsuario(input: InputSaveUser): Result!
   deleteUsuario(input: InputDeleteUser): Result!
   cambiarEstatus(input: InputDeleteUser): Result!
+  crearUsuario(input: InputUsuario): Result!
 }
 
 input InputSaveUser {
@@ -21,6 +22,30 @@ input InputSaveUser {
 
 input InputDeleteUser {
   id_usuario: Int!
+}
+
+input InputUsuario {
+  idnacionalidad: Int!
+  cedula: Int!
+  nombre: String!
+  apellido: String!
+  sexo: Int!
+  fenac: String!
+  idpais: Int!
+  idcivil: Int!
+  correo: String!
+  idtpvia: Int!
+  nbtpvia: String!
+  idtpzona: Int!
+  nbzona: String!
+  idtpvivienda: Int!
+  nuvivienda: String!
+  idciudad: Int!
+  idestado: Int!
+  idmunicipio: Int!
+  idparroquia: Int!
+  idpostal: Int!
+  blregistro: String!
 }
 
 type Usuario {

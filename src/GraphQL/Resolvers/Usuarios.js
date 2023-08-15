@@ -131,6 +131,20 @@ export default {
       } catch (e) {
         throw new ApolloError(e.message)
       }
+    },
+    crearUsuario: async (_, {input}) => {
+      const {idnacionalidad, cedula, nombre, apellido, sexo, fenac, idpais, idcivil, correo, idtpvia, nbtpvia, idtpzona, nbzona, idtpvivienda, nuvivienda, idciudad, idestado, idmunicipio, idparroquia, idpostal, blregistro} = input
+      console.log(input);
+      try {    
+          await dbp.none(
+              `INSERT INTO public.t001t_usuarios(
+                id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_sexo_usuario, fe_nac_usuario, id_pais_origen, id_estado_civil, correo_usuario, id_tipo_via, nb_via, id_tipo_zona, nb_zona, id_tipo_vivienda, nu_vivienda, id_ciudad, id_estado, id_municipio, id_parroquia, id_zona_postal, bl_registro)
+                VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21);`, [idnacionalidad, cedula, nombre, apellido, sexo, fenac, idpais, idcivil, correo, idtpvia, nbtpvia, idtpzona, nbzona, idtpvivienda, nuvivienda, idciudad, idestado, idmunicipio, idparroquia, idpostal, blregistro]
+            )
+          return {status: 200, type: "success", message: 'Usuario registrado exitosamente'}
+      } catch (e) {
+          return {status: 500, type: "error", message: `Error: ${e.message}`}
+      }
     }
   }
 }

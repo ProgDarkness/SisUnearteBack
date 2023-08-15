@@ -1,3 +1,34 @@
+=================== 15/08/2023 ==========================
+
+mutation registropreviousuario {
+  crearUsuario (
+    input:{
+      idnacionalidad: 1
+      cedula: 12345608
+      nombre: "Carla"
+      apellido: "Quiko"
+      sexo: 1
+      fenac: "14-09-1999"
+      idpais: 239
+      idcivil: 1
+      correo: "c@gmail.com"
+      idtpvia: 1
+      nbtpvia: "La Crema"
+      idtpzona: 1
+      nbzona: "La Montania"
+      idtpvivienda: 1
+      nuvivienda: "245"
+      idciudad:  604
+      idestado: 14
+      idmunicipio: 181
+      idparroquia: 605
+      idpostal: 19576
+      blregistro: "true"
+    }){
+    message
+    }
+}
+
 =================== 13/08/2023 ==========================
 
 query tiposcarreras {
