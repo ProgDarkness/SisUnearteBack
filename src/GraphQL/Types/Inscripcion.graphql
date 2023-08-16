@@ -2,8 +2,12 @@ type Mutation {
     obtenerEstudiante(input: InputConsultaEstudiante!): ResultEstudiante
     crearEstudiante(input: InputEstudiante!): ResultEstudiante
     obtenerDetalleCarrera(input: InputCarrera!): ResultCarrera
-    crearCarrera(input: InputCrearCarrera!): ResultCrearCarrera!
-    actualizarCarrera(input: InputActualizarCarrera!): ResultCrearCarrera!
+    crearCarrera(input: InputCrearCarrera!): Resultado!
+    actualizarCarrera(input: InputActualizarCarrera!): Resultado!
+    eliminarCarrera(input: InputEliminarCarrera!): Resultado!
+    crearMateria(input: InputCrearMateria!): Resultado!
+    actualizarMateria(input: InputActualizarMateria!): Resultado!
+    eliminarMateria(input: InputEliminarMateria!): Resultado!
 }
 
 input InputConsultaEstudiante {
@@ -70,7 +74,32 @@ input InputActualizarCarrera {
     idcarrera: Int!
 }
 
-type ResultCrearCarrera {
+input InputEliminarCarrera {
+    idcarrera: Int!
+}
+
+input InputCrearMateria {
+    codigo: String!
+    nombre: String!
+    credito: Int!
+    tipo: Int!
+    hora: Int!
+}
+
+input InputActualizarMateria {
+    codigo: String!
+    nombre: String!
+    credito: Int!
+    tipo: Int!
+    hora: Int!
+    idmateria: Int!
+}
+
+input InputEliminarMateria {
+    idmateria: Int!
+}
+
+type Resultado {
     status: Int!
     message: String!
     type: String!
@@ -78,6 +107,7 @@ type ResultCrearCarrera {
 
 type Query {
     obtenerTodasCarreras: ResultTodasCarreras,
+    obtenerTodasMaterias: ResultTodasMaterias,
 }
 
 type Carreras {
@@ -95,4 +125,20 @@ type ResultTodasCarreras {
     message: String!
     type: String!
     response: [Carreras]
+}
+
+type Materias {
+    id: ID!
+    codigo: String!
+    nombre: String!
+    credito: Int!
+    hora: Int!
+    estatus: String!
+}
+
+type ResultTodasMaterias {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Materias]
 }

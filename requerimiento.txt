@@ -1,3 +1,62 @@
+=================== 16/08/2023 ==========================
+mutation eliminarcarrera {
+  eliminarCarrera (
+    input:{
+      idcarrera: 15
+    }){
+    message
+    }
+}
+
+mutation crearmateria {
+  crearMateria (
+    input:{
+      codigo: "HART-002"
+      nombre: "Historia del artes II"
+      credito: 14
+      tipo: 11
+      hora: 5
+    }){
+    message
+    }
+}
+
+mutation actualizarmateria {
+  actualizarMateria (
+    input:{
+      codigo: "HART-002"
+      nombre: "Historia del artes V"
+      credito: 14
+      tipo: 11
+      hora: 10
+      idmateria: 13
+    }){
+    message
+    }
+}
+
+mutation eliminarmateria {
+  eliminarMateria (
+    input:{
+      idmateria: 10
+    }){
+    message
+    }
+}
+
+query obtenertodasmaterias {
+  obtenerTodasMaterias {
+    response {
+      id
+      codigo
+      nombre
+      credito
+      hora
+      estatus
+    }
+  }
+}
+
 =================== 15/08/2023 ==========================
 
 mutation registropreviousuario {
