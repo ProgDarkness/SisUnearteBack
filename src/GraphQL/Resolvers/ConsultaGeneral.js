@@ -18,6 +18,22 @@ export default {
                 return {status: 500, message: e.message, type: "error"}
             }
         },
+        obtenerTipoCarrera: async () => {
+            try {
+                const tiposcarreras = await dbp.manyOrNone(`SELECT id_tp_carrera as id, nb_tp_carrera as nombre FROM m036t_tipo_carrera;`);
+                return {status: 200, message: 'Tipos de Carreras encontrados', type: "success", response: tiposcarreras}
+            } catch (e) {
+                return {status: 500, message: e.message, type: "error"}
+            }
+        },
+        obtenerEstatusCarrera: async () => {
+            try {
+                const estatuscarreras = await dbp.manyOrNone(`SELECT id_estatus_carrera as id, nb_estatus_carrera as nombre FROM m045t_estatus_carrera;`);
+                return {status: 200, message: 'Estatus de Carreras encontrados', type: "success", response: estatuscarreras}
+            } catch (e) {
+                return {status: 500, message: e.message, type: "error"}
+            }
+        },
         obtenerNacionalidades: async () => {
             try {
                 const nacionalidades = await dbp.manyOrNone(`SELECT id_nacionalidad as id, co_nacionalidad as codigo, nb_nacionalidad as nombre FROM m028t_tipo_nacionalidad;`);
@@ -118,14 +134,6 @@ export default {
             try {
                 const tiposdocumentos = await dbp.manyOrNone(`SELECT id_tp_documento as id, nb_tp_documento as nombre FROM m047t_tipo_documento;`);
                 return {status: 200, message: 'Tipos de Documentos encontrados', type: "success", response: tiposdocumentos}
-            } catch (e) {
-                return {status: 500, message: e.message, type: "error"}
-            }
-        },
-        obtenerTipoCarrera: async () => {
-            try {
-                const tiposcarreras = await dbp.manyOrNone(`SELECT id_tp_carrera as id, nb_tp_carrera as nombre FROM m036t_tipo_carrera;`);
-                return {status: 200, message: 'Tipos de Carreras encontrados', type: "success", response: tiposcarreras}
             } catch (e) {
                 return {status: 500, message: e.message, type: "error"}
             }

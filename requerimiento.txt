@@ -57,6 +57,24 @@ query obtenertodasmaterias {
   }
 }
 
+query obtenerestatuscarrera {
+  obtenerEstatusCarrera {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+mutation actualizarestatuscarrera {
+  actualizarEstatusCarrera (
+    input:{
+      estatus: 2
+      idcarrera: 13
+    }){
+    message
+    }
+}
 =================== 15/08/2023 ==========================
 
 mutation registropreviousuario {

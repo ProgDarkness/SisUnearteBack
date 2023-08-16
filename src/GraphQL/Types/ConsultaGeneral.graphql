@@ -22,6 +22,18 @@ type ResultCarreras {
     response: [Carrera]
 }
 
+type EstatusCarrera {
+    id: ID!
+    nombre: String!
+}
+
+type ResultEstatusCarrera {
+    status: Int!
+    message: String!
+    type: String!
+    response: [EstatusCarrera]
+}
+
 type TipoCarrera {
     id: ID!
     nombre: String!
@@ -196,7 +208,8 @@ type ResultTipoDocumento {
 type Query {
     obtenerMaterias: ResultMaterias,
     obtenerCarreras: ResultCarreras,
-    obtenerTipoCarrera: ResultTipoCarreras
+    obtenerTipoCarrera: ResultTipoCarreras,
+    obtenerEstatusCarrera: ResultEstatusCarrera,
     obtenerNacionalidades: ResultNacionalidades,
     obtenerSexos: ResultSexos,
     obtenerDiscapacidades: ResultDiscapacidades,

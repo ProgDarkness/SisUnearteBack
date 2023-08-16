@@ -132,6 +132,17 @@ export default {
                 return {status: 500, message: `Error: ${e.message}`, type: "error"}
             }
         },
+        actualizarEstatusCarrera: async (_, {input}) => {
+            const {estatus, idcarrera} = input
+            console.log(input);
+            try {     
+                await dbp.none(`UPDATE public.m006t_carreras SET id_estatus_carrera = $1 WHERE id_carrera = $2;`, [estatus, idcarrera])
+
+                return {status: 200, message: 'Estatus de la carrera actualizada exitosamente', type: "success"}
+            } catch (e) {
+                return {status: 500, message: `Error: ${e.message}`, type: "error"}
+            }
+        },
         crearMateria: async (_, {input}) => {
             const {codigo, nombre, credito, tipo, hora} = input
             console.log(input);
