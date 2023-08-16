@@ -8,6 +8,8 @@ type Mutation {
   deleteUsuario(input: InputDeleteUser): Result!
   cambiarEstatus(input: InputDeleteUser): Result!
   crearUsuario(input: InputUsuario): Result!
+  actualizarUsuario(input: InputActualizarUsuario): Result!
+  obtenerUsuario(input: InputIdUsuario): ResultUsuario
 }
 
 input InputSaveUser {
@@ -46,6 +48,65 @@ input InputUsuario {
   idparroquia: Int!
   idpostal: Int!
   blregistro: String!
+}
+
+input InputActualizarUsuario {
+  idnacionalidad: Int!
+  cedula: Int!
+  nombre: String!
+  apellido: String!
+  sexo: Int!
+  fenac: String!
+  idpais: Int!
+  idcivil: Int!
+  correo: String!
+  idtpvia: Int!
+  nbtpvia: String!
+  idtpzona: Int!
+  nbzona: String!
+  idtpvivienda: Int!
+  nuvivienda: String!
+  idciudad: Int!
+  idestado: Int!
+  idmunicipio: Int!
+  idparroquia: Int!
+  idpostal: Int!
+  blregistro: String!
+  idusuario: Int!
+}
+
+input InputIdUsuario {
+  idusuario: Int!
+}
+
+type DetalleUsuario {
+    id: ID!
+    nacionalidad: String!
+    cedula: Int!
+    nombre: String!
+    apellido: String!
+    sexo: String!
+    fenac: String!
+    pais: String!
+    civil: String!
+    correo: String!
+    nbtpbia: String!
+    nbvia: String!
+    nbtpzona: String!
+    nbzona: String!
+    nbtpvivienda: String!
+    nuvivienda: String!
+    ciudad: String!
+    estado: String!
+    municipio: String!
+    parroquia: String!
+}
+
+type ResultUsuario {
+    status: Int!
+    type: String!
+    message: String!
+    response: DetalleUsuario
 }
 
 type Usuario {

@@ -35,22 +35,6 @@ type ResultEstudiante {
     response: Estudiante
 }
 
-type Oferta {
-    id: ID!
-    periodo: Int!
-    anio: Int!
-    carrera: String!
-    cupos: Int!
-    estatus: String!
-}
-
-type ResultOferta {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Oferta]
-}
-
 type DetalleCarrera {
     id: ID!
     carrera: String!

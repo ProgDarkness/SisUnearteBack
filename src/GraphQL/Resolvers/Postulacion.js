@@ -30,5 +30,41 @@ export default {
                 return {status: 500, message: e.message, type: "error"}
             }
         }
+    },
+    Mutation: {
+        crearPostulacion: async (_, {input}) => {
+            const {usuario, carrera, periodo, fepostulacion} = input
+            console.log(input);
+            try {    
+
+                let estatus = null;
+                let activo = null;
+                estatus = 4;
+                activo = true;
+
+                await dbp.none(
+                    `INSERT INTO public.t013t_postulacion(
+                      id_usuario, id_carrera, id_periodo, fe_postulacion, id_estatus_postulacion, st_activo)
+                      VALUES ( $1, $2, $3, $4, $5, $6);`, [usuario, carrera, periodo, fepostulacion, estatus, activo]
+                  )
+                return {status: 200, type: "success", message: 'Postulacion registrada exitosamente'}
+            } catch (e) {
+                return {status: 500, message: `Error: ${e.message}`, type: "error"}
+            }
+        },
+        aprobarPostulacion: async (_, {input}) => {
+            const {estatus, usuario, feaprobacion, observacion, idpostulacion} = input
+            console.log(input);
+            try {
+                await dbp.none(
+                    `UPDATE public.t013t_postulacion
+                    SET id_estatus_postulacion = $1, id_usuario_aprobacion = $2, fe_aprobacion = $3, tx_observacion = $4
+                    WHERE id_postulacion = $5;`, [estatus, usuario, feaprobacion, observacion, idpostulacion]
+                  )
+                return {status: 200, type: "success", message: 'Postulacion aprobada exitosamente'}
+            } catch (e) {
+                return {status: 500, message: `Error: ${e.message}`, type: "error"}
+            }
+        }
     }
 };

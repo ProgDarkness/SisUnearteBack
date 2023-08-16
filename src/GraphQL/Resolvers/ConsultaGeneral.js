@@ -129,18 +129,6 @@ export default {
             } catch (e) {
                 return {status: 500, message: e.message, type: "error"}
             }
-        },
-        obtenerOfertaAcademica: async () => {
-            try {
-                const ofertas = await dbp.manyOrNone(`
-                                        SELECT oa.id_oferta AS id, oa.id_periodo AS periodo, p.anio_periodo AS anio, c.nb_carrera AS carrera,
-                                        oa.nu_cupos AS cupos, eo.nb_estatus_oferta AS estatus
-                                        FROM t008t_oferta_academica AS oa, t006t_periodo_lectivo AS p, m006t_carreras AS c, m042t_estatus_oferta AS eo
-                                        WHERE oa.id_periodo = p.id_periodo AND oa.id_carrera = c.id_carrera AND oa.id_estatus_oferta = eo.id_estatus_oferta;`);
-                return {status: 200, message: 'Ofertas encontradas', type: "success", response: ofertas}
-            } catch (e) {
-                return {status: 500, message: e.message, type: "error"}
-            }
         }
     },
     Mutation: {

@@ -1,0 +1,24 @@
+type Query {
+    obtenerOfertaAcademica: ResultOferta
+}
+
+type Oferta {
+    id: ID!
+    periodo: Int!
+    anio: Int!
+    tipo: String!
+    nbtperido: String!
+    trayecto: String!
+    carrera: String!
+    cupos: Int!
+    materia: String!
+    estatus: String!
+    sede: String!
+}
+
+type ResultOferta {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Oferta]
+}

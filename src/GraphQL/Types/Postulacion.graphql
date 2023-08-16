@@ -34,3 +34,35 @@ type Query {
     obtenerEstatusPostulacion: ResultEstatuPostulacion,
     obtenerListadoPostuladoCarrera: ResultPostuladoAgrupadoCarrera
 }
+
+type Mutation {
+  crearPostulacion(input: InputPostulacion): ResultPostulacion!
+  aprobarPostulacion(input: InputAprobarPostulacion): ResultAprobarPostulacion!
+}
+
+input InputPostulacion {
+  usuario: Int!
+  carrera: Int!
+  periodo: Int!
+  fepostulacion: String!
+}
+
+type ResultPostulacion {
+  status: Int!
+  type: String!
+  message: String!
+}
+
+input InputAprobarPostulacion {
+  estatus: Int!
+  usuario: Int!
+  feaprobacion: String!
+  observacion: String!
+  idpostulacion: Int!
+}
+
+type ResultAprobarPostulacion {
+  status: Int!
+  type: String!
+  message: String!
+}

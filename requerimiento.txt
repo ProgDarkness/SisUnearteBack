@@ -29,6 +29,108 @@ mutation registropreviousuario {
     }
 }
 
+mutation actualizarusuario {
+  actualizarUsuario (
+    input:{
+      idnacionalidad: 1
+      cedula: 12345608
+      nombre: "Carla"
+      apellido: "Quiko"
+      sexo: 1
+      fenac: "14-09-1999"
+      idpais: 239
+      idcivil: 1
+      correo: "c@gmail.com"
+      idtpvia: 1
+      nbtpvia: "Calle Azul"
+      idtpzona: 1
+      nbzona: "La Villa"
+      idtpvivienda: 1
+      nuvivienda: "245"
+      idciudad:  604
+      idestado: 14
+      idmunicipio: 181
+      idparroquia: 605
+      idpostal: 19576
+      blregistro: "true"
+      idusuario: 14
+    }){
+    message
+    }
+}
+
+mutation crearpostulacion {
+  crearPostulacion (
+    input:{
+      usuario: 14
+      carrera: 8
+      periodo: 3
+      fepostulacion: "2023-08-15"
+    }){
+    message
+    }
+}
+
+query ofertas {
+  obtenerOfertaAcademica {
+    response {
+      id
+      periodo
+      anio
+      nbtperido
+      trayecto
+      carrera
+      cupos
+      materia
+      estatus
+      sede
+    }
+  }
+}
+
+mutation detalleusuario {
+  obtenerUsuario (
+    input:{
+      idusuario: 14
+    }){
+      response{
+        id
+        nacionalidad
+        cedula
+        nombre
+        apellido
+        sexo
+        fenac
+        pais
+        civil
+        correo
+        nbtpbia
+        nbvia
+        nbtpzona
+        nbzona
+        nbtpvivienda
+        nuvivienda
+        ciudad
+        estado
+        municipio
+        parroquia
+      }
+    }
+}
+
+mutation aprobarpostulacion {
+  aprobarPostulacion (
+    input:{
+      estatus: 2
+      usuario: 13
+      feaprobacion: "2023-08-15"
+      observacion: "Aprobado"
+      idpostulacion: 2
+    }){
+    message
+    }
+}
+
 =================== 13/08/2023 ==========================
 
 query tiposcarreras {
@@ -222,19 +324,6 @@ query parroquias {
     response {
       id
       nombre
-    }
-  }
-}
-
-query ofertas {
-  obtenerOfertaAcademica {
-    response {
-      id
-      periodo
-      anio
-      carrera
-      cupos
-      estatus
     }
   }
 }

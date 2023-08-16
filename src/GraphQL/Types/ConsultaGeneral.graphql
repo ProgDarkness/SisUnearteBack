@@ -204,7 +204,6 @@ type Query {
     obtenerEstados: ResultEstados,
     obtenerMunicipios: ResultMunicipios,
     obtenerParroquias: ResultParroquias,
-    obtenerOfertaAcademica: ResultOferta,
     obtenerTipoVia: ResultVias,
     obtenerTipoZona: ResultZonas,
     obtenerTipoVivienda: ResultViviendas,
