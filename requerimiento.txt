@@ -131,6 +131,47 @@ mutation aprobarpostulacion {
     }
 }
 
+mutation crearcarrera {
+  crearCarrera (
+    input:{
+      codigo: "ART-002"
+      nombre: "Artes II"
+      tipo: 1
+      ciclo: 2
+      titulo: "Licenciado"
+    }){
+    message
+    }
+}
+
+query todascarreras {
+  obtenerTodasCarreras {
+    response {
+      id
+      codigo
+      nombre
+      tipo
+      ciclo
+      estatus
+      titulo
+    }
+  }
+}
+
+mutation actulizarcarrera {
+  actualizarCarrera (
+    input:{
+      codigo: "ART-002"
+      nombre: "ARTE III"
+      tipo: 1
+      ciclo: 1
+      titulo: "Licenciado"
+      idcarrera: 15
+    }){
+    message
+    }
+}
+
 =================== 13/08/2023 ==========================
 
 query tiposcarreras {

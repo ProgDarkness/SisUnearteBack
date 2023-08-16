@@ -5,7 +5,7 @@
 -- Dumped from database version 14.8
 -- Dumped by pg_dump version 14.8
 
--- Started on 2023-08-15 14:14:46
+-- Started on 2023-08-15 23:58:46
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -3880,13 +3880,14 @@ COPY public.m005t_materias (id_materia, co_materia, nb_materia, nu_credito, id_t
 --
 
 COPY public.m006t_carreras (id_carrera, co_carrera, nb_carrera, id_tp_carrera, id_ciclo, visible, created_at, updated_at, id_estatus_carrera, titulo_otorgado) FROM stdin;
-8	CBC-APP35	ARTES PLÁSTICAS	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	\N
-9	CBC-MP35	ARTES PLÁSTICAS, MUSEOLOGÍA	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	\N
-10	CBC-OP35	ORFEBRERÍA Y JOYERÍA	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	\N
-11	CBC-AAP35	ARTES AUDIOVISUALES	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	\N
-12	CIDC-DP35	DANZA	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	\N
-14	CBC-DP35	DANZA. DANZA CREATIVA, COREOGRAFÍA, TRADICIONAL POPULAR.	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	\N
-13	CIDC-DP35	DANZA. Danza Contemporánea.	1	1	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	\N
+8	CBC-APP35	ARTES PLÁSTICAS	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	Licenciado
+9	CBC-MP35	ARTES PLÁSTICAS, MUSEOLOGÍA	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	Licenciado
+10	CBC-OP35	ORFEBRERÍA Y JOYERÍA	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	Licenciado
+11	CBC-AAP35	ARTES AUDIOVISUALES	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	Licenciado
+12	CIDC-DP35	DANZA	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	Licenciado
+14	CBC-DP35	DANZA. DANZA CREATIVA, COREOGRAFÍA, TRADICIONAL POPULAR.	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	Licenciado
+13	CIDC-DP35	DANZA. Danza Contemporánea.	1	1	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	Licenciado
+15	ART-002	ARTE III	1	1	\N	\N	\N	\N	Licenciado
 \.
 
 
@@ -45750,7 +45751,7 @@ COPY public.m049t_estado_mundo (id_estado_mundo, nb_estado_mundo, id_pais) FROM 
 --
 
 COPY public.r001t_docente_materia (id_dicta, id_materia, id_personal, id_carrera, id_estatus, hora_semanal, id_tpcurricular, created_at, updated_at) FROM stdin;
-3	1	3	1	t	5	1	\N	\N
+3	1	3	8	t	5	1	\N	\N
 \.
 
 
@@ -45761,7 +45762,7 @@ COPY public.r001t_docente_materia (id_dicta, id_materia, id_personal, id_carrera
 --
 
 COPY public.r002t_carrera_materia (id_carrema, id_carrera, id_materia, id_sede, visible, hora_semanal, id_trayecto, created_at, updated_at) FROM stdin;
-1	8	1	1	t	12	1	2023-07-27 15:26:56	2023-07-27 15:26:56
+1	8	1	1	t	12	4	2023-07-27 15:26:56	2023-07-27 15:26:56
 \.
 
 
@@ -45823,11 +45824,11 @@ COPY public.r007t_sede_carrera (id_scarrera, id_sede, id_carrera, created_at, up
 --
 
 COPY public.t001t_usuarios (id_usuario, tx_clave, user_name, bl_status, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_sexo_usuario, fe_nac_usuario, id_pais_origen, id_estado_civil, correo_usuario, id_estudiante, id_personal, id_tipo_via, nb_via, id_tipo_zona, nb_zona, id_tipo_vivienda, nu_vivienda, id_ciudad, id_estado, id_zona_postal, www_preinscripcion, created_at, updated_at, id_municipio, id_parroquia, bl_registro) FROM stdin;
-9	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	gmarcano	t	2	1	28484689	GABRIEL	MARCANO	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-08-11 14:39:27.398252-04	2023-08-11 14:41:44.21061-04	\N	\N	\N
-10	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	hvalor	t	2	1	17044191	HILDEMAR	VALOR	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-08-11 14:42:28.876778-04	2023-08-11 14:42:28.876778-04	\N	\N	\N
-11	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	manez	t	3	1	22456876	MIGUEL	AÑEZ	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-08-11 16:42:00.590816-04	2023-08-11 16:42:00.590816-04	\N	\N	\N
 13	\N	\N	f	\N	1	12345670	Ana	Torres	1	1983-09-14 00:00:00	239	1	a@gmail.com	\N	\N	1	La Salle	1	La Colina	1	23-B	604	14	19576	\N	2023-08-15 14:06:05.551214-04	2023-08-15 14:06:05.551214-04	181	605	\N
-14	\N	\N	f	\N	1	12345608	Carla	Quiko	1	1999-09-14 00:00:00	239	1	c@gmail.com	\N	\N	1	La Crema	1	La Montania	1	245	604	14	19576	\N	2023-08-15 14:13:03.823497-04	2023-08-15 14:13:03.823497-04	181	605	t
+14	\N	\N	f	\N	1	12345608	Carla	Quiko	1	1999-09-14 00:00:00	239	1	c@gmail.com	\N	\N	1	Calle Azul	1	La Villa	1	245	604	14	19576	\N	2023-08-15 14:13:03.823497-04	2023-08-15 14:13:03.823497-04	181	605	t
+9	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	gmarcano	t	2	1	28484689	GABRIEL	MARCANO	2	\N	239	1	\N	\N	\N	1	hjj	1	jjhj	1	88	605	14	19576	\N	2023-08-11 14:39:27.398252-04	2023-08-11 14:41:44.21061-04	181	605	\N
+10	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	hvalor	t	2	1	17044191	HILDEMAR	VALOR	2	\N	239	1	\N	\N	\N	1	jhkjh	1	hjhj	1	99	604	1	19576	\N	2023-08-11 14:42:28.876778-04	2023-08-11 14:42:28.876778-04	181	605	\N
+11	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	manez	t	3	1	22456876	MIGUEL	AÑEZ	2	\N	239	1	\N	\N	\N	1	jkhj	1	kjhjh	1	44	604	14	19675	\N	2023-08-11 16:42:00.590816-04	2023-08-11 16:42:00.590816-04	181	605	\N
 \.
 
 
@@ -45885,7 +45886,7 @@ COPY public.t005t_inscripcion (id_inscripcion, id_estudiante, id_periodo, id_est
 --
 
 COPY public.t006t_periodo_lectivo (id_periodo, co_periodo, id_tp_periodo, anio_periodo, mes_inicio_periodo, mes_fin_periodo, nu_semana_interperido, id_personal, tx_mensaje, fe_inicio, fe_fin, fe_ult_entrega_acta, fe_ult_solic_documento, fe_pre_solic_grado, fe_retiro, fe_modificacion, fe_inicio_preinscripcion, fe_fin_preinscripcion, fe_inicio_inscripcion, fe_fin_inscripcion, fe_inicio_oferta, fe_fin_oferta, fe_inicio_retiro, fe_fin_retiro, fe_inicio_notas, fe_fin_notas, visible, id_estatus_periodo, id_trayecto, created_at, updated_at) FROM stdin;
-3	1	1	2023	1	5	1	1	Periodo 1	2023-08-10 00:00:00	2023-10-10 00:00:00	2023-08-10 00:00:00	2023-08-10 00:00:00	2023-08-10 00:00:00	2023-08-10 00:00:00	2023-08-10 00:00:00	2023-08-10 00:00:00	2023-08-20 00:00:00	2023-08-20 00:00:00	2023-08-30 00:00:00	2023-08-10 00:00:00	2023-08-15 00:00:00	2023-08-17 00:00:00	2023-08-20 00:00:00	2023-10-10 00:00:00	2023-10-15 00:00:00	t	1	1	\N	\N
+3	1	1	2023	1	5	1	1	Periodo 1	2023-08-10 00:00:00	2023-10-10 00:00:00	2023-08-10 00:00:00	2023-08-10 00:00:00	2023-08-10 00:00:00	2023-08-10 00:00:00	2023-08-10 00:00:00	2023-08-10 00:00:00	2023-08-20 00:00:00	2023-08-20 00:00:00	2023-08-30 00:00:00	2023-08-10 00:00:00	2023-08-15 00:00:00	2023-08-17 00:00:00	2023-08-20 00:00:00	2023-10-10 00:00:00	2023-10-15 00:00:00	t	1	5	\N	\N
 \.
 
 
@@ -45906,7 +45907,7 @@ COPY public.t007t_horario (id_horario, id_personal, id_materia, id_periodo, id_d
 --
 
 COPY public.t008t_oferta_academica (id_oferta, id_periodo, id_carrera, nu_cupos, nu_seccion, id_sede, visible, id_estatus_oferta, created_at, updated_at) FROM stdin;
-3	3	8	30	1	1	t	1	\N	\N
+3	3	8	30	1	3	t	1	\N	\N
 \.
 
 
@@ -45958,7 +45959,9 @@ COPY public.t012t_geografico_sede (id_geografico_sede, id_tp_via, nb_via, id_tp_
 --
 
 COPY public.t013t_postulacion (id_postulacion, id_usuario, id_carrera, id_periodo, fe_postulacion, id_estatus_postulacion, id_usuario_aprobacion, fe_aprobacion, st_activo, tx_observacion, created_at, updated_at) FROM stdin;
-2	11	8	3	\N	\N	\N	\N	\N	\N	\N	\N
+3	14	8	3	2023-08-15 00:00:00	4	\N	\N	t	\N	\N	\N
+4	14	8	3	2023-08-15 00:00:00	4	\N	\N	t	\N	\N	\N
+2	11	8	3	2023-08-15 00:00:00	2	13	2023-08-15 00:00:00	\N	Aprobado	\N	\N
 \.
 
 
@@ -46013,7 +46016,7 @@ SELECT pg_catalog.setval('public.m005t_materias_id_seq', 10, true);
 -- Name: m006t_carreras_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.m006t_carreras_id_seq', 14, true);
+SELECT pg_catalog.setval('public.m006t_carreras_id_seq', 15, true);
 
 
 --
@@ -46553,7 +46556,7 @@ SELECT pg_catalog.setval('public.t012t_geografico_sede_id_seq', 1, false);
 -- Name: t013t_postulacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.t013t_postulacion_id_seq', 2, true);
+SELECT pg_catalog.setval('public.t013t_postulacion_id_seq', 4, true);
 
 
 --
@@ -47507,7 +47510,7 @@ ALTER TABLE ONLY public.t008t_oferta_academica
     ADD CONSTRAINT t008t_oferta_academica_fk_0 FOREIGN KEY (id_carrera) REFERENCES public.m006t_carreras(id_carrera);
 
 
--- Completed on 2023-08-15 14:14:48
+-- Completed on 2023-08-15 23:58:47
 
 --
 -- PostgreSQL database dump complete

@@ -2,6 +2,8 @@ type Mutation {
     obtenerEstudiante(input: InputConsultaEstudiante!): ResultEstudiante
     crearEstudiante(input: InputEstudiante!): ResultEstudiante
     obtenerDetalleCarrera(input: InputCarrera!): ResultCarrera
+    crearCarrera(input: InputCrearCarrera!): ResultCrearCarrera!
+    actualizarCarrera(input: InputActualizarCarrera!): ResultCrearCarrera!
 }
 
 input InputConsultaEstudiante {
@@ -49,4 +51,48 @@ type ResultCarrera {
     message: String!
     type: String!
     response: [DetalleCarrera]
+}
+
+input InputCrearCarrera {
+    codigo: String!
+    nombre: String!
+    tipo: Int!
+    ciclo: Int!
+    titulo: String!
+}
+
+input InputActualizarCarrera {
+    codigo: String!
+    nombre: String!
+    tipo: Int!
+    ciclo: Int!
+    titulo: String!
+    idcarrera: Int!
+}
+
+type ResultCrearCarrera {
+    status: Int!
+    message: String!
+    type: String!
+}
+
+type Query {
+    obtenerTodasCarreras: ResultTodasCarreras,
+}
+
+type Carreras {
+    id: ID!
+    codigo: String!
+    nombre: String!
+    tipo: String!
+    ciclo: String!
+    estatus: String!
+    titulo: String!
+}
+
+type ResultTodasCarreras {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Carreras]
 }

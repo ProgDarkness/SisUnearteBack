@@ -278,4 +278,3 @@ type ResultParroquiasMunicipio {
     type: String!
     response: [ParroquiaMunicipio]
 }
-
