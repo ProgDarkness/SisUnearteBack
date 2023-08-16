@@ -21,5 +21,25 @@ export default {
                 return {status: 500, message: e.message, type: "error"}
             }
         }
+    },
+    Mutation: {
+        crearOferta: async (_, {input}) => {
+            const {periodo, carrera, cupos, seccion, sede} = input
+            console.log(input);
+            try {   
+                let estatus = null;
+                let visible = null;
+                estatus = 1;  
+                visible = true;  
+                await dbp.none(
+                    `INSERT INTO public.t008t_oferta_academica(
+                    id_periodo, id_carrera, nu_cupos, nu_seccion, id_sede, visible, id_estatus_oferta)
+                    VALUES ( $1, $2, $3, $4, $5, $6, $7);`, [periodo, carrera, cupos, seccion, sede, visible, estatus])
+
+                    return {status: 200, message: 'Oferta registrada exitosamente', type: "success"}
+            } catch (e) {
+                return {status: 500, message: `Error: ${e.message}`, type: "error"}
+            }
+        }
     }
 };

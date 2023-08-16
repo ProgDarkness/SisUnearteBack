@@ -1,3 +1,21 @@
+type Mutation {
+    crearOferta(input: InputOferta!): ResultadOferta!
+}
+
+input InputOferta {
+  periodo: Int!
+  carrera: Int!
+  cupos: Int!
+  seccion: Int!
+  sede: Int!
+}
+
+type ResultadOferta {
+    status: Int!
+    message: String!
+    type: String!
+}
+
 type Query {
     obtenerOfertaAcademica: ResultOferta
 }
