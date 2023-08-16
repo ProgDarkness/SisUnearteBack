@@ -137,6 +137,14 @@ export default {
             } catch (e) {
                 return {status: 500, message: e.message, type: "error"}
             }
+        },
+        obtenerEstadoCivil: async () => {
+            try {
+                const estadosciviles = await dbp.manyOrNone(`SELECT id_civil as id, nb_civil as nombre FROM public.m027t_estado_civil;`);
+                return {status: 200, message: 'Estados civiles encontrados', type: "success", response: estadosciviles}
+            } catch (e) {
+                return {status: 500, message: e.message, type: "error"}
+            }
         }
     },
     Mutation: {

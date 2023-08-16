@@ -205,6 +205,18 @@ type ResultTipoDocumento {
     response: [TipoDocumento]
 }
 
+type EstadoCivil {
+    id: ID!
+    nombre: String!
+}
+
+type ResultEstadosCiviles {
+    status: Int!
+    message: String!
+    type: String!
+    response: [EstadoCivil]
+}
+
 type Query {
     obtenerMaterias: ResultMaterias,
     obtenerCarreras: ResultCarreras,
@@ -223,6 +235,7 @@ type Query {
     obtenerPaises: ResultPaises,
     obtenerCodigoPostal: ResultCodigoPostal,
     obtenerTipoDocumento: ResultTipoDocumento
+    obtenerEstadoCivil: ResultEstadosCiviles
 }
 
 type Mutation {

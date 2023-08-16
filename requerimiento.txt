@@ -1,4 +1,16 @@
 =================== 16/08/2023 ==========================
+query obtenerEstadoCivil {
+  obtenerEstadoCivil {
+    status
+    message
+    type
+    response {
+      id
+      nombre
+    }
+  }
+}
+
 mutation eliminarcarrera {
   eliminarCarrera (
     input:{
