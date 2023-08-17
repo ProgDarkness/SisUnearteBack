@@ -5,7 +5,7 @@
 -- Dumped from database version 14.8
 -- Dumped by pg_dump version 14.8
 
--- Started on 2023-08-17 08:21:08
+-- Started on 2023-08-17 09:05:15
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -82,7 +82,8 @@ CREATE TABLE public.m001t_estados (
     id_estado integer DEFAULT nextval('public.m001t_estados_id_seq'::regclass) NOT NULL,
     id_region smallint NOT NULL,
     nb_estado character varying(50),
-    cod_estado character varying(50)
+    cod_estado character varying(50),
+    cod_pais integer
 );
 
 
@@ -1543,7 +1544,7 @@ CREATE TABLE public.m049t_estado_mundo (
 ALTER TABLE public.m049t_estado_mundo OWNER TO postgres;
 
 --
--- TOC entry 346 (class 1259 OID 32981)
+-- TOC entry 345 (class 1259 OID 32981)
 -- Name: m050t_meses_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1559,7 +1560,7 @@ CREATE SEQUENCE public.m050t_meses_id_seq
 ALTER TABLE public.m050t_meses_id_seq OWNER TO postgres;
 
 --
--- TOC entry 347 (class 1259 OID 32982)
+-- TOC entry 346 (class 1259 OID 32982)
 -- Name: m050t_meses; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1829,7 +1830,7 @@ CREATE SEQUENCE public.r008t_oferta_materia_carrera_id_seq
 ALTER TABLE public.r008t_oferta_materia_carrera_id_seq OWNER TO postgres;
 
 --
--- TOC entry 345 (class 1259 OID 32975)
+-- TOC entry 344 (class 1259 OID 32975)
 -- Name: r008t_oferta_materia_carrera; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2395,12 +2396,13 @@ CREATE SEQUENCE public.t014t_oferta_horario_id_seq
 ALTER TABLE public.t014t_oferta_horario_id_seq OWNER TO postgres;
 
 --
--- TOC entry 344 (class 1259 OID 32965)
+-- TOC entry 347 (class 1259 OID 32990)
 -- Name: t014t_oferta_horario; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.t014t_oferta_horario (
     id_horaoferta integer DEFAULT nextval('public.t014t_oferta_horario_id_seq'::regclass) NOT NULL,
+    id_oferta integer NOT NULL,
     id_bloque integer NOT NULL,
     id_profesor integer NOT NULL,
     id_aula integer NOT NULL,
@@ -2420,32 +2422,32 @@ ALTER TABLE public.t014t_oferta_horario OWNER TO postgres;
 -- Data for Name: m001t_estados; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.m001t_estados (id_estado, id_region, nb_estado, cod_estado) FROM stdin;
-2	1	MIRANDA	2
-12	4	AMAZONAS	12
-13	4	APURE	13
-14	4	ARAGUA	14
-15	4	GUÁRICO	15
-16	5	FALCÓN	16
-17	5	ZULIA	17
-18	6	ANZOÁTEGUI	18
-19	6	BOLÍVAR	19
-20	6	DELTA AMACURO	20
-21	6	MONAGAS	21
-22	6	NUEVA ESPARTA	22
-23	6	SUCRE	23
-24	7	LA GUAIRA	24
-1	1	DISTRITO CAPITAL	1
-3	2	BARINAS	3
-4	2	TRUJILLO	4
-5	2	MÉRIDA	5
-6	2	TÁCHIRA	6
-7	3	CARABOBO	7
-8	3	COJEDES	8
-9	3	LARA	9
-10	3	PORTUGUESA	10
-11	3	YARACUY	11
-25	8	NACIONAL	0
+COPY public.m001t_estados (id_estado, id_region, nb_estado, cod_estado, cod_pais) FROM stdin;
+2	1	MIRANDA	2	239
+12	4	AMAZONAS	12	239
+13	4	APURE	13	239
+14	4	ARAGUA	14	239
+15	4	GUÁRICO	15	239
+16	5	FALCÓN	16	239
+17	5	ZULIA	17	239
+18	6	ANZOÁTEGUI	18	239
+19	6	BOLÍVAR	19	239
+20	6	DELTA AMACURO	20	239
+21	6	MONAGAS	21	239
+22	6	NUEVA ESPARTA	22	239
+23	6	SUCRE	23	239
+24	7	LA GUAIRA	24	239
+1	1	DISTRITO CAPITAL	1	239
+3	2	BARINAS	3	239
+4	2	TRUJILLO	4	239
+5	2	MÉRIDA	5	239
+6	2	TÁCHIRA	6	239
+7	3	CARABOBO	7	239
+8	3	COJEDES	8	239
+9	3	LARA	9	239
+10	3	PORTUGUESA	10	239
+11	3	YARACUY	11	239
+25	8	NACIONAL	0	0
 \.
 
 
@@ -4023,6 +4025,7 @@ COPY public.m009t_tipo_discapacidad (id_tp_discapacidad, nb_tp_discapacidad, tx_
 2	Visual	Reduccion de visión	t	\N	\N
 3	Fisica	Falta de miembro del cuerpo	t	\N	\N
 4	Sordera	Dificultad para escuchar	t	\N	\N
+5	Ninguna	Saludable	t	\N	\N
 \.
 
 
@@ -45852,8 +45855,8 @@ COPY public.m049t_estado_mundo (id_estado_mundo, nb_estado_mundo, id_pais) FROM 
 
 
 --
--- TOC entry 4037 (class 0 OID 32982)
--- Dependencies: 347
+-- TOC entry 4036 (class 0 OID 32982)
+-- Dependencies: 346
 -- Data for Name: m050t_meses; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -45949,8 +45952,8 @@ COPY public.r007t_sede_carrera (id_scarrera, id_sede, id_carrera, created_at, up
 
 
 --
--- TOC entry 4035 (class 0 OID 32975)
--- Dependencies: 345
+-- TOC entry 4034 (class 0 OID 32975)
+-- Dependencies: 344
 -- Data for Name: r008t_oferta_materia_carrera; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -46052,6 +46055,9 @@ COPY public.t007t_horario (id_horario, id_personal, id_materia, id_periodo, id_d
 COPY public.t008t_oferta_academica (id_oferta, id_periodo, id_carrera, nu_cupos, nu_seccion, id_sede, visible, id_estatus_oferta, created_at, updated_at) FROM stdin;
 3	3	8	30	1	3	t	1	\N	\N
 4	2	8	30	2	3	t	1	\N	\N
+5	2	8	30	2	3	t	1	\N	\N
+6	2	8	30	2	3	t	1	\N	\N
+7	2	8	30	2	3	t	1	\N	\N
 \.
 
 
@@ -46110,12 +46116,12 @@ COPY public.t013t_postulacion (id_postulacion, id_usuario, id_carrera, id_period
 
 
 --
--- TOC entry 4034 (class 0 OID 32965)
--- Dependencies: 344
+-- TOC entry 4037 (class 0 OID 32990)
+-- Dependencies: 347
 -- Data for Name: t014t_oferta_horario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.t014t_oferta_horario (id_horaoferta, id_bloque, id_profesor, id_aula, id_seccion, id_trayecto, id_materia, created_at, updated_at) FROM stdin;
+COPY public.t014t_oferta_horario (id_horaoferta, id_oferta, id_bloque, id_profesor, id_aula, id_seccion, id_trayecto, id_materia, created_at, updated_at) FROM stdin;
 \.
 
 
@@ -46197,7 +46203,7 @@ SELECT pg_catalog.setval('public.m008t_tipopersonal_id_seq', 1, true);
 -- Name: m009t_discapacidad_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.m009t_discapacidad_id_seq', 4, true);
+SELECT pg_catalog.setval('public.m009t_discapacidad_id_seq', 5, true);
 
 
 --
@@ -46526,7 +46532,7 @@ SELECT pg_catalog.setval('public.m049t_estado_mundo_id_seq', 822, true);
 
 --
 -- TOC entry 4089 (class 0 OID 0)
--- Dependencies: 346
+-- Dependencies: 345
 -- Name: m050t_meses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46683,7 +46689,7 @@ SELECT pg_catalog.setval('public.t007t_horario_id_seq', 1, false);
 -- Name: t008t_oferta_academica_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.t008t_oferta_academica_id_seq', 4, true);
+SELECT pg_catalog.setval('public.t008t_oferta_academica_id_seq', 7, true);
 
 
 --
@@ -47191,7 +47197,7 @@ ALTER TABLE ONLY public.m049t_estado_mundo
 
 
 --
--- TOC entry 3724 (class 2606 OID 32987)
+-- TOC entry 3722 (class 2606 OID 32987)
 -- Name: m050t_meses m050t_meses_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47281,7 +47287,7 @@ ALTER TABLE ONLY public.r007t_sede_carrera
 
 
 --
--- TOC entry 3722 (class 2606 OID 32980)
+-- TOC entry 3720 (class 2606 OID 32980)
 -- Name: r008t_oferta_materia_carrera r008t_oferta_materia_carrera_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47362,7 +47368,7 @@ ALTER TABLE ONLY public.t013t_postulacion
 
 
 --
--- TOC entry 3720 (class 2606 OID 32970)
+-- TOC entry 3724 (class 2606 OID 32995)
 -- Name: t014t_oferta_horario t014t_oferta_horario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47718,7 +47724,7 @@ ALTER TABLE ONLY public.t008t_oferta_academica
     ADD CONSTRAINT t008t_oferta_academica_fk_0 FOREIGN KEY (id_carrera) REFERENCES public.m006t_carreras(id_carrera);
 
 
--- Completed on 2023-08-17 08:21:09
+-- Completed on 2023-08-17 09:05:16
 
 --
 -- PostgreSQL database dump complete
