@@ -8,6 +8,8 @@ input InputOferta {
   cupos: Int!
   seccion: Int!
   sede: Int!
+  materia: Int!
+  trayecto: Int!
 }
 
 type ResultadOferta {

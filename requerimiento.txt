@@ -33,6 +33,14 @@ query obtenerperiodos {
     }
   }
 }
+
+mutation crearoferta($InputOferta: InputOferta!) {
+  crearOferta(input: $InputOferta) {
+    status
+    message
+    type
+    }
+}
 =================== 16/08/2023 ==========================
 query obtenerEstadoCivil {
   obtenerEstadoCivil {
@@ -118,19 +126,6 @@ mutation actualizarestatuscarrera {
     input:{
       estatus: 2
       idcarrera: 13
-    }){
-    message
-    }
-}
-
-mutation crearoferta {
-  crearOferta (
-    input:{
-      periodo: 2
-			carrera: 8
-      cupos: 30
-      seccion: 2
-      sede: 3
     }){
     message
     }

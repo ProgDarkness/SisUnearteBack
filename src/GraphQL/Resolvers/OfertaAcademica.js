@@ -24,17 +24,24 @@ export default {
     },
     Mutation: {
         crearOferta: async (_, {input}) => {
-            const {periodo, carrera, cupos, seccion, sede} = input
+            const {periodo, carrera, cupos, seccion, sede, materia, trayecto} = input
             console.log(input);
             try {   
                 let estatus = null;
                 let visible = null;
                 estatus = 1;  
                 visible = true;  
-                await dbp.none(
+                const idofertas = await dbp.oneOrNone(
                     `INSERT INTO public.t008t_oferta_academica(
                     id_periodo, id_carrera, nu_cupos, nu_seccion, id_sede, visible, id_estatus_oferta)
-                    VALUES ( $1, $2, $3, $4, $5, $6, $7);`, [periodo, carrera, cupos, seccion, sede, visible, estatus])
+                    VALUES ( $1, $2, $3, $4, $5, $6, $7) RETURNING id_oferta;`, [periodo, carrera, cupos, seccion, sede, visible, estatus])
+
+                    console.log(idofertas.id_oferta);
+
+                    await dbp.none(
+                        `INSERT INTO public.r008t_oferta_materia_carrera(
+                        id_oferta, id_carrera, id_materia, id_trayecto)
+                        VALUES ( $1, $2, $3, $4);`, [idofertas.id_oferta, carrera, materia, trayecto])
 
                     return {status: 200, message: 'Oferta registrada exitosamente', type: "success"}
             } catch (e) {
