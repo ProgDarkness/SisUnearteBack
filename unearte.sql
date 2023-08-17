@@ -5,7 +5,7 @@
 -- Dumped from database version 14.8
 -- Dumped by pg_dump version 14.8
 
--- Started on 2023-08-17 09:05:15
+-- Started on 2023-08-17 14:44:05
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1899,7 +1899,9 @@ CREATE TABLE public.t001t_usuarios (
     updated_at timestamp with time zone DEFAULT now(),
     id_municipio integer,
     id_parroquia integer,
-    bl_registro boolean
+    bl_registro boolean,
+    nb2_usuario character varying(50),
+    ape2_usuario character varying(50)
 );
 
 
@@ -45958,6 +45960,9 @@ COPY public.r007t_sede_carrera (id_scarrera, id_sede, id_carrera, created_at, up
 --
 
 COPY public.r008t_oferta_materia_carrera (id_omateria, id_oferta, id_materia, id_carrera, id_trayecto, created_at, updated_at) FROM stdin;
+1	11	8	8	4	\N	\N
+2	12	8	8	4	\N	\N
+3	13	8	8	4	\N	\N
 \.
 
 
@@ -45967,12 +45972,12 @@ COPY public.r008t_oferta_materia_carrera (id_omateria, id_oferta, id_materia, id
 -- Data for Name: t001t_usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.t001t_usuarios (id_usuario, tx_clave, user_name, bl_status, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_sexo_usuario, fe_nac_usuario, id_pais_origen, id_estado_civil, correo_usuario, id_estudiante, id_personal, id_tipo_via, nb_via, id_tipo_zona, nb_zona, id_tipo_vivienda, nu_vivienda, id_ciudad, id_estado, id_zona_postal, www_preinscripcion, created_at, updated_at, id_municipio, id_parroquia, bl_registro) FROM stdin;
-13	\N	\N	f	\N	1	12345670	Ana	Torres	1	1983-09-14 00:00:00	239	1	a@gmail.com	\N	\N	1	La Salle	1	La Colina	1	23-B	604	14	19576	\N	2023-08-15 14:06:05.551214-04	2023-08-15 14:06:05.551214-04	181	605	\N
-14	\N	\N	f	\N	1	12345608	Carla	Quiko	1	1999-09-14 00:00:00	239	1	c@gmail.com	\N	\N	1	Calle Azul	1	La Villa	1	245	604	14	19576	\N	2023-08-15 14:13:03.823497-04	2023-08-15 14:13:03.823497-04	181	605	t
-9	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	gmarcano	t	2	1	28484689	GABRIEL	MARCANO	2	\N	239	1	\N	\N	\N	1	hjj	1	jjhj	1	88	605	14	19576	\N	2023-08-11 14:39:27.398252-04	2023-08-11 14:41:44.21061-04	181	605	\N
-10	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	hvalor	t	2	1	17044191	HILDEMAR	VALOR	2	\N	239	1	\N	\N	\N	1	jhkjh	1	hjhj	1	99	604	1	19576	\N	2023-08-11 14:42:28.876778-04	2023-08-11 14:42:28.876778-04	181	605	\N
-11	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	manez	t	3	1	22456876	MIGUEL	AÑEZ	2	\N	239	1	\N	\N	\N	1	jkhj	1	kjhjh	1	44	604	14	19675	\N	2023-08-11 16:42:00.590816-04	2023-08-11 16:42:00.590816-04	181	605	\N
+COPY public.t001t_usuarios (id_usuario, tx_clave, user_name, bl_status, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_sexo_usuario, fe_nac_usuario, id_pais_origen, id_estado_civil, correo_usuario, id_estudiante, id_personal, id_tipo_via, nb_via, id_tipo_zona, nb_zona, id_tipo_vivienda, nu_vivienda, id_ciudad, id_estado, id_zona_postal, www_preinscripcion, created_at, updated_at, id_municipio, id_parroquia, bl_registro, nb2_usuario, ape2_usuario) FROM stdin;
+13	\N	\N	f	\N	1	12345670	Ana	Torres	1	1983-09-14 00:00:00	239	1	a@gmail.com	\N	\N	1	La Salle	1	La Colina	1	23-B	604	14	19576	\N	2023-08-15 14:06:05.551214-04	2023-08-15 14:06:05.551214-04	181	605	\N	\N	\N
+14	\N	\N	f	\N	1	12345608	Carla	Quiko	1	1999-09-14 00:00:00	239	1	c@gmail.com	\N	\N	1	Calle Azul	1	La Villa	1	245	604	14	19576	\N	2023-08-15 14:13:03.823497-04	2023-08-15 14:13:03.823497-04	181	605	t	\N	\N
+9	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	gmarcano	t	2	1	28484689	GABRIEL	MARCANO	2	\N	239	1	\N	\N	\N	1	hjj	1	jjhj	1	88	605	14	19576	\N	2023-08-11 14:39:27.398252-04	2023-08-11 14:41:44.21061-04	181	605	\N	\N	\N
+10	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	hvalor	t	2	1	17044191	HILDEMAR	VALOR	2	\N	239	1	\N	\N	\N	1	jhkjh	1	hjhj	1	99	604	1	19576	\N	2023-08-11 14:42:28.876778-04	2023-08-11 14:42:28.876778-04	181	605	\N	\N	\N
+11	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	manez	t	3	1	22456876	MIGUEL	AÑEZ	2	\N	239	1	\N	\N	\N	1	jkhj	1	kjhjh	1	44	604	14	19675	\N	2023-08-11 16:42:00.590816-04	2023-08-11 16:42:00.590816-04	181	605	\N	\N	\N
 \.
 
 
@@ -46058,6 +46063,12 @@ COPY public.t008t_oferta_academica (id_oferta, id_periodo, id_carrera, nu_cupos,
 5	2	8	30	2	3	t	1	\N	\N
 6	2	8	30	2	3	t	1	\N	\N
 7	2	8	30	2	3	t	1	\N	\N
+8	2	8	30	2	3	t	1	\N	\N
+9	2	8	30	2	3	t	1	\N	\N
+10	2	8	30	2	3	t	1	\N	\N
+11	2	8	30	2	3	t	1	\N	\N
+12	2	8	30	2	3	t	1	\N	\N
+13	2	8	30	2	3	t	1	\N	\N
 \.
 
 
@@ -46608,7 +46619,7 @@ SELECT pg_catalog.setval('public.r007t_sede_carrera_id_seq', 1, false);
 -- Name: r008t_oferta_materia_carrera_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.r008t_oferta_materia_carrera_id_seq', 1, false);
+SELECT pg_catalog.setval('public.r008t_oferta_materia_carrera_id_seq', 3, true);
 
 
 --
@@ -46689,7 +46700,7 @@ SELECT pg_catalog.setval('public.t007t_horario_id_seq', 1, false);
 -- Name: t008t_oferta_academica_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.t008t_oferta_academica_id_seq', 7, true);
+SELECT pg_catalog.setval('public.t008t_oferta_academica_id_seq', 13, true);
 
 
 --
@@ -47724,7 +47735,7 @@ ALTER TABLE ONLY public.t008t_oferta_academica
     ADD CONSTRAINT t008t_oferta_academica_fk_0 FOREIGN KEY (id_carrera) REFERENCES public.m006t_carreras(id_carrera);
 
 
--- Completed on 2023-08-17 09:05:16
+-- Completed on 2023-08-17 14:44:06
 
 --
 -- PostgreSQL database dump complete
