@@ -162,10 +162,15 @@ export default {
         obtenerEstadosPorPais: async (_, {input}) => {
             const {pais} = input
             console.log(input);
-            try {    
-                const paises = await dbp.manyOrNone(`SELECT id_estado_mundo as id, nb_estado_mundo as nombre FROM m049t_estado_mundo WHERE id_pais = $1;`, [pais]);
-                console.log(paises);
-                return {status: 200, message: 'Estados encontrados', type: "success", response: paises}
+            try {
+                if (pais === 239) {
+                    const paises = await dbp.manyOrNone(`SELECT cod_estado as id, nb_estado as nombre FROM public.m001t_estados WHERE cod_pais = $1`, [pais]);
+                    return {status: 200, message: 'Estados encontrados', type: "success", response: paises}
+                } else {
+                    const paises = await dbp.manyOrNone(`SELECT id_estado_mundo as id, nb_estado_mundo as nombre FROM m049t_estado_mundo WHERE id_pais = $1;`, [pais]);
+                    console.log(paises);
+                    return {status: 200, message: 'Estados encontrados', type: "success", response: paises}
+                }
             } catch (e) {
                 return {status: 500, message: `Error: ${e.message}`, type: "error"}
             }
@@ -188,6 +193,17 @@ export default {
                 const parroquiamunicipios = await dbp.manyOrNone(`SELECT id_parroquia as id, nb_parroquia as nombre FROM m003t_parroquias WHERE id_municipio = $1;`, [municipio]);
                 console.log(parroquiamunicipios);
                 return {status: 200, message: 'Parroquias encontrados por municipio', type: "success", response: parroquiamunicipios}
+            } catch (e) {
+                return {status: 500, message: `Error: ${e.message}`, type: "error"}
+            }
+        },
+        obtenerZonasPorParroquias: async (_, {input}) => {
+            const {parroquia} = input
+
+            try {
+                const zonasporparroquia = await dbp.manyOrNone(`SELECT id_zona as id, nb_zona as nombre, codigo_postal
+                FROM public.m023t_zona WHERE id_parroquia = $1;`, parroquia)
+                return {status: 200, message: 'Zonas encontradas por parroquia', type: "success", response: zonasporparroquia}
             } catch (e) {
                 return {status: 500, message: `Error: ${e.message}`, type: "error"}
             }

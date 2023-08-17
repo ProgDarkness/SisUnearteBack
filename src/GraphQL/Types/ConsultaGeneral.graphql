@@ -217,6 +217,19 @@ type ResultEstadosCiviles {
     response: [EstadoCivil]
 }
 
+type ResultZonasParroquia {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Zonas]
+}
+
+type Zonas {
+    id: Int!
+    nombre: String!
+    codigo_postal: String!
+}
+
 type Query {
     obtenerMaterias: ResultMaterias,
     obtenerCarreras: ResultCarreras,
@@ -243,6 +256,11 @@ type Mutation {
     obtenerEstadosPorPais(input: InputPais!): ResultPais
     obtenerMunicipiosPorEstado(input: InputEstado!): ResultMunicipiosEstado
     obtenerParrquiasPorMunicipio(input: InputMunicipio!): ResultParroquiasMunicipio
+    obtenerZonasPorParroquias(input: InputParroquia!): ResultZonasParroquia
+}
+
+input InputParroquia {
+    parroquia: Int!
 }
 
 input InputEstado {
