@@ -134,6 +134,52 @@ mutation crearperiodo {
     message
     }
 }
+
+mutation actualizarperiodo {
+  actualizarPeriodo (
+    input:{
+      codigo: 1
+      tipo: 1
+      anio: 2023
+      mesinicio: 1
+      mesfin: 3
+      nusemana: 3
+      personal: 3
+      mensaje: "Periodo cod 3"
+      feinicio: "2023-08-16"
+      fefin: "2023-08-16"
+      feentregaacta: "2023-08-16"
+      fesolicdocumento: "2023-08-16"
+      fesolicgrado: "2023-08-16"
+      feretiro: "2023-08-16"
+      femodificacion: "2023-08-16"
+      feiniciopreinscripcion: "2023-08-16"
+      fefinpreinscripcion: "2023-08-16"
+      feinicioinscripcion: "2023-08-16"
+      fefininscripcion: "2023-08-16"
+      feiniciooferta: "2023-08-16"
+      fefinoferta: "2023-08-16"
+      feinicioretiro: "2023-08-16"
+      fefinretiro: "2023-08-16"
+      feinicionotas: "2023-08-16"
+      fefinnotas: "2023-08-16"
+      trayecto: 4
+      visible: true
+      estatus: 1
+      idperiodo: 3
+    }){
+    message
+    }
+}
+
+mutation eliminarperiodo {
+  eliminarPeriodo (
+    input:{
+      idperiodo: 5
+    }){
+    message
+    }
+}
 =================== 15/08/2023 ==========================
 
 mutation registropreviousuario {

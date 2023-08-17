@@ -1,0 +1,77 @@
+type Mutation {
+    crearPeriodo(input: InputPeriodo!): ResultadoPeriodo
+    actualizarPeriodo(input: InputActualizarPeriodo!): ResultadoPeriodo
+    eliminarPeriodo(input: InputEliminarPeriodo!): ResultadoPeriodo
+}
+
+input InputPeriodo {
+    codigo: Int!
+    tipo: Int!
+    anio: Int!
+    mesinicio: Int!
+    mesfin: Int!
+    nusemana: Int!
+    personal: Int!
+    mensaje: String!
+    feinicio: String!
+    fefin: String!
+    feentregaacta: String!
+    fesolicdocumento: String!
+    fesolicgrado: String!
+    feretiro: String!
+    femodificacion: String!
+    feiniciopreinscripcion: String!
+    fefinpreinscripcion: String!
+    feinicioinscripcion: String!
+    fefininscripcion: String!
+    feiniciooferta: String!
+    fefinoferta: String!
+    feinicioretiro: String!
+    fefinretiro: String!
+    feinicionotas: String!
+    fefinnotas: String!
+    trayecto: Int!
+}
+
+input InputActualizarPeriodo {
+    codigo: Int!
+    tipo: Int!
+    anio: Int!
+    mesinicio: Int!
+    mesfin: Int!
+    nusemana: Int!
+    personal: Int!
+    mensaje: String!
+    feinicio: String!
+    fefin: String!
+    feentregaacta: String!
+    fesolicdocumento: String!
+    fesolicgrado: String!
+    feretiro: String!
+    femodificacion: String!
+    feiniciopreinscripcion: String!
+    fefinpreinscripcion: String!
+    feinicioinscripcion: String!
+    fefininscripcion: String!
+    feiniciooferta: String!
+    fefinoferta: String!
+    feinicioretiro: String!
+    fefinretiro: String!
+    feinicionotas: String!
+    fefinnotas: String!
+    visible: Boolean!
+    estatus: Int!
+    trayecto: Int!
+    idperiodo: Int!
+}
+
+input InputEliminarPeriodo {
+    idperiodo: Int!
+}
+
+type ResultadoPeriodo {
+    status: Int!
+    message: String!
+    type: String!
+}
+
