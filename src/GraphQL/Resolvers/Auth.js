@@ -20,13 +20,31 @@ export default {
         const hashClave = CryptoJS.SHA256(claveDesencriptada).toString()
 
         const login = await dbp.oneOrNone(
-          `SELECT id_usuario, user_name, bl_status, id_rol, created_at, updated_at
-          FROM public.t001t_usuarios WHERE user_name = $1 AND tx_clave = $2;`,
+          `SELECT u.id_usuario, u.user_name, u.bl_status, u.id_rol, u.id_nacionalidad, n.co_nacionalidad, n.nb_nacionalidad, u.ced_usuario, u.nb_usuario, u.ape_usuario, u.created_at, u.updated_at
+          FROM public.t001t_usuarios u, public.m028t_tipo_nacionalidad n WHERE user_name = $1 AND tx_clave = $2 AND u.id_nacionalidad = n.id_nacionalidad;`,
           [usuario, hashClave]
         )
 
         if (login) {
-          const { id_usuario, user_name, bl_status, created_at, id_rol } = login
+          const {
+            id_usuario,
+            user_name,
+            bl_status,
+            created_at,
+            id_rol,
+            id_nacionalidad,
+            co_nacionalidad,
+            nb_nacionalidad,
+            ced_usuario,
+            nb_usuario,
+            ape_usuario
+          } = login
+
+          const nacionalidad = {
+            id: id_nacionalidad,
+            codigo: co_nacionalidad,
+            nombre: nb_nacionalidad
+          }
 
           login.token = jwt.sign(
             {
@@ -34,6 +52,10 @@ export default {
               user_name,
               bl_status,
               id_rol,
+              nacionalidad,
+              ced_usuario,
+              nb_usuario,
+              ape_usuario,
               created_at
             },
             SECRET_KEY,
@@ -78,9 +100,29 @@ export default {
     user: async (_, __, { auth }) => {
       if (!auth) throw new ApolloError('Sesión no válida')
       const { SECRET_KEY } = process.env
-      const { id_usuario, user_name, bl_status, id_rol, created_at } = auth
+      const {
+        id_usuario,
+        user_name,
+        bl_status,
+        id_rol,
+        nacionalidad,
+        ced_usuario,
+        nb_usuario,
+        ape_usuario,
+        created_at
+      } = auth
       auth.token = jwt.sign(
-        { id_usuario, user_name, bl_status, id_rol, created_at },
+        {
+          id_usuario,
+          user_name,
+          bl_status,
+          id_rol,
+          nacionalidad,
+          ced_usuario,
+          nb_usuario,
+          ape_usuario,
+          created_at
+        },
         SECRET_KEY,
         { expiresIn: 60 * 100000 }
       )
