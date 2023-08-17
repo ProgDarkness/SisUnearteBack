@@ -1,3 +1,38 @@
+=================== 17/08/2023 ==========================
+
+query obtenerperiodos {
+  obtenerPeriodos {
+    response {
+      id
+      codigo
+      periodo
+      anio
+      mesi
+      mesf
+      semana
+      personal
+      mensaje
+      fei
+      fef
+      feacta
+      fedoc
+      fepregrado
+      femodificacion
+      feipre
+      fefpre
+      feinsc
+      fefinsc
+      feioferta
+      fefoferta
+      feiretiro
+      fefretiro
+      feinota
+      fefnota
+      estatus
+      trayecto
+    }
+  }
+}
 =================== 16/08/2023 ==========================
 query obtenerEstadoCivil {
   obtenerEstadoCivil {

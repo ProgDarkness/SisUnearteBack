@@ -1,3 +1,44 @@
+type Periodo {
+    id: ID!
+    codigo: String!
+    periodo: String!
+    anio: Int!
+    mesi: String!
+    mesf: String!
+    semana: Int!
+    personal: String!
+    mensaje: String!
+    fei: String!
+    fef: String!
+    feacta: String!
+    fedoc: String!
+    fepregrado: String!
+    femodificacion: String!
+    feipre: String!
+    fefpre: String!
+    feinsc: String!
+    fefinsc: String!
+    feioferta: String!
+    fefoferta: String!
+    feiretiro: String!
+    fefretiro: String!
+    feinota: String!
+    fefnota: String!
+    estatus: String!
+    trayecto: String!
+}
+
+type ResultPeriodos {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Periodo]
+}
+
+type Query {
+    obtenerPeriodos: ResultPeriodos
+}
+
 type Mutation {
     crearPeriodo(input: InputPeriodo!): ResultadoPeriodo
     actualizarPeriodo(input: InputActualizarPeriodo!): ResultadoPeriodo

@@ -1,6 +1,27 @@
 import {dbp} from '../../postgresdb'
 
 export default {
+    Query: {
+        obtenerPeriodos: async () => {
+            try {
+                const periodos = await dbp.manyOrNone(`SELECT p.id_periodo as id, p.co_periodo as codigo, tp.nb_tp_periodo as periodo, p.anio_periodo as anio, mes.nb_mes as mesi, mes1.nb_mes as mesf, 
+                p.nu_semana_interperido as semana, personal.nb_personal as personal, p.tx_mensaje as mensaje, p.fe_inicio as fei, p.fe_fin as fef, 
+                p.fe_ult_entrega_acta as feacta, p.fe_ult_solic_documento as fedoc, p.fe_pre_solic_grado as fepregrado, p.fe_retiro as feiretiro, 
+                p.fe_modificacion as femodificacion, p.fe_inicio_preinscripcion as feipre, p.fe_fin_preinscripcion as fefpre, 
+                p.fe_inicio_inscripcion as feinsc, fe_fin_inscripcion as fefinsc, p.fe_inicio_oferta as feioferta, p.fe_fin_oferta as fefoferta, 
+                p.fe_inicio_retiro as feiretiro, p.fe_fin_retiro as fefretiro, p.fe_inicio_notas as feinota, p.fe_fin_notas as fefnota, 
+                estatus.nb_estatus_periodo as estatus, trayecto.nb_trayecto as trayecto
+                FROM public.t006t_periodo_lectivo as p, public.m007t_tipo_periodo as tp, public.t003t_personal as personal,
+                public.m044t_estatus_periodo as estatus, public.m017t_trayectos as trayecto, public.m050t_meses as mes, public.m050t_meses as mes1
+                WHERE p.id_tp_periodo = tp.id_tp_periodo and p.id_personal = personal.id_personal and
+                p.id_estatus_periodo = estatus.id_estatus_periodo and p.id_trayecto = trayecto.id_trayecto and p.mes_inicio_periodo = mes.id_mes and p.mes_fin_periodo = mes1.id_mes;`);
+
+                return {status: 200, message: 'Periodos encontrados', type: "success", response: periodos}
+            } catch (e) {
+                return {status: 500, message: e.message, type: "error"}
+            }
+        }
+    },
     Mutation: {
         crearPeriodo: async (_, {input}) => {
             const {codigo, tipo, anio, mesinicio, mesfin, nusemana, personal, mensaje, feinicio, fefin, feentregaacta, fesolicdocumento, fesolicgrado, feretiro, femodificacion, feiniciopreinscripcion, fefinpreinscripcion, feinicioinscripcion, fefininscripcion, feiniciooferta, fefinoferta, feinicioretiro, fefinretiro, feinicionotas, fefinnotas, trayecto} = input
