@@ -5,7 +5,7 @@
 -- Dumped from database version 14.8
 -- Dumped by pg_dump version 14.8
 
--- Started on 2023-08-17 14:44:05
+-- Started on 2023-08-18 08:46:17
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1901,7 +1901,10 @@ CREATE TABLE public.t001t_usuarios (
     id_parroquia integer,
     bl_registro boolean,
     nb2_usuario character varying(50),
-    ape2_usuario character varying(50)
+    ape2_usuario character varying(50),
+    id_zona integer,
+    id_pais integer,
+    id_discapacidad integer
 );
 
 
@@ -45972,12 +45975,12 @@ COPY public.r008t_oferta_materia_carrera (id_omateria, id_oferta, id_materia, id
 -- Data for Name: t001t_usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.t001t_usuarios (id_usuario, tx_clave, user_name, bl_status, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_sexo_usuario, fe_nac_usuario, id_pais_origen, id_estado_civil, correo_usuario, id_estudiante, id_personal, id_tipo_via, nb_via, id_tipo_zona, nb_zona, id_tipo_vivienda, nu_vivienda, id_ciudad, id_estado, id_zona_postal, www_preinscripcion, created_at, updated_at, id_municipio, id_parroquia, bl_registro, nb2_usuario, ape2_usuario) FROM stdin;
-13	\N	\N	f	\N	1	12345670	Ana	Torres	1	1983-09-14 00:00:00	239	1	a@gmail.com	\N	\N	1	La Salle	1	La Colina	1	23-B	604	14	19576	\N	2023-08-15 14:06:05.551214-04	2023-08-15 14:06:05.551214-04	181	605	\N	\N	\N
-14	\N	\N	f	\N	1	12345608	Carla	Quiko	1	1999-09-14 00:00:00	239	1	c@gmail.com	\N	\N	1	Calle Azul	1	La Villa	1	245	604	14	19576	\N	2023-08-15 14:13:03.823497-04	2023-08-15 14:13:03.823497-04	181	605	t	\N	\N
-9	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	gmarcano	t	2	1	28484689	GABRIEL	MARCANO	2	\N	239	1	\N	\N	\N	1	hjj	1	jjhj	1	88	605	14	19576	\N	2023-08-11 14:39:27.398252-04	2023-08-11 14:41:44.21061-04	181	605	\N	\N	\N
-10	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	hvalor	t	2	1	17044191	HILDEMAR	VALOR	2	\N	239	1	\N	\N	\N	1	jhkjh	1	hjhj	1	99	604	1	19576	\N	2023-08-11 14:42:28.876778-04	2023-08-11 14:42:28.876778-04	181	605	\N	\N	\N
-11	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	manez	t	3	1	22456876	MIGUEL	AÑEZ	2	\N	239	1	\N	\N	\N	1	jkhj	1	kjhjh	1	44	604	14	19675	\N	2023-08-11 16:42:00.590816-04	2023-08-11 16:42:00.590816-04	181	605	\N	\N	\N
+COPY public.t001t_usuarios (id_usuario, tx_clave, user_name, bl_status, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_sexo_usuario, fe_nac_usuario, id_pais_origen, id_estado_civil, correo_usuario, id_estudiante, id_personal, id_tipo_via, nb_via, id_tipo_zona, nb_zona, id_tipo_vivienda, nu_vivienda, id_ciudad, id_estado, id_zona_postal, www_preinscripcion, created_at, updated_at, id_municipio, id_parroquia, bl_registro, nb2_usuario, ape2_usuario, id_zona, id_pais, id_discapacidad) FROM stdin;
+13	\N	\N	f	\N	1	12345670	Ana	Torres	1	1983-09-14 00:00:00	239	1	a@gmail.com	\N	\N	1	La Salle	1	La Colina	1	23-B	604	14	19576	\N	2023-08-15 14:06:05.551214-04	2023-08-15 14:06:05.551214-04	181	605	\N	\N	\N	\N	\N	\N
+14	\N	\N	f	\N	1	12345608	Carla	Quiko	1	1999-09-14 00:00:00	239	1	c@gmail.com	\N	\N	1	Calle Azul	1	La Villa	1	245	604	14	19576	\N	2023-08-15 14:13:03.823497-04	2023-08-15 14:13:03.823497-04	181	605	t	\N	\N	\N	\N	\N
+9	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	gmarcano	t	2	1	28484689	GABRIEL	MARCANO	2	\N	239	1	\N	\N	\N	1	hjj	1	jjhj	1	88	605	14	19576	\N	2023-08-11 14:39:27.398252-04	2023-08-11 14:41:44.21061-04	181	605	\N	\N	\N	\N	\N	\N
+10	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	hvalor	t	2	1	17044191	HILDEMAR	VALOR	2	\N	239	1	\N	\N	\N	1	jhkjh	1	hjhj	1	99	604	1	19576	\N	2023-08-11 14:42:28.876778-04	2023-08-11 14:42:28.876778-04	181	605	\N	\N	\N	\N	\N	\N
+11	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	manez	t	3	1	22456876	MIGUEL	AÑEZ	2	\N	239	1	\N	\N	\N	1	jkhj	1	kjhjh	1	44	604	14	19675	\N	2023-08-11 16:42:00.590816-04	2023-08-11 16:42:00.590816-04	181	605	\N	\N	\N	\N	\N	\N
 \.
 
 
@@ -47735,7 +47738,7 @@ ALTER TABLE ONLY public.t008t_oferta_academica
     ADD CONSTRAINT t008t_oferta_academica_fk_0 FOREIGN KEY (id_carrera) REFERENCES public.m006t_carreras(id_carrera);
 
 
--- Completed on 2023-08-17 14:44:06
+-- Completed on 2023-08-18 08:46:19
 
 --
 -- PostgreSQL database dump complete
