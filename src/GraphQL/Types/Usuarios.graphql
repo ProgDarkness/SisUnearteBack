@@ -1,6 +1,14 @@
 type Query {
   getUsuarios: [Usuario]
   getRoles: [roles]
+  getInfoUsuario(id_usuario: Int!): resultInfoUsuario!
+}
+
+type resultInfoUsuario {
+  status: Int!
+  type: String!
+  message: String!
+  response: infoUsuario
 }
 
 type Mutation {
@@ -10,6 +18,105 @@ type Mutation {
   crearUsuario(input: InputUsuario): Result!
   actualizarUsuario(input: InputActualizarUsuario): Result!
   obtenerUsuario(input: InputIdUsuario): ResultUsuario
+}
+
+type Tnacionalidad {
+  id: String!
+  codigo: String!
+  nombre: String!
+}
+
+type tsexo {
+  id: String!
+  nombre: String!
+}
+
+type tpaisNac {
+  id: String!
+  nombre: String!
+}
+
+type TestadoCivil {
+  id: String!
+  nombre: String!
+}
+
+type TtpVia {
+  id: String!
+  nombre: String!
+}
+
+type TtpZona {
+  id: String!
+  nombre: String!
+}
+
+type TnombZona {
+  nombre: String!
+  id: Int!
+  codigo_postal: String!
+}
+
+type TtpVivienda {
+  id: String!
+  nombre: String!
+}
+
+type Tciudad {
+  id: String!
+  nombre: String!
+}
+
+type Tmunicipio {
+  id: String!
+  nombre: String!
+}
+
+type Tparroquia {
+  id: String!
+  nombre: String!
+}
+
+type Testado {
+  id: String!
+  nombre: String!
+}
+
+type tpais {
+  id: String!
+  nombre: String!
+}
+
+type tdiscapacidad {
+  id: String!
+  nombre: String!
+}
+
+type infoUsuario {
+  nacionalidad: Tnacionalidad!
+  ced_usuario: String!
+  nb_usuario: String!
+  ape_usuario: String!
+  sexo: tsexo!
+  fe_nac_usuario: String!
+  paisNac: tpaisNac!
+  pais: tpais!
+  estadoCivil: TestadoCivil!
+  correo_usuario: String!
+  tpVia: TtpVia!
+  nb_via: String!
+  tpZona: TtpZona!
+  nombZona: TnombZona!
+  tpVivienda: TtpVivienda!
+  nu_vivienda: String!
+  ciudad: Tciudad!
+  estado: Testado!
+  municipio: Tmunicipio!
+  parroquia: Tparroquia
+  bl_registro: Boolean!
+  nb2_usuario: String!
+  ape2_usuario: String!
+  discapacidad: tdiscapacidad!
 }
 
 input InputSaveUser {
@@ -47,7 +154,9 @@ input InputUsuario {
   idmunicipio: Int!
   idparroquia: Int!
   idpostal: Int!
-  blregistro: String!
+  blregistro: Boolean!
+  nombre2: String!
+  apellido2: String!
 }
 
 input InputActualizarUsuario {
@@ -57,7 +166,7 @@ input InputActualizarUsuario {
   apellido: String!
   sexo: Int!
   fenac: String!
-  idpais: Int!
+  idpaisorigen: Int!
   idcivil: Int!
   correo: String!
   idtpvia: Int!
@@ -71,8 +180,13 @@ input InputActualizarUsuario {
   idmunicipio: Int!
   idparroquia: Int!
   idpostal: Int!
-  blregistro: String!
+  blregistro: Boolean!
   idusuario: Int!
+  nombre2: String!
+  apellido2: String!
+  idZona: Int!
+  idpais: Int!
+  idDiscapacidad: Int!
 }
 
 input InputIdUsuario {
@@ -80,33 +194,33 @@ input InputIdUsuario {
 }
 
 type DetalleUsuario {
-    id: ID!
-    nacionalidad: String!
-    cedula: Int!
-    nombre: String!
-    apellido: String!
-    sexo: String!
-    fenac: String!
-    pais: String!
-    civil: String!
-    correo: String!
-    nbtpbia: String!
-    nbvia: String!
-    nbtpzona: String!
-    nbzona: String!
-    nbtpvivienda: String!
-    nuvivienda: String!
-    ciudad: String!
-    estado: String!
-    municipio: String!
-    parroquia: String!
+  id: ID!
+  nacionalidad: String!
+  cedula: Int!
+  nombre: String!
+  apellido: String!
+  sexo: String!
+  fenac: String!
+  pais: String!
+  civil: String!
+  correo: String!
+  nbtpbia: String!
+  nbvia: String!
+  nbtpzona: String!
+  nbzona: String!
+  nbtpvivienda: String!
+  nuvivienda: String!
+  ciudad: String!
+  estado: String!
+  municipio: String!
+  parroquia: String!
 }
 
 type ResultUsuario {
-    status: Int!
-    type: String!
-    message: String!
-    response: DetalleUsuario
+  status: Int!
+  type: String!
+  message: String!
+  response: DetalleUsuario
 }
 
 type Usuario {

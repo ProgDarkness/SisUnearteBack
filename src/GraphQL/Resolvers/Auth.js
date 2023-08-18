@@ -41,7 +41,7 @@ export default {
           } = login
 
           const nacionalidad = {
-            id: id_nacionalidad,
+            id: id_nacionalidad.toString(),
             codigo: co_nacionalidad,
             nombre: nb_nacionalidad
           }

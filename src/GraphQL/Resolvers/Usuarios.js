@@ -27,6 +27,103 @@ export default {
       } catch (e) {
         throw new ApolloError(e.message)
       }
+    },
+    getInfoUsuario: async(_, {id_usuario}) =>{
+
+      try {
+        const estatusUserReg = await dbp.oneOrNone(`SELECT bl_registro FROM public.t001t_usuarios WHERE id_usuario = $1;`, [id_usuario])
+
+        if (estatusUserReg?.bl_registro) {
+          const infoUser = await dbp.oneOrNone(`SELECT u.id_nacionalidad, nacionalidad.co_nacionalidad, nacionalidad.nb_nacionalidad, u.ced_usuario, u.nb_usuario, u.ape_usuario, u.id_sexo_usuario, sex.nb_tp_sexo,
+          u.fe_nac_usuario, u.id_pais_origen, pais.nb_pais as nb_pais_origen, u.id_pais, pais.nb_pais, u.id_estado_civil, estCivil.nb_civil, u.correo_usuario, u.id_tipo_via, tpVia.nb_tp_via, 
+          u.nb_via, u.id_tipo_zona, tpZona.nb_tp_zona, u.nb_zona, u.id_zona, u.id_tipo_vivienda, tpVivienda.nb_tp_vivienda, u.nu_vivienda, u.id_ciudad, ciudad.nb_ciudad, u.id_estado, estado.nb_estado,
+          u.id_zona_postal, u.id_municipio, municipio.nb_municipio, u.id_parroquia, parroquia.nb_parroquia, u.bl_registro, u.nb2_usuario, u.ape2_usuario, u.id_discapacidad, discapacidad.nb_tp_discapacidad
+        FROM public.t001t_usuarios u, public.m026t_tipo_sexo sex, public.m022t_paises pais, public.m027t_estado_civil estCivil, public.m025t_tipo_via tpVia,
+          public.m024t_tipo_zona tpZona, public.m021t_tipo_vivienda tpVivienda, public.m020t_ciudades ciudad, public.m001t_estados estado,
+          public.m002t_municipios municipio, public.m003t_parroquias parroquia, public.m028t_tipo_nacionalidad nacionalidad, public.m009t_tipo_discapacidad discapacidad
+        WHERE u.id_usuario = $1 AND sex.id_tp_sexo = u.id_sexo_usuario AND pais.id_pais = u.id_pais_origen AND pais.id_pais = u.id_pais AND estCivil.id_civil = u.id_estado_civil
+          AND tpVia.id_tp_via = u.id_tipo_via AND tpZona.id_tp_zona = u.id_tipo_zona AND tpVivienda.id_tp_vivienda = u.id_tipo_vivienda AND ciudad.id_ciudad = u.id_ciudad
+          AND estado.id_estado = u.id_estado AND municipio.id_municipio = u.id_municipio AND parroquia.id_parroquia = u.id_parroquia AND nacionalidad.id_nacionalidad = u.id_nacionalidad
+          AND discapacidad.id_tp_discapacidad = u.id_discapacidad;`, 
+          [id_usuario])
+
+          const {
+            id_nacionalidad,
+            co_nacionalidad,
+            nb_nacionalidad,
+            ced_usuario,
+            nb_usuario,
+            ape_usuario,
+            id_sexo_usuario,
+            nb_tp_sexo,
+            fe_nac_usuario,
+            id_pais_origen,
+            nb_pais_origen,
+            id_pais,
+            nb_pais,
+            id_estado_civil,
+            nb_civil,
+            correo_usuario,
+            id_tipo_via,
+            nb_tp_via,
+            nb_via,
+            id_tipo_zona,
+            nb_tp_zona,
+            nb_zona,
+            id_zona,
+            id_tipo_vivienda,
+            nb_tp_vivienda,
+            nu_vivienda,
+            id_ciudad,
+            nb_ciudad,
+            id_estado,
+            nb_estado,
+            id_zona_postal,
+            id_municipio,
+            nb_municipio,
+            id_parroquia,
+            nb_parroquia,
+            bl_registro,
+            nb2_usuario,
+            ape2_usuario,
+            id_discapacidad,
+            nb_tp_discapacidad
+          } = infoUser
+          
+          const RinfoUser = {
+            nacionalidad: { id: id_nacionalidad,  codigo: co_nacionalidad, nombre: nb_nacionalidad },
+            ced_usuario,
+            nb_usuario,
+            ape_usuario,
+            sexo: { id: id_sexo_usuario, nombre: nb_tp_sexo},
+            fe_nac_usuario,
+            paisNac: { id: id_pais_origen, nombre: nb_pais_origen },
+            pais: { id: id_pais, nombre: nb_pais },
+            estadoCivil: { id: id_estado_civil, nombre: nb_civil },
+            correo_usuario,
+            tpVia: { id: id_tipo_via, nombre: nb_tp_via },
+            nb_via,
+            tpZona: { id: id_tipo_zona, nombre: nb_tp_zona },
+            nombZona: { nombre: nb_zona, id: id_zona, codigo_postal: id_zona_postal },
+            tpVivienda: { id: id_tipo_vivienda, nombre: nb_tp_vivienda },
+            nu_vivienda,
+            ciudad: { id: id_ciudad, nombre: nb_ciudad },
+            estado: { id: id_estado, nombre: nb_estado },
+            municipio: { id: id_municipio, nombre: nb_municipio},
+            parroquia: { id: id_parroquia, nombre: nb_parroquia },
+            bl_registro,
+            nb2_usuario,
+            ape2_usuario,
+            discapacidad: { id: id_discapacidad, nombre: nb_tp_discapacidad }
+          }
+
+          return {status: 200, type: "success", message: 'Usuario encontrado', response: RinfoUser}
+        } else {
+          return {status: 202, type: "error", message: 'Usuario no registrado'}
+        }
+      } catch (e) {
+        return {status: 500, type: "error", message: `Error: ${e.message}`}
+      }
     }
   },
   Mutation: {
@@ -147,7 +244,7 @@ export default {
       }
     },
     actualizarUsuario: async (_, {input}) => {
-      const {idnacionalidad, cedula, nombre, apellido, sexo, fenac, idpais, idcivil, correo, idtpvia, nbtpvia, idtpzona, nbzona, idtpvivienda, nuvivienda, idciudad, idestado, idmunicipio, idparroquia, idpostal, blregistro, idusuario} = input
+      const {idnacionalidad, cedula, nombre, apellido, nombre2, apellido2, sexo, fenac, idpaisorigen, idpais, idcivil, correo, idtpvia, nbtpvia, idtpzona, nbzona, idZona, idtpvivienda, nuvivienda, idciudad, idestado, idmunicipio, idparroquia, idpostal, blregistro, idusuario, idDiscapacidad} = input
       console.log(input);
       try {    
           await dbp.none(
@@ -155,11 +252,10 @@ export default {
                SET id_nacionalidad = $1, ced_usuario = $2, nb_usuario = $3, ape_usuario = $4, id_sexo_usuario = $5, fe_nac_usuario = $6, 
                id_pais_origen = $7, id_estado_civil = $8, correo_usuario = $9, id_tipo_via = $10, nb_via = $11, id_tipo_zona = $12, 
                nb_zona = $13, id_tipo_vivienda = $14, nu_vivienda = $15, id_ciudad = $16, id_estado = $17, id_municipio = $18, id_parroquia = $19, 
-               id_zona_postal = $20, bl_registro = $21
-               WHERE id_usuario =$22;`, [idnacionalidad, cedula, nombre, apellido, sexo, fenac, idpais, idcivil, correo, idtpvia, nbtpvia, idtpzona, nbzona, idtpvivienda, nuvivienda, idciudad, idestado, idmunicipio, idparroquia, idpostal, blregistro, idusuario]
-            
-               )
-          return {status: 200, type: "success", message: 'Usuario actualizado exitosamente'}
+               id_zona_postal = $20, bl_registro = $21, nb2_usuario = $23, ape2_usuario = $24, id_zona = $25, id_pais = $26, id_discapacidad = $27
+               WHERE id_usuario =$22;`, [idnacionalidad, cedula, nombre, apellido, sexo, fenac, idpaisorigen, idcivil, correo, idtpvia, nbtpvia, idtpzona, nbzona, idtpvivienda, nuvivienda, idciudad, idestado, idmunicipio, idparroquia, idpostal, blregistro, idusuario, nombre2, apellido2, idZona, idpais, idDiscapacidad]
+            )
+          return {status: 200, type: "success", message: 'Usuario guardado exitosamente'}
       } catch (e) {
           return {status: 500, type: "error", message: `Error: ${e.message}`}
       }
