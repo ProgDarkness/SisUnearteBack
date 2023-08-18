@@ -85,10 +85,19 @@ export default {
             const {codigo, nombre, tipo, ciclo, titulo} = input
             console.log(input);
             try {     
-                await dbp.none(
+                const idcarrera = await dbp.oneOrNone(
                     `INSERT INTO public.m006t_carreras(
                       co_carrera, nb_carrera, id_tp_carrera, id_ciclo, titulo_otorgado)
-                      VALUES ($1, $2, $3, $4, $5);`, [codigo, nombre, tipo, ciclo, titulo])
+                      VALUES ($1, $2, $3, $4, $5) RETURNING id_carrera;`, [codigo, nombre, tipo, ciclo, titulo])
+
+                const trayectos = await dbp.manyOrNone(`SELECT id_trayecto FROM m017t_trayectos;`);
+
+                console.log(trayectos);
+
+                for(let i = 0; i < trayectos.length; i++) {
+                console.log(trayectos[i].id_trayecto);
+                await dbp.none(`INSERT INTO public.r009t_carrera_trayecto(id_carrera, id_trayecto) VALUES ($1, $2);`, [idcarrera.id_carrera, trayectos[i].id_trayecto])
+                }
 
                 return {status: 200, message: 'Carrera registrada exitosamente', type: "success"}
             } catch (e) {
