@@ -25,7 +25,7 @@ export default {
     Mutation: {
         crearPeriodo: async (_, {input}) => {
             const {codigo, tipo, anio, mesinicio, mesfin, nusemana, personal, mensaje, feinicio, fefin, feentregaacta, fesolicdocumento, fesolicgrado, feretiro, femodificacion, feiniciopreinscripcion, fefinpreinscripcion, feinicioinscripcion, fefininscripcion, feiniciooferta, fefinoferta, feinicioretiro, fefinretiro, feinicionotas, fefinnotas, trayecto} = input
-            console.log(input);
+            
             try { 
                 let visible = null;
                 let estatus = null;
@@ -43,7 +43,7 @@ export default {
         },
         actualizarPeriodo: async (_, {input}) => {
             const {codigo, tipo, anio, mesinicio, mesfin, nusemana, personal, mensaje, feinicio, fefin, feentregaacta, fesolicdocumento, fesolicgrado, feretiro, femodificacion, feiniciopreinscripcion, fefinpreinscripcion, feinicioinscripcion, fefininscripcion, feiniciooferta, fefinoferta, feinicioretiro, fefinretiro, feinicionotas, fefinnotas, visible, estatus, trayecto, idperiodo} = input
-            console.log(input);
+            
             try {    
                 await dbp.none(
                     `UPDATE public.t006t_periodo_lectivo
@@ -60,13 +60,11 @@ export default {
         },
         eliminarPeriodo: async (_, {input}) => {
             const {idperiodo} = input
-            console.log(input);
+            
             try {  
                 const ofertaacademica = await dbp.manyOrNone(`SELECT * FROM t008t_oferta_academica oa WHERE oa.id_periodo = $1;`, [idperiodo]);
 
                 const ofertamateria = await dbp.manyOrNone(`SELECT * FROM t005t_inscripcion i WHERE i.id_periodo = $1;`, [idperiodo]);
-
-                console.log(ofertaacademica);
 
                 if (ofertaacademica || ofertamateria) {
                     return {status: 202, message: 'Oferta no puede ser eliminada asociada a otros datos', type: "success"}

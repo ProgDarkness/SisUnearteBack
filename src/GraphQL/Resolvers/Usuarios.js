@@ -231,7 +231,7 @@ export default {
     },
     crearUsuario: async (_, {input}) => {
       const {idnacionalidad, cedula, nombre, apellido, sexo, fenac, idpais, idcivil, correo, idtpvia, nbtpvia, idtpzona, nbzona, idtpvivienda, nuvivienda, idciudad, idestado, idmunicipio, idparroquia, idpostal, blregistro} = input
-      console.log(input);
+      
       try {    
           await dbp.none(
               `INSERT INTO public.t001t_usuarios(
@@ -245,7 +245,7 @@ export default {
     },
     actualizarUsuario: async (_, {input}) => {
       const {idnacionalidad, cedula, nombre, apellido, nombre2, apellido2, sexo, fenac, idpaisorigen, idpais, idcivil, correo, idtpvia, nbtpvia, idtpzona, nbzona, idZona, idtpvivienda, nuvivienda, idciudad, idestado, idmunicipio, idparroquia, idpostal, blregistro, idusuario, idDiscapacidad} = input
-      console.log(input);
+      
       try {    
           await dbp.none(
               `UPDATE public.t001t_usuarios
@@ -262,7 +262,7 @@ export default {
     },
     obtenerUsuario: async (_, {input}) => {
       const {idusuario} = input
-      console.log(input);
+      
       try {    
         const usuario = await dbp.oneOrNone(
               `SELECT u.id_usuario as id, tn.co_nacionalidad as nacionalidad, u.ced_usuario as cedula, u.nb_usuario as nombre, u.ape_usuario as apellido,

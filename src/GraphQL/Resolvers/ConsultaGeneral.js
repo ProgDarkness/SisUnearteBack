@@ -150,10 +150,8 @@ export default {
     Mutation: {
         obtenerCiudadesPorEstado: async (_, {input}) => {
             const {estado} = input
-            console.log(input);
             try {    
                 const ciudades = await dbp.manyOrNone(`SELECT id_ciudad as id, nb_ciudad as nombre FROM m020t_ciudades WHERE id_estado = $1;`, [estado]);
-                console.log(ciudades);
                 return {status: 200, message: 'Ciudades encontradas', type: "success", response: ciudades}
             } catch (e) {
                 return {status: 500, message: `Error: ${e.message}`, type: "error"}
@@ -161,14 +159,13 @@ export default {
         },
         obtenerEstadosPorPais: async (_, {input}) => {
             const {pais} = input
-            console.log(input);
             try {
                 if (pais === 239) {
                     const paises = await dbp.manyOrNone(`SELECT cod_estado as id, nb_estado as nombre FROM public.m001t_estados WHERE cod_pais = $1`, [pais]);
                     return {status: 200, message: 'Estados encontrados', type: "success", response: paises}
                 } else {
                     const paises = await dbp.manyOrNone(`SELECT id_estado_mundo as id, nb_estado_mundo as nombre FROM m049t_estado_mundo WHERE id_pais = $1;`, [pais]);
-                    console.log(paises);
+
                     return {status: 200, message: 'Estados encontrados', type: "success", response: paises}
                 }
             } catch (e) {
@@ -177,10 +174,9 @@ export default {
         },
         obtenerMunicipiosPorEstado: async (_, {input}) => {
             const {estado} = input
-            console.log(input);
             try {    
                 const municipioestados = await dbp.manyOrNone(`SELECT id_municipio as id, nb_municipio as nombre FROM m002t_municipios WHERE id_estado = $1;`, [estado]);
-                console.log(municipioestados);
+                
                 return {status: 200, message: 'Municipios encontrados por estado', type: "success", response: municipioestados}
             } catch (e) {
                 return {status: 500, message: `Error: ${e.message}`, type: "error"}
@@ -188,10 +184,9 @@ export default {
         },
         obtenerParrquiasPorMunicipio: async (_, {input}) => {
             const {municipio} = input
-            console.log(input);
             try {    
                 const parroquiamunicipios = await dbp.manyOrNone(`SELECT id_parroquia as id, nb_parroquia as nombre FROM m003t_parroquias WHERE id_municipio = $1;`, [municipio]);
-                console.log(parroquiamunicipios);
+                
                 return {status: 200, message: 'Parroquias encontrados por municipio', type: "success", response: parroquiamunicipios}
             } catch (e) {
                 return {status: 500, message: `Error: ${e.message}`, type: "error"}

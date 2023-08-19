@@ -25,7 +25,7 @@ export default {
     Mutation: {
         crearOferta: async (_, {input}) => {
             const {periodo, carrera, cupos, seccion, sede, materia, trayecto} = input
-            console.log(input);
+            
             try {   
                 let estatus = null;
                 let visible = null;
@@ -35,8 +35,6 @@ export default {
                     `INSERT INTO public.t008t_oferta_academica(
                     id_periodo, id_carrera, nu_cupos, nu_seccion, id_sede, visible, id_estatus_oferta)
                     VALUES ( $1, $2, $3, $4, $5, $6, $7) RETURNING id_oferta;`, [periodo, carrera, cupos, seccion, sede, visible, estatus])
-
-                    console.log(idofertas.id_oferta);
 
                     await dbp.none(
                         `INSERT INTO public.r008t_oferta_materia_carrera(

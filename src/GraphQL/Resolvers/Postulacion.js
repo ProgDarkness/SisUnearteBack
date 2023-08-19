@@ -34,7 +34,7 @@ export default {
     Mutation: {
         crearPostulacion: async (_, {input}) => {
             const {usuario, carrera, periodo, fepostulacion} = input
-            console.log(input);
+            
             try {    
 
                 let estatus = null;
@@ -54,7 +54,7 @@ export default {
         },
         aprobarPostulacion: async (_, {input}) => {
             const {estatus, usuario, feaprobacion, observacion, idpostulacion} = input
-            console.log(input);
+            
             try {
                 await dbp.none(
                     `UPDATE public.t013t_postulacion

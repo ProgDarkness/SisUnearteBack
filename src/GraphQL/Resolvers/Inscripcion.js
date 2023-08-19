@@ -30,10 +30,9 @@ export default {
     Mutation: {
         obtenerEstudiante: async (_, {input}) => {
             const {nacionalidad, cedula} = input
-            console.log(input);
             try {    
                 const estudiantes = await dbp.oneOrNone(`SELECT est.id_estudiante as id, est.nb_estudiante as nombre, est.ape_estudiante as apellido, tpsexo.nb_tpsexo as sexo FROM t004t_estudiantes est, m026t_tipo_sexo tpsexo WHERE id_nac_estudiante = $1 AND ced_estudiante = $2 AND est.id_sexo_estudiante = tpsexo.id_tpsexo;`, [nacionalidad, cedula]);
-                console.log(estudiantes);
+            
                 if (estudiantes) {
                     return {status: 200, message: 'Estudiante encontrado', type: "success", response: estudiantes}
                 } else {
@@ -45,7 +44,7 @@ export default {
         },
         crearEstudiante: async (_, {input}) => {
             const {nacionalidad, cedula, nombre, apellido, sexo} = input
-            console.log(input);
+            
             try {    
                 
                 await dbp.none(
@@ -62,7 +61,7 @@ export default {
         },
         obtenerDetalleCarrera: async (_, {input}) => {
             const {carrera} = input
-            console.log(input);
+            
             try {    
                 const detallecarreras = await dbp.manyOrNone(`SELECT c.id_carrera AS id, c.nb_carrera AS carrera, t.nb_trayecto AS trayecto,
                                             m.nb_materia AS materia, p.nb_personal AS personal, ec.nb_estatus_carrera AS estatus
@@ -71,7 +70,7 @@ export default {
                                             WHERE cm.id_trayecto = t.id_trayecto AND cm.id_materia = m.id_materia AND
                                             dm.id_personal = p.id_personal AND dm.id_materia = m.id_materia 
                                             AND ec.id_estatus_carrera = c.id_estatus_carrera AND c.id_carrera = $1;`, [carrera]);
-                console.log(detallecarreras);
+                
                 if (detallecarreras) {
                     return {status: 200, message: 'Carreras encontrado', type: "success", response: detallecarreras}
                 } else {
@@ -83,7 +82,7 @@ export default {
         },
         crearCarrera: async (_, {input}) => {
             const {codigo, nombre, tipo, ciclo, titulo} = input
-            console.log(input);
+            
             try {     
                 const idcarrera = await dbp.oneOrNone(
                     `INSERT INTO public.m006t_carreras(
@@ -92,10 +91,8 @@ export default {
 
                 const trayectos = await dbp.manyOrNone(`SELECT id_trayecto FROM m017t_trayectos;`);
 
-                console.log(trayectos);
-
                 for(let i = 0; i < trayectos.length; i++) {
-                console.log(trayectos[i].id_trayecto);
+                
                 await dbp.none(`INSERT INTO public.r009t_carrera_trayecto(id_carrera, id_trayecto) VALUES ($1, $2);`, [idcarrera.id_carrera, trayectos[i].id_trayecto])
                 }
 
@@ -106,7 +103,7 @@ export default {
         },
         actualizarCarrera: async (_, {input}) => {
             const {codigo, nombre, tipo, ciclo, titulo, idcarrera} = input
-            console.log(input);
+            
             try {     
                 await dbp.none(
                     `UPDATE public.m006t_carreras
@@ -120,15 +117,13 @@ export default {
         },
         eliminarCarrera: async (_, {input}) => {
             const {idcarrera} = input
-            console.log(input);
+            
             try {  
                 const carreraperiodo = await dbp.manyOrNone(`SELECT * FROM r006t_periodo_carrera pc WHERE pc.id_carrera = $1;`, [idcarrera]);
 
                 const carreramateria = await dbp.manyOrNone(`SELECT * FROM r002t_carrera_materia cm WHERE cm.id_carrera = $1;`, [idcarrera]);
 
                 const carrerapostulacion = await dbp.manyOrNone(`SELECT * FROM t013t_postulacion p WHERE p.id_carrera = $1;`, [idcarrera]);
-
-                console.log(carreraperiodo);
 
                 if (carreraperiodo || carreramateria || carrerapostulacion) {
                     return {status: 202, message: 'Carrera no puede ser eliminada asociada a otros datos', type: "success"}
@@ -143,7 +138,7 @@ export default {
         },
         actualizarEstatusCarrera: async (_, {input}) => {
             const {estatus, idcarrera} = input
-            console.log(input);
+            
             try {     
                 await dbp.none(`UPDATE public.m006t_carreras SET id_estatus_carrera = $1 WHERE id_carrera = $2;`, [estatus, idcarrera])
 
@@ -154,7 +149,7 @@ export default {
         },
         crearMateria: async (_, {input}) => {
             const {codigo, nombre, credito, tipo, hora} = input
-            console.log(input);
+            
             try {     
                 let estatus = null;
                 estatus = 4;
@@ -171,7 +166,7 @@ export default {
         },
         actualizarMateria: async (_, {input}) => {
             const {codigo, nombre, credito, tipo, hora, estatus, idmateria} = input
-            console.log(input);
+            
             try {     
                 await dbp.none(
                     `UPDATE public.m005t_materias
@@ -185,7 +180,7 @@ export default {
         },
         eliminarMateria: async (_, {input}) => {
             const {idmateria} = input
-            console.log(input);
+            
             try {   
                 
                 const materiadocente = await dbp.oneOrNone(`SELECT * FROM r001t_docente_materia as dm WHERE dm.id_materia = $1;`, [idmateria]);
@@ -194,8 +189,7 @@ export default {
 
                 const materiainscripcion = await dbp.oneOrNone(`SELECT * FROM r003t_inscripcion_materia as im WHERE im.id_materia = $1;`, [idmateria]);
 
-                console.log(materiadocente || materiacarrera || materiainscripcion);
-                if (materiadocente) {
+                if (materiadocente || materiacarrera || materiainscripcion) {
                     return {status: 202, message: 'Materia no puede ser eliminada encontrada asignada a otros datos', type: "success"}
                 } else {
                     await dbp.none(`DELETE FROM public.m005t_materias WHERE id_materia = $1;`, [idmateria])
