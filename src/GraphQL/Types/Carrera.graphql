@@ -1,0 +1,80 @@
+type Mutation {
+    obtenerDetalleCarrera(input: InputCarrera!): ResultCarrera
+    crearCarrera(input: InputCrearCarrera!): ResultadoCarrera!
+    actualizarCarrera(input: InputActualizarCarrera!): ResultadoCarrera!
+    eliminarCarrera(input: InputEliminarCarrera!): ResultadoCarrera!
+    actualizarEstatusCarrera(input: InputEstatusCarrera!): ResultadoCarrera!
+}
+
+input InputCarrera {
+    carrera: Int!
+}
+
+type DetalleCarrera {
+    id: ID!
+    carrera: String!
+    trayecto: String!
+    materia: String!
+    personal: String!
+    estatus: String!
+}
+
+type ResultCarrera {
+    status: Int!
+    message: String!
+    type: String!
+    response: [DetalleCarrera]
+}
+
+input InputCrearCarrera {
+    codigo: String!
+    nombre: String!
+    tipo: Int!
+    ciclo: Int!
+    titulo: String!
+}
+
+input InputActualizarCarrera {
+    codigo: String!
+    nombre: String!
+    tipo: Int!
+    ciclo: Int!
+    titulo: String!
+    idcarrera: Int!
+}
+
+input InputEliminarCarrera {
+    idcarrera: Int!
+}
+
+type ResultadoCarrera {
+    status: Int!
+    message: String!
+    type: String!
+}
+
+input InputEstatusCarrera {
+    estatus: Int!
+    idcarrera: Int!
+}
+
+type Query {
+    obtenerTodasCarreras: ResultTodasCarreras
+}
+
+type Carreras {
+    id: ID!
+    codigo: String!
+    nombre: String!
+    tipo: String!
+    ciclo: String!
+    estatus: String!
+    titulo: String!
+}
+
+type ResultTodasCarreras {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Carreras]
+}
