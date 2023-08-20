@@ -81,7 +81,7 @@ export default {
             }
         },
         crearCarrera: async (_, {input}) => {
-            const {codigo, nombre, tipo, ciclo, titulo} = input
+            const {codigo, nombre, tipo, ciclo, titulo, cantTrayectos} = input
             
             try {     
                 const idcarrera = await dbp.oneOrNone(
@@ -89,11 +89,18 @@ export default {
                       co_carrera, nb_carrera, id_tp_carrera, id_ciclo, titulo_otorgado)
                       VALUES ($1, $2, $3, $4, $5) RETURNING id_carrera;`, [codigo, nombre, tipo, ciclo, titulo])
 
-                const trayectos = await dbp.manyOrNone(`SELECT id_trayecto FROM m017t_trayectos;`);
-
-                for(let i = 0; i < trayectos.length; i++) {
+                const trayectos = await dbp.manyOrNone(`SELECT id_trayecto FROM m017t_trayectos order by id_trayecto asc;`);
                 
-                await dbp.none(`INSERT INTO public.r009t_carrera_trayecto(id_carrera, id_trayecto) VALUES ($1, $2);`, [idcarrera.id_carrera, trayectos[i].id_trayecto])
+                if ( tipo === 1 ) {
+                    for(let i = 0; i < cantTrayectos + 1; i++) {
+                        console.log(trayectos[i].id_trayecto);
+                        await dbp.none(`INSERT INTO public.r009t_carrera_trayecto(id_carrera, id_trayecto) VALUES ($1, $2);`, [idcarrera.id_carrera, trayectos[i].id_trayecto])
+                    }
+                } else if ( tipo === 2 ) {
+                    for(let i = 1; i < cantTrayectos + 1; i++) {
+                        
+                        await dbp.none(`INSERT INTO public.r009t_carrera_trayecto(id_carrera, id_trayecto) VALUES ($1, $2);`, [idcarrera.id_carrera, trayectos[i].id_trayecto])
+                    }
                 }
 
                 return {status: 200, message: 'Carrera registrada exitosamente', type: "success"}
