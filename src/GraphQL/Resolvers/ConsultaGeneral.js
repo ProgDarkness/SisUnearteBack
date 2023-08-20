@@ -145,6 +145,14 @@ export default {
             } catch (e) {
                 return {status: 500, message: e.message, type: "error"}
             }
+        },
+        obtenerEtnia: async () => {
+            try {
+                const etnias = await dbp.manyOrNone(`SELECT id_etnia as id, nb_etnia as nombre FROM public.m051t_tipo_etnia;`);
+                return {status: 200, message: 'Etnias encontrados', type: "success", response: etnias}
+            } catch (e) {
+                return {status: 500, message: e.message, type: "error"}
+            }
         }
     },
     Mutation: {

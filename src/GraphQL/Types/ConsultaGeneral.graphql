@@ -230,6 +230,19 @@ type Zonas {
     codigo_postal: String!
 }
 
+type Etnia {
+    id: Int!
+    nombre: String!
+    codigo_postal: String!
+}
+
+type ResultEtnia {
+    status: Int!
+    message: String!
+    type: String!
+    response: [Etnia]
+}
+
 type Query {
     obtenerMaterias: ResultMaterias,
     obtenerCarreras: ResultCarreras,
@@ -247,8 +260,9 @@ type Query {
     obtenerTipoVivienda: ResultViviendas,
     obtenerPaises: ResultPaises,
     obtenerCodigoPostal: ResultCodigoPostal,
-    obtenerTipoDocumento: ResultTipoDocumento
-    obtenerEstadoCivil: ResultEstadosCiviles
+    obtenerTipoDocumento: ResultTipoDocumento,
+    obtenerEstadoCivil: ResultEstadosCiviles,
+    obtenerEtnia: ResultEtnia
 }
 
 type Mutation {

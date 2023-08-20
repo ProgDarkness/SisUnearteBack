@@ -1,3 +1,60 @@
+=================== 20/08/2023 ==========================
+query obtenerEtnia {
+  obtenerEtnia {
+    status
+    message
+    type
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+=================== 19/08/2023 ==========================
+
+mutation obtenerestudiante {
+  obtenerEstudiante (
+    input:{
+      nacionalidad: 1
+      cedula: 12345678
+    }){
+      response{
+        id
+        nombre
+        apellido
+        sexo
+      }
+    }
+}
+
+query obtenermaterias {
+  obtenerMaterias {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+mutation crearestudiante {
+  crearEstudiante (
+    input:{
+      nacionalidad: 1
+      cedula: 123456789
+      nombre: "ccc"
+      apellido: "ddds"
+      sexo: 1
+    }){
+      response{
+        id
+        nombre
+        apellido
+        sexo
+      }
+    }
+}
+
 =================== 17/08/2023 ==========================
 
 query obtenerperiodos {
