@@ -243,6 +243,42 @@ type ResultEtnia {
     response: [Etnia]
 }
 
+type ResultTipoCiclos {
+    status: Int!
+    message: String!
+    type: String!
+    response: [TpCiclos]
+}
+
+type TpCiclos {
+    id: ID!
+    nombre: String!
+}
+
+type ResultTipoMaterias {
+    status: Int!
+    message: String!
+    type: String!
+    response: [TpMateria]
+}
+
+type TpMateria {
+    id: ID!
+    nombre: String!
+}
+
+type ResultSedes {
+    status: Int!
+    message: String!
+    type: String!
+    response: [sedes]
+}
+
+type sedes {
+    id: ID!
+    nombre: String!
+}
+
 type Query {
     obtenerMaterias: ResultMaterias,
     obtenerCarreras: ResultCarreras,
@@ -263,6 +299,9 @@ type Query {
     obtenerTipoDocumento: ResultTipoDocumento,
     obtenerEstadoCivil: ResultEstadosCiviles,
     obtenerEtnia: ResultEtnia
+    obtenerCiclos: ResultTipoCiclos
+    obtenerTipoMateria: ResultTipoMaterias
+    obtenerSedes: ResultSedes
 }
 
 type Mutation {

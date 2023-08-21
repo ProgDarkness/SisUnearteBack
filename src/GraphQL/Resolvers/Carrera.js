@@ -39,22 +39,21 @@ export default {
             }
         },
         crearCarrera: async (_, {input}) => {
-            const {codigo, nombre, tipo, ciclo, titulo} = input
+            const {carrera, codigo, nombre, credito, tipo, hora} = input
             
-            try {     
-                const idcarrera = await dbp.oneOrNone(
-                    `INSERT INTO public.m006t_carreras(
-                      co_carrera, nb_carrera, id_tp_carrera, id_ciclo, titulo_otorgado)
-                      VALUES ($1, $2, $3, $4, $5) RETURNING id_carrera;`, [codigo, nombre, tipo, ciclo, titulo])
-
-                const trayectos = await dbp.manyOrNone(`SELECT id_trayecto FROM m017t_trayectos;`);
-
-                for(let i = 0; i < trayectos.length; i++) {
+            try {
+                const idMateria = await dbp.oneOrNone(
+                    `INSERT INTO public.m005t_materias(
+                      co_materia, nb_materia, nu_credito, id_tp_materia, hr_semanal, id_estatus_materia)
+                      VALUES ($1, $2, $3, $4, $5, $6) RETURNING id_materia;`, [codigo, nombre, credito, tipo, hora, 4])
                 
-                await dbp.none(`INSERT INTO public.r009t_carrera_trayecto(id_carrera, id_trayecto) VALUES ($1, $2);`, [idcarrera.id_carrera, trayectos[i].id_trayecto])
-                }
+                await dbp.none(
+                    `INSERT INTO public.r002t_carrera_materia(
+                        id_carrera, id_materia, visible, hora_semanal)
+                        VALUES ($1, $2, $3, $4, $5);`, [carrera, idMateria, true, hora]
+                )
 
-                return {status: 200, message: 'Carrera registrada exitosamente', type: "success"}
+                return {status: 200, message: 'Materia registrada exitosamente', type: "success"}
             } catch (e) {
                 return {status: 500, message: `Error: ${e.message}`, type: "error"}
             }

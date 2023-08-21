@@ -153,6 +153,30 @@ export default {
             } catch (e) {
                 return {status: 500, message: e.message, type: "error"}
             }
+        },
+        obtenerCiclos: async () => {
+            try {
+                const tpciclos =  await dbp.manyOrNone(`SELECT id_ciclo as id, nb_ciclo as nombre FROM public.m043t_ciclos;`) 
+                return {status: 200, message: 'Tipos de Ciclos encontrados', type: "success", response: tpciclos}
+            } catch (e) {
+                return {status: 500, message: e.message, type: "error"}
+            }
+        },
+        obtenerTipoMateria: async () => {
+            try {
+                const tpmateria =  await dbp.manyOrNone(`SELECT id_tp_materia as id, nb_tp_materia as nombre FROM public.m012t_tipo_materia;`) 
+                return {status: 200, message: 'Tipos de materia encontrados', type: "success", response: tpmateria}
+            } catch (e) {
+                return {status: 500, message: e.message, type: "error"}
+            }
+        },
+        obtenerSedes: async () => {
+            try {
+                const sedes =  await dbp.manyOrNone(`SELECT id_sede as id, nb_sede as nombre FROM public.t011t_sedes;`) 
+                return {status: 200, message: 'Tipos de materia encontrados', type: "success", response: sedes}
+            } catch (e) {
+                return {status: 500, message: e.message, type: "error"}
+            }
         }
     },
     Mutation: {
