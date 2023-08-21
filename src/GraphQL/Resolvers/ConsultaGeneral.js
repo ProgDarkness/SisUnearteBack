@@ -331,6 +331,26 @@ export default {
       } catch (e) {
         return { status: 500, message: e.message, type: 'error' }
       }
+    },
+    obtenerSedesPorCarrera: async (_, { carrera }) => {
+      try {
+        const sedesCarrera = await dbp.manyOrNone(
+          `SELECT sc.id_sede as id, s.nb_sede as nombre
+          FROM public.r007t_sede_carrera sc, public.t011t_sedes s
+            WHERE s.id_sede = sc.id_sede
+              AND sc.id_carrera = $1;`,
+          [carrera]
+        )
+
+        return {
+          status: 200,
+          message: 'Sedes por carrera encontradas',
+          type: 'success',
+          response: sedesCarrera
+        }
+      } catch (e) {
+        return { status: 500, message: e.message, type: 'error' }
+      }
     }
   },
   Mutation: {

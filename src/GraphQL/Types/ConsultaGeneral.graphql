@@ -302,6 +302,7 @@ type Query {
   obtenerCiclos: ResultTipoCiclos
   obtenerTipoMateria: ResultTipoMaterias
   obtenerSedes: ResultSedes
+  obtenerSedesPorCarrera(carrera: Int!): ResultSedes
 }
 
 type Mutation {
