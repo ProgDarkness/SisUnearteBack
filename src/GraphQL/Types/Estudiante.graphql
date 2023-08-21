@@ -1,11 +1,11 @@
 type Mutation {
-    obtenerEstudiante(input: InputConsultaEstudiante!): ResultEstudiante
-    crearEstudiante(input: InputEstudiante!): ResultEstudiante
+  obtenerEstudiante(input: InputConsultaEstudiante!): ResultEstudiante
+  crearEstudiante(input: InputEstudiante!): ResultEstudiante
 }
 
 input InputConsultaEstudiante {
-    nacionalidad: Int!
-    cedula: Int!
+  nacionalidad: Int!
+  cedula: Int!
 }
 
 input InputEstudiante {
@@ -17,15 +17,15 @@ input InputEstudiante {
 }
 
 type Estudiante {
-    id: ID!
-    nombre: String!
-    apellido: String!
-    sexo: String!
+  id: ID!
+  nombre: String!
+  apellido: String!
+  sexo: String!
 }
 
 type ResultEstudiante {
-    status: Int!
-    message: String!
-    type: String!
-    response: Estudiante
+  status: Int!
+  message: String!
+  type: String!
+  response: Estudiante
 }

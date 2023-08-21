@@ -1,377 +1,379 @@
 type Materia {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultMaterias {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Materia]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Materia]
 }
 
 type Carrera {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultCarreras {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Carrera]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Carrera]
 }
 
 type EstatusCarrera {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultEstatusCarrera {
-    status: Int!
-    message: String!
-    type: String!
-    response: [EstatusCarrera]
+  status: Int!
+  message: String!
+  type: String!
+  response: [EstatusCarrera]
 }
 
 type TipoCarrera {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultTipoCarreras {
-    status: Int!
-    message: String!
-    type: String!
-    response: [TipoCarrera]
+  status: Int!
+  message: String!
+  type: String!
+  response: [TipoCarrera]
 }
 
 type Nacionalidad {
-    id: ID!
-    codigo: String!
-    nombre: String!
+  id: ID!
+  codigo: String!
+  nombre: String!
 }
 
 type ResultNacionalidades {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Nacionalidad]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Nacionalidad]
 }
 
 type Sexo {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultSexos {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Sexo]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Sexo]
 }
 
 type Discapacidad {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultDiscapacidades {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Discapacidad]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Discapacidad]
 }
 
 type Ciudad {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultCiudades {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Ciudad]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Ciudad]
 }
 
 type Estado {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultEstados {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Estado]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Estado]
 }
 
 type Municipio {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultMunicipios {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Municipio]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Municipio]
 }
 
 type Parroquia {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultParroquias {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Parroquia]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Parroquia]
 }
 
 type Via {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultVias {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Via]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Via]
 }
 
 type Zona {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultZonas {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Zona]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Zona]
 }
 
 type Vivienda {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultViviendas {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Vivienda]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Vivienda]
 }
 
 type Pais {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultPaises {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Pais]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Pais]
 }
 
 type CodigoPostal {
-    id: ID!
-    nombre: String!
-    parroquia: Int!
-    codigo: Int!
+  id: ID!
+  nombre: String!
+  parroquia: Int!
+  codigo: Int!
 }
 
 type ResultCodigoPostal {
-    status: Int!
-    message: String!
-    type: String!
-    response: [CodigoPostal]
+  status: Int!
+  message: String!
+  type: String!
+  response: [CodigoPostal]
 }
 
 type TipoDocumento {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultTipoDocumento {
-    status: Int!
-    message: String!
-    type: String!
-    response: [TipoDocumento]
+  status: Int!
+  message: String!
+  type: String!
+  response: [TipoDocumento]
 }
 
 type EstadoCivil {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultEstadosCiviles {
-    status: Int!
-    message: String!
-    type: String!
-    response: [EstadoCivil]
+  status: Int!
+  message: String!
+  type: String!
+  response: [EstadoCivil]
 }
 
 type ResultZonasParroquia {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Zonas]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Zonas]
 }
 
 type Zonas {
-    id: Int!
-    nombre: String!
-    codigo_postal: String!
+  id: Int!
+  nombre: String!
+  codigo_postal: String!
 }
 
 type Etnia {
-    id: Int!
-    nombre: String!
-    codigo_postal: String!
+  id: Int!
+  nombre: String!
+  codigo_postal: String!
 }
 
 type ResultEtnia {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Etnia]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Etnia]
 }
 
 type ResultTipoCiclos {
-    status: Int!
-    message: String!
-    type: String!
-    response: [TpCiclos]
+  status: Int!
+  message: String!
+  type: String!
+  response: [TpCiclos]
 }
 
 type TpCiclos {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultTipoMaterias {
-    status: Int!
-    message: String!
-    type: String!
-    response: [TpMateria]
+  status: Int!
+  message: String!
+  type: String!
+  response: [TpMateria]
 }
 
 type TpMateria {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultSedes {
-    status: Int!
-    message: String!
-    type: String!
-    response: [sedes]
+  status: Int!
+  message: String!
+  type: String!
+  response: [sedes]
 }
 
 type sedes {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type Query {
-    obtenerMaterias: ResultMaterias,
-    obtenerCarreras: ResultCarreras,
-    obtenerTipoCarrera: ResultTipoCarreras,
-    obtenerEstatusCarrera: ResultEstatusCarrera,
-    obtenerNacionalidades: ResultNacionalidades,
-    obtenerSexos: ResultSexos,
-    obtenerDiscapacidades: ResultDiscapacidades,
-    obtenerCiudades: ResultCiudades,
-    obtenerEstados: ResultEstados,
-    obtenerMunicipios: ResultMunicipios,
-    obtenerParroquias: ResultParroquias,
-    obtenerTipoVia: ResultVias,
-    obtenerTipoZona: ResultZonas,
-    obtenerTipoVivienda: ResultViviendas,
-    obtenerPaises: ResultPaises,
-    obtenerCodigoPostal: ResultCodigoPostal,
-    obtenerTipoDocumento: ResultTipoDocumento,
-    obtenerEstadoCivil: ResultEstadosCiviles,
-    obtenerEtnia: ResultEtnia
-    obtenerCiclos: ResultTipoCiclos
-    obtenerTipoMateria: ResultTipoMaterias
-    obtenerSedes: ResultSedes
+  obtenerMaterias: ResultMaterias
+  obtenerCarreras: ResultCarreras
+  obtenerTipoCarrera: ResultTipoCarreras
+  obtenerEstatusCarrera: ResultEstatusCarrera
+  obtenerNacionalidades: ResultNacionalidades
+  obtenerSexos: ResultSexos
+  obtenerDiscapacidades: ResultDiscapacidades
+  obtenerCiudades: ResultCiudades
+  obtenerEstados: ResultEstados
+  obtenerMunicipios: ResultMunicipios
+  obtenerParroquias: ResultParroquias
+  obtenerTipoVia: ResultVias
+  obtenerTipoZona: ResultZonas
+  obtenerTipoVivienda: ResultViviendas
+  obtenerPaises: ResultPaises
+  obtenerCodigoPostal: ResultCodigoPostal
+  obtenerTipoDocumento: ResultTipoDocumento
+  obtenerEstadoCivil: ResultEstadosCiviles
+  obtenerEtnia: ResultEtnia
+  obtenerCiclos: ResultTipoCiclos
+  obtenerTipoMateria: ResultTipoMaterias
+  obtenerSedes: ResultSedes
 }
 
 type Mutation {
-    obtenerCiudadesPorEstado(input: InputEstado!): ResultCiudad
-    obtenerEstadosPorPais(input: InputPais!): ResultPais
-    obtenerMunicipiosPorEstado(input: InputEstado!): ResultMunicipiosEstado
-    obtenerParrquiasPorMunicipio(input: InputMunicipio!): ResultParroquiasMunicipio
-    obtenerZonasPorParroquias(input: InputParroquia!): ResultZonasParroquia
+  obtenerCiudadesPorEstado(input: InputEstado!): ResultCiudad
+  obtenerEstadosPorPais(input: InputPais!): ResultPais
+  obtenerMunicipiosPorEstado(input: InputEstado!): ResultMunicipiosEstado
+  obtenerParrquiasPorMunicipio(
+    input: InputMunicipio!
+  ): ResultParroquiasMunicipio
+  obtenerZonasPorParroquias(input: InputParroquia!): ResultZonasParroquia
 }
 
 input InputParroquia {
-    parroquia: Int!
+  parroquia: Int!
 }
 
 input InputEstado {
-    estado: Int!
+  estado: Int!
 }
 
 type Ciudades {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultCiudad {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Ciudades]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Ciudades]
 }
 
 input InputPais {
-    pais: Int!
+  pais: Int!
 }
 
 type Paises {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultPais {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Paises]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Paises]
 }
 
 type MunicipioEstado {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultMunicipiosEstado {
-    status: Int!
-    message: String!
-    type: String!
-    response: [MunicipioEstado]
+  status: Int!
+  message: String!
+  type: String!
+  response: [MunicipioEstado]
 }
 
 input InputMunicipio {
-    municipio: Int!
+  municipio: Int!
 }
 
 type ParroquiaMunicipio {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultParroquiasMunicipio {
-    status: Int!
-    message: String!
-    type: String!
-    response: [ParroquiaMunicipio]
+  status: Int!
+  message: String!
+  type: String!
+  response: [ParroquiaMunicipio]
 }

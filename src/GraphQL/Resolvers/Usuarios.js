@@ -28,13 +28,16 @@ export default {
         throw new ApolloError(e.message)
       }
     },
-    getInfoUsuario: async(_, {id_usuario}) =>{
-
+    getInfoUsuario: async (_, { id_usuario }) => {
       try {
-        const estatusUserReg = await dbp.oneOrNone(`SELECT bl_registro FROM public.t001t_usuarios WHERE id_usuario = $1;`, [id_usuario])
+        const estatusUserReg = await dbp.oneOrNone(
+          `SELECT bl_registro FROM public.t001t_usuarios WHERE id_usuario = $1;`,
+          [id_usuario]
+        )
 
         if (estatusUserReg?.bl_registro) {
-          const infoUser = await dbp.oneOrNone(`SELECT u.id_nacionalidad, nacionalidad.co_nacionalidad, nacionalidad.nb_nacionalidad, u.ced_usuario, u.nb_usuario, u.ape_usuario, u.id_sexo_usuario, sex.nb_tp_sexo,
+          const infoUser = await dbp.oneOrNone(
+            `SELECT u.id_nacionalidad, nacionalidad.co_nacionalidad, nacionalidad.nb_nacionalidad, u.ced_usuario, u.nb_usuario, u.ape_usuario, u.id_sexo_usuario, sex.nb_tp_sexo,
           u.fe_nac_usuario, u.id_pais_origen, pais.nb_pais as nb_pais_origen, u.id_pais, pais.nb_pais, u.id_estado_civil, estCivil.nb_civil, u.correo_usuario, u.id_tipo_via, tpVia.nb_tp_via, 
           u.nb_via, u.id_tipo_zona, tpZona.nb_tp_zona, u.nb_zona, u.id_zona, u.id_tipo_vivienda, tpVivienda.nb_tp_vivienda, u.nu_vivienda, u.id_ciudad, ciudad.nb_ciudad, u.id_estado, estado.nb_estado,
           u.id_zona_postal, u.id_municipio, municipio.nb_municipio, u.id_parroquia, parroquia.nb_parroquia, u.bl_registro, u.nb2_usuario, u.ape2_usuario, u.id_discapacidad, discapacidad.nb_tp_discapacidad
@@ -44,8 +47,9 @@ export default {
         WHERE u.id_usuario = $1 AND sex.id_tp_sexo = u.id_sexo_usuario AND pais.id_pais = u.id_pais_origen AND pais.id_pais = u.id_pais AND estCivil.id_civil = u.id_estado_civil
           AND tpVia.id_tp_via = u.id_tipo_via AND tpZona.id_tp_zona = u.id_tipo_zona AND tpVivienda.id_tp_vivienda = u.id_tipo_vivienda AND ciudad.id_ciudad = u.id_ciudad
           AND estado.id_estado = u.id_estado AND municipio.id_municipio = u.id_municipio AND parroquia.id_parroquia = u.id_parroquia AND nacionalidad.id_nacionalidad = u.id_nacionalidad
-          AND discapacidad.id_tp_discapacidad = u.id_discapacidad;`, 
-          [id_usuario])
+          AND discapacidad.id_tp_discapacidad = u.id_discapacidad;`,
+            [id_usuario]
+          )
 
           const {
             id_nacionalidad,
@@ -89,13 +93,17 @@ export default {
             id_discapacidad,
             nb_tp_discapacidad
           } = infoUser
-          
+
           const RinfoUser = {
-            nacionalidad: { id: id_nacionalidad,  codigo: co_nacionalidad, nombre: nb_nacionalidad },
+            nacionalidad: {
+              id: id_nacionalidad,
+              codigo: co_nacionalidad,
+              nombre: nb_nacionalidad
+            },
             ced_usuario,
             nb_usuario,
             ape_usuario,
-            sexo: { id: id_sexo_usuario, nombre: nb_tp_sexo},
+            sexo: { id: id_sexo_usuario, nombre: nb_tp_sexo },
             fe_nac_usuario,
             paisNac: { id: id_pais_origen, nombre: nb_pais_origen },
             pais: { id: id_pais, nombre: nb_pais },
@@ -104,12 +112,16 @@ export default {
             tpVia: { id: id_tipo_via, nombre: nb_tp_via },
             nb_via,
             tpZona: { id: id_tipo_zona, nombre: nb_tp_zona },
-            nombZona: { nombre: nb_zona, id: id_zona, codigo_postal: id_zona_postal },
+            nombZona: {
+              nombre: nb_zona,
+              id: id_zona,
+              codigo_postal: id_zona_postal
+            },
             tpVivienda: { id: id_tipo_vivienda, nombre: nb_tp_vivienda },
             nu_vivienda,
             ciudad: { id: id_ciudad, nombre: nb_ciudad },
             estado: { id: id_estado, nombre: nb_estado },
-            municipio: { id: id_municipio, nombre: nb_municipio},
+            municipio: { id: id_municipio, nombre: nb_municipio },
             parroquia: { id: id_parroquia, nombre: nb_parroquia },
             bl_registro,
             nb2_usuario,
@@ -117,12 +129,21 @@ export default {
             discapacidad: { id: id_discapacidad, nombre: nb_tp_discapacidad }
           }
 
-          return {status: 200, type: "success", message: 'Usuario encontrado', response: RinfoUser}
+          return {
+            status: 200,
+            type: 'success',
+            message: 'Usuario encontrado',
+            response: RinfoUser
+          }
         } else {
-          return {status: 202, type: "error", message: 'Usuario no registrado'}
+          return {
+            status: 202,
+            type: 'error',
+            message: 'Usuario no registrado'
+          }
         }
       } catch (e) {
-        return {status: 500, type: "error", message: `Error: ${e.message}`}
+        return { status: 500, type: 'error', message: `Error: ${e.message}` }
       }
     }
   },
@@ -229,43 +250,153 @@ export default {
         throw new ApolloError(e.message)
       }
     },
-    crearUsuario: async (_, {input}) => {
-      const {idnacionalidad, cedula, nombre, apellido, sexo, fenac, idpais, idcivil, correo, idtpvia, nbtpvia, idtpzona, nbzona, idtpvivienda, nuvivienda, idciudad, idestado, idmunicipio, idparroquia, idpostal, blregistro} = input
-      
-      try {    
-          await dbp.none(
-              `INSERT INTO public.t001t_usuarios(
+    crearUsuario: async (_, { input }) => {
+      const {
+        idnacionalidad,
+        cedula,
+        nombre,
+        apellido,
+        sexo,
+        fenac,
+        idpais,
+        idcivil,
+        correo,
+        idtpvia,
+        nbtpvia,
+        idtpzona,
+        nbzona,
+        idtpvivienda,
+        nuvivienda,
+        idciudad,
+        idestado,
+        idmunicipio,
+        idparroquia,
+        idpostal,
+        blregistro
+      } = input
+
+      try {
+        await dbp.none(
+          `INSERT INTO public.t001t_usuarios(
                 id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_sexo_usuario, fe_nac_usuario, id_pais_origen, id_estado_civil, correo_usuario, id_tipo_via, nb_via, id_tipo_zona, nb_zona, id_tipo_vivienda, nu_vivienda, id_ciudad, id_estado, id_municipio, id_parroquia, id_zona_postal, bl_registro)
-                VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21);`, [idnacionalidad, cedula, nombre, apellido, sexo, fenac, idpais, idcivil, correo, idtpvia, nbtpvia, idtpzona, nbzona, idtpvivienda, nuvivienda, idciudad, idestado, idmunicipio, idparroquia, idpostal, blregistro]
-            )
-          return {status: 200, type: "success", message: 'Usuario registrado exitosamente'}
+                VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21);`,
+          [
+            idnacionalidad,
+            cedula,
+            nombre,
+            apellido,
+            sexo,
+            fenac,
+            idpais,
+            idcivil,
+            correo,
+            idtpvia,
+            nbtpvia,
+            idtpzona,
+            nbzona,
+            idtpvivienda,
+            nuvivienda,
+            idciudad,
+            idestado,
+            idmunicipio,
+            idparroquia,
+            idpostal,
+            blregistro
+          ]
+        )
+        return {
+          status: 200,
+          type: 'success',
+          message: 'Usuario registrado exitosamente'
+        }
       } catch (e) {
-          return {status: 500, type: "error", message: `Error: ${e.message}`}
+        return { status: 500, type: 'error', message: `Error: ${e.message}` }
       }
     },
-    actualizarUsuario: async (_, {input}) => {
-      const {idnacionalidad, cedula, nombre, apellido, nombre2, apellido2, sexo, fenac, idpaisorigen, idpais, idcivil, correo, idtpvia, nbtpvia, idtpzona, nbzona, idZona, idtpvivienda, nuvivienda, idciudad, idestado, idmunicipio, idparroquia, idpostal, blregistro, idusuario, idDiscapacidad} = input
-      
-      try {    
-          await dbp.none(
-              `UPDATE public.t001t_usuarios
+    actualizarUsuario: async (_, { input }) => {
+      const {
+        idnacionalidad,
+        cedula,
+        nombre,
+        apellido,
+        nombre2,
+        apellido2,
+        sexo,
+        fenac,
+        idpaisorigen,
+        idpais,
+        idcivil,
+        correo,
+        idtpvia,
+        nbtpvia,
+        idtpzona,
+        nbzona,
+        idZona,
+        idtpvivienda,
+        nuvivienda,
+        idciudad,
+        idestado,
+        idmunicipio,
+        idparroquia,
+        idpostal,
+        blregistro,
+        idusuario,
+        idDiscapacidad
+      } = input
+
+      try {
+        await dbp.none(
+          `UPDATE public.t001t_usuarios
                SET id_nacionalidad = $1, ced_usuario = $2, nb_usuario = $3, ape_usuario = $4, id_sexo_usuario = $5, fe_nac_usuario = $6, 
                id_pais_origen = $7, id_estado_civil = $8, correo_usuario = $9, id_tipo_via = $10, nb_via = $11, id_tipo_zona = $12, 
                nb_zona = $13, id_tipo_vivienda = $14, nu_vivienda = $15, id_ciudad = $16, id_estado = $17, id_municipio = $18, id_parroquia = $19, 
                id_zona_postal = $20, bl_registro = $21, nb2_usuario = $23, ape2_usuario = $24, id_zona = $25, id_pais = $26, id_discapacidad = $27
-               WHERE id_usuario =$22;`, [idnacionalidad, cedula, nombre, apellido, sexo, fenac, idpaisorigen, idcivil, correo, idtpvia, nbtpvia, idtpzona, nbzona, idtpvivienda, nuvivienda, idciudad, idestado, idmunicipio, idparroquia, idpostal, blregistro, idusuario, nombre2, apellido2, idZona, idpais, idDiscapacidad]
-            )
-          return {status: 200, type: "success", message: 'Usuario guardado exitosamente'}
+               WHERE id_usuario =$22;`,
+          [
+            idnacionalidad,
+            cedula,
+            nombre,
+            apellido,
+            sexo,
+            fenac,
+            idpaisorigen,
+            idcivil,
+            correo,
+            idtpvia,
+            nbtpvia,
+            idtpzona,
+            nbzona,
+            idtpvivienda,
+            nuvivienda,
+            idciudad,
+            idestado,
+            idmunicipio,
+            idparroquia,
+            idpostal,
+            blregistro,
+            idusuario,
+            nombre2,
+            apellido2,
+            idZona,
+            idpais,
+            idDiscapacidad
+          ]
+        )
+        return {
+          status: 200,
+          type: 'success',
+          message: 'Usuario guardado exitosamente'
+        }
       } catch (e) {
-          return {status: 500, type: "error", message: `Error: ${e.message}`}
+        return { status: 500, type: 'error', message: `Error: ${e.message}` }
       }
     },
-    obtenerUsuario: async (_, {input}) => {
-      const {idusuario} = input
-      
-      try {    
+    obtenerUsuario: async (_, { input }) => {
+      const { idusuario } = input
+
+      try {
         const usuario = await dbp.oneOrNone(
-              `SELECT u.id_usuario as id, tn.co_nacionalidad as nacionalidad, u.ced_usuario as cedula, u.nb_usuario as nombre, u.ape_usuario as apellido,
+          `SELECT u.id_usuario as id, tn.co_nacionalidad as nacionalidad, u.ced_usuario as cedula, u.nb_usuario as nombre, u.ape_usuario as apellido,
               ts.co_tp_sexo as sexo, u.fe_nac_usuario as fenac, pais.nb_pais as pais, ec.nb_civil as civil, u.correo_usuario as correo, tvia.nb_tp_via as nbtpbia, u.nb_via as nbvia, 
               tzona.nb_tp_zona as nbtpzona, u.nb_zona as nbzona, tvivienda.nb_tp_vivienda as nbtpvivienda, u.nu_vivienda as nuvivienda,
               c.nb_ciudad as ciudad, e.nb_estado as estado, m.nb_municipio as municipio, p.nb_parroquia as parroquia
@@ -283,11 +414,18 @@ export default {
               and u.id_estado = e.id_estado
               and u.id_municipio = m.id_municipio 
               and u.id_parroquia = p.id_parroquia
-              and u.id_usuario = $1;`, [idusuario])
+              and u.id_usuario = $1;`,
+          [idusuario]
+        )
 
-          return {status: 200, type: "success", message: 'Usuario encontrado', response: usuario}
+        return {
+          status: 200,
+          type: 'success',
+          message: 'Usuario encontrado',
+          response: usuario
+        }
       } catch (e) {
-          return {status: 500, type: "error", message: `Error: ${e.message}`}
+        return { status: 500, type: 'error', message: `Error: ${e.message}` }
       }
     }
   }

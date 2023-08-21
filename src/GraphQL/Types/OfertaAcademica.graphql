@@ -1,5 +1,5 @@
 type Mutation {
-    crearOferta(input: InputOferta!): ResultadOferta!
+  crearOferta(input: InputOferta!): ResultadOferta!
 }
 
 input InputOferta {
@@ -13,32 +13,32 @@ input InputOferta {
 }
 
 type ResultadOferta {
-    status: Int!
-    message: String!
-    type: String!
+  status: Int!
+  message: String!
+  type: String!
 }
 
 type Query {
-    obtenerOfertaAcademica: ResultOferta
+  obtenerOfertaAcademica: ResultOferta
 }
 
 type Oferta {
-    id: ID!
-    periodo: Int!
-    anio: Int!
-    tipo: String!
-    nbtperido: String!
-    trayecto: String!
-    carrera: String!
-    cupos: Int!
-    materia: String!
-    estatus: String!
-    sede: String!
+  id: ID!
+  periodo: Int!
+  anio: Int!
+  tipo: String!
+  nbtperido: String!
+  trayecto: String!
+  carrera: String!
+  cupos: Int!
+  materia: String!
+  estatus: String!
+  sede: String!
 }
 
 type ResultOferta {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Oferta]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Oferta]
 }

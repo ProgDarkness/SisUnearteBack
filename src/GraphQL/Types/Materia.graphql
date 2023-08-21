@@ -1,52 +1,52 @@
 type Mutation {
-    crearMateria(input: InputCrearMateria!): Resultado!
-    actualizarMateria(input: InputActualizarMateria!): Resultado!
-    eliminarMateria(input: InputEliminarMateria!): Resultado!
+  crearMateria(input: InputCrearMateria!): Resultado!
+  actualizarMateria(input: InputActualizarMateria!): Resultado!
+  eliminarMateria(input: InputEliminarMateria!): Resultado!
 }
 
 input InputCrearMateria {
-    codigo: String!
-    nombre: String!
-    credito: Int!
-    tipo: Int!
-    hora: Int!
+  codigo: String!
+  nombre: String!
+  credito: Int!
+  tipo: Int!
+  hora: Int!
 }
 
 input InputActualizarMateria {
-    codigo: String!
-    nombre: String!
-    credito: Int!
-    tipo: Int!
-    hora: Int!
-    idmateria: Int!
+  codigo: String!
+  nombre: String!
+  credito: Int!
+  tipo: Int!
+  hora: Int!
+  idmateria: Int!
 }
 
 input InputEliminarMateria {
-    idmateria: Int!
+  idmateria: Int!
 }
 
 type Resultado {
-    status: Int!
-    message: String!
-    type: String!
+  status: Int!
+  message: String!
+  type: String!
 }
 
 type Query {
-    obtenerTodasMaterias: ResultTodasMaterias
+  obtenerTodasMaterias: ResultTodasMaterias
 }
 
 type Materias {
-    id: ID!
-    codigo: String!
-    nombre: String!
-    credito: Int!
-    hora: Int!
-    estatus: String!
+  id: ID!
+  codigo: String!
+  nombre: String!
+  credito: Int!
+  hora: Int!
+  estatus: String!
 }
 
 type ResultTodasMaterias {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Materias]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Materias]
 }

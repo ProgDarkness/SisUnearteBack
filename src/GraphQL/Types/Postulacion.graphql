@@ -1,38 +1,38 @@
 type EstatuPostulacion {
-    id: ID!
-    nombre: String!
+  id: ID!
+  nombre: String!
 }
 
 type ResultEstatuPostulacion {
-    status: Int!
-    message: String!
-    type: String!
-    response: [EstatuPostulacion]
+  status: Int!
+  message: String!
+  type: String!
+  response: [EstatuPostulacion]
 }
 
 type PostuladoAgrupadoCarrera {
-    id: ID!
-    nacionalidad: String!
-    cedula: Int!
-    nombre: String!
-    apellido: String!
-    fepostulacion: String!
-    estatus: String!
-    periodo: String!
-    tperiodo: String!
-    carrera: String!  
+  id: ID!
+  nacionalidad: String!
+  cedula: Int!
+  nombre: String!
+  apellido: String!
+  fepostulacion: String!
+  estatus: String!
+  periodo: String!
+  tperiodo: String!
+  carrera: String!
 }
 
 type ResultPostuladoAgrupadoCarrera {
-    status: Int!
-    message: String!
-    type: String!
-    response: [PostuladoAgrupadoCarrera]
+  status: Int!
+  message: String!
+  type: String!
+  response: [PostuladoAgrupadoCarrera]
 }
 
 type Query {
-    obtenerEstatusPostulacion: ResultEstatuPostulacion,
-    obtenerListadoPostuladoCarrera: ResultPostuladoAgrupadoCarrera
+  obtenerEstatusPostulacion: ResultEstatuPostulacion
+  obtenerListadoPostuladoCarrera: ResultPostuladoAgrupadoCarrera
 }
 
 type Mutation {

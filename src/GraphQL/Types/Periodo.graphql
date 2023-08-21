@@ -1,118 +1,117 @@
 type Periodo {
-    id: ID!
-    codigo: String!
-    periodo: String!
-    anio: Int!
-    mesi: String!
-    mesf: String!
-    semana: Int!
-    personal: String!
-    mensaje: String!
-    fei: String!
-    fef: String!
-    feacta: String!
-    fedoc: String!
-    fepregrado: String!
-    femodificacion: String!
-    feipre: String!
-    fefpre: String!
-    feinsc: String!
-    fefinsc: String!
-    feioferta: String!
-    fefoferta: String!
-    feiretiro: String!
-    fefretiro: String!
-    feinota: String!
-    fefnota: String!
-    estatus: String!
-    trayecto: String!
+  id: ID!
+  codigo: String!
+  periodo: String!
+  anio: Int!
+  mesi: String!
+  mesf: String!
+  semana: Int!
+  personal: String!
+  mensaje: String!
+  fei: String!
+  fef: String!
+  feacta: String!
+  fedoc: String!
+  fepregrado: String!
+  femodificacion: String!
+  feipre: String!
+  fefpre: String!
+  feinsc: String!
+  fefinsc: String!
+  feioferta: String!
+  fefoferta: String!
+  feiretiro: String!
+  fefretiro: String!
+  feinota: String!
+  fefnota: String!
+  estatus: String!
+  trayecto: String!
 }
 
 type ResultPeriodos {
-    status: Int!
-    message: String!
-    type: String!
-    response: [Periodo]
+  status: Int!
+  message: String!
+  type: String!
+  response: [Periodo]
 }
 
 type Query {
-    obtenerPeriodos: ResultPeriodos
+  obtenerPeriodos: ResultPeriodos
 }
 
 type Mutation {
-    crearPeriodo(input: InputPeriodo!): ResultadoPeriodo
-    actualizarPeriodo(input: InputActualizarPeriodo!): ResultadoPeriodo
-    eliminarPeriodo(input: InputEliminarPeriodo!): ResultadoPeriodo
+  crearPeriodo(input: InputPeriodo!): ResultadoPeriodo
+  actualizarPeriodo(input: InputActualizarPeriodo!): ResultadoPeriodo
+  eliminarPeriodo(input: InputEliminarPeriodo!): ResultadoPeriodo
 }
 
 input InputPeriodo {
-    codigo: Int!
-    tipo: Int!
-    anio: Int!
-    mesinicio: Int!
-    mesfin: Int!
-    nusemana: Int!
-    personal: Int!
-    mensaje: String!
-    feinicio: String!
-    fefin: String!
-    feentregaacta: String!
-    fesolicdocumento: String!
-    fesolicgrado: String!
-    feretiro: String!
-    femodificacion: String!
-    feiniciopreinscripcion: String!
-    fefinpreinscripcion: String!
-    feinicioinscripcion: String!
-    fefininscripcion: String!
-    feiniciooferta: String!
-    fefinoferta: String!
-    feinicioretiro: String!
-    fefinretiro: String!
-    feinicionotas: String!
-    fefinnotas: String!
-    trayecto: Int!
+  codigo: Int!
+  tipo: Int!
+  anio: Int!
+  mesinicio: Int!
+  mesfin: Int!
+  nusemana: Int!
+  personal: Int!
+  mensaje: String!
+  feinicio: String!
+  fefin: String!
+  feentregaacta: String!
+  fesolicdocumento: String!
+  fesolicgrado: String!
+  feretiro: String!
+  femodificacion: String!
+  feiniciopreinscripcion: String!
+  fefinpreinscripcion: String!
+  feinicioinscripcion: String!
+  fefininscripcion: String!
+  feiniciooferta: String!
+  fefinoferta: String!
+  feinicioretiro: String!
+  fefinretiro: String!
+  feinicionotas: String!
+  fefinnotas: String!
+  trayecto: Int!
 }
 
 input InputActualizarPeriodo {
-    codigo: Int!
-    tipo: Int!
-    anio: Int!
-    mesinicio: Int!
-    mesfin: Int!
-    nusemana: Int!
-    personal: Int!
-    mensaje: String!
-    feinicio: String!
-    fefin: String!
-    feentregaacta: String!
-    fesolicdocumento: String!
-    fesolicgrado: String!
-    feretiro: String!
-    femodificacion: String!
-    feiniciopreinscripcion: String!
-    fefinpreinscripcion: String!
-    feinicioinscripcion: String!
-    fefininscripcion: String!
-    feiniciooferta: String!
-    fefinoferta: String!
-    feinicioretiro: String!
-    fefinretiro: String!
-    feinicionotas: String!
-    fefinnotas: String!
-    visible: Boolean!
-    estatus: Int!
-    trayecto: Int!
-    idperiodo: Int!
+  codigo: Int!
+  tipo: Int!
+  anio: Int!
+  mesinicio: Int!
+  mesfin: Int!
+  nusemana: Int!
+  personal: Int!
+  mensaje: String!
+  feinicio: String!
+  fefin: String!
+  feentregaacta: String!
+  fesolicdocumento: String!
+  fesolicgrado: String!
+  feretiro: String!
+  femodificacion: String!
+  feiniciopreinscripcion: String!
+  fefinpreinscripcion: String!
+  feinicioinscripcion: String!
+  fefininscripcion: String!
+  feiniciooferta: String!
+  fefinoferta: String!
+  feinicioretiro: String!
+  fefinretiro: String!
+  feinicionotas: String!
+  fefinnotas: String!
+  visible: Boolean!
+  estatus: Int!
+  trayecto: Int!
+  idperiodo: Int!
 }
 
 input InputEliminarPeriodo {
-    idperiodo: Int!
+  idperiodo: Int!
 }
 
 type ResultadoPeriodo {
-    status: Int!
-    message: String!
-    type: String!
+  status: Int!
+  message: String!
+  type: String!
 }
-

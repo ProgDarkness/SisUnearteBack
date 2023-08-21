@@ -21,7 +21,7 @@ export default {
 
       try {
         const { nb_persona, telefono, id_grupo } = input
-        
+
         return dbp
           .tx(async (t) => {
             if (input?.id_persona) {
