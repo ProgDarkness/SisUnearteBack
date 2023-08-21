@@ -32,6 +32,8 @@ input InputCrearCarrera {
     tipo: Int!
     ciclo: Int!
     titulo: String!
+    cantTrayectos: Int!
+    sede: Int!
 }
 
 input InputActualizarCarrera {

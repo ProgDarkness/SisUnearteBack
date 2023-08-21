@@ -16,16 +16,19 @@ export default {
     },
     Mutation: {
         crearMateria: async (_, {input}) => {
-            const {codigo, nombre, credito, tipo, hora} = input
+            const {carrera, codigo, nombre, credito, tipo, hora} = input
             
-            try {     
-                let estatus = null;
-                estatus = 4;
-
-                await dbp.none(
+            try {
+                const idMateria = await dbp.oneOrNone(
                     `INSERT INTO public.m005t_materias(
                       co_materia, nb_materia, nu_credito, id_tp_materia, hr_semanal, id_estatus_materia)
-                      VALUES ($1, $2, $3, $4, $5, $6);`, [codigo, nombre, credito, tipo, hora, estatus])
+                      VALUES ($1, $2, $3, $4, $5, $6) RETURNING id_materia;`, [codigo, nombre, credito, tipo, hora, 4])
+                
+                await dbp.none(
+                    `INSERT INTO public.r002t_carrera_materia(
+                        id_carrera, id_materia, visible, hora_semanal)
+                        VALUES ($1, $2, $3, $4, $5);`, [carrera, idMateria, true, hora]
+                )
 
                 return {status: 200, message: 'Materia registrada exitosamente', type: "success"}
             } catch (e) {
