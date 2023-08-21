@@ -370,12 +370,31 @@ export default {
             `SELECT id_estado_mundo as id, nb_estado_mundo as nombre FROM m049t_estado_mundo WHERE id_pais = $1;`,
             [pais]
           )
+
           return {
             status: 200,
             message: 'Estados encontrados',
             type: 'success',
             response: paises
           }
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
+    obtenerMunicipiosPorEstado: async (_, { input }) => {
+      const { estado } = input
+      try {
+        const municipioestados = await dbp.manyOrNone(
+          `SELECT id_municipio as id, nb_municipio as nombre FROM m002t_municipios WHERE id_estado = $1;`,
+          [estado]
+        )
+
+        return {
+          status: 200,
+          message: 'Municipios encontrados por estado',
+          type: 'success',
+          response: municipioestados
         }
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }

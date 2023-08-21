@@ -27,11 +27,13 @@ type ResultCarrera {
 }
 
 input InputCrearCarrera {
-    codigo: String!
-    nombre: String!
-    tipo: Int!
-    ciclo: Int!
-    titulo: String!
+  codigo: String!
+  nombre: String!
+  tipo: Int!
+  ciclo: Int!
+  titulo: String!
+  cantTrayectos: Int!
+  sede: Int!
 }
 
 input InputActualizarCarrera {

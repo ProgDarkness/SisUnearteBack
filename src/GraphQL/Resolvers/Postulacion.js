@@ -19,8 +19,8 @@ export default {
     },
     obtenerListadoPostuladoCarrera: async () => {
       try {
-        const postulados = await dbp.manyOrNone(`
-                            SELECT p.id_postulacion as id, tn.co_nacionalidad as nacionalidad, u.ced_usuario as cedula, u.nb_usuario as nombre, u.ape_usuario as apellido,
+        const postulados = await dbp.manyOrNone(
+          `SELECT p.id_postulacion as id, tn.co_nacionalidad as nacionalidad, u.ced_usuario as cedula, u.nb_usuario as nombre, u.ape_usuario as apellido,
                             p.fe_postulacion as fepostulacion, ep.nb_estatus_postulacion estatus, pl.anio_periodo as periodo, tp.nb_tp_periodo as tperiodo,
                             c.nb_carrera as carrera
                             FROM t001t_usuarios as u, m028t_tipo_nacionalidad as tn, t013t_postulacion as p, 
@@ -31,7 +31,8 @@ export default {
                             AND c.id_carrera = p.id_carrera
                             AND fep.id_estatus_postulacion = ep.id_estatus_postulacion
                             AND p.id_periodo = pl.id_periodo
-                            AND tp.id_tp_periodo = pl.id_tp_periodo;`)
+                            AND tp.id_tp_periodo = pl.id_tp_periodo;`
+        )
         return {
           status: 200,
           message: 'Postulados encontrados',
