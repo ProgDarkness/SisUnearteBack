@@ -6,11 +6,13 @@ export default {
       try {
         const carreras =
           await dbp.manyOrNone(`SELECT c.id_carrera as id, c.co_carrera as codigo, c.nb_carrera as nombre, tc.nb_tp_carrera as tipo, ciclo.nb_ciclo as ciclo,
-                                e.nb_estatus_carrera as estatus, c.titulo_otorgado as titulo
-                                FROM m006t_carreras as c, m036t_tipo_carrera as tc, m043t_ciclos as ciclo, m045t_estatus_carrera as e
-                                where c.id_tp_carrera = tc.id_tp_carrera
-                                and c.id_ciclo = ciclo.id_ciclo
-                                and c.id_estatus_carrera = e.id_estatus_carrera;`)
+          e.nb_estatus_carrera as estatus, c.titulo_otorgado as titulo, s.nb_sede as sede
+          FROM m006t_carreras as c, m036t_tipo_carrera as tc, m043t_ciclos as ciclo, m045t_estatus_carrera as e, public.r007t_sede_carrera sc, public.t011t_sedes s 
+          where c.id_tp_carrera = tc.id_tp_carrera
+          and c.id_ciclo = ciclo.id_ciclo
+          and c.id_estatus_carrera = e.id_estatus_carrera
+          and sc.id_carrera = c.id_carrera
+          and sc.id_sede = s.id_sede;`)
         return {
           status: 200,
           message: 'Listado de carreras encontradas',
