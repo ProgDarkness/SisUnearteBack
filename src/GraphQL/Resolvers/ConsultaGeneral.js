@@ -351,6 +351,21 @@ export default {
       } catch (e) {
         return { status: 500, message: e.message, type: 'error' }
       }
+    },
+    obtenerTipoTitulo: async () => {
+      try {
+        const titulos = await dbp.manyOrNone(
+          `SELECT id_titulo as id, nb_titulo as nombre FROM public.m052t_tipo_titulo;`
+        )
+        return {
+          status: 200,
+          message: 'Tipos de titulo encontrados',
+          type: 'success',
+          response: titulos
+        }
+      } catch (e) {
+        return { status: 500, message: e.message, type: 'error' }
+      }
     }
   },
   Mutation: {

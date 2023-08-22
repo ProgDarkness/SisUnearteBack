@@ -1,4 +1,14 @@
 =================== 20/08/2023 ==========================
+
+query obtenertipotitulos {
+  obtenerTipoTitulo {
+    response {
+      id
+      nombre
+    }
+  }
+}
+=================== 20/08/2023 ==========================
 query obtenerEtnia {
   obtenerEtnia {
     status

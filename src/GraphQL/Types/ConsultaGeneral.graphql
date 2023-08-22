@@ -279,6 +279,18 @@ type sedes {
   nombre: String!
 }
 
+type ResultTipoTitulo {
+  status: Int!
+  message: String!
+  type: String!
+  response: [Titulo]
+}
+
+type Titulo {
+  id: ID!
+  nombre: String!
+}
+
 type Query {
   obtenerMaterias: ResultMaterias
   obtenerCarreras: ResultCarreras
@@ -303,6 +315,7 @@ type Query {
   obtenerTipoMateria: ResultTipoMaterias
   obtenerSedes: ResultSedes
   obtenerSedesPorCarrera(carrera: Int!): ResultSedes
+  obtenerTipoTitulo: ResultTipoTitulo
 }
 
 type Mutation {

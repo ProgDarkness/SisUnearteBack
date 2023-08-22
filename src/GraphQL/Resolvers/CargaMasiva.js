@@ -4,20 +4,20 @@ export default {
   Mutation: {
     insertarEstudiante: async (_, { input }) => {
       console.log(input)
-      const { estatus } = input
+      const { estatus, datos } = input
       try {
         let signIn
-        for (let i = 0; i < input.datos.length; i++) {
-          console.log(input.datos[i].nombre)
+        for (let i = 0; i < datos.length; i++) {
+          console.log(datos[i].nombre)
 
           signIn = await dbp.oneOrNone(
             `CALL public.insertar_estudiante($1, $2, $3, $4, $5, $6)`,
             [
-              input.datos[i].nacionalidad,
-              input.datos[i].cedula,
-              input.datos[i].nombre,
-              input.datos[i].apellido,
-              input.datos[i].sexo,
+              datos[i].nacionalidad,
+              datos[i].cedula,
+              datos[i].nombre,
+              datos[i].apellido,
+              datos[i].sexo,
               estatus
             ]
           )
