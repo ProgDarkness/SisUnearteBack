@@ -130,28 +130,50 @@ export default {
       const { idcarrera } = input
 
       try {
+        const validateCarrera = await dbp.oneOrNone(
+          `SELECT id_carrera 
+            FROM public.m006t_carreras
+              WHERE id_carrera = $1;`,
+          [idcarrera]
+        )
+        if (!validateCarrera?.id_carrera) {
+          return {
+            status: 203,
+            message: 'La Carrera no se encuentra registrada',
+            type: 'error'
+          }
+        }
         const carreraperiodo = await dbp.manyOrNone(
-          `SELECT * FROM r006t_periodo_carrera pc WHERE pc.id_carrera = $1;`,
+          `SELECT id_carrera FROM r006t_periodo_carrera pc WHERE pc.id_carrera = $1;`,
           [idcarrera]
         )
 
         const carreramateria = await dbp.manyOrNone(
-          `SELECT * FROM r002t_carrera_materia cm WHERE cm.id_carrera = $1;`,
+          `SELECT id_carrera FROM r002t_carrera_materia cm WHERE cm.id_carrera = $1;`,
           [idcarrera]
         )
 
         const carrerapostulacion = await dbp.manyOrNone(
-          `SELECT * FROM t013t_postulacion p WHERE p.id_carrera = $1;`,
+          `SELECT id_carrera FROM t013t_postulacion p WHERE p.id_carrera = $1;`,
           [idcarrera]
         )
 
-        if (carreraperiodo || carreramateria || carrerapostulacion) {
+        if (
+          carreraperiodo?.id_carrera ||
+          carreramateria?.id_carrera ||
+          carrerapostulacion?.id_carrera
+        ) {
           return {
             status: 202,
             message: 'Carrera no puede ser eliminada asociada a otros datos',
             type: 'success'
           }
         } else {
+          await dbp.none(
+            `DELETE FROM public.r007t_sede_carrera WHERE id_carrera = $1;`,
+            [idcarrera]
+          )
+
           await dbp.none(
             `DELETE FROM public.m006t_carreras WHERE id_carrera = $1;`,
             [idcarrera]

@@ -4,11 +4,14 @@ export default {
   Query: {
     obtenerTodasMaterias: async () => {
       try {
-        const materias =
-          await dbp.manyOrNone(`SELECT m.id_materia as id, m.co_materia as codigo, m.nb_materia as nombre, m.nu_credito as credito, 
-                                            m.hr_semanal as hora, em.nb_estatus_materia as estatus, tm.nb_tp_materia as tipo
-                                            FROM public.m005t_materias as m, public.m037t_estatus_materia as em, public.m012t_tipo_materia as tm
-                                            where m.id_estatus_materia = em.id_estatus_materia and m.id_tp_materia = tm.id_tp_materia;`)
+        const materias = await dbp.manyOrNone(
+          `SELECT m.id_materia as id, m.co_materia as codigo, m.nb_materia as nombre, m.nu_credito as credito, 
+                  m.hr_semanal as hora, em.nb_estatus_materia as estatus, tm.nb_tp_materia as tipo, ca.nb_carrera as carrera
+            FROM public.m005t_materias as m, public.m037t_estatus_materia as em, public.m012t_tipo_materia as tm,
+                  public.r002t_carrera_materia cm, public.m006t_carreras ca
+            where m.id_estatus_materia = em.id_estatus_materia and m.id_tp_materia = tm.id_tp_materia
+                and cm.id_materia = m.id_materia and ca.id_carrera = cm.id_carrera;`
+        )
         return {
           status: 200,
           message: 'Listado de materias encontradas',
@@ -22,21 +25,21 @@ export default {
   },
   Mutation: {
     crearMateria: async (_, { input }) => {
-      const { carrera, codigo, nombre, credito, tipo, hora } = input
+      const { carrera, codigo, nombre, credito, tipo, hora, sede } = input
 
       try {
         const idMateria = await dbp.oneOrNone(
           `INSERT INTO public.m005t_materias(
-                      co_materia, nb_materia, nu_credito, id_tp_materia, hr_semanal, id_estatus_materia)
-                      VALUES ($1, $2, $3, $4, $5, $6) RETURNING id_materia;`,
-          [codigo, nombre, credito, tipo, hora, 4]
+                      co_materia, nb_materia, nu_credito, id_tp_materia, hr_semanal, id_estatus_materia, bl_prelacion, created_at, updated_at)
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, now(), now()) RETURNING id_materia;`,
+          [codigo, nombre, credito, tipo, hora, 4, true]
         )
 
         await dbp.none(
           `INSERT INTO public.r002t_carrera_materia(
-                        id_carrera, id_materia, visible, hora_semanal)
-                        VALUES ($1, $2, $3, $4, $5);`,
-          [carrera, idMateria, true, hora]
+                        id_carrera, id_materia, visible, hora_semanal, id_sede, created_at, updated_at)
+                        VALUES ($1, $2, $3, $4, $5, now(), now());`,
+          [carrera, idMateria.id_materia, true, hora, sede]
         )
 
         return {
@@ -73,21 +76,16 @@ export default {
 
       try {
         const materiadocente = await dbp.oneOrNone(
-          `SELECT * FROM r001t_docente_materia as dm WHERE dm.id_materia = $1;`,
-          [idmateria]
-        )
-
-        const materiacarrera = await dbp.oneOrNone(
-          `SELECT * FROM r002t_carrera_materia cm WHERE cm.id_materia = $1;`,
+          `SELECT id_materia FROM r001t_docente_materia as dm WHERE dm.id_materia = $1;`,
           [idmateria]
         )
 
         const materiainscripcion = await dbp.oneOrNone(
-          `SELECT * FROM r003t_inscripcion_materia as im WHERE im.id_materia = $1;`,
+          `SELECT id_materia FROM r003t_inscripcion_materia as im WHERE im.id_materia = $1;`,
           [idmateria]
         )
 
-        if (materiadocente || materiacarrera || materiainscripcion) {
+        if (materiadocente?.id_materia || materiainscripcion?.id_materia) {
           return {
             status: 202,
             message:
@@ -95,6 +93,11 @@ export default {
             type: 'success'
           }
         } else {
+          await dbp.none(
+            `DELETE FROM public.r002t_carrera_materia WHERE id_materia = $1;`,
+            [idmateria]
+          )
+
           await dbp.none(
             `DELETE FROM public.m005t_materias WHERE id_materia = $1;`,
             [idmateria]
