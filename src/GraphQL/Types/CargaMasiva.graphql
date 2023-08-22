@@ -1,0 +1,22 @@
+type Mutation {
+  insertarEstudiante(input: InputInsertarEstudiante!): ResultInsertar
+}
+
+input InputInsertarEstudiante {
+  estatus: Int!
+  datos: [InputDatosEstudiante!]
+}
+
+input InputDatosEstudiante {
+  nacionalidad: Int!
+  cedula: Int!
+  nombre: String!
+  apellido: String!
+  sexo: Int!
+}
+
+type ResultInsertar {
+  status: Int!
+  message: String!
+  type: String!
+}
