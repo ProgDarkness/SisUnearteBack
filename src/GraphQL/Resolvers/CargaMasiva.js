@@ -6,12 +6,14 @@ export default {
       console.log(input)
       const { estatus } = input
       try {
+        let signIn
         for (let i = 0; i < input.datos.length; i++) {
           console.log(input.datos[i].nombre)
 
-          await dbp.query(
-            `CALL public.insertar_estudiante($1, $2, $3, $4, $5)`,
+          signIn = await dbp.oneOrNone(
+            `CALL public.insertar_estudiante($1, $2, $3, $4, $5, $6)`,
             [
+              input.datos[i].nacionalidad,
               input.datos[i].cedula,
               input.datos[i].nombre,
               input.datos[i].apellido,
@@ -20,10 +22,15 @@ export default {
             ]
           )
         }
-        return {
-          status: 200,
-          message: 'Datos Insertados.',
-          type: 'success'
+        console.log('hola', signIn)
+        if (signIn) {
+          return {
+            status: 200,
+            message: 'Datos Insertados.',
+            type: 'success'
+          }
+        } else {
+          return { status: 202, message: 'Datos No Insertados.', type: 'error' }
         }
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
