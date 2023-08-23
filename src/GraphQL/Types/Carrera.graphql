@@ -1,5 +1,4 @@
 type Mutation {
-  obtenerDetalleCarrera(input: InputCarrera!): ResultCarrera
   crearCarrera(input: InputCrearCarrera!): ResultadoCarrera!
   actualizarCarrera(input: InputActualizarCarrera!): ResultadoCarrera!
   eliminarCarrera(input: InputEliminarCarrera!): ResultadoCarrera!
@@ -11,12 +10,10 @@ input InputCarrera {
 }
 
 type DetalleCarrera {
-  id: ID!
-  carrera: String!
-  trayecto: String!
-  materia: String!
-  personal: String!
-  estatus: String!
+  idTrayectoCarrera: Int!
+  nb_trayecto: String!
+  id_materia: Int
+  nb_materia: String
 }
 
 type ResultCarrera {
@@ -62,6 +59,7 @@ input InputEstatusCarrera {
 
 type Query {
   obtenerTodasCarreras: ResultTodasCarreras
+  obtenerDetalleCarrera(input: InputCarrera!): ResultCarrera
 }
 
 type Carreras {

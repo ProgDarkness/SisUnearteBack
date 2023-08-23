@@ -22,42 +22,87 @@ export default {
       } catch (e) {
         return { status: 500, message: e.message, type: 'error' }
       }
-    }
-  },
-  Mutation: {
+    },
     obtenerDetalleCarrera: async (_, { input }) => {
       const { carrera } = input
 
       try {
-        const detallecarreras = await dbp.manyOrNone(
-          `SELECT c.id_carrera AS id, c.nb_carrera AS carrera, t.nb_trayecto AS trayecto,
-                                            m.nb_materia AS materia, p.nb_personal AS personal, ec.nb_estatus_carrera AS estatus
-                                            FROM m006t_carreras AS c, r002t_carrera_materia AS cm, m017t_trayectos AS t, m005t_materias AS m,
-                                            r001t_docente_materia AS dm, t003t_personal AS p, m045t_estatus_carrera AS ec
-                                            WHERE cm.id_trayecto = t.id_trayecto AND cm.id_materia = m.id_materia AND
-                                            dm.id_personal = p.id_personal AND dm.id_materia = m.id_materia 
-                                            AND ec.id_estatus_carrera = c.id_estatus_carrera AND c.id_carrera = $1;`,
+        const detalleCarrerasInit = []
+
+        const trayectosCarrera = await dbp.manyOrNone(
+          `SELECT t.id_trayecto, t.nb_trayecto
+          FROM public.r009t_carrera_trayecto ct, public.m017t_trayectos t
+            WHERE ct.id_trayecto = t.id_trayecto AND ct.id_carrera = $1;`,
           [carrera]
         )
 
-        if (detallecarreras) {
-          return {
-            status: 200,
-            message: 'Carreras encontrado',
-            type: 'success',
-            response: detallecarreras
+        const materiasCarrera = await dbp.manyOrNone(
+          `SELECT cm.id_carrera, c.nb_carrera, cm.id_materia, m.nb_materia, cm.id_trayecto
+          FROM public.r002t_carrera_materia cm, public.m006t_carreras c, public.m005t_materias m
+            WHERE cm.id_carrera = c.id_carrera AND cm.id_materia = m.id_materia AND cm.id_carrera = $1;`,
+          [carrera]
+        )
+
+        for (let i = 0; i < materiasCarrera.length; i++) {
+          const {
+            id_materia,
+            id_trayecto: idTrayectoMateria,
+            nb_materia
+          } = materiasCarrera[i]
+
+          for (let i = 0; i < trayectosCarrera.length; i++) {
+            const { id_trayecto: idTrayectoCarrera, nb_trayecto } =
+              trayectosCarrera[i]
+            if (idTrayectoCarrera === idTrayectoMateria) {
+              detalleCarrerasInit.push({
+                idTrayectoCarrera,
+                nb_trayecto,
+                id_materia,
+                nb_materia
+              })
+            } else {
+              detalleCarrerasInit.push({
+                idTrayectoCarrera,
+                nb_trayecto
+              })
+            }
           }
-        } else {
-          return {
-            status: 202,
-            message: 'Carreras no encontrado',
-            type: 'error'
-          }
+        }
+
+        const trayecto0 = detalleCarrerasInit.filter(
+          (t) => t.nb_trayecto === 'Trayecto Inicial'
+        )
+        const trayecto1 = detalleCarrerasInit.filter(
+          (t) => t.nb_trayecto === 'Trayecto I'
+        )
+        const trayecto2 = detalleCarrerasInit.filter(
+          (t) => t.nb_trayecto === 'Trayecto II'
+        )
+        const trayecto3 = detalleCarrerasInit.filter(
+          (t) => t.nb_trayecto === 'Trayecto III'
+        )
+        const trayecto4 = detalleCarrerasInit.filter(
+          (t) => t.nb_trayecto === 'Trayecto IV'
+        )
+
+        const detalleCarreraEnd = trayecto0
+          .concat(trayecto1)
+          .concat(trayecto2)
+          .concat(trayecto3)
+          .concat(trayecto4)
+
+        return {
+          status: 200,
+          message: 'Carreras encontrado',
+          type: 'success',
+          response: detalleCarreraEnd
         }
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
       }
-    },
+    }
+  },
+  Mutation: {
     crearCarrera: async (_, { input }) => {
       const { codigo, nombre, tipo, ciclo, titulo, cantTrayectos, sede } = input
 
@@ -130,19 +175,6 @@ export default {
       const { idcarrera } = input
 
       try {
-        const validateCarrera = await dbp.oneOrNone(
-          `SELECT id_carrera 
-            FROM public.m006t_carreras
-              WHERE id_carrera = $1;`,
-          [idcarrera]
-        )
-        if (!validateCarrera?.id_carrera) {
-          return {
-            status: 203,
-            message: 'La Carrera no se encuentra registrada',
-            type: 'error'
-          }
-        }
         const carreraperiodo = await dbp.manyOrNone(
           `SELECT id_carrera FROM r006t_periodo_carrera pc WHERE pc.id_carrera = $1;`,
           [idcarrera]
@@ -171,6 +203,11 @@ export default {
         } else {
           await dbp.none(
             `DELETE FROM public.r007t_sede_carrera WHERE id_carrera = $1;`,
+            [idcarrera]
+          )
+
+          await dbp.none(
+            `DELETE FROM public.r009t_carrera_trayecto WHERE id_carrera = $1;`,
             [idcarrera]
           )
 
