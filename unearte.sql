@@ -5,7 +5,7 @@
 -- Dumped from database version 14.8
 -- Dumped by pg_dump version 14.8
 
--- Started on 2023-08-22 12:52:31
+-- Started on 2023-08-23 08:35:35
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -253,7 +253,7 @@ CREATE TABLE public.m006t_carreras (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     id_estatus_carrera integer,
-    titulo_otorgado character varying(100),
+    id_titulo integer,
     id_sede integer
 );
 
@@ -4107,19 +4107,19 @@ COPY public.m005t_materias (id_materia, co_materia, nb_materia, nu_credito, id_t
 -- Data for Name: m006t_carreras; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.m006t_carreras (id_carrera, co_carrera, nb_carrera, id_tp_carrera, id_ciclo, visible, created_at, updated_at, id_estatus_carrera, titulo_otorgado, id_sede) FROM stdin;
-8	CBC-APP35	ARTES PLÁSTICAS	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	Licenciado	\N
-9	CBC-MP35	ARTES PLÁSTICAS, MUSEOLOGÍA	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	Licenciado	\N
-10	CBC-OP35	ORFEBRERÍA Y JOYERÍA	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	Licenciado	\N
-11	CBC-AAP35	ARTES AUDIOVISUALES	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	Licenciado	\N
-12	CIDC-DP35	DANZA	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	Licenciado	\N
-14	CBC-DP35	DANZA. DANZA CREATIVA, COREOGRAFÍA, TRADICIONAL POPULAR.	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	Licenciado	\N
-13	CIDC-DP35	DANZA. Danza Contemporánea.	1	1	t	2023-07-27 15:26:56	2023-07-27 15:26:56	2	Licenciado	\N
-16	ART-002	Artes II	1	2	\N	\N	\N	\N	Licenciado	\N
-17	ART-002	Artes II	1	2	\N	\N	\N	\N	Licenciado	\N
-18	ART-002	Artes II	1	2	\N	\N	\N	\N	Licenciado	\N
-19	ART-002	Artes II	1	2	\N	\N	\N	\N	Licenciado	\N
-20	ART-002	Artes II	1	2	\N	\N	\N	\N	Licenciado	\N
+COPY public.m006t_carreras (id_carrera, co_carrera, nb_carrera, id_tp_carrera, id_ciclo, visible, created_at, updated_at, id_estatus_carrera, id_titulo, id_sede) FROM stdin;
+8	CBC-APP35	ARTES PLÁSTICAS	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	1	\N
+9	CBC-MP35	ARTES PLÁSTICAS, MUSEOLOGÍA	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	1	\N
+10	CBC-OP35	ORFEBRERÍA Y JOYERÍA	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	1	\N
+11	CBC-AAP35	ARTES AUDIOVISUALES	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	1	\N
+12	CIDC-DP35	DANZA	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	1	\N
+14	CBC-DP35	DANZA. DANZA CREATIVA, COREOGRAFÍA, TRADICIONAL POPULAR.	1	2	t	2023-07-27 15:26:56	2023-07-27 15:26:56	1	1	\N
+13	CIDC-DP35	DANZA. Danza Contemporánea.	1	1	t	2023-07-27 15:26:56	2023-07-27 15:26:56	2	1	\N
+16	ART-002	Artes II	1	2	\N	\N	\N	\N	1	\N
+17	ART-002	Artes II	1	2	\N	\N	\N	\N	1	\N
+18	ART-002	Artes II	1	2	\N	\N	\N	\N	1	\N
+19	ART-002	Artes II	1	2	\N	\N	\N	\N	1	\N
+20	ART-002	Artes II	1	2	\N	\N	\N	\N	1	\N
 \.
 
 
@@ -47981,7 +47981,7 @@ ALTER TABLE ONLY public.t008t_oferta_academica
     ADD CONSTRAINT t008t_oferta_academica_fk_0 FOREIGN KEY (id_carrera) REFERENCES public.m006t_carreras(id_carrera);
 
 
--- Completed on 2023-08-22 12:52:32
+-- Completed on 2023-08-23 08:35:36
 
 --
 -- PostgreSQL database dump complete
