@@ -3,6 +3,52 @@ type Mutation {
   actualizarCarrera(input: InputActualizarCarrera!): ResultadoCarrera!
   eliminarCarrera(input: InputEliminarCarrera!): ResultadoCarrera!
   actualizarEstatusCarrera(input: InputEstatusCarrera!): ResultadoCarrera!
+  asignarTrayectoMateria(
+    idCarrema: Int!
+    idTrayecto: Int!
+    idMateria: Int!
+  ): ResultAsigTrayect!
+  desasignarTrayectoMateria(
+    idCarrema: Int!
+    idMateria: Int!
+  ): ResultAsigTrayect!
+}
+
+type Query {
+  obtenerTodasCarreras: ResultTodasCarreras
+  obtenerDetalleCarrera(input: InputCarrera!): ResultCarrera
+  obtenerMateriasPorCarrera(carrera: Int!): ResultMateCarre
+  obtenerTrayectosPorCarrera(carrera: Int!): ResultTraCarre
+}
+
+type ResultAsigTrayect {
+  status: Int!
+  message: String!
+  type: String!
+}
+
+type ResultTraCarre {
+  status: Int!
+  message: String!
+  type: String!
+  response: [trayecto]
+}
+
+type trayecto {
+  id: ID!
+  nombre: String!
+}
+
+type ResultMateCarre {
+  status: Int!
+  message: String!
+  type: String!
+  response: [materias]
+}
+
+type materias {
+  id: ID!
+  nombre: String!
 }
 
 input InputCarrera {
@@ -10,6 +56,7 @@ input InputCarrera {
 }
 
 type DetalleCarrera {
+  id_carrema: Int!
   idTrayectoCarrera: Int!
   nb_trayecto: String!
   id_materia: Int
@@ -55,11 +102,6 @@ type ResultadoCarrera {
 input InputEstatusCarrera {
   estatus: Int!
   idcarrera: Int!
-}
-
-type Query {
-  obtenerTodasCarreras: ResultTodasCarreras
-  obtenerDetalleCarrera(input: InputCarrera!): ResultCarrera
 }
 
 type Carreras {

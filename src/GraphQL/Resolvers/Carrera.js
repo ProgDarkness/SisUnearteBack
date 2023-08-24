@@ -39,7 +39,7 @@ export default {
         )
 
         const materiasCarrera = await dbp.manyOrNone(
-          `SELECT cm.id_carrera, c.nb_carrera, cm.id_materia, m.nb_materia, cm.id_trayecto
+          `SELECT cm.id_carrema, cm.id_carrera, c.nb_carrera, cm.id_materia, m.nb_materia, cm.id_trayecto
           FROM public.r002t_carrera_materia cm, public.m006t_carreras c, public.m005t_materias m
             WHERE cm.id_carrera = c.id_carrera AND cm.id_materia = m.id_materia AND cm.id_carrera = $1;`,
           [carrera]
@@ -49,7 +49,8 @@ export default {
           const {
             id_materia,
             id_trayecto: idTrayectoMateria,
-            nb_materia
+            nb_materia,
+            id_carrema
           } = materiasCarrera[i]
 
           for (let i = 0; i < trayectosCarrera.length; i++) {
@@ -57,6 +58,7 @@ export default {
               trayectosCarrera[i]
             if (idTrayectoCarrera === idTrayectoMateria) {
               detalleCarrerasInit.push({
+                id_carrema,
                 idTrayectoCarrera,
                 nb_trayecto,
                 id_materia,
@@ -64,6 +66,7 @@ export default {
               })
             } else {
               detalleCarrerasInit.push({
+                id_carrema,
                 idTrayectoCarrera,
                 nb_trayecto
               })
@@ -101,6 +104,44 @@ export default {
         }
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
+    obtenerMateriasPorCarrera: async (_, { carrera }) => {
+      try {
+        const materias = await dbp.manyOrNone(
+          `SELECT cm.id_materia as id, m.nb_materia as nombre
+          FROM public.r002t_carrera_materia cm, public.m005t_materias m 
+            WHERE cm.id_carrera = $1 AND cm.id_materia = m.id_materia;`,
+          [carrera]
+        )
+
+        return {
+          status: 200,
+          message: 'Materias encontradas',
+          type: 'success',
+          response: materias
+        }
+      } catch (e) {
+        return { status: 500, message: e.message, type: 'error' }
+      }
+    },
+    obtenerTrayectosPorCarrera: async (_, { carrera }) => {
+      try {
+        const trayectos = await dbp.manyOrNone(
+          `SELECT ct.id_trayecto as id, t.nb_trayecto as nombre
+          FROM public.r009t_carrera_trayecto ct, public.m017t_trayectos t
+            WHERE ct.id_trayecto = t.id_trayecto;`,
+          [carrera]
+        )
+
+        return {
+          status: 200,
+          message: 'Trayectos encontrados',
+          type: 'success',
+          response: trayectos
+        }
+      } catch (e) {
+        return { status: 500, message: e.message, type: 'error' }
       }
     }
   },
@@ -240,6 +281,40 @@ export default {
         return {
           status: 200,
           message: 'Estatus de la carrera actualizada exitosamente',
+          type: 'success'
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
+    asignarTrayectoMateria: async (_, { idCarrema, idTrayecto, idMateria }) => {
+      try {
+        await dbp.none(
+          `UPDATE public.r002t_carrera_materia
+            SET id_trayecto=$2 WHERE id_carrera=$1 AND id_materia= $3;`,
+          [idCarrema, idTrayecto, idMateria]
+        )
+
+        return {
+          status: 200,
+          message: 'Se ha agregado la materia al Trayecto',
+          type: 'success'
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
+    desasignarTrayectoMateria: async (_, { idCarrema, idMateria }) => {
+      try {
+        await dbp.none(
+          `UPDATE public.r002t_carrera_materia
+            SET id_trayecto=null WHERE id_carrera=$1 AND id_materia= $2;`,
+          [idCarrema, idMateria]
+        )
+
+        return {
+          status: 200,
+          message: 'Se ha eliminado la materia del Trayecto',
           type: 'success'
         }
       } catch (e) {
