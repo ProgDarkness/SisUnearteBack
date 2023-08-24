@@ -231,7 +231,7 @@ type Zonas {
 }
 
 type Etnia {
-  id: Int!
+  id: String!
   nombre: String!
   codigo_postal: String!
 }

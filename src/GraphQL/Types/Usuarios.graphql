@@ -63,18 +63,18 @@ type TtpVivienda {
 }
 
 type Tciudad {
-  id: String!
-  nombre: String!
+  id: String
+  nombre: String
 }
 
 type Tmunicipio {
-  id: String!
-  nombre: String!
+  id: String
+  nombre: String
 }
 
 type Tparroquia {
-  id: String!
-  nombre: String!
+  id: String
+  nombre: String
 }
 
 type Testado {
@@ -90,6 +90,11 @@ type tpais {
 type tdiscapacidad {
   id: String!
   nombre: String!
+}
+
+type tpetnia {
+  id: String
+  nombre: String
 }
 
 type infoUsuario {
@@ -109,14 +114,15 @@ type infoUsuario {
   nombZona: TnombZona!
   tpVivienda: TtpVivienda!
   nu_vivienda: String!
-  ciudad: Tciudad!
+  ciudad: Tciudad
   estado: Testado!
-  municipio: Tmunicipio!
+  municipio: Tmunicipio
   parroquia: Tparroquia
   bl_registro: Boolean!
   nb2_usuario: String!
   ape2_usuario: String!
   discapacidad: tdiscapacidad!
+  etnia: tpetnia
 }
 
 input InputSaveUser {
@@ -187,6 +193,7 @@ input InputActualizarUsuario {
   idZona: Int!
   idpais: Int!
   idDiscapacidad: Int!
+  idEtnia: Int!
 }
 
 input InputIdUsuario {

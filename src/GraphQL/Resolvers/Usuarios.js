@@ -38,16 +38,18 @@ export default {
         if (estatusUserReg?.bl_registro) {
           const infoUser = await dbp.oneOrNone(
             `SELECT u.id_nacionalidad, nacionalidad.co_nacionalidad, nacionalidad.nb_nacionalidad, u.ced_usuario, u.nb_usuario, u.ape_usuario, u.id_sexo_usuario, sex.nb_tp_sexo,
-          u.fe_nac_usuario, u.id_pais_origen, pais.nb_pais as nb_pais_origen, u.id_pais, pais.nb_pais, u.id_estado_civil, estCivil.nb_civil, u.correo_usuario, u.id_tipo_via, tpVia.nb_tp_via, 
-          u.nb_via, u.id_tipo_zona, tpZona.nb_tp_zona, u.nb_zona, u.id_zona, u.id_tipo_vivienda, tpVivienda.nb_tp_vivienda, u.nu_vivienda, u.id_ciudad, ciudad.nb_ciudad, u.id_estado, estado.nb_estado,
-          u.id_zona_postal, u.id_municipio, municipio.nb_municipio, u.id_parroquia, parroquia.nb_parroquia, u.bl_registro, u.nb2_usuario, u.ape2_usuario, u.id_discapacidad, discapacidad.nb_tp_discapacidad
-        FROM public.t001t_usuarios u, public.m026t_tipo_sexo sex, public.m022t_paises pais, public.m027t_estado_civil estCivil, public.m025t_tipo_via tpVia,
-          public.m024t_tipo_zona tpZona, public.m021t_tipo_vivienda tpVivienda, public.m020t_ciudades ciudad, public.m001t_estados estado,
-          public.m002t_municipios municipio, public.m003t_parroquias parroquia, public.m028t_tipo_nacionalidad nacionalidad, public.m009t_tipo_discapacidad discapacidad
-        WHERE u.id_usuario = $1 AND sex.id_tp_sexo = u.id_sexo_usuario AND pais.id_pais = u.id_pais_origen AND pais.id_pais = u.id_pais AND estCivil.id_civil = u.id_estado_civil
-          AND tpVia.id_tp_via = u.id_tipo_via AND tpZona.id_tp_zona = u.id_tipo_zona AND tpVivienda.id_tp_vivienda = u.id_tipo_vivienda AND ciudad.id_ciudad = u.id_ciudad
-          AND estado.id_estado = u.id_estado AND municipio.id_municipio = u.id_municipio AND parroquia.id_parroquia = u.id_parroquia AND nacionalidad.id_nacionalidad = u.id_nacionalidad
-          AND discapacidad.id_tp_discapacidad = u.id_discapacidad;`,
+            u.fe_nac_usuario, u.id_pais_origen, pais.nb_pais as nb_pais_origen, u.id_pais, pais.nb_pais, u.id_estado_civil, estCivil.nb_civil, u.correo_usuario, u.id_tipo_via, tpVia.nb_tp_via, 
+            u.nb_via, u.id_tipo_zona, tpZona.nb_tp_zona, u.nb_zona, u.id_zona, u.id_tipo_vivienda, tpVivienda.nb_tp_vivienda, u.nu_vivienda, u.id_ciudad, ciudad.nb_ciudad, u.id_estado, estado.nb_estado,
+            u.id_zona_postal, u.id_municipio, municipio.nb_municipio, u.id_parroquia, parroquia.nb_parroquia, u.bl_registro, u.nb2_usuario, u.ape2_usuario, u.id_discapacidad, discapacidad.nb_tp_discapacidad,
+            te.nb_etnia, u.id_etnia
+            FROM public.t001t_usuarios u, public.m026t_tipo_sexo sex, public.m022t_paises pais, public.m027t_estado_civil estCivil, public.m025t_tipo_via tpVia,
+            public.m024t_tipo_zona tpZona, public.m021t_tipo_vivienda tpVivienda, public.m020t_ciudades ciudad, public.m001t_estados estado,
+            public.m002t_municipios municipio, public.m003t_parroquias parroquia, public.m028t_tipo_nacionalidad nacionalidad, public.m009t_tipo_discapacidad discapacidad,
+            public.m051t_tipo_etnia te
+            WHERE u.id_usuario = 9 AND sex.id_tp_sexo = u.id_sexo_usuario AND pais.id_pais = u.id_pais_origen AND pais.id_pais = u.id_pais AND estCivil.id_civil = u.id_estado_civil
+            AND tpVia.id_tp_via = u.id_tipo_via AND tpZona.id_tp_zona = u.id_tipo_zona AND tpVivienda.id_tp_vivienda = u.id_tipo_vivienda AND ciudad.id_ciudad = u.id_ciudad
+            AND estado.id_estado = u.id_estado AND municipio.id_municipio = u.id_municipio AND parroquia.id_parroquia = u.id_parroquia AND nacionalidad.id_nacionalidad = u.id_nacionalidad
+            AND discapacidad.id_tp_discapacidad = u.id_discapacidad AND te.id_etnia = u.id_etnia;`,
             [id_usuario]
           )
 
@@ -91,7 +93,9 @@ export default {
             nb2_usuario,
             ape2_usuario,
             id_discapacidad,
-            nb_tp_discapacidad
+            nb_tp_discapacidad,
+            nb_etnia,
+            id_etnia
           } = infoUser
 
           const RinfoUser = {
@@ -126,7 +130,8 @@ export default {
             bl_registro,
             nb2_usuario,
             ape2_usuario,
-            discapacidad: { id: id_discapacidad, nombre: nb_tp_discapacidad }
+            discapacidad: { id: id_discapacidad, nombre: nb_tp_discapacidad },
+            etnia: { id: id_etnia, nombre: nb_etnia}
           }
 
           return {
@@ -341,7 +346,8 @@ export default {
         idpostal,
         blregistro,
         idusuario,
-        idDiscapacidad
+        idDiscapacidad,
+        idEtnia
       } = input
 
       try {
@@ -350,7 +356,8 @@ export default {
                SET id_nacionalidad = $1, ced_usuario = $2, nb_usuario = $3, ape_usuario = $4, id_sexo_usuario = $5, fe_nac_usuario = $6, 
                id_pais_origen = $7, id_estado_civil = $8, correo_usuario = $9, id_tipo_via = $10, nb_via = $11, id_tipo_zona = $12, 
                nb_zona = $13, id_tipo_vivienda = $14, nu_vivienda = $15, id_ciudad = $16, id_estado = $17, id_municipio = $18, id_parroquia = $19, 
-               id_zona_postal = $20, bl_registro = $21, nb2_usuario = $23, ape2_usuario = $24, id_zona = $25, id_pais = $26, id_discapacidad = $27
+               id_zona_postal = $20, bl_registro = $21, nb2_usuario = $23, ape2_usuario = $24, id_zona = $25, id_pais = $26, id_discapacidad = $27,
+               id_etnia = $28
                WHERE id_usuario =$22;`,
           [
             idnacionalidad,
@@ -379,7 +386,8 @@ export default {
             apellido2,
             idZona,
             idpais,
-            idDiscapacidad
+            idDiscapacidad,
+            idEtnia
           ]
         )
         return {
