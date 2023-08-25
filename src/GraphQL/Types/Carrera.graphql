@@ -16,6 +16,7 @@ type Mutation {
 
 type Query {
   obtenerTodasCarreras: ResultTodasCarreras
+  obtenerTodasMallas: ResultTodasCarreras
   obtenerDetalleCarrera(input: InputCarrera!): ResultCarrera
   obtenerMateriasPorCarrera(carrera: Int!): ResultMateCarre
   obtenerTrayectosPorCarrera(carrera: Int!): ResultTraCarre
@@ -112,6 +113,7 @@ type Carreras {
   ciclo: String!
   estatus: String!
   titulo: String!
+  sede: String!
 }
 
 type ResultTodasCarreras {

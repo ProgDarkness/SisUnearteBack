@@ -14,12 +14,37 @@ export default {
           and c.id_estatus_carrera = e.id_estatus_carrera
           and sc.id_carrera = c.id_carrera
           and sc.id_sede = s.id_sede
-		      and c.id_titulo = tt.id_titulo;`)
+		      and c.id_titulo = tt.id_titulo
+          and c.id_estatus_carrera = 4;`)
         return {
           status: 200,
           message: 'Listado de carreras encontradas',
           type: 'success',
           response: carreras
+        }
+      } catch (e) {
+        return { status: 500, message: e.message, type: 'error' }
+      }
+    },
+    obtenerTodasMallas: async () => {
+      try {
+        const mallas =
+          await dbp.manyOrNone(`SELECT c.id_carrera as id, c.co_carrera as codigo, c.nb_carrera as nombre, tc.nb_tp_carrera as tipo, ciclo.nb_ciclo as ciclo,
+          e.nb_estatus_carrera as estatus, tt.nb_titulo as titulo, s.nb_sede as sede
+          FROM m006t_carreras as c, m036t_tipo_carrera as tc, m043t_ciclos as ciclo, m045t_estatus_carrera as e, 
+		      public.r007t_sede_carrera sc, public.t011t_sedes s,  public.m052t_tipo_titulo tt
+          where c.id_tp_carrera = tc.id_tp_carrera
+          and c.id_ciclo = ciclo.id_ciclo
+          and c.id_estatus_carrera = e.id_estatus_carrera
+          and sc.id_carrera = c.id_carrera
+          and sc.id_sede = s.id_sede
+		      and c.id_titulo = tt.id_titulo
+          and c.id_estatus_carrera = 3;`)
+        return {
+          status: 200,
+          message: 'Listado de mallas curriculares encontradas',
+          type: 'success',
+          response: mallas
         }
       } catch (e) {
         return { status: 500, message: e.message, type: 'error' }
@@ -96,11 +121,15 @@ export default {
           .concat(trayecto3)
           .concat(trayecto4)
 
+        const detalleCarreraEndNotNull = detalleCarreraEnd.filter(
+          (t) => t.id_materia > 0
+        )
+
         return {
           status: 200,
           message: 'Carreras encontrado',
           type: 'success',
-          response: detalleCarreraEnd
+          response: detalleCarreraEndNotNull
         }
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
@@ -153,7 +182,7 @@ export default {
         const idcarrera = await dbp.oneOrNone(
           `INSERT INTO public.m006t_carreras(
                       co_carrera, nb_carrera, id_tp_carrera, id_ciclo, id_titulo, visible, created_at, updated_at, id_estatus_carrera)
-                      VALUES ($1, $2, $3, $4, $5, true, now(), now(), 1) RETURNING id_carrera;`,
+                      VALUES ($1, $2, $3, $4, $5, true, now(), now(), 4) RETURNING id_carrera;`,
           [codigo, nombre, tipo, ciclo, titulo]
         )
 
