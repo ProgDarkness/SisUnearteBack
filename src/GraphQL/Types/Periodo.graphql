@@ -46,7 +46,7 @@ type Mutation {
 }
 
 input InputPeriodo {
-  codigo: Int!
+  codigo: String!
   tipo: Int!
   anio: Int!
   mesinicio: Int!
@@ -71,7 +71,6 @@ input InputPeriodo {
   fefinretiro: String!
   feinicionotas: String!
   fefinnotas: String!
-  trayecto: Int!
 }
 
 input InputActualizarPeriodo {
