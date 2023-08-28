@@ -5,7 +5,7 @@
 -- Dumped from database version 14.8
 -- Dumped by pg_dump version 14.8
 
--- Started on 2023-08-23 08:35:35
+-- Started on 2023-08-28 10:36:45
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -2205,7 +2205,7 @@ ALTER TABLE public.t006t_periodos_id_seq OWNER TO postgres;
 
 CREATE TABLE public.t006t_periodo_lectivo (
     id_periodo integer DEFAULT nextval('public.t006t_periodos_id_seq'::regclass) NOT NULL,
-    co_periodo integer NOT NULL,
+    co_periodo character varying NOT NULL,
     id_tp_periodo integer NOT NULL,
     anio_periodo integer NOT NULL,
     mes_inicio_periodo integer NOT NULL,
@@ -2232,7 +2232,7 @@ CREATE TABLE public.t006t_periodo_lectivo (
     fe_fin_notas timestamp without time zone,
     visible boolean,
     id_estatus_periodo integer,
-    id_trayecto integer NOT NULL,
+    id_trayecto integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -47981,7 +47981,7 @@ ALTER TABLE ONLY public.t008t_oferta_academica
     ADD CONSTRAINT t008t_oferta_academica_fk_0 FOREIGN KEY (id_carrera) REFERENCES public.m006t_carreras(id_carrera);
 
 
--- Completed on 2023-08-23 08:35:36
+-- Completed on 2023-08-28 10:36:47
 
 --
 -- PostgreSQL database dump complete
