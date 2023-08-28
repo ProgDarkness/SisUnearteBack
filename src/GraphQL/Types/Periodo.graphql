@@ -25,7 +25,6 @@ type Periodo {
   feinota: String!
   fefnota: String!
   estatus: String!
-  trayecto: String!
 }
 
 type ResultPeriodos {
