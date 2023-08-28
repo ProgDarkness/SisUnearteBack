@@ -3,13 +3,10 @@ import { dbp } from '../../postgresdb'
 export default {
   Mutation: {
     insertarEstudiante: async (_, { input }) => {
-      console.log(input)
       const { estatus, datos } = input
       try {
         let signIn
         for (let i = 0; i < datos.length; i++) {
-          console.log(datos[i].nombre)
-
           signIn = await dbp.oneOrNone(
             `CALL public.insertar_estudiante($1, $2, $3, $4, $5, $6)`,
             [
@@ -22,7 +19,6 @@ export default {
             ]
           )
         }
-        console.log('hola', signIn)
         if (signIn) {
           return {
             status: 200,

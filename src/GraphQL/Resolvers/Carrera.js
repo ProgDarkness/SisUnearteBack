@@ -199,7 +199,6 @@ export default {
 
         if (tipo === 1) {
           for (let i = 0; i < cantTrayectos + 1; i++) {
-            console.log(trayectos[i].id_trayecto)
             await dbp.none(
               `INSERT INTO public.r009t_carrera_trayecto(id_carrera, id_trayecto) VALUES ($1, $2);`,
               [idcarrera.id_carrera, trayectos[i].id_trayecto]
