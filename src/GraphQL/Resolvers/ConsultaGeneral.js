@@ -366,6 +366,21 @@ export default {
       } catch (e) {
         return { status: 500, message: e.message, type: 'error' }
       }
+    },
+    obtenerMes: async () => {
+      try {
+        const meses = await dbp.manyOrNone(
+          `SELECT id_mes as id, nb_mes as nombre FROM public.m050t_meses;`
+        )
+        return {
+          status: 200,
+          message: 'Meses encontrados',
+          type: 'success',
+          response: meses
+        }
+      } catch (e) {
+        return { status: 500, message: e.message, type: 'error' }
+      }
     }
   },
   Mutation: {
