@@ -10,7 +10,7 @@ export default {
            FROM public.m005t_materias as m, public.m037t_estatus_materia as em, public.m012t_tipo_materia as tm,
           public.r002t_carrera_materia cm, public.m006t_carreras ca
           where m.id_estatus_materia = em.id_estatus_materia and m.id_tp_materia = tm.id_tp_materia
-          and cm.id_materia = m.id_materia and ca.id_carrera = cm.id_carrera;`
+          and cm.id_materia = m.id_materia and ca.id_carrera = cm.id_carrera order by ca.nb_carrera asc;`
         )
         return {
           status: 200,
@@ -24,6 +24,24 @@ export default {
     }
   },
   Mutation: {
+    traspasarMateria: async (_, { idCarrera, idMateria, horasSemanales }) => {
+      try {
+        await dbp.none(
+          `INSERT INTO public.r002t_carrera_materia(
+              id_carrera, id_materia, visible, hora_semanal, created_at, updated_at)
+              VALUES ($1, $2, true, $3, now(), now());`,
+          [idCarrera, idMateria, horasSemanales]
+        )
+
+        return {
+          status: 200,
+          message: 'Materia trapasada exitosamente',
+          type: 'success'
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
     crearMateria: async (_, { input }) => {
       const { carrera, codigo, nombre, credito, tipo, hora } = input
 

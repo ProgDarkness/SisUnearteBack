@@ -123,6 +123,7 @@ type Carreras {
   ciclo: String!
   estatus: String!
   titulo: String!
+  sede: String
 }
 
 type ResultTodasCarreras {

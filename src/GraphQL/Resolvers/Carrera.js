@@ -168,7 +168,7 @@ export default {
         const trayectos = await dbp.manyOrNone(
           `SELECT ct.id_trayecto as id, t.nb_trayecto as nombre
           FROM public.r009t_carrera_trayecto ct, public.m017t_trayectos t
-            WHERE ct.id_trayecto = t.id_trayecto;`,
+            WHERE ct.id_trayecto = t.id_trayecto and ct.id_carrera = $1;`,
           [carrera]
         )
 
