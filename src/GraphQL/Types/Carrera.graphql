@@ -12,6 +12,8 @@ type Mutation {
     idCarrema: Int!
     idMateria: Int!
   ): ResultAsigTrayect!
+  asignarSedeCarrera(idCarrera: Int!, idSede: Int!): ResultAsigTrayect!
+  eliminarSedeCarrera(idSedeCarrera: Int!): ResultAsigTrayect!
 }
 
 type Query {
@@ -20,6 +22,15 @@ type Query {
   obtenerDetalleCarrera(input: InputCarrera!): ResultCarrera
   obtenerMateriasPorCarrera(carrera: Int!): ResultMateCarre
   obtenerTrayectosPorCarrera(carrera: Int!): ResultTraCarre
+  obtenerSedeCarreras: [ResultSedeCarrera]
+}
+
+type ResultSedeCarrera {
+  id_scarrera: Int!
+  id_sede: Int!
+  nb_sede: String!
+  id_carrera: Int!
+  nb_carrera: String!
 }
 
 type ResultAsigTrayect {
@@ -78,7 +89,6 @@ input InputCrearCarrera {
   ciclo: Int!
   titulo: Int!
   cantTrayectos: Int!
-  sede: Int!
 }
 
 input InputActualizarCarrera {
@@ -113,7 +123,6 @@ type Carreras {
   ciclo: String!
   estatus: String!
   titulo: String!
-  sede: String!
 }
 
 type ResultTodasCarreras {

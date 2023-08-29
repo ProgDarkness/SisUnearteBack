@@ -6,11 +6,11 @@ export default {
       try {
         const materias = await dbp.manyOrNone(
           `SELECT m.id_materia as id, m.co_materia as codigo, m.nb_materia as nombre, m.nu_credito as credito, 
-                  m.hr_semanal as hora, em.nb_estatus_materia as estatus, tm.nb_tp_materia as tipo, ca.nb_carrera as carrera
-            FROM public.m005t_materias as m, public.m037t_estatus_materia as em, public.m012t_tipo_materia as tm,
-                  public.r002t_carrera_materia cm, public.m006t_carreras ca
-            where m.id_estatus_materia = em.id_estatus_materia and m.id_tp_materia = tm.id_tp_materia
-                and cm.id_materia = m.id_materia and ca.id_carrera = cm.id_carrera;`
+          m.hr_semanal as hora, em.nb_estatus_materia as estatus, tm.nb_tp_materia as tipo, tm.id_tp_materia as idtipo, ca.nb_carrera as carrera
+           FROM public.m005t_materias as m, public.m037t_estatus_materia as em, public.m012t_tipo_materia as tm,
+          public.r002t_carrera_materia cm, public.m006t_carreras ca
+          where m.id_estatus_materia = em.id_estatus_materia and m.id_tp_materia = tm.id_tp_materia
+          and cm.id_materia = m.id_materia and ca.id_carrera = cm.id_carrera;`
         )
         return {
           status: 200,
@@ -25,7 +25,7 @@ export default {
   },
   Mutation: {
     crearMateria: async (_, { input }) => {
-      const { carrera, codigo, nombre, credito, tipo, hora, sede } = input
+      const { carrera, codigo, nombre, credito, tipo, hora } = input
 
       try {
         const idMateria = await dbp.oneOrNone(
@@ -37,9 +37,9 @@ export default {
 
         await dbp.none(
           `INSERT INTO public.r002t_carrera_materia(
-                        id_carrera, id_materia, visible, hora_semanal, id_sede, created_at, updated_at)
-                        VALUES ($1, $2, $3, $4, $5, now(), now());`,
-          [carrera, idMateria.id_materia, true, hora, sede]
+                        id_carrera, id_materia, visible, hora_semanal, created_at, updated_at)
+                        VALUES ($1, $2, $3, $4, now(), now());`,
+          [carrera, idMateria.id_materia, true, hora]
         )
 
         return {
@@ -52,14 +52,14 @@ export default {
       }
     },
     actualizarMateria: async (_, { input }) => {
-      const { codigo, nombre, credito, tipo, hora, estatus, idmateria } = input
+      const { codigo, nombre, credito, tipo, hora, idmateria } = input
 
       try {
         await dbp.none(
           `UPDATE public.m005t_materias
-                    SET co_materia = $1, nb_materia = $2, nu_credito = $3, id_tp_materia = $4, hr_semanal = $5, id_estatus_materia = $6
-                    WHERE id_materia = $7;`,
-          [codigo, nombre, credito, tipo, hora, estatus, idmateria]
+                    SET co_materia = $1, nb_materia = $2, nu_credito = $3, id_tp_materia = $4, hr_semanal = $5
+                    WHERE id_materia = $6;`,
+          [codigo, nombre, credito, tipo, hora, idmateria]
         )
 
         return {

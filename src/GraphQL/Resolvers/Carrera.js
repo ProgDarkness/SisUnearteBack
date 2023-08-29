@@ -2,18 +2,27 @@ import { dbp } from '../../postgresdb'
 
 export default {
   Query: {
+    obtenerSedeCarreras: async () => {
+      try {
+        return await dbp.manyOrNone(
+          `SELECT sc.id_scarrera, sc.id_sede, s.nb_sede, sc.id_carrera, c.nb_carrera
+          FROM public.r007t_sede_carrera sc, public.t011t_sedes s, public.m006t_carreras c 
+          WHERE sc.id_sede = s.id_sede AND sc.id_carrera = c.id_carrera;`
+        )
+      } catch (e) {
+        return { status: 500, message: e.message, type: 'error' }
+      }
+    },
     obtenerTodasCarreras: async () => {
       try {
         const carreras =
           await dbp.manyOrNone(`SELECT c.id_carrera as id, c.co_carrera as codigo, c.nb_carrera as nombre, tc.nb_tp_carrera as tipo, ciclo.nb_ciclo as ciclo,
-          e.nb_estatus_carrera as estatus, tt.nb_titulo as titulo, s.nb_sede as sede
+          e.nb_estatus_carrera as estatus, tt.nb_titulo as titulo
           FROM m006t_carreras as c, m036t_tipo_carrera as tc, m043t_ciclos as ciclo, m045t_estatus_carrera as e, 
-		      public.r007t_sede_carrera sc, public.t011t_sedes s,  public.m052t_tipo_titulo tt
+		      public.m052t_tipo_titulo tt
           where c.id_tp_carrera = tc.id_tp_carrera
           and c.id_ciclo = ciclo.id_ciclo
           and c.id_estatus_carrera = e.id_estatus_carrera
-          and sc.id_carrera = c.id_carrera
-          and sc.id_sede = s.id_sede
 		      and c.id_titulo = tt.id_titulo
           and c.id_estatus_carrera = 4;`)
         return {
@@ -175,8 +184,57 @@ export default {
     }
   },
   Mutation: {
+    eliminarSedeCarrera: async (_, { idSedeCarrera }) => {
+      try {
+        await dbp.none(
+          `DELETE FROM public.r007t_sede_carrera
+          WHERE id_scarrera = $1;`,
+          [idSedeCarrera]
+        )
+
+        return {
+          status: 200,
+          message: 'Sede eliminada exitosamente',
+          type: 'success'
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
+    asignarSedeCarrera: async (_, { idCarrera, idSede }) => {
+      try {
+        const validateSedeCarrera = await dbp.oneOrNone(
+          `SELECT id_scarrera FROM public.r007t_sede_carrera
+            WHERE id_sede = $1 and id_carrera = $2;`,
+          [idSede, idCarrera]
+        )
+
+        if (!validateSedeCarrera) {
+          await dbp.none(
+            `INSERT INTO public.r007t_sede_carrera(
+                          id_sede, id_carrera, created_at, updated_at)
+                          VALUES ($1, $2, now(), now());`,
+            [idSede, idCarrera]
+          )
+        } else {
+          return {
+            status: 202,
+            message: 'La carrera ya tiene la sede asignada',
+            type: 'warn'
+          }
+        }
+
+        return {
+          status: 200,
+          message: 'Sede asignada exitosamente',
+          type: 'success'
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
     crearCarrera: async (_, { input }) => {
-      const { codigo, nombre, tipo, ciclo, titulo, cantTrayectos, sede } = input
+      const { codigo, nombre, tipo, ciclo, titulo, cantTrayectos } = input
 
       try {
         const idcarrera = await dbp.oneOrNone(
@@ -184,13 +242,6 @@ export default {
                       co_carrera, nb_carrera, id_tp_carrera, id_ciclo, id_titulo, visible, created_at, updated_at, id_estatus_carrera)
                       VALUES ($1, $2, $3, $4, $5, true, now(), now(), 4) RETURNING id_carrera;`,
           [codigo, nombre, tipo, ciclo, titulo]
-        )
-
-        await dbp.none(
-          `INSERT INTO public.r007t_sede_carrera(
-                        id_sede, id_carrera, created_at, updated_at)
-                        VALUES ($1, $2, now(), now());`,
-          [sede, idcarrera.id_carrera]
         )
 
         const trayectos = await dbp.manyOrNone(
