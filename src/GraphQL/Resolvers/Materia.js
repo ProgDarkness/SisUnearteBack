@@ -5,13 +5,14 @@ export default {
     obtenerTodasMaterias: async () => {
       try {
         const materias = await dbp.manyOrNone(
-          `SELECT m.id_materia as id, m.co_materia as codigo, m.nb_materia as nombre, m.nu_credito as credito, 
+          `SELECT cm.id_carrema as idcarrema, m.id_materia as id, m.co_materia as codigo, m.nb_materia as nombre, m.nu_credito as credito, 
           m.hr_semanal as hora, em.nb_estatus_materia as estatus, tm.nb_tp_materia as tipo, tm.id_tp_materia as idtipo, ca.nb_carrera as carrera
            FROM public.m005t_materias as m, public.m037t_estatus_materia as em, public.m012t_tipo_materia as tm,
           public.r002t_carrera_materia cm, public.m006t_carreras ca
           where m.id_estatus_materia = em.id_estatus_materia and m.id_tp_materia = tm.id_tp_materia
           and cm.id_materia = m.id_materia and ca.id_carrera = cm.id_carrera order by ca.nb_carrera asc;`
         )
+
         return {
           status: 200,
           message: 'Listado de materias encontradas',
@@ -36,6 +37,24 @@ export default {
         return {
           status: 200,
           message: 'Materia trapasada exitosamente',
+          type: 'success'
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
+    eliminarTraspaso: async (_, {idcarrema}) => {
+      try {
+        
+        await dbp.none(
+          `DELETE FROM public.r002t_carrera_materia
+            WHERE id_carrema = $1;`,
+          [idcarrema]
+        )
+
+        return {
+          status: 200,
+          message: 'Traspaso eliminado exitosamente',
           type: 'success'
         }
       } catch (e) {

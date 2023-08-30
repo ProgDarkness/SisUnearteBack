@@ -198,16 +198,16 @@ export default {
 
       try {
         const ofertaacademica = await dbp.manyOrNone(
-          `SELECT * FROM t008t_oferta_academica oa WHERE oa.id_periodo = $1;`,
+          `SELECT id_periodo FROM t008t_oferta_academica WHERE id_periodo = $1;`,
           [idperiodo]
         )
 
         const ofertamateria = await dbp.manyOrNone(
-          `SELECT * FROM t005t_inscripcion i WHERE i.id_periodo = $1;`,
+          `SELECT id_periodo FROM t005t_inscripcion WHERE id_periodo = $1;`,
           [idperiodo]
         )
 
-        if (ofertaacademica || ofertamateria) {
+        if (ofertaacademica?.id_periodo || ofertamateria?.id_periodo) {
           return {
             status: 202,
             message: 'Oferta no puede ser eliminada asociada a otros datos',

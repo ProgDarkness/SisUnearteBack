@@ -7,6 +7,7 @@ type Mutation {
     idMateria: Int!
     horasSemanales: Int!
   ): Resultado!
+  eliminarTraspaso(idcarrema: Int!): Resultado
 }
 
 input InputCrearMateria {
@@ -51,6 +52,7 @@ type Materias {
   tipo: String!
   idtipo: Int!
   carrera: String!
+  idcarrema: Int
 }
 
 type ResultTodasMaterias {
