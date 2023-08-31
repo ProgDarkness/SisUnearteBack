@@ -7,7 +7,7 @@ export default {
         const periodos =
           await dbp.manyOrNone(`SELECT p.id_periodo as id, p.co_periodo as codigo, tp.nb_tp_periodo as periodo, p.anio_periodo as anio, mes.nb_mes as mesi, mes1.nb_mes as mesf, 
           p.nu_semana_interperido as semana, personal.nb_personal as personal, p.tx_mensaje as mensaje, p.fe_inicio as fei, p.fe_fin as fef, 
-          p.fe_ult_entrega_acta as feacta, p.fe_ult_solic_documento as fedoc, p.fe_pre_solic_grado as fepregrado, p.fe_retiro as feiretiro, 
+          p.fe_ult_entrega_acta as feacta, p.fe_ult_solic_documento as fedoc, p.fe_pre_solic_grado as fepregrado, p.fe_retiro as feretiro, 
           p.fe_modificacion as femodificacion, p.fe_inicio_preinscripcion as feipre, p.fe_fin_preinscripcion as fefpre, 
           p.fe_inicio_inscripcion as feinsc, fe_fin_inscripcion as fefinsc, p.fe_inicio_oferta as feioferta, p.fe_fin_oferta as fefoferta, 
           p.fe_inicio_retiro as feiretiro, p.fe_fin_retiro as fefretiro, p.fe_inicio_notas as feinota, p.fe_fin_notas as fefnota, 
@@ -16,6 +16,22 @@ export default {
           public.m044t_estatus_periodo as estatus, public.m050t_meses as mes, public.m050t_meses as mes1
           WHERE p.id_tp_periodo = tp.id_tp_periodo and p.id_personal = personal.id_personal and
           p.id_estatus_periodo = estatus.id_estatus_periodo and p.mes_inicio_periodo = mes.id_mes and p.mes_fin_periodo = mes1.id_mes;`)
+
+        for (let i = 0; i < periodos.length; i++) {
+          for (const key in periodos[i]) {
+            const object = periodos[i]
+            if (key.startsWith('fe')) {
+              periodos[i][key] = new Date(object[key]).toLocaleDateString(
+                'es-ES',
+                {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: 'numeric'
+                }
+              )
+            }
+          }
+        }
 
         return {
           status: 200,

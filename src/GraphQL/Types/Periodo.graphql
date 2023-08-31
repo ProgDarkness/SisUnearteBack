@@ -13,6 +13,7 @@ type Periodo {
   feacta: String!
   fedoc: String!
   fepregrado: String!
+  feretiro: String!
   femodificacion: String!
   feipre: String!
   fefpre: String!
