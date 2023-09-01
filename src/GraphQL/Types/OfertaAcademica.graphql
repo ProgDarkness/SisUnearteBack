@@ -1,5 +1,6 @@
 type Mutation {
   crearOferta(input: InputOferta!): ResultadOferta!
+  eliminarOferta(idOferta: Int!): ResultadOferta!
 }
 
 input InputOferta {
@@ -23,17 +24,18 @@ type Query {
 }
 
 type Oferta {
-  id: ID!
-  periodo: Int!
-  anio: Int!
-  tipo: String!
-  nbtperido: String!
-  trayecto: String!
-  carrera: String!
-  cupos: Int!
-  materia: String!
-  estatus: String!
-  sede: String!
+  id_oferta: Int!
+  tx_mensaje: String!
+  id_carrera: Int!
+  nb_carrera: String!
+  nb_tp_carrera: String!
+  nb_ciclo: String!
+  nu_cupos: Int!
+  nu_seccion: Int!
+  id_sede: Int!
+  nb_sede: String!
+  id_estatus_oferta: Int!
+  nb_estatus_oferta: String!
 }
 
 type ResultOferta {

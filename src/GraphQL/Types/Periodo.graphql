@@ -2,9 +2,12 @@ type Periodo {
   id: ID!
   codigo: String!
   periodo: String!
+  idperiodo: Int!
   anio: Int!
   mesi: String!
+  idmesi: Int!
   mesf: String!
+  idmesf: Int!
   semana: Int!
   personal: String!
   mensaje: String!
@@ -74,7 +77,7 @@ input InputPeriodo {
 }
 
 input InputActualizarPeriodo {
-  codigo: Int!
+  codigo: String!
   tipo: Int!
   anio: Int!
   mesinicio: Int!
@@ -99,9 +102,6 @@ input InputActualizarPeriodo {
   fefinretiro: String!
   feinicionotas: String!
   fefinnotas: String!
-  visible: Boolean!
-  estatus: Int!
-  trayecto: Int!
   idperiodo: Int!
 }
 
