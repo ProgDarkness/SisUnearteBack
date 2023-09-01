@@ -25,6 +25,7 @@ type Query {
 
 type Oferta {
   id_oferta: Int!
+  co_oferta: String!
   tx_mensaje: String!
   id_carrera: Int!
   nb_carrera: String!

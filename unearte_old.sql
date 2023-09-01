@@ -5,7 +5,7 @@
 -- Dumped from database version 14.5
 -- Dumped by pg_dump version 14.5
 
--- Started on 2023-09-01 08:47:17
+-- Started on 2023-09-01 09:14:47
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -2291,7 +2291,8 @@ CREATE TABLE public.t008t_oferta_academica (
     visible boolean NOT NULL,
     id_estatus_oferta integer NOT NULL,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    co_oferta character varying
 );
 
 
@@ -46230,18 +46231,8 @@ COPY public.t007t_horario (id_horario, id_personal, id_materia, id_periodo, id_d
 -- Data for Name: t008t_oferta_academica; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.t008t_oferta_academica (id_oferta, id_periodo, id_carrera, nu_cupos, nu_seccion, id_sede, visible, id_estatus_oferta, created_at, updated_at) FROM stdin;
-3	3	8	30	1	3	t	1	\N	\N
-4	2	8	30	2	3	t	1	\N	\N
-5	2	8	30	2	3	t	1	\N	\N
-6	2	8	30	2	3	t	1	\N	\N
-7	2	8	30	2	3	t	1	\N	\N
-8	2	8	30	2	3	t	1	\N	\N
-9	2	8	30	2	3	t	1	\N	\N
-10	2	8	30	2	3	t	1	\N	\N
-11	2	8	30	2	3	t	1	\N	\N
-12	2	8	30	2	3	t	1	\N	\N
-13	2	8	30	2	3	t	1	\N	\N
+COPY public.t008t_oferta_academica (id_oferta, id_periodo, id_carrera, nu_cupos, nu_seccion, id_sede, visible, id_estatus_oferta, created_at, updated_at, co_oferta) FROM stdin;
+3	3	8	30	1	3	t	1	\N	\N	OF-1
 \.
 
 
@@ -47962,7 +47953,7 @@ ALTER TABLE ONLY public.t008t_oferta_academica
     ADD CONSTRAINT t008t_oferta_academica_fk_0 FOREIGN KEY (id_carrera) REFERENCES public.m006t_carreras(id_carrera);
 
 
--- Completed on 2023-09-01 08:47:18
+-- Completed on 2023-09-01 09:14:47
 
 --
 -- PostgreSQL database dump complete

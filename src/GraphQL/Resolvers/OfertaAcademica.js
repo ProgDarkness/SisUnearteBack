@@ -5,12 +5,12 @@ export default {
     obtenerOfertaAcademica: async () => {
       try {
         const ofertas = await dbp.manyOrNone(
-          `SELECT oa.id_oferta, oa.id_periodo, p.tx_mensaje, oa.id_carrera, c.nb_carrera, tp.nb_tp_carrera,
-            ci.nb_ciclo, oa.nu_cupos, oa.nu_seccion, oa.id_sede, s.nb_sede, oa.id_estatus_oferta, eo.nb_estatus_oferta
-            FROM public.t008t_oferta_academica oa, public.m006t_carreras c, public.t011t_sedes s,
-            public.t006t_periodo_lectivo p, public.m042t_estatus_oferta eo, public.m036t_tipo_carrera tp, public.m043t_ciclos ci
-            WHERE oa.id_periodo = p.id_periodo AND oa.id_carrera = c.id_carrera AND oa.id_sede = s.id_sede
-            AND oa.id_estatus_oferta = eo.id_estatus_oferta AND c.id_tp_carrera = tp.id_tp_carrera AND c.id_ciclo = ci.id_ciclo;`
+          `SELECT oa.id_oferta, oa.co_oferta, oa.id_periodo, p.tx_mensaje, oa.id_carrera, c.nb_carrera, tp.nb_tp_carrera,
+          ci.nb_ciclo, oa.nu_cupos, oa.nu_seccion, oa.id_sede, s.nb_sede, oa.id_estatus_oferta, eo.nb_estatus_oferta
+          FROM public.t008t_oferta_academica oa, public.m006t_carreras c, public.t011t_sedes s,
+          public.t006t_periodo_lectivo p, public.m042t_estatus_oferta eo, public.m036t_tipo_carrera tp, public.m043t_ciclos ci
+          WHERE oa.id_periodo = p.id_periodo AND oa.id_carrera = c.id_carrera AND oa.id_sede = s.id_sede
+          AND oa.id_estatus_oferta = eo.id_estatus_oferta AND c.id_tp_carrera = tp.id_tp_carrera AND c.id_ciclo = ci.id_ciclo;`
         )
         return {
           status: 200,
