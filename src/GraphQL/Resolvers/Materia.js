@@ -5,12 +5,10 @@ export default {
     obtenerTodasMaterias: async () => {
       try {
         const materias = await dbp.manyOrNone(
-          `SELECT cm.id_carrema as idcarrema, m.id_materia as id, m.co_materia as codigo, m.nb_materia as nombre, m.nu_credito as credito, 
-          m.hr_semanal as hora, em.nb_estatus_materia as estatus, tm.nb_tp_materia as tipo, tm.id_tp_materia as idtipo, ca.nb_carrera as carrera
-           FROM public.m005t_materias as m, public.m037t_estatus_materia as em, public.m012t_tipo_materia as tm,
-          public.r002t_carrera_materia cm, public.m006t_carreras ca
-          where m.id_estatus_materia = em.id_estatus_materia and m.id_tp_materia = tm.id_tp_materia
-          and cm.id_materia = m.id_materia and ca.id_carrera = cm.id_carrera order by ca.nb_carrera asc;`
+          `SELECT m.id_materia as id, m.co_materia as codigo, m.nb_materia as nombre, m.nu_credito as credito, 
+          m.hr_semanal as hora, em.nb_estatus_materia as estatus, tm.nb_tp_materia as tipo, tm.id_tp_materia as idtipo
+           FROM public.m005t_materias as m, public.m037t_estatus_materia as em, public.m012t_tipo_materia as tm
+          where m.id_estatus_materia = em.id_estatus_materia and m.id_tp_materia = tm.id_tp_materia;`
         )
 
         return {
@@ -43,9 +41,8 @@ export default {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
       }
     },
-    eliminarTraspaso: async (_, {idcarrema}) => {
+    eliminarTraspaso: async (_, { idcarrema }) => {
       try {
-        
         await dbp.none(
           `DELETE FROM public.r002t_carrera_materia
             WHERE id_carrema = $1;`,
@@ -62,21 +59,14 @@ export default {
       }
     },
     crearMateria: async (_, { input }) => {
-      const { carrera, codigo, nombre, credito, tipo, hora } = input
+      const { codigo, nombre, credito, tipo, hora } = input
 
       try {
-        const idMateria = await dbp.oneOrNone(
+        await dbp.none(
           `INSERT INTO public.m005t_materias(
                       co_materia, nb_materia, nu_credito, id_tp_materia, hr_semanal, id_estatus_materia, bl_prelacion, created_at, updated_at)
-                      VALUES ($1, $2, $3, $4, $5, $6, $7, now(), now()) RETURNING id_materia;`,
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, now(), now());`,
           [codigo, nombre, credito, tipo, hora, 4, true]
-        )
-
-        await dbp.none(
-          `INSERT INTO public.r002t_carrera_materia(
-                        id_carrera, id_materia, visible, hora_semanal, created_at, updated_at)
-                        VALUES ($1, $2, $3, $4, now(), now());`,
-          [carrera, idMateria.id_materia, true, hora]
         )
 
         return {

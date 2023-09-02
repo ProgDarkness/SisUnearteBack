@@ -4,14 +4,11 @@ type Mutation {
   eliminarCarrera(input: InputEliminarCarrera!): ResultadoCarrera!
   actualizarEstatusCarrera(input: InputEstatusCarrera!): ResultadoCarrera!
   asignarTrayectoMateria(
-    idCarrema: Int!
+    idCarrera: Int!
     idTrayecto: Int!
     idMateria: Int!
   ): ResultAsigTrayect!
-  desasignarTrayectoMateria(
-    idCarrema: Int!
-    idMateria: Int!
-  ): ResultAsigTrayect!
+  desasignarTrayectoMateria(idCarrema: Int!): ResultAsigTrayect!
   asignarSedeCarrera(idCarrera: Int!, idSede: Int!): ResultAsigTrayect!
   eliminarSedeCarrera(idSedeCarrera: Int!): ResultAsigTrayect!
 }

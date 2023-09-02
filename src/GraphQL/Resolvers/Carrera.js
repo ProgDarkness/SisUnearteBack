@@ -366,29 +366,44 @@ export default {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
       }
     },
-    asignarTrayectoMateria: async (_, { idCarrema, idTrayecto, idMateria }) => {
+    asignarTrayectoMateria: async (_, { idCarrera, idTrayecto, idMateria }) => {
       try {
-        await dbp.none(
-          `UPDATE public.r002t_carrera_materia
-            SET id_trayecto=$2 WHERE id_carrera=$1 AND id_materia= $3;`,
-          [idCarrema, idTrayecto, idMateria]
+        const validateDuplicidad = await dbp.oneOrNone(
+          `SELECT id_carrema FROM public.r002t_carrera_materia 
+          WHERE id_carrera = $1 AND id_materia = $2;`,
+          [idCarrera, idMateria]
         )
 
-        return {
-          status: 200,
-          message: 'Se ha agregado la materia al Trayecto',
-          type: 'success'
+        if (validateDuplicidad?.id_carrema) {
+          return {
+            status: 202,
+            message: 'La materia ya se encuentra asignada en otro trayecto',
+            type: 'warn'
+          }
+        } else {
+          await dbp.none(
+            `INSERT INTO public.r002t_carrera_materia(
+              id_carrera, id_materia, visible, id_trayecto, created_at, updated_at)
+              VALUES ($1, $2, TRUE, $3, now(), now());`,
+            [idCarrera, idMateria, idTrayecto]
+          )
+
+          return {
+            status: 200,
+            message: 'Se ha agregado la materia al Trayecto',
+            type: 'success'
+          }
         }
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
       }
     },
-    desasignarTrayectoMateria: async (_, { idCarrema, idMateria }) => {
+    desasignarTrayectoMateria: async (_, { idCarrema }) => {
       try {
         await dbp.none(
-          `UPDATE public.r002t_carrera_materia
-            SET id_trayecto=null WHERE id_carrera=$1 AND id_materia= $2;`,
-          [idCarrema, idMateria]
+          `DELETE FROM public.r002t_carrera_materia
+          WHERE id_carrema = $1;`,
+          [idCarrema]
         )
 
         return {

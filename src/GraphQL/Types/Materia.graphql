@@ -16,7 +16,6 @@ input InputCrearMateria {
   credito: Int!
   tipo: Int!
   hora: Int!
-  carrera: Int!
 }
 
 input InputActualizarMateria {
@@ -51,8 +50,6 @@ type Materias {
   estatus: String!
   tipo: String!
   idtipo: Int!
-  carrera: String!
-  idcarrema: Int
 }
 
 type ResultTodasMaterias {
