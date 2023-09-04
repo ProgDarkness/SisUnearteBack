@@ -11,6 +11,7 @@ type Mutation {
   desasignarTrayectoMateria(idCarrema: Int!): ResultAsigTrayect!
   asignarSedeCarrera(idCarrera: Int!, idSede: Int!): ResultAsigTrayect!
   eliminarSedeCarrera(idSedeCarrera: Int!): ResultAsigTrayect!
+  obtenerSedeCarrera(idCarrera: Int!): ResultAsigTrayect!
 }
 
 type Query {

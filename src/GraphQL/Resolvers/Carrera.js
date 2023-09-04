@@ -414,6 +414,32 @@ export default {
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
       }
+    },
+    obtenerSedeCarrera: async (_, { idCarrera }) => {
+      try {
+        const sedeCarrera = await dbp.manyOrNone(
+          `SELECT id_scarrera FROM public.r007t_sede_carrera WHERE id_carrera = $1;`,
+          [idCarrera]
+        )
+
+        console.log(sedeCarrera)
+
+        if (sedeCarrera.length > 0) {
+          return {
+            status: 200,
+            message: 'Encontradas las sedes de la carrera',
+            type: 'success'
+          }
+        } else {
+          return {
+            status: 202,
+            message: 'No hay sedes registradas para la carrera',
+            type: 'warn'
+          }
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
     }
   }
 }
