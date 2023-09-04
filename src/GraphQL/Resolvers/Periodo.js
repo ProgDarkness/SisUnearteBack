@@ -62,7 +62,6 @@ export default {
         feentregaacta,
         fesolicdocumento,
         fesolicgrado,
-        feretiro,
         femodificacion,
         feiniciopreinscripcion,
         fefinpreinscripcion,
@@ -73,7 +72,9 @@ export default {
         feinicioretiro,
         fefinretiro,
         feinicionotas,
-        fefinnotas
+        fefinnotas,
+        feiniciopostulacion,
+        fefinpostulacion
       } = input
 
       try {
@@ -83,11 +84,11 @@ export default {
         estatus = 1
         await dbp.none(
           `INSERT INTO public.t006t_periodo_lectivo(
-            co_periodo, id_tp_periodo, anio_periodo, mes_inicio_periodo, mes_fin_periodo, nu_semana_interperido, 
+            co_periodo, id_tp_periodo, anio_periodo, id_mes_inicio, id_mes_fin, nu_semana_interperido, 
             id_personal, tx_mensaje, fe_inicio, fe_fin, fe_ult_entrega_acta, fe_ult_solic_documento, fe_pre_solic_grado, 
-            fe_retiro, fe_modificacion, fe_inicio_preinscripcion, fe_fin_preinscripcion, fe_inicio_inscripcion, fe_fin_inscripcion, 
-            fe_inicio_oferta, fe_fin_oferta, fe_inicio_retiro, fe_fin_retiro, fe_inicio_notas, fe_fin_notas, visible, id_estatus_periodo)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27);`,
+            fe_modificacion, fe_inicio_preinscripcion, fe_fin_preinscripcion, fe_inicio_inscripcion, fe_fin_inscripcion, 
+            fe_inicio_oferta, fe_fin_oferta, fe_inicio_retiro, fe_fin_retiro, fe_inicio_notas, fe_fin_notas, fe_inicio_postulacion, fe_fin_postulacion, visible, id_estatus_periodo)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28);`,
           [
             codigo,
             tipo,
@@ -102,7 +103,6 @@ export default {
             feentregaacta,
             fesolicdocumento,
             fesolicgrado,
-            feretiro,
             femodificacion,
             feiniciopreinscripcion,
             fefinpreinscripcion,
@@ -114,6 +114,8 @@ export default {
             fefinretiro,
             feinicionotas,
             fefinnotas,
+            feiniciopostulacion,
+            fefinpostulacion,
             visible,
             estatus
           ]

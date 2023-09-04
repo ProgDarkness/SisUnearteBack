@@ -62,7 +62,6 @@ input InputPeriodo {
   feentregaacta: String!
   fesolicdocumento: String!
   fesolicgrado: String!
-  feretiro: String!
   femodificacion: String!
   feiniciopreinscripcion: String!
   fefinpreinscripcion: String!
@@ -74,6 +73,8 @@ input InputPeriodo {
   fefinretiro: String!
   feinicionotas: String!
   fefinnotas: String!
+  feiniciopostulacion: String!
+  fefinpostulacion: String!
 }
 
 input InputActualizarPeriodo {
