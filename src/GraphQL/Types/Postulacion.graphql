@@ -43,7 +43,7 @@ type Mutation {
 input InputPostulacion {
   usuario: Int!
   carrera: Int!
-  periodo: Int!
+  sede: Int!
   fepostulacion: String!
 }
 

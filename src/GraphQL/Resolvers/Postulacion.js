@@ -46,7 +46,7 @@ export default {
   },
   Mutation: {
     crearPostulacion: async (_, { input }) => {
-      const { usuario, carrera, periodo, fepostulacion } = input
+      const { usuario, carrera, sede, fepostulacion } = input
 
       try {
         let estatus = null
@@ -54,11 +54,24 @@ export default {
         estatus = 4
         activo = true
 
+        const idperiodo = await dbp.oneOrNone(
+          `SELECT id_periodo FROM r006t_periodo_trayecto as pt WHERE pt.id_carrera = $1 AND pt.id_trayecto = 1;`,
+          [carrera]
+        )
+
         await dbp.none(
           `INSERT INTO public.t013t_postulacion(
-                      id_usuario, id_carrera, id_periodo, fe_postulacion, id_estatus_postulacion, st_activo)
-                      VALUES ( $1, $2, $3, $4, $5, $6);`,
-          [usuario, carrera, periodo, fepostulacion, estatus, activo]
+                      id_usuario, id_carrera, id_periodo, id_sede, fe_postulacion, id_estatus_postulacion, st_activo)
+                      VALUES ( $1, $2, $3, $4, $5, $6, $7);`,
+          [
+            usuario,
+            carrera,
+            idperiodo.id_periodo,
+            sede,
+            fepostulacion,
+            estatus,
+            activo
+          ]
         )
         return {
           status: 200,
