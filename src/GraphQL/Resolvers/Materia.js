@@ -6,9 +6,9 @@ export default {
       try {
         const materias = await dbp.manyOrNone(
           `SELECT m.id_materia as id, m.co_materia as codigo, m.nb_materia as nombre, m.nu_credito as credito, 
-          m.hr_semanal as hora, em.nb_estatus_materia as estatus, tm.nb_tp_materia as tipo, tm.id_tp_materia as idtipo
-           FROM public.m005t_materias as m, public.m037t_estatus_materia as em, public.m012t_tipo_materia as tm
-          where m.id_estatus_materia = em.id_estatus_materia and m.id_tp_materia = tm.id_tp_materia;`
+            m.hr_semanal as hora, em.nb_estatus_materia as estatus, tm.nb_tp_materia as tipo, tm.id_tp_materia as idtipo
+              FROM public.m005t_materias as m, public.m037t_estatus_materia as em, public.m012t_tipo_materia as tm
+                where m.id_estatus_materia = em.id_estatus_materia and m.id_tp_materia = tm.id_tp_materia;`
         )
 
         return {
@@ -23,41 +23,6 @@ export default {
     }
   },
   Mutation: {
-    traspasarMateria: async (_, { idCarrera, idMateria, horasSemanales }) => {
-      try {
-        await dbp.none(
-          `INSERT INTO public.r002t_carrera_materia(
-              id_carrera, id_materia, visible, hora_semanal, created_at, updated_at)
-              VALUES ($1, $2, true, $3, now(), now());`,
-          [idCarrera, idMateria, horasSemanales]
-        )
-
-        return {
-          status: 200,
-          message: 'Materia trapasada exitosamente',
-          type: 'success'
-        }
-      } catch (e) {
-        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
-      }
-    },
-    eliminarTraspaso: async (_, { idcarrema }) => {
-      try {
-        await dbp.none(
-          `DELETE FROM public.r002t_carrera_materia
-            WHERE id_carrema = $1;`,
-          [idcarrema]
-        )
-
-        return {
-          status: 200,
-          message: 'Traspaso eliminado exitosamente',
-          type: 'success'
-        }
-      } catch (e) {
-        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
-      }
-    },
     crearMateria: async (_, { input }) => {
       const { codigo, nombre, credito, tipo, hora } = input
 
@@ -102,17 +67,26 @@ export default {
       const { idmateria } = input
 
       try {
-        const materiadocente = await dbp.oneOrNone(
+        const materiadocente = await dbp.manyOrNone(
           `SELECT id_materia FROM r001t_docente_materia as dm WHERE dm.id_materia = $1;`,
           [idmateria]
         )
 
-        const materiainscripcion = await dbp.oneOrNone(
+        const materiainscripcion = await dbp.manyOrNone(
           `SELECT id_materia FROM r003t_inscripcion_materia as im WHERE im.id_materia = $1;`,
           [idmateria]
         )
 
-        if (materiadocente?.id_materia || materiainscripcion?.id_materia) {
+        const materiacarrera = await dbp.manyOrNone(
+          `SELECT id_materia FROM public.r002t_carrera_materia WHERE id_materia = $1;`,
+          [idmateria]
+        )
+
+        if (
+          materiadocente[0]?.id_materia ||
+          materiainscripcion[0]?.id_materia ||
+          materiacarrera[0]?.id_materia
+        ) {
           return {
             status: 202,
             message:

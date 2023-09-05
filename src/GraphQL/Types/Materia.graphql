@@ -2,12 +2,6 @@ type Mutation {
   crearMateria(input: InputCrearMateria!): Resultado!
   actualizarMateria(input: InputActualizarMateria!): Resultado!
   eliminarMateria(input: InputEliminarMateria!): Resultado!
-  traspasarMateria(
-    idCarrera: Int!
-    idMateria: Int!
-    horasSemanales: Int!
-  ): Resultado!
-  eliminarTraspaso(idcarrema: Int!): Resultado
 }
 
 input InputCrearMateria {

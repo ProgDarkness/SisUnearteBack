@@ -323,7 +323,10 @@ export default {
           [idcarrera]
         )
 
-        if (carreramateria?.id_carrera || carrerapostulacion?.id_carrera) {
+        if (
+          carreramateria[0]?.id_carrera ||
+          carrerapostulacion[0]?.id_carrera
+        ) {
           return {
             status: 202,
             message: 'Carrera no puede ser eliminada asociada a otros datos',

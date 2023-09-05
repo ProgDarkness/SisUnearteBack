@@ -6,17 +6,17 @@ export default {
       try {
         const periodos = await dbp.manyOrNone(
           `SELECT p.id_periodo as id, p.co_periodo as codigo, tp.nb_tp_periodo as periodo, tp.id_tp_periodo as idperiodo, p.anio_periodo as anio, 
-                mes.nb_mes as mesi, mes.id_mes as idmesi, mes1.nb_mes as mesf,  mes1.id_mes as idmesf,
-                p.nu_semana_interperido as semana, personal.nb_personal as personal, p.tx_mensaje as mensaje, p.fe_inicio as fei, p.fe_fin as fef, 
-                p.fe_ult_entrega_acta as feacta, p.fe_ult_solic_documento as fedoc, p.fe_pre_solic_grado as fepregrado, p.fe_retiro as feretiro, 
-                p.fe_modificacion as femodificacion, p.fe_inicio_preinscripcion as feipre, p.fe_fin_preinscripcion as fefpre, 
-                p.fe_inicio_inscripcion as feinsc, fe_fin_inscripcion as fefinsc, p.fe_inicio_oferta as feioferta, p.fe_fin_oferta as fefoferta, 
-                p.fe_inicio_retiro as feiretiro, p.fe_fin_retiro as fefretiro, p.fe_inicio_notas as feinota, p.fe_fin_notas as fefnota, 
-                estatus.nb_estatus_periodo as estatus
-                FROM public.t006t_periodo_lectivo as p, public.m007t_tipo_periodo as tp, public.t003t_personal as personal,
-                public.m044t_estatus_periodo as estatus, public.m050t_meses as mes, public.m050t_meses as mes1
-                WHERE p.id_tp_periodo = tp.id_tp_periodo and p.id_personal = personal.id_personal and
-                p.id_estatus_periodo = estatus.id_estatus_periodo and p.mes_inicio_periodo = mes.id_mes and p.mes_fin_periodo = mes1.id_mes;`
+          mes.nb_mes as mesi, mes.id_mes as idmesi, mes1.nb_mes as mesf,  mes1.id_mes as idmesf,
+          p.nu_semana_interperido as semana, personal.nb_personal as personal, p.tx_mensaje as mensaje, p.fe_inicio as fei, p.fe_fin as fef, 
+          p.fe_ult_entrega_acta as feacta, p.fe_ult_solic_documento as fedoc, p.fe_pre_solic_grado as fepregrado, 
+          p.fe_modificacion as femodificacion, p.fe_inicio_preinscripcion as feipre, p.fe_fin_preinscripcion as fefpre, 
+          p.fe_inicio_inscripcion as feinsc, fe_fin_inscripcion as fefinsc, p.fe_inicio_oferta as feioferta, p.fe_fin_oferta as fefoferta, 
+          p.fe_inicio_retiro as feiretiro, p.fe_fin_retiro as fefretiro, p.fe_inicio_notas as feinota, p.fe_fin_notas as fefnota, 
+          estatus.nb_estatus_periodo as estatus, p.fe_inicio_postulacion as feipostulacion, p.fe_fin_postulacion as fefpostulacion
+          FROM public.t006t_periodo_lectivo as p, public.m007t_tipo_periodo as tp, public.t003t_personal as personal,
+          public.m044t_estatus_periodo as estatus, public.m050t_meses as mes, public.m050t_meses as mes1
+          WHERE p.id_tp_periodo = tp.id_tp_periodo and p.id_personal = personal.id_personal and
+          p.id_estatus_periodo = estatus.id_estatus_periodo and p.id_mes_inicio = mes.id_mes and p.id_mes_fin = mes1.id_mes;`
         )
 
         for (let i = 0; i < periodos.length; i++) {
@@ -163,7 +163,7 @@ export default {
       try {
         await dbp.none(
           `UPDATE public.t006t_periodo_lectivo
-            SET co_periodo = $1, id_tp_periodo = $2, anio_periodo = $3, mes_inicio_periodo = $4, mes_fin_periodo = $5, 
+            SET co_periodo = $1, id_tp_periodo = $2, anio_periodo = $3, id_mes_inicio = $4, id_mes_fin = $5, 
             nu_semana_interperido = $6, tx_mensaje = $7, fe_inicio = $8, fe_fin = $9, fe_ult_entrega_acta = $10, fe_ult_solic_documento = $11, 
             fe_pre_solic_grado = $12, fe_modificacion = $13, fe_inicio_preinscripcion = $14, fe_fin_preinscripcion = $15, fe_inicio_inscripcion = $16, 
             fe_fin_inscripcion = $17, fe_inicio_oferta = $18, fe_fin_oferta = $19, fe_inicio_retiro = $20, fe_fin_retiro = $21, fe_inicio_notas = $22, fe_fin_notas = $23,

@@ -16,7 +16,6 @@ type Periodo {
   feacta: String!
   fedoc: String!
   fepregrado: String!
-  feretiro: String!
   femodificacion: String!
   feipre: String!
   fefpre: String!
@@ -28,6 +27,8 @@ type Periodo {
   fefretiro: String!
   feinota: String!
   fefnota: String!
+  feipostulacion: String!
+  fefpostulacion: String!
   estatus: String!
 }
 
@@ -84,6 +85,7 @@ input InputActualizarPeriodo {
   mesinicio: Int!
   mesfin: Int!
   nusemana: Int!
+  personal: Int!
   mensaje: String!
   feinicio: String!
   fefin: String!
