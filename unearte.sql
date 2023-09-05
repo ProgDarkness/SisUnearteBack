@@ -5,7 +5,7 @@
 -- Dumped from database version 14.8
 -- Dumped by pg_dump version 14.8
 
--- Started on 2023-09-04 18:32:13
+-- Started on 2023-09-05 08:45:06
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -2019,7 +2019,8 @@ CREATE TABLE public.t001t_usuarios (
     id_etnia integer,
     id_pais_nac integer,
     id_estado_nac integer,
-    id_ciudad_nac integer
+    id_ciudad_nac integer,
+    cod_zona_postal integer
 );
 
 
@@ -4089,7 +4090,6 @@ COPY public.m004t_regiones (id_region, nb_region) FROM stdin;
 --
 
 COPY public.m005t_materias (id_materia, co_materia, nb_materia, nu_credito, id_tp_materia, hr_semanal, bl_prelacion, id_estatus_materia, created_at, updated_at, id_clase_materia, id_area_materia) FROM stdin;
-16	HTS-1	HISTORIA	12	12	24	t	4	2023-08-28 16:44:02.799413	2023-08-28 16:44:02.799413	\N	\N
 \.
 
 
@@ -4100,8 +4100,6 @@ COPY public.m005t_materias (id_materia, co_materia, nb_materia, nu_credito, id_t
 --
 
 COPY public.m006t_carreras (id_carrera, co_carrera, nb_carrera, id_tp_carrera, id_ciclo, visible, created_at, updated_at, id_estatus_carrera, id_titulo) FROM stdin;
-22	HTS-ART	HISTORIA DEL ARTE	1	2	t	2023-08-28 16:43:16.370288	2023-08-28 16:43:16.370288	4	2
-21	ART-1	ARTE	1	2	t	2023-08-28 15:18:43.727769	2023-08-28 15:18:43.727769	3	2
 \.
 
 
@@ -46034,7 +46032,6 @@ COPY public.r001t_docente_materia (id_dicta, id_materia, id_personal, id_estatus
 --
 
 COPY public.r002t_carrera_materia (id_carrema, id_carrera, id_materia, visible, id_trayecto, created_at, updated_at) FROM stdin;
-3	22	16	t	1	2023-08-28 16:44:02.830633	2023-08-28 16:44:02.830633
 \.
 
 
@@ -46086,8 +46083,6 @@ COPY public.r006t_periodo_trayecto (id_ptrayecto, id_periodo, id_trayecto, creat
 --
 
 COPY public.r007t_sede_carrera (id_scarrera, id_sede, id_carrera, created_at, updated_at) FROM stdin;
-1	3	21	2023-08-28 15:18:43.763039	2023-08-28 15:18:43.763039
-2	3	22	2023-08-28 16:43:16.388087	2023-08-28 16:43:16.388087
 \.
 
 
@@ -46098,12 +46093,6 @@ COPY public.r007t_sede_carrera (id_scarrera, id_sede, id_carrera, created_at, up
 --
 
 COPY public.r008t_carrera_trayecto (id_carrera_trayecto, id_carrera, id_trayecto) FROM stdin;
-6	21	1
-7	21	2
-8	21	3
-9	22	1
-10	22	2
-11	22	3
 \.
 
 
@@ -46113,12 +46102,8 @@ COPY public.r008t_carrera_trayecto (id_carrera_trayecto, id_carrera, id_trayecto
 -- Data for Name: t001t_usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.t001t_usuarios (id_usuario, tx_clave, user_name, bl_status, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_tp_sexo, fe_nac_usuario, id_civil, correo_usuario, id_tp_via, nb_via, id_tp_zona, nb_zona, id_tp_vivienda, nu_vivienda, id_ciudad, id_estado, www_preinscripcion, created_at, updated_at, id_municipio, id_parroquia, bl_registro, nb2_usuario, ape2_usuario, id_zona, id_pais, id_tp_discapacidad, id_etnia, id_pais_nac, id_estado_nac, id_ciudad_nac) FROM stdin;
-10	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	hvalor	t	2	1	17044191	HILDEMAR	VALOR	2	\N	1	\N	1	jhkjh	1	hjhj	1	99	604	1	\N	2023-08-11 14:42:28.876778-04	2023-08-11 14:42:28.876778-04	181	605	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-13	\N	\N	f	\N	1	12345670	Ana	Torres	1	1983-09-14 00:00:00	1	a@gmail.com	1	La Salle	1	La Colina	1	23-B	604	14	\N	2023-08-15 14:06:05.551214-04	2023-08-15 14:06:05.551214-04	181	605	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-14	\N	\N	f	\N	1	12345608	Carla	Quiko	1	1999-09-14 00:00:00	1	c@gmail.com	1	Calle Azul	1	La Villa	1	245	604	14	\N	2023-08-15 14:13:03.823497-04	2023-08-15 14:13:03.823497-04	181	605	t	\N	\N	\N	\N	\N	\N	\N	\N	\N
-11	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	manez	t	3	1	22456876	MIGUEL	AÑEZ	2	\N	1	\N	1	jkhj	1	kjhjh	1	44	604	14	\N	2023-08-11 16:42:00.590816-04	2023-08-11 16:42:00.590816-04	181	605	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-9	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	gmarcano	t	3	1	28484689	GABRIEL	MARCANO	2	2001-11-19 00:00:00	1	gabrielmarcano141@gmail.com	3	LA ESPERANZA	5	Barrio El Guarataro	3	34	1	1	\N	2023-08-11 14:39:27.398252-04	2023-08-11 14:41:44.21061-04	1	12	t	FABIAN	REQUENA	559	239	5	\N	\N	\N	\N
+COPY public.t001t_usuarios (id_usuario, tx_clave, user_name, bl_status, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_tp_sexo, fe_nac_usuario, id_civil, correo_usuario, id_tp_via, nb_via, id_tp_zona, nb_zona, id_tp_vivienda, nu_vivienda, id_ciudad, id_estado, www_preinscripcion, created_at, updated_at, id_municipio, id_parroquia, bl_registro, nb2_usuario, ape2_usuario, id_zona, id_pais, id_tp_discapacidad, id_etnia, id_pais_nac, id_estado_nac, id_ciudad_nac, cod_zona_postal) FROM stdin;
+9	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	gmarcano	t	3	1	28484689	GABRIEL	MARCANO	2	2001-11-19 00:00:00	1	gabrielmarcano141@gmail.com	3	LA ESPERANZA	5	Barrio El Guarataro	3	34	1	1	\N	2023-08-11 14:39:27.398252-04	2023-08-11 14:41:44.21061-04	1	12	t	FABIAN	REQUENA	559	239	5	\N	\N	\N	\N	\N
 \.
 
 
@@ -46141,7 +46126,6 @@ COPY public.t002t_roles (id_rol, nb_rol, created_at, updated_at) FROM stdin;
 --
 
 COPY public.t003t_personal (id_personal, id_nacionalidad, ced_personal, nb_personal, ape_personal, tlf_fijo, tlf_movil, correo, id_estatus_personal, id_tp_personal, carga_horaria, id_profesion, created_at, updated_at, id_tp_sexo, id_civil) FROM stdin;
-1	1	12345678	Hildemar	Valor	02432345009	04243600988	hi@gmail.com	1	1	2	1	\N	\N	\N	\N
 \.
 
 
@@ -46152,32 +46136,6 @@ COPY public.t003t_personal (id_personal, id_nacionalidad, ced_personal, nb_perso
 --
 
 COPY public.t004t_estudiantes (id_estudiante, id_nac_estudiante, ced_estudiante, nb_estudiante, ape_estudiante, id_sexo_estudiante, id_estado_civil, fe_nac_estudiante, id_ciudad_nac, id_estado_nac, id_pais_nac, discapacidad, id_tp_discapacidad, id_tp_ingreso, id_estatus_estudiante, created_at, updated_at, id_geografico_estudiante) FROM stdin;
-1	1	12345678	Ana	Acosta	1	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-2	1	123456789	ccc	ddds	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-3	1	28484689	GABRIEL	MARCANO	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-4	1	22456876	MIGUEL	AÑEZ	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-5	1	123456789	ccc	ddds	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-8	1	123009	hildemar	valor	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-9	1	123009	ana	valor	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-10	1	123009	hildemar	valor	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-11	1	123009	ana	valor	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-12	1	123009	hildemar	valor	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-13	1	123009	ana	valor	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-17	1	123456	ggg	ddd	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-18	1	123009	hildemar	valor	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-19	1	123009	ana	valor	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-21	1	123456	ggg	ddd	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-22	1	123456	ggg	ddd	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-23	1	123456	ggg	ddd	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-24	1	12345000	ana	torres	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-25	1	12345609	catalina	lao	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-26	1	123456	ggg	ddd	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-27	1	1234000	hola	como	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-28	1	1234000	hola2	como2	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-29	1	12345000	ana	torres	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-30	1	12345609	catalina	lao	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-31	1	12333	carro	torres	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
-32	1	65433	casa	lao	1	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N
 \.
 
 
@@ -46198,7 +46156,6 @@ COPY public.t005t_inscripcion (id_inscripcion, id_estudiante, id_periodo, id_est
 --
 
 COPY public.t006t_periodo_lectivo (id_periodo, co_periodo, id_tp_periodo, anio_periodo, id_mes_inicio, id_mes_fin, nu_semana_interperido, id_personal, tx_mensaje, fe_inicio, fe_fin, fe_ult_entrega_acta, fe_ult_solic_documento, fe_pre_solic_grado, fe_modificacion, fe_inicio_preinscripcion, fe_fin_preinscripcion, fe_inicio_inscripcion, fe_fin_inscripcion, fe_inicio_oferta, fe_fin_oferta, fe_inicio_retiro, fe_fin_retiro, fe_inicio_notas, fe_fin_notas, visible, id_estatus_periodo, created_at, updated_at, fe_inicio_postulacion, fe_fin_postulacion) FROM stdin;
-4	P001	1	2023	1	3	3	1	Hola	2023-08-16 00:00:00	2023-08-16 00:00:00	2023-08-16 00:00:00	2023-08-16 00:00:00	2023-08-16 00:00:00	2023-08-16 00:00:00	2023-08-16 00:00:00	2023-08-16 00:00:00	2023-08-16 00:00:00	2023-08-16 00:00:00	2023-08-16 00:00:00	2023-08-16 00:00:00	2023-08-16 00:00:00	2023-08-16 00:00:00	2023-08-16 00:00:00	2023-08-16 00:00:00	t	1	\N	\N	2023-08-16 00:00:00	2023-08-16 00:00:00
 \.
 
 
@@ -46249,7 +46206,6 @@ COPY public.t010t_geografico_estudiante (id_geografico_estudiante, id_tp_via, nb
 --
 
 COPY public.t011t_sedes (id_sede, co_sede, nb_sede, id_geografico_sede, id_estatus, created_at, updated_at) FROM stdin;
-3	S01	Caracas	1	1	\N	\N
 \.
 
 
@@ -46270,7 +46226,6 @@ COPY public.t012t_geografico_sede (id_geografico_sede, id_tp_via, nb_via, id_tp_
 --
 
 COPY public.t013t_postulacion (id_postulacion, id_usuario, id_carrera, id_periodo, fe_postulacion, id_estatus_postulacion, id_personal_aprobacion, fe_aprobacion, st_activo, tx_observacion, created_at, updated_at, id_sede) FROM stdin;
-5	10	21	\N	2023-09-04 00:00:00	4	\N	\N	t	\N	\N	\N	3
 \.
 
 
@@ -46326,7 +46281,7 @@ SELECT pg_catalog.setval('public.m003t_parroquias_id_seq', 1, false);
 -- Name: m005t_materias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.m005t_materias_id_seq', 16, true);
+SELECT pg_catalog.setval('public.m005t_materias_id_seq', 1, false);
 
 
 --
@@ -46335,7 +46290,7 @@ SELECT pg_catalog.setval('public.m005t_materias_id_seq', 16, true);
 -- Name: m006t_carreras_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.m006t_carreras_id_seq', 22, true);
+SELECT pg_catalog.setval('public.m006t_carreras_id_seq', 1, false);
 
 
 --
@@ -46839,7 +46794,7 @@ SELECT pg_catalog.setval('public.t002t_roles_id_seq', 3, true);
 -- Name: t003t_personal_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.t003t_personal_id_seq', 1, true);
+SELECT pg_catalog.setval('public.t003t_personal_id_seq', 1, false);
 
 
 --
@@ -46848,7 +46803,7 @@ SELECT pg_catalog.setval('public.t003t_personal_id_seq', 1, true);
 -- Name: t004t_estudiantes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.t004t_estudiantes_id_seq', 32, true);
+SELECT pg_catalog.setval('public.t004t_estudiantes_id_seq', 1, false);
 
 
 --
@@ -46866,7 +46821,7 @@ SELECT pg_catalog.setval('public.t005t_inscripcion_id_seq', 1, false);
 -- Name: t006t_periodos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.t006t_periodos_id_seq', 4, true);
+SELECT pg_catalog.setval('public.t006t_periodos_id_seq', 1, false);
 
 
 --
@@ -46884,7 +46839,7 @@ SELECT pg_catalog.setval('public.t007t_horario_id_seq', 1, false);
 -- Name: t008t_oferta_academica_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.t008t_oferta_academica_id_seq', 13, true);
+SELECT pg_catalog.setval('public.t008t_oferta_academica_id_seq', 1, false);
 
 
 --
@@ -46911,7 +46866,7 @@ SELECT pg_catalog.setval('public.t010t_geografico_id_seq', 1, false);
 -- Name: t011t_sedes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.t011t_sedes_id_seq', 3, true);
+SELECT pg_catalog.setval('public.t011t_sedes_id_seq', 1, false);
 
 
 --
@@ -46929,7 +46884,7 @@ SELECT pg_catalog.setval('public.t012t_geografico_sede_id_seq', 1, false);
 -- Name: t013t_postulacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.t013t_postulacion_id_seq', 5, true);
+SELECT pg_catalog.setval('public.t013t_postulacion_id_seq', 1, false);
 
 
 --
@@ -48396,7 +48351,7 @@ ALTER TABLE ONLY public.t014t_oferta_horario
     ADD CONSTRAINT t014t_oferta_horario_fk_6 FOREIGN KEY (id_oferta) REFERENCES public.t008t_oferta_academica(id_oferta);
 
 
--- Completed on 2023-09-04 18:32:14
+-- Completed on 2023-09-05 08:45:07
 
 --
 -- PostgreSQL database dump complete
