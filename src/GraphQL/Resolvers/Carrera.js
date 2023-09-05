@@ -67,7 +67,7 @@ export default {
 
         const trayectosCarrera = await dbp.manyOrNone(
           `SELECT t.id_trayecto, t.nb_trayecto
-          FROM public.r009t_carrera_trayecto ct, public.m017t_trayectos t
+          FROM public.r008t_carrera_trayecto ct, public.m017t_trayectos t
             WHERE ct.id_trayecto = t.id_trayecto AND ct.id_carrera = $1;`,
           [carrera]
         )
@@ -167,7 +167,7 @@ export default {
       try {
         const trayectos = await dbp.manyOrNone(
           `SELECT ct.id_trayecto as id, t.nb_trayecto as nombre
-          FROM public.r009t_carrera_trayecto ct, public.m017t_trayectos t
+          FROM public.r008t_carrera_trayecto ct, public.m017t_trayectos t
             WHERE ct.id_trayecto = t.id_trayecto and ct.id_carrera = $1;`,
           [carrera]
         )
@@ -184,13 +184,29 @@ export default {
     }
   },
   Mutation: {
-    eliminarSedeCarrera: async (_, { idSedeCarrera }) => {
+    eliminarSedeCarrera: async (_, { idSedeCarrera, idCarrera }) => {
       try {
-        await dbp.none(
-          `DELETE FROM public.r007t_sede_carrera
-          WHERE id_scarrera = $1;`,
-          [idSedeCarrera]
+        const validateCarrera = await dbp.oneOrNone(
+          `SELECT id_estatus_carrera
+            FROM public.m006t_carreras 
+              WHERE id_carrera = $1 AND id_estatus_carrera = 3;`,
+          [idCarrera]
         )
+
+        if (!validateCarrera?.id_estatus_carrera) {
+          await dbp.none(
+            `DELETE FROM public.r007t_sede_carrera
+            WHERE id_scarrera = $1;`,
+            [idSedeCarrera]
+          )
+        } else {
+          return {
+            status: 202,
+            message:
+              'La sede no puede ser eliminada en una carrera ya aprobada',
+            type: 'warn'
+          }
+        }
 
         return {
           status: 200,
@@ -251,14 +267,14 @@ export default {
         if (tipo === 1) {
           for (let i = 0; i < cantTrayectos + 1; i++) {
             await dbp.none(
-              `INSERT INTO public.r009t_carrera_trayecto(id_carrera, id_trayecto) VALUES ($1, $2);`,
+              `INSERT INTO public.r008t_carrera_trayecto(id_carrera, id_trayecto) VALUES ($1, $2);`,
               [idcarrera.id_carrera, trayectos[i].id_trayecto]
             )
           }
         } else if (tipo === 2) {
           for (let i = 1; i < cantTrayectos + 1; i++) {
             await dbp.none(
-              `INSERT INTO public.r009t_carrera_trayecto(id_carrera, id_trayecto) VALUES ($1, $2);`,
+              `INSERT INTO public.r008t_carrera_trayecto(id_carrera, id_trayecto) VALUES ($1, $2);`,
               [idcarrera.id_carrera, trayectos[i].id_trayecto]
             )
           }
@@ -297,11 +313,6 @@ export default {
       const { idcarrera } = input
 
       try {
-        const carreraperiodo = await dbp.manyOrNone(
-          `SELECT id_carrera FROM r006t_periodo_carrera pc WHERE pc.id_carrera = $1;`,
-          [idcarrera]
-        )
-
         const carreramateria = await dbp.manyOrNone(
           `SELECT id_carrera FROM r002t_carrera_materia cm WHERE cm.id_carrera = $1;`,
           [idcarrera]
@@ -312,11 +323,7 @@ export default {
           [idcarrera]
         )
 
-        if (
-          carreraperiodo?.id_carrera ||
-          carreramateria?.id_carrera ||
-          carrerapostulacion?.id_carrera
-        ) {
+        if (carreramateria?.id_carrera || carrerapostulacion?.id_carrera) {
           return {
             status: 202,
             message: 'Carrera no puede ser eliminada asociada a otros datos',
@@ -329,7 +336,7 @@ export default {
           )
 
           await dbp.none(
-            `DELETE FROM public.r009t_carrera_trayecto WHERE id_carrera = $1;`,
+            `DELETE FROM public.r008t_carrera_trayecto WHERE id_carrera = $1;`,
             [idcarrera]
           )
 
