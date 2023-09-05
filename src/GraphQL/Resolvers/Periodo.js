@@ -138,14 +138,12 @@ export default {
         mesinicio,
         mesfin,
         nusemana,
-        /* personal, */
         mensaje,
         feinicio,
         fefin,
         feentregaacta,
         fesolicdocumento,
         fesolicgrado,
-        feretiro,
         femodificacion,
         feiniciopreinscripcion,
         fefinpreinscripcion,
@@ -157,17 +155,19 @@ export default {
         fefinretiro,
         feinicionotas,
         fefinnotas,
+        feiniciopostulacion,
+        fefinpostulacion,
         idperiodo
       } = input
 
       try {
         await dbp.none(
           `UPDATE public.t006t_periodo_lectivo
-                      SET co_periodo = $1, id_tp_periodo = $2, anio_periodo = $3, mes_inicio_periodo = $4, mes_fin_periodo = $5, 
-                      nu_semana_interperido = $6, id_personal = $7, tx_mensaje = $8, fe_inicio = $9, fe_fin = $10, fe_ult_entrega_acta = $11, fe_ult_solic_documento = $12, 
-                      fe_pre_solic_grado = $13, fe_retiro = $14, fe_modificacion = $15, fe_inicio_preinscripcion = $16, fe_fin_preinscripcion = $17, fe_inicio_inscripcion = $18, 
-                      fe_fin_inscripcion = $19, fe_inicio_oferta = $20, fe_fin_oferta = $21, fe_inicio_retiro = $22, fe_fin_retiro = $23, fe_inicio_notas = $24, fe_fin_notas = $25 
-                      WHERE id_periodo = $26;`,
+            SET co_periodo = $1, id_tp_periodo = $2, anio_periodo = $3, mes_inicio_periodo = $4, mes_fin_periodo = $5, 
+            nu_semana_interperido = $6, tx_mensaje = $7, fe_inicio = $8, fe_fin = $9, fe_ult_entrega_acta = $10, fe_ult_solic_documento = $11, 
+            fe_pre_solic_grado = $12, fe_modificacion = $13, fe_inicio_preinscripcion = $14, fe_fin_preinscripcion = $15, fe_inicio_inscripcion = $16, 
+            fe_fin_inscripcion = $17, fe_inicio_oferta = $18, fe_fin_oferta = $19, fe_inicio_retiro = $20, fe_fin_retiro = $21, fe_inicio_notas = $22, fe_fin_notas = $23,
+            fe_inicio_postulacion = $24, fe_fin_postulacion = $25 WHERE id_periodo = $26;`,
           [
             codigo,
             tipo,
@@ -175,14 +175,12 @@ export default {
             mesinicio,
             mesfin,
             nusemana,
-            3 /* personal */,
             mensaje,
             feinicio,
             fefin,
             feentregaacta,
             fesolicdocumento,
             fesolicgrado,
-            feretiro,
             femodificacion,
             feiniciopreinscripcion,
             fefinpreinscripcion,
@@ -194,6 +192,8 @@ export default {
             fefinretiro,
             feinicionotas,
             fefinnotas,
+            feiniciopostulacion,
+            fefinpostulacion,
             idperiodo
           ]
         )

@@ -84,14 +84,12 @@ input InputActualizarPeriodo {
   mesinicio: Int!
   mesfin: Int!
   nusemana: Int!
-  personal: Int!
   mensaje: String!
   feinicio: String!
   fefin: String!
   feentregaacta: String!
   fesolicdocumento: String!
   fesolicgrado: String!
-  feretiro: String!
   femodificacion: String!
   feiniciopreinscripcion: String!
   fefinpreinscripcion: String!
@@ -103,6 +101,8 @@ input InputActualizarPeriodo {
   fefinretiro: String!
   feinicionotas: String!
   fefinnotas: String!
+  feiniciopostulacion: String!
+  fefinpostulacion: String!
   idperiodo: Int!
 }
 

@@ -245,7 +245,7 @@ mutation crearperiodo {
 mutation actualizarperiodo {
   actualizarPeriodo (
     input:{
-      codigo: 1
+      codigo: "P001"
       tipo: 1
       anio: 2023
       mesinicio: 1
@@ -258,7 +258,6 @@ mutation actualizarperiodo {
       feentregaacta: "2023-08-16"
       fesolicdocumento: "2023-08-16"
       fesolicgrado: "2023-08-16"
-      feretiro: "2023-08-16"
       femodificacion: "2023-08-16"
       feiniciopreinscripcion: "2023-08-16"
       fefinpreinscripcion: "2023-08-16"
@@ -270,6 +269,8 @@ mutation actualizarperiodo {
       fefinretiro: "2023-08-16"
       feinicionotas: "2023-08-16"
       fefinnotas: "2023-08-16"
+      feiniciopostulacion: String!
+      fefinpostulacion: String!
       trayecto: 4
       visible: true
       estatus: 1
