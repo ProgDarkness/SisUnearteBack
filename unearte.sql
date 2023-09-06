@@ -5,7 +5,7 @@
 -- Dumped from database version 14.8
 -- Dumped by pg_dump version 14.8
 
--- Started on 2023-09-05 13:03:39
+-- Started on 2023-09-05 20:22:34
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -2543,7 +2543,7 @@ CREATE TABLE public.t014t_oferta_horario (
 ALTER TABLE public.t014t_oferta_horario OWNER TO postgres;
 
 --
--- TOC entry 354 (class 1259 OID 34363)
+-- TOC entry 354 (class 1259 OID 34375)
 -- Name: v001_info_usuario; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -2581,7 +2581,7 @@ CREATE VIEW public.v001_info_usuario AS
     nacionalidad.co_nacionalidad,
     nacionalidad.nb_nacionalidad,
     sex.nb_tp_sexo,
-    pais.nb_pais AS pais_origen,
+    pais.nb_pais,
     pais1.nb_pais AS pais_nac,
     ciudad1.nb_ciudad AS ciudad_nac,
     estado1.nb_estado AS estado_nac,
@@ -2596,22 +2596,22 @@ CREATE VIEW public.v001_info_usuario AS
     discapacidad.nb_tp_discapacidad,
     te.nb_etnia
    FROM ((((((((((((((((public.t001t_usuarios u
-     JOIN public.m028t_tipo_nacionalidad nacionalidad ON ((nacionalidad.id_nacionalidad = u.id_nacionalidad)))
-     JOIN public.m026t_tipo_sexo sex ON ((sex.id_tp_sexo = u.id_tp_sexo)))
-     JOIN public.m022t_paises pais ON ((pais.id_pais = u.id_pais)))
-     JOIN public.m022t_paises pais1 ON ((pais1.id_pais = u.id_pais_nac)))
-     JOIN public.m020t_ciudades ciudad1 ON ((ciudad1.id_ciudad = u.id_ciudad_nac)))
-     JOIN public.m001t_estados estado1 ON ((estado1.id_estado = u.id_estado_nac)))
-     JOIN public.m027t_estado_civil estcivil ON ((estcivil.id_civil = u.id_civil)))
-     JOIN public.m025t_tipo_via tpvia ON ((tpvia.id_tp_via = u.id_tp_via)))
-     JOIN public.m024t_tipo_zona tpzona ON ((tpzona.id_tp_zona = u.id_tp_zona)))
-     JOIN public.m021t_tipo_vivienda tpvivienda ON ((tpvivienda.id_tp_vivienda = u.id_tp_vivienda)))
-     JOIN public.m020t_ciudades ciudad ON ((ciudad.id_ciudad = u.id_ciudad)))
-     JOIN public.m001t_estados estado ON ((estado.id_estado = u.id_estado)))
-     JOIN public.m002t_municipios municipio ON ((municipio.id_municipio = u.id_municipio)))
-     JOIN public.m003t_parroquias parroquia ON ((parroquia.id_parroquia = u.id_parroquia)))
-     JOIN public.m009t_tipo_discapacidad discapacidad ON ((discapacidad.id_tp_discapacidad = u.id_tp_discapacidad)))
-     JOIN public.m051t_tipo_etnia te ON ((te.id_etnia = u.id_etnia)))
+     LEFT JOIN public.m028t_tipo_nacionalidad nacionalidad ON ((nacionalidad.id_nacionalidad = u.id_nacionalidad)))
+     LEFT JOIN public.m026t_tipo_sexo sex ON ((sex.id_tp_sexo = u.id_tp_sexo)))
+     LEFT JOIN public.m022t_paises pais ON ((pais.id_pais = u.id_pais)))
+     LEFT JOIN public.m022t_paises pais1 ON ((pais1.id_pais = u.id_pais_nac)))
+     LEFT JOIN public.m020t_ciudades ciudad1 ON ((ciudad1.id_ciudad = u.id_ciudad_nac)))
+     LEFT JOIN public.m001t_estados estado1 ON ((estado1.id_estado = u.id_estado_nac)))
+     LEFT JOIN public.m027t_estado_civil estcivil ON ((estcivil.id_civil = u.id_civil)))
+     LEFT JOIN public.m025t_tipo_via tpvia ON ((tpvia.id_tp_via = u.id_tp_via)))
+     LEFT JOIN public.m024t_tipo_zona tpzona ON ((tpzona.id_tp_zona = u.id_tp_zona)))
+     LEFT JOIN public.m021t_tipo_vivienda tpvivienda ON ((tpvivienda.id_tp_vivienda = u.id_tp_vivienda)))
+     LEFT JOIN public.m020t_ciudades ciudad ON ((ciudad.id_ciudad = u.id_ciudad)))
+     LEFT JOIN public.m001t_estados estado ON ((estado.id_estado = u.id_estado)))
+     LEFT JOIN public.m002t_municipios municipio ON ((municipio.id_municipio = u.id_municipio)))
+     LEFT JOIN public.m003t_parroquias parroquia ON ((parroquia.id_parroquia = u.id_parroquia)))
+     LEFT JOIN public.m009t_tipo_discapacidad discapacidad ON ((discapacidad.id_tp_discapacidad = u.id_tp_discapacidad)))
+     LEFT JOIN public.m051t_tipo_etnia te ON ((te.id_etnia = u.id_etnia)))
   ORDER BY u.id_usuario;
 
 
@@ -46178,7 +46178,8 @@ COPY public.r008t_carrera_trayecto (id_carrera_trayecto, id_carrera, id_trayecto
 --
 
 COPY public.t001t_usuarios (id_usuario, tx_clave, user_name, bl_status, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_tp_sexo, fe_nac_usuario, id_civil, correo_usuario, id_tp_via, nb_via, id_tp_zona, nb_zona, id_tp_vivienda, nu_vivienda, id_ciudad, id_estado, www_preinscripcion, created_at, updated_at, id_municipio, id_parroquia, bl_registro, nb2_usuario, ape2_usuario, id_zona, id_pais, id_tp_discapacidad, id_etnia, id_pais_nac, id_estado_nac, id_ciudad_nac, cod_zona_postal) FROM stdin;
-9	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	gmarcano	t	3	1	28484689	GABRIEL	MARCANO	2	2001-11-19 00:00:00	1	gabrielmarcano141@gmail.com	3	LA ESPERANZA	5	Barrio El Guarataro	3	34	1	1	\N	2023-08-11 14:39:27.398252-04	2023-08-11 14:41:44.21061-04	1	12	t	FABIAN	REQUENA	559	239	5	4	239	1	1	\N
+9	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	gmarcano	t	2	1	28484689	GABRIEL	MARCANO	2	2001-11-19 00:00:00	1	gabrielmarcano141@gmail.com	3	LA ESPERANZA	5	Barrio El Guarataro	3	34	1	1	\N	2023-08-11 14:39:27.398252-04	2023-08-11 14:41:44.21061-04	1	12	t	FABIAN	REQUENA	559	239	5	4	239	1	1	\N
+15	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	hvalor	t	2	1	12345678	HILDEMAR	VALOR	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-05 19:37:47.114275-04	2023-09-05 19:37:47.114275-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 \.
 
 
@@ -46201,6 +46202,7 @@ COPY public.t002t_roles (id_rol, nb_rol, created_at, updated_at) FROM stdin;
 --
 
 COPY public.t003t_personal (id_personal, id_nacionalidad, ced_personal, nb_personal, ape_personal, tlf_fijo, tlf_movil, correo, id_estatus_personal, id_tp_personal, carga_horaria, id_profesion, created_at, updated_at, id_tp_sexo, id_civil) FROM stdin;
+9	1	12345678	ANA	TORRES	02120998766	04123450098	a@gmail.com	1	1	32	1	\N	\N	\N	\N
 \.
 
 
@@ -46851,7 +46853,7 @@ SELECT pg_catalog.setval('public.secciones_id_seq', 2, true);
 -- Name: t001t_usuarios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.t001t_usuarios_id_seq', 14, true);
+SELECT pg_catalog.setval('public.t001t_usuarios_id_seq', 15, true);
 
 
 --
@@ -46869,7 +46871,7 @@ SELECT pg_catalog.setval('public.t002t_roles_id_seq', 3, true);
 -- Name: t003t_personal_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.t003t_personal_id_seq', 1, false);
+SELECT pg_catalog.setval('public.t003t_personal_id_seq', 1, true);
 
 
 --
@@ -46896,7 +46898,7 @@ SELECT pg_catalog.setval('public.t005t_inscripcion_id_seq', 1, false);
 -- Name: t006t_periodos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.t006t_periodos_id_seq', 1, false);
+SELECT pg_catalog.setval('public.t006t_periodos_id_seq', 3, true);
 
 
 --
@@ -48426,7 +48428,7 @@ ALTER TABLE ONLY public.t014t_oferta_horario
     ADD CONSTRAINT t014t_oferta_horario_fk_6 FOREIGN KEY (id_oferta) REFERENCES public.t008t_oferta_academica(id_oferta);
 
 
--- Completed on 2023-09-05 13:03:40
+-- Completed on 2023-09-05 20:22:36
 
 --
 -- PostgreSQL database dump complete
