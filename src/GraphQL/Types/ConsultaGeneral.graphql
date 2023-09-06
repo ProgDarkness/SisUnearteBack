@@ -303,6 +303,30 @@ type Mes {
   nombre: String!
 }
 
+type ResultProfesion {
+  status: Int!
+  message: String!
+  type: String!
+  response: [Profesion]
+}
+
+type Profesion {
+  id: ID!
+  nombre: String!
+}
+
+type ResultTipoPersonal {
+  status: Int!
+  message: String!
+  type: String!
+  response: [TipoPersonal]
+}
+
+type TipoPersonal {
+  id: ID!
+  nombre: String!
+}
+
 type Query {
   obtenerMaterias: ResultMaterias
   obtenerCarreras: ResultCarreras
@@ -329,6 +353,8 @@ type Query {
   obtenerSedesPorCarrera(carrera: Int!): ResultSedes
   obtenerTipoTitulo: ResultTipoTitulo
   obtenerMes: ResultMes
+  obtenerProfesion: ResultProfesion
+  obtenerTipoPersonal: ResultTipoPersonal
 }
 
 type Mutation {

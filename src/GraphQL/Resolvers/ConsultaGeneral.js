@@ -381,6 +381,36 @@ export default {
       } catch (e) {
         return { status: 500, message: e.message, type: 'error' }
       }
+    },
+    obtenerProfesion: async () => {
+      try {
+        const profesiones = await dbp.manyOrNone(
+          `SELECT id_profesion as id, nb_profesion as nombre FROM public.m011t_profesion;`
+        )
+        return {
+          status: 200,
+          message: 'Profesiones encontrados',
+          type: 'success',
+          response: profesiones
+        }
+      } catch (e) {
+        return { status: 500, message: e.message, type: 'error' }
+      }
+    },
+    obtenerTipoPersonal: async () => {
+      try {
+        const tipopersonal = await dbp.manyOrNone(
+          `SELECT id_tp_personal as id, nb_tp_personal as nombre FROM public.m008t_tipo_personal;`
+        )
+        return {
+          status: 200,
+          message: 'Tipos de personal encontrados',
+          type: 'success',
+          response: tipopersonal
+        }
+      } catch (e) {
+        return { status: 500, message: e.message, type: 'error' }
+      }
     }
   },
   Mutation: {

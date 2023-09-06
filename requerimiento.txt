@@ -71,6 +71,24 @@ mutation eliminarpersonal {
     }
 }
 
+query obtenerprofeiones {
+  obtenerProfesion {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+query obtenertipopersonal {
+  obtenerTipoPersonal {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
 =================== 28/08/2023 ==========================
 
 query obtenermeses {
