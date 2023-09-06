@@ -7,15 +7,15 @@ export default {
         const periodos = await dbp.manyOrNone(
           `SELECT p.id_periodo as id, p.co_periodo as codigo, tp.nb_tp_periodo as periodo, tp.id_tp_periodo as idperiodo, p.anio_periodo as anio, 
           mes.nb_mes as mesi, mes.id_mes as idmesi, mes1.nb_mes as mesf,  mes1.id_mes as idmesf,
-          p.nu_semana_interperido as semana, personal.nb_personal as personal, p.tx_mensaje as mensaje, p.fe_inicio as fei, p.fe_fin as fef, 
+          p.nu_semana_interperido as semana, p.tx_mensaje as mensaje, p.fe_inicio as fei, p.fe_fin as fef, 
           p.fe_ult_entrega_acta as feacta, p.fe_ult_solic_documento as fedoc, p.fe_pre_solic_grado as fepregrado, 
           p.fe_modificacion as femodificacion, p.fe_inicio_preinscripcion as feipre, p.fe_fin_preinscripcion as fefpre, 
           p.fe_inicio_inscripcion as feinsc, fe_fin_inscripcion as fefinsc, p.fe_inicio_oferta as feioferta, p.fe_fin_oferta as fefoferta, 
           p.fe_inicio_retiro as feiretiro, p.fe_fin_retiro as fefretiro, p.fe_inicio_notas as feinota, p.fe_fin_notas as fefnota, 
           estatus.nb_estatus_periodo as estatus, p.fe_inicio_postulacion as feipostulacion, p.fe_fin_postulacion as fefpostulacion
-          FROM public.t006t_periodo_lectivo as p, public.m007t_tipo_periodo as tp, public.t003t_personal as personal,
+          FROM public.t006t_periodo_lectivo as p, public.m007t_tipo_periodo as tp,
           public.m044t_estatus_periodo as estatus, public.m050t_meses as mes, public.m050t_meses as mes1
-          WHERE p.id_tp_periodo = tp.id_tp_periodo and p.id_personal = personal.id_personal and
+          WHERE p.id_tp_periodo = tp.id_tp_periodo and
           p.id_estatus_periodo = estatus.id_estatus_periodo and p.id_mes_inicio = mes.id_mes and p.id_mes_fin = mes1.id_mes;`
         )
 
