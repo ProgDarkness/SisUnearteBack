@@ -56,7 +56,6 @@ input InputPeriodo {
   mesinicio: Int!
   mesfin: Int!
   nusemana: Int!
-  personal: Int!
   mensaje: String!
   feinicio: String!
   fefin: String!
@@ -85,7 +84,6 @@ input InputActualizarPeriodo {
   mesinicio: Int!
   mesfin: Int!
   nusemana: Int!
-  personal: Int!
   mensaje: String!
   feinicio: String!
   fefin: String!
