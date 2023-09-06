@@ -2,42 +2,29 @@ import { dbp } from '../../postgresdb'
 
 export default {
   Query: {
-    obtenerEstatusPostulacion: async () => {
+    obtenerPersonal: async () => {
       try {
-        const estatus = await dbp.manyOrNone(
-          `SELECT id_estatus_postulacion as id, nb_estatus_postulacion as nombre FROM m046t_estatus_postulacion;`
+        const personal = await dbp.manyOrNone(
+          `SELECT p.id_personal as id, p.id_nacionalidad as idnac, tn.co_nacionalidad as nacionalidad, 
+          p.ced_personal as cedula, p.nb_personal as nombre, p.ape_personal as apellido,
+          p.id_tp_sexo as idsexo, ts.co_tp_sexo as sexo, p.id_civil as idcivil, ec.nb_civil as civil,
+          p.tlf_fijo as tlffijo, p.tlf_movil as tlfmovil,
+          p.correo as correo, p.id_estatus_personal as idestatus, ep.nb_estatus_personal as estatus,
+          p.carga_horaria as cargahoraria, p.id_tp_personal as idtipo, tp.nb_tp_personal as tipo, 
+          p.id_profesion as idprofesion, prof.nb_profesion as profesion
+          FROM public.t003t_personal p, public.m028t_tipo_nacionalidad tn, public.m010t_estatus_personal ep,
+          public.m011t_profesion prof, public.m026t_tipo_sexo ts, public.m027t_estado_civil ec, public.m008t_tipo_personal tp
+          where p.id_nacionalidad = tn.id_nacionalidad
+          AND p.id_estatus_personal = ep.id_estatus_personal
+          AND p.id_profesion = prof.id_profesion
+          AND p.id_tp_sexo = ts.id_tp_sexo
+          AND p.id_civil = ec.id_civil;`
         )
         return {
           status: 200,
-          message: 'Estatus postulacion encontradas',
+          message: 'Personal encontrados',
           type: 'success',
-          response: estatus
-        }
-      } catch (e) {
-        return { status: 500, message: e.message, type: 'error' }
-      }
-    },
-    obtenerListadoPostuladoCarrera: async () => {
-      try {
-        const postulados = await dbp.manyOrNone(
-          `SELECT p.id_postulacion as id, tn.co_nacionalidad as nacionalidad, u.ced_usuario as cedula, u.nb_usuario as nombre, u.ape_usuario as apellido,
-                            p.fe_postulacion as fepostulacion, ep.nb_estatus_postulacion estatus, pl.anio_periodo as periodo, tp.nb_tp_periodo as tperiodo,
-                            c.nb_carrera as carrera
-                            FROM t001t_usuarios as u, m028t_tipo_nacionalidad as tn, t013t_postulacion as p, 
-                            r005t_fecha_estatus_postulacion as fep, m046t_estatus_postulacion as ep, t006t_periodo_lectivo as pl, 
-                            m007t_tipo_periodo as tp, m006t_carreras as c
-                            WHERE u.id_nacionalidad = tn.id_nacionalidad
-                            AND u.id_usuario = p.id_usuario
-                            AND c.id_carrera = p.id_carrera
-                            AND fep.id_estatus_postulacion = ep.id_estatus_postulacion
-                            AND p.id_periodo = pl.id_periodo
-                            AND tp.id_tp_periodo = pl.id_tp_periodo;`
-        )
-        return {
-          status: 200,
-          message: 'Postulados encontrados',
-          type: 'success',
-          response: postulados
+          response: personal
         }
       } catch (e) {
         return { status: 500, message: e.message, type: 'error' }
@@ -45,45 +32,134 @@ export default {
     }
   },
   Mutation: {
-    crearPostulacion: async (_, { input }) => {
-      const { usuario, carrera, periodo, fepostulacion } = input
+    crearPersonal: async (_, { input }) => {
+      const {
+        nacionalidad,
+        cedula,
+        nombre,
+        apellido,
+        tlffijo,
+        tlfmovil,
+        correo,
+        tipo,
+        cargahoraria,
+        profesion,
+        sexo,
+        civil
+      } = input
 
       try {
         let estatus = null
-        let activo = null
-        estatus = 4
-        activo = true
+        let usuario = null
+        estatus = 1
+        usuario = 16
 
         await dbp.none(
-          `INSERT INTO public.t013t_postulacion(
-                      id_usuario, id_carrera, id_periodo, fe_postulacion, id_estatus_postulacion, st_activo)
-                      VALUES ( $1, $2, $3, $4, $5, $6);`,
-          [usuario, carrera, periodo, fepostulacion, estatus, activo]
+          `INSERT INTO public.t003t_personal(
+                      id_nacionalidad, ced_personal, nb_personal, ape_personal, tlf_fijo, tlf_movil, correo, id_estatus_personal, id_tp_personal, carga_horaria, id_profesion, id_tp_sexo, id_civil, id_usuario)
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14);`,
+          [
+            nacionalidad,
+            cedula,
+            nombre,
+            apellido,
+            tlffijo,
+            tlfmovil,
+            correo,
+            estatus,
+            tipo,
+            cargahoraria,
+            profesion,
+            sexo,
+            civil,
+            usuario
+          ]
         )
         return {
           status: 200,
           type: 'success',
-          message: 'Postulacion registrada exitosamente'
+          message: 'Personal registrado exitosamente'
         }
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
       }
     },
-    aprobarPostulacion: async (_, { input }) => {
-      const { estatus, usuario, feaprobacion, observacion, idpostulacion } =
-        input
+    actualizarPersonal: async (_, { input }) => {
+      const {
+        nacionalidad,
+        cedula,
+        nombre,
+        apellido,
+        tlffijo,
+        tlfmovil,
+        correo,
+        estatus,
+        tipo,
+        cargahoraria,
+        profesion,
+        sexo,
+        civil,
+        idpersonal
+      } = input
 
       try {
         await dbp.none(
-          `UPDATE public.t013t_postulacion
-                    SET id_estatus_postulacion = $1, id_usuario_aprobacion = $2, fe_aprobacion = $3, tx_observacion = $4
-                    WHERE id_postulacion = $5;`,
-          [estatus, usuario, feaprobacion, observacion, idpostulacion]
+          `UPDATE public.t003t_personal
+               SET id_nacionalidad = $1, ced_personal = $2, nb_personal = $3, ape_personal = $4, tlf_fijo = $5, tlf_movil = $6, 
+               correo = $7, id_estatus_personal = $8, id_tp_personal = $9, carga_horaria = $10, id_profesion = $11, id_tp_sexo = $12, 
+               id_civil = $13 WHERE id_personal =$14;`,
+          [
+            nacionalidad,
+            cedula,
+            nombre,
+            apellido,
+            tlffijo,
+            tlfmovil,
+            correo,
+            estatus,
+            tipo,
+            cargahoraria,
+            profesion,
+            sexo,
+            civil,
+            idpersonal
+          ]
         )
         return {
           status: 200,
           type: 'success',
-          message: 'Postulacion aprobada exitosamente'
+          message: 'Personal actualizado exitosamente'
+        }
+      } catch (e) {
+        return { status: 500, type: 'error', message: `Error: ${e.message}` }
+      }
+    },
+    eliminarPersonal: async (_, { input }) => {
+      const { idpersonal } = input
+
+      try {
+        const personalmateria = await dbp.manyOrNone(
+          `SELECT id_personal FROM r001t_docente_materia WHERE id_personal = $1;`,
+          [idpersonal]
+        )
+
+        if (personalmateria?.id_personal) {
+          return {
+            status: 202,
+            message: 'Personal no puede ser eliminada asociada a otros datos',
+            type: 'success'
+          }
+        } else {
+          await dbp.none(
+            `DELETE FROM public.t003t_personal WHERE id_personal = $1;`,
+            [idpersonal]
+          )
+
+          return {
+            status: 200,
+            message: 'Personal eliminada exitosamente',
+            type: 'success'
+          }
         }
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }

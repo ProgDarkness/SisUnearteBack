@@ -1,24 +1,75 @@
-type Persona {
-  id_persona: ID!
-  nb_persona: String!
-  grupo: String!
-  id_grupo: ID!
-  telefono: String!
+type Personal {
+  id: ID!
+  nacionalidad: String!
+  cedula: Int!
+  nombre: String!
+  apellido: String!
+  sexo: String!
+  civil: String!
+  tlffijo: String!
+  tlfmovil: String!
+  correo: String!
+  estatus: String!
+  cargahoraria: Int!
+  tipo: String!
+  profesion: String!
+}
+
+type ResultPersonal {
+  status: Int!
+  message: String!
+  type: String!
+  response: [Personal]
 }
 
 type Query {
-  getPersonas: [Persona]!
+  obtenerPersonal: ResultPersonal
 }
 
 type Mutation {
-  savePersona(input: InputPersona!): Boolean!
-  deletePersona(id: ID!): Boolean!
-  deletePersonas(ids: [ID]!): Boolean!
+  crearPersonal(input: InputPersonal!): ResultadoPersonal
+  actualizarPersonal(input: InputActualizarPersonal!): ResultadoPersonal
+  eliminarPersonal(input: InputEliminarPersonal!): ResultadoPersonal
 }
 
-input InputPersona {
-  id_persona: ID
-  nb_persona: String!
-  telefono: String!
-  id_grupo: ID!
+input InputPersonal {
+  nacionalidad: Int!
+  cedula: Int!
+  nombre: String!
+  apellido: String!
+  tlffijo: String!
+  tlfmovil: String!
+  correo: String!
+  tipo: Int!
+  cargahoraria: Int!
+  profesion: Int!
+  sexo: Int!
+  civil: Int!
+}
+
+input InputActualizarPersonal {
+  nacionalidad: Int!
+  cedula: Int!
+  nombre: String!
+  apellido: String!
+  tlffijo: String!
+  tlfmovil: String!
+  correo: String!
+  estatus: Int!
+  tipo: Int!
+  cargahoraria: Int!
+  profesion: Int!
+  sexo: Int!
+  civil: Int!
+  idpersonal: Int!
+}
+
+input InputEliminarPersonal {
+  idpersonal: Int!
+}
+
+type ResultadoPersonal {
+  status: Int!
+  message: String!
+  type: String!
 }

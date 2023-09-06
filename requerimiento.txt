@@ -1,3 +1,76 @@
+=================== 06/09/2023 ==========================
+query obtenerpersonal {
+  obtenerPersonal {
+    response {
+      id
+      nacionalidad
+      cedula
+      nombre
+      apellido
+      sexo
+      civil
+      tlffijo
+      tlfmovil
+      correo
+      estatus
+      tipo
+      cargahoraria
+      profesion
+    }
+  }
+}
+
+mutation crearpersonal {
+  crearPersonal (
+    input:{
+      nacionalidad: 1
+      cedula: 123450098
+      nombre: "Tere"
+      apellido: "Car"
+      tlffijo: "2435660099"
+      tlfmovil: "4246778800"
+      correo: "t@gmail.com"
+      tipo: 1
+      cargahoraria: 23
+      profesion: 1
+      sexo: 1
+      civil: 1
+    }){
+    message
+    }
+}
+
+mutation actualizarpersonal {
+  actualizarPersonal (
+    input:{
+      nacionalidad: 1
+      cedula: 123450098
+      nombre: "Teresa"
+      apellido: "Car"
+      tlffijo: "2435660099"
+      tlfmovil: "4246778800"
+      correo: "t@gmail.com"
+    	estatus: 1
+      tipo: 1
+      cargahoraria: 23
+      profesion: 1
+      sexo: 1
+      civil: 1
+      idpersonal: 3
+    }){
+    message
+    }
+}
+
+mutation eliminarpersonal {
+  eliminarPersonal (
+    input:{
+      idpersonal: 3
+    }){
+    message
+    }
+}
+
 =================== 28/08/2023 ==========================
 
 query obtenermeses {
