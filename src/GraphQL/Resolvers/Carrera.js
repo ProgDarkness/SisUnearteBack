@@ -181,6 +181,24 @@ export default {
       } catch (e) {
         return { status: 500, message: e.message, type: 'error' }
       }
+    },
+    obtenerCrudSede: async () => {
+      try {
+        const sedes = await dbp.manyOrNone(
+          `SELECT s.id_sede, s.co_sede, s.nb_sede, s.id_geografico_sede, s.id_estatus, ep.nb_estatus_periodo as estatus
+          FROM public.t011t_sedes s, public.m044t_estatus_periodo ep 
+            WHERE ep.id_estatus_periodo = s.id_estatus;`
+        )
+
+        return {
+          status: 200,
+          message: 'Sedes encontradas',
+          type: 'success',
+          response: sedes
+        }
+      } catch (e) {
+        return { status: 500, message: e.message, type: 'error' }
+      }
     }
   },
   Mutation: {
@@ -431,8 +449,6 @@ export default {
           `SELECT id_scarrera FROM public.r007t_sede_carrera WHERE id_carrera = $1;`,
           [idCarrera]
         )
-
-        console.log(sedeCarrera)
 
         if (sedeCarrera.length > 0) {
           return {

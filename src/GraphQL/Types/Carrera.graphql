@@ -21,6 +21,23 @@ type Query {
   obtenerMateriasPorCarrera(carrera: Int!): ResultMateCarre
   obtenerTrayectosPorCarrera(carrera: Int!): ResultTraCarre
   obtenerSedeCarreras: [ResultSedeCarrera]
+  obtenerCrudSede: ResultCrudSede
+}
+
+type ResultCrudSede {
+  status: Int!
+  message: String!
+  type: String!
+  response: [sede]
+}
+
+type sede {
+  id_sede: Int!
+  co_sede: String!
+  nb_sede: String!
+  id_geografico_sede: Int!
+  id_estatus: Int!
+  estatus: String!
 }
 
 type ResultSedeCarrera {
