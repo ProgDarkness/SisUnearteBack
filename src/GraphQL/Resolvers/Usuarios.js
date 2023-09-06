@@ -131,8 +131,6 @@ export default {
             etnia: { id: id_etnia, nombre: nb_etnia }
           }
 
-          console.log(RinfoUser)
-
           return {
             status: 200,
             type: 'success',
@@ -370,27 +368,27 @@ export default {
             idpaisorigen,
             idcivil,
             correo,
-            idtpvia,
-            nbtpvia,
-            idtpzona,
-            nbzona,
+            idtpvia || null,
+            nbtpvia || null,
+            idtpzona || null,
+            nbzona || null,
             idtpvivienda,
             nuvivienda,
-            idciudad,
+            idciudad || null,
             idestado,
-            idmunicipio,
-            idparroquia,
-            idpostal,
+            idmunicipio || null,
+            idparroquia || null,
+            idpostal || null,
             blregistro,
             idusuario,
             nombre2,
             apellido2,
-            idZona,
+            idZona || null,
             idpais,
             idDiscapacidad,
             idEtnia,
             idEstadoNac,
-            idCiudadNac
+            idCiudadNac || null
           ]
         )
         return {

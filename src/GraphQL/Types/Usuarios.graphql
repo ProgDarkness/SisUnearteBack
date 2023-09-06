@@ -117,27 +117,27 @@ input InputActualizarUsuario {
   idpaisorigen: Int!
   idcivil: Int!
   correo: String!
-  idtpvia: Int!
-  nbtpvia: String!
-  idtpzona: Int!
-  nbzona: String!
+  idtpvia: Int
+  nbtpvia: String
+  idtpzona: Int
+  nbzona: String
   idtpvivienda: Int!
   nuvivienda: String!
-  idciudad: Int!
+  idciudad: Int
   idestado: Int!
-  idmunicipio: Int!
-  idparroquia: Int!
-  idpostal: Int!
+  idmunicipio: Int
+  idparroquia: Int
+  idpostal: Int
   blregistro: Boolean!
   idusuario: Int!
   nombre2: String!
   apellido2: String!
-  idZona: Int!
+  idZona: Int
   idpais: Int!
   idDiscapacidad: Int!
-  idEtnia: Int!
+  idEtnia: Int
   idEstadoNac: Int!
-  idCiudadNac: Int!
+  idCiudadNac: Int
 }
 
 input InputIdUsuario {
