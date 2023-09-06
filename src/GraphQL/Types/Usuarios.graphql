@@ -26,75 +26,15 @@ type Tnacionalidad {
   nombre: String!
 }
 
-type tsexo {
-  id: String!
-  nombre: String!
-}
-
-type tpaisNac {
-  id: String!
-  nombre: String!
-}
-
-type TestadoCivil {
-  id: String!
-  nombre: String!
-}
-
-type TtpVia {
-  id: String!
-  nombre: String!
-}
-
-type TtpZona {
-  id: String!
-  nombre: String!
-}
-
 type TnombZona {
   nombre: String!
   id: Int!
   codigo_postal: String!
 }
 
-type TtpVivienda {
+type simpleDropdown {
   id: String!
   nombre: String!
-}
-
-type Tciudad {
-  id: String
-  nombre: String
-}
-
-type Tmunicipio {
-  id: String
-  nombre: String
-}
-
-type Tparroquia {
-  id: String
-  nombre: String
-}
-
-type Testado {
-  id: String!
-  nombre: String!
-}
-
-type tpais {
-  id: String!
-  nombre: String!
-}
-
-type tdiscapacidad {
-  id: String!
-  nombre: String!
-}
-
-type tpetnia {
-  id: String
-  nombre: String
 }
 
 type infoUsuario {
@@ -102,27 +42,29 @@ type infoUsuario {
   ced_usuario: String!
   nb_usuario: String!
   ape_usuario: String!
-  sexo: tsexo!
+  sexo: simpleDropdown!
   fe_nac_usuario: String!
-  paisNac: tpaisNac!
-  pais: tpais!
-  estadoCivil: TestadoCivil!
+  paisNac: simpleDropdown!
+  pais: simpleDropdown!
+  estadoCivil: simpleDropdown!
   correo_usuario: String!
-  tpVia: TtpVia!
+  tpVia: simpleDropdown!
   nb_via: String!
-  tpZona: TtpZona!
+  tpZona: simpleDropdown!
   nombZona: TnombZona!
-  tpVivienda: TtpVivienda!
+  tpVivienda: simpleDropdown!
   nu_vivienda: String!
-  ciudad: Tciudad
-  estado: Testado!
-  municipio: Tmunicipio
-  parroquia: Tparroquia
+  ciudad: simpleDropdown!
+  estado: simpleDropdown!
+  municipio: simpleDropdown!
+  parroquia: simpleDropdown!
   bl_registro: Boolean!
   nb2_usuario: String!
   ape2_usuario: String!
-  discapacidad: tdiscapacidad!
-  etnia: tpetnia
+  discapacidad: simpleDropdown!
+  etnia: simpleDropdown!
+  estadoNac: simpleDropdown!
+  ciudadNac: simpleDropdown!
 }
 
 input InputSaveUser {
@@ -194,6 +136,8 @@ input InputActualizarUsuario {
   idpais: Int!
   idDiscapacidad: Int!
   idEtnia: Int!
+  idEstadoNac: Int!
+  idCiudadNac: Int!
 }
 
 input InputIdUsuario {

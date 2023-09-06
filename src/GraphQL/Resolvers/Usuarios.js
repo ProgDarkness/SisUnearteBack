@@ -84,7 +84,7 @@ export default {
             id_etnia,
             id_pais_nac,
             pais_nac,
-            id_ciduad_nac,
+            id_ciudad_nac,
             ciudad_nac,
             id_estado_nac,
             estado_nac
@@ -102,6 +102,8 @@ export default {
             sexo: { id: id_tp_sexo, nombre: nb_tp_sexo },
             fe_nac_usuario,
             paisNac: { id: id_pais_nac, nombre: pais_nac },
+            estadoNac: { id: id_estado_nac, nombre: estado_nac },
+            ciudadNac: { id: id_ciudad_nac, nombre: ciudad_nac },
             pais: { id: id_pais, nombre: nb_pais },
             estadoCivil: { id: id_civil, nombre: nb_civil },
             correo_usuario,
@@ -128,6 +130,8 @@ export default {
             },
             etnia: { id: id_etnia, nombre: nb_etnia }
           }
+
+          console.log(RinfoUser)
 
           return {
             status: 200,
@@ -342,7 +346,9 @@ export default {
         blregistro,
         idusuario,
         idDiscapacidad,
-        idEtnia
+        idEtnia,
+        idEstadoNac,
+        idCiudadNac
       } = input
 
       try {
@@ -352,7 +358,7 @@ export default {
                id_pais_nac = $7, id_civil = $8, correo_usuario = $9, id_tp_via = $10, nb_via = $11, id_tp_zona = $12, 
                nb_zona = $13, id_tp_vivienda = $14, nu_vivienda = $15, id_ciudad = $16, id_estado = $17, id_municipio = $18, id_parroquia = $19, 
                cod_zona_postal = $20, bl_registro = $21, nb2_usuario = $23, ape2_usuario = $24, id_zona = $25, id_pais = $26, id_tp_discapacidad = $27,
-               id_etnia = $28
+               id_etnia = $28, id_estado_nac = $29, id_ciudad_nac = $30, updated_at = now()
                WHERE id_usuario =$22;`,
           [
             idnacionalidad,
@@ -382,7 +388,9 @@ export default {
             idZona,
             idpais,
             idDiscapacidad,
-            idEtnia
+            idEtnia,
+            idEstadoNac,
+            idCiudadNac
           ]
         )
         return {
