@@ -536,6 +536,35 @@ export default {
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
       }
+    },
+    eliminarSede: async (_, { idSede }) => {
+      try {
+        const id_geografico = await dbp.oneOrNone(
+          `SELECT id_geografico_sede
+            FROM public.t011t_sedes WHERE id_sede = $1;`,
+          [idSede]
+        )
+
+        await dbp.none(
+          `DELETE FROM public.t012t_geografico_sede
+          WHERE id_geografico_sede = $1;`,
+          [id_geografico.id_geografico_sede]
+        )
+
+        await dbp.none(
+          `DELETE FROM public.t011t_sedes
+            WHERE id_sede = $1;`,
+          [idSede]
+        )
+
+        return {
+          status: 200,
+          message: 'La sede se ha registrado exitosamente.',
+          type: 'success'
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
     }
   }
 }

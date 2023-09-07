@@ -13,6 +13,7 @@ type Mutation {
   eliminarSedeCarrera(idSedeCarrera: Int!, idCarrera: Int!): ResultAsigTrayect!
   obtenerSedeCarrera(idCarrera: Int!): ResultAsigTrayect!
   registrarSede(InputRegSede: InputRegSede!): ResultadoCarrera!
+  eliminarSede(idSede: Int!): ResultadoCarrera!
 }
 
 input InputRegSede {
