@@ -29,10 +29,9 @@ export default {
         input
 
       try {
-        let estatus = null
-        let visible = null
-        estatus = 1
-        visible = true
+        const estatus = 1
+        const visible = true
+        
         const idofertas = await dbp.oneOrNone(
           `INSERT INTO public.t008t_oferta_academica(
                     id_periodo, id_carrera, nu_cupos, nu_seccion, id_sede, visible, id_estatus_oferta)
