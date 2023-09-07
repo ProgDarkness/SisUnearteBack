@@ -29,6 +29,79 @@ export default {
       } catch (e) {
         return { status: 500, message: e.message, type: 'error' }
       }
+    },
+    getInfoPersonal: async (_, { idpersonal }) => {
+      try {
+        const estatusPersonalReg = await dbp.oneOrNone(
+          `SELECT bl_registro FROM public.t003t_personal WHERE id_personal = $1;`,
+          [idpersonal]
+        )
+
+        if (estatusPersonalReg?.bl_registro) {
+          const infoPersonal = await dbp.oneOrNone(
+            `SELECT * FROM public.v002_info_personal ip WHERE ip.id_personal = $1;`,
+            [idpersonal]
+          )
+
+          const {
+            idnac,
+            nacionalidad,
+            cedula,
+            nombre,
+            apellido,
+            idsexo,
+            sexo,
+            idcivil,
+            civil,
+            tlffijo,
+            tlfmovil,
+            correo,
+            idestatus,
+            estatus,
+            cargahoraria,
+            idtipo,
+            tipo,
+            idprofesion,
+            profesion,
+            bl_registro
+          } = infoPersonal
+
+          const RinfoPersonal = {
+            nacionalidad: {
+              id: idnac,
+              nombre: nacionalidad
+            },
+            cedula,
+            nombre,
+            apellido,
+            sexo: { id: idsexo, nombre: sexo },
+            estadoCivil: { id: idcivil, nombre: civil },
+            tlffijo,
+            tlfmovil,
+            correo,
+            estatusPersonal: { id: idestatus, nombre: estatus },
+            cargahoraria,
+            tipo: { id: idtipo, nombre: tipo },
+            profesion: { id: idprofesion, nombre: profesion },
+            bl_registro
+          }
+
+          return {
+            status: 200,
+            type: 'success',
+            message: 'Personal encontrado',
+            response: RinfoPersonal
+          }
+        } else {
+          return {
+            status: 202,
+            type: 'error',
+            message: 'Personal no registrado'
+          }
+        }
+      } catch (e) {
+        return { status: 500, type: 'error', message: `Error: ${e.message}` }
+      }
     }
   },
   Mutation: {

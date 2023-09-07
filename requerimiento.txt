@@ -1,4 +1,44 @@
 =================== 06/09/2023 ==========================
+query obtenerdetallepersonal {
+  getInfoPersonal (
+      idpersonal: 5
+    ){
+      response{
+        nacionalidad {
+          id
+          nombre
+        }
+        cedula
+        nombre
+        apellido
+        sexo {
+          id
+          nombre
+        }
+        estadoCivil {
+          id
+          nombre
+        }
+        tlffijo
+        tlfmovil
+        correo
+        estatusPersonal {
+          id
+          nombre
+        }
+        tipo {
+          id
+          nombre
+        }
+        cargahoraria
+        profesion {
+          id
+          nombre
+        }
+      }
+    }
+}
+
 query obtenerpersonal {
   obtenerPersonal {
     response {

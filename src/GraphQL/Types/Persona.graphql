@@ -22,8 +22,50 @@ type ResultPersonal {
   response: [Personal]
 }
 
+type resultInfoPersonal {
+  status: Int!
+  type: String!
+  message: String!
+  response: infoPersonal
+}
+
+type TnacionalidadPerso {
+  id: String!
+  codigo: String!
+  nombre: String!
+}
+
+type TnombZonaPerso {
+  nombre: String!
+  id: Int!
+  codigo_postal: String!
+}
+
+type simpleDropdownPerso {
+  id: String!
+  nombre: String!
+}
+
+type infoPersonal {
+  nacionalidad: TnacionalidadPerso!
+  cedula: String!
+  nombre: String!
+  apellido: String!
+  sexo: simpleDropdownPerso!
+  estadoCivil: simpleDropdownPerso!
+  tlffijo: String!
+  tlfmovil: String!
+  correo: String!
+  estatusPersonal: simpleDropdownPerso!
+  cargahoraria: Int!
+  tipo: simpleDropdownPerso!
+  profesion: simpleDropdownPerso!
+  bl_registro: Boolean!
+}
+
 type Query {
   obtenerPersonal: ResultPersonal
+  getInfoPersonal(idpersonal: Int!): resultInfoPersonal!
 }
 
 type Mutation {
