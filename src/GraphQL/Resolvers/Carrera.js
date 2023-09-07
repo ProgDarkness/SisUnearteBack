@@ -483,6 +483,59 @@ export default {
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
       }
+    },
+    registrarSede: async (_, { InputRegSede }) => {
+      try {
+        const {
+          co_sede,
+          nb_sede,
+          id_tp_via,
+          nb_via,
+          id_tp_zona,
+          nb_zona,
+          tx_direccion,
+          id_zona_postal,
+          id_ciudad,
+          id_estado,
+          id_municipio,
+          id_parroquia
+        } = InputRegSede
+
+        const id_geografico = await dbp.oneOrNone(
+          `INSERT INTO public.t012t_geografico_sede(
+            id_tp_via, nb_via, id_tp_zona, 
+            nb_zona, tx_direccion, id_zona_postal, id_ciudad, id_estado, 
+            id_municipio, id_parroquia, created_at, updated_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, now(), now()) RETURNING id_geografico_sede;`,
+          [
+            id_tp_via,
+            nb_via,
+            id_tp_zona,
+            nb_zona,
+            tx_direccion,
+            id_zona_postal,
+            id_ciudad,
+            id_estado,
+            id_municipio,
+            id_parroquia
+          ]
+        )
+
+        await dbp.none(
+          `INSERT INTO public.t011t_sedes(
+            co_sede, nb_sede, id_geografico_sede, id_estatus, created_at, updated_at)
+            VALUES ($1, $2, $3, 1, now(), now());`,
+          [co_sede, nb_sede, id_geografico.id_geografico_sede]
+        )
+
+        return {
+          status: 200,
+          message: 'La sede se ha registrado exitosamente',
+          type: 'success'
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
     }
   }
 }

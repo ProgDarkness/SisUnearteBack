@@ -12,6 +12,22 @@ type Mutation {
   asignarSedeCarrera(idCarrera: Int!, idSede: Int!): ResultAsigTrayect!
   eliminarSedeCarrera(idSedeCarrera: Int!, idCarrera: Int!): ResultAsigTrayect!
   obtenerSedeCarrera(idCarrera: Int!): ResultAsigTrayect!
+  registrarSede(InputRegSede: InputRegSede!): ResultadoCarrera!
+}
+
+input InputRegSede {
+  co_sede: String!
+  nb_sede: String!
+  id_tp_via: Int!
+  nb_via: String!
+  id_tp_zona: Int!
+  nb_zona: String!
+  tx_direccion: String!
+  id_zona_postal: Int!
+  id_ciudad: Int!
+  id_estado: Int!
+  id_municipio: Int!
+  id_parroquia: Int!
 }
 
 type Query {
