@@ -1,17 +1,23 @@
 type Personal {
-  id: ID!
+  id_personal: ID!
+  idnac: Int!
   nacionalidad: String!
   cedula: Int!
   nombre: String!
   apellido: String!
+  idsexo: Int!
   sexo: String!
+  idcivil: Int!
   civil: String!
   tlffijo: String!
   tlfmovil: String!
   correo: String!
+  idestatus: Int!
   estatus: String!
   cargahoraria: Int!
+  idtipo: Int!
   tipo: String!
+  idprofesion: Int!
   profesion: String!
 }
 

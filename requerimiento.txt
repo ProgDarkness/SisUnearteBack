@@ -42,7 +42,7 @@ query obtenerdetallepersonal {
 query obtenerpersonal {
   obtenerPersonal {
     response {
-      id
+      id_personal
       nacionalidad
       cedula
       nombre

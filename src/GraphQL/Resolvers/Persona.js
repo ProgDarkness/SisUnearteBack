@@ -5,20 +5,7 @@ export default {
     obtenerPersonal: async () => {
       try {
         const personal = await dbp.manyOrNone(
-          `SELECT p.id_personal as id, p.id_nacionalidad as idnac, tn.co_nacionalidad as nacionalidad, 
-          p.ced_personal as cedula, p.nb_personal as nombre, p.ape_personal as apellido,
-          p.id_tp_sexo as idsexo, ts.co_tp_sexo as sexo, p.id_civil as idcivil, ec.nb_civil as civil,
-          p.tlf_fijo as tlffijo, p.tlf_movil as tlfmovil,
-          p.correo as correo, p.id_estatus_personal as idestatus, ep.nb_estatus_personal as estatus,
-          p.carga_horaria as cargahoraria, p.id_tp_personal as idtipo, tp.nb_tp_personal as tipo, 
-          p.id_profesion as idprofesion, prof.nb_profesion as profesion
-          FROM public.t003t_personal p, public.m028t_tipo_nacionalidad tn, public.m010t_estatus_personal ep,
-          public.m011t_profesion prof, public.m026t_tipo_sexo ts, public.m027t_estado_civil ec, public.m008t_tipo_personal tp
-          where p.id_nacionalidad = tn.id_nacionalidad
-          AND p.id_estatus_personal = ep.id_estatus_personal
-          AND p.id_profesion = prof.id_profesion
-          AND p.id_tp_sexo = ts.id_tp_sexo
-          AND p.id_civil = ec.id_civil;`
+          `SELECT * FROM public.v002_info_personal;`
         )
         return {
           status: 200,
@@ -124,13 +111,15 @@ export default {
       try {
         let estatus = null
         let usuario = null
+        let blregistro = null
         estatus = 1
         usuario = 16
+        blregistro = true
 
         await dbp.none(
           `INSERT INTO public.t003t_personal(
-                      id_nacionalidad, ced_personal, nb_personal, ape_personal, tlf_fijo, tlf_movil, correo, id_estatus_personal, id_tp_personal, carga_horaria, id_profesion, id_tp_sexo, id_civil, id_usuario)
-                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14);`,
+                      id_nacionalidad, ced_personal, nb_personal, ape_personal, tlf_fijo, tlf_movil, correo, id_estatus_personal, id_tp_personal, carga_horaria, id_profesion, id_tp_sexo, id_civil, id_usuario, bl_registro)
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);`,
           [
             nacionalidad,
             cedula,
@@ -145,7 +134,8 @@ export default {
             profesion,
             sexo,
             civil,
-            usuario
+            usuario,
+            blregistro
           ]
         )
         return {
