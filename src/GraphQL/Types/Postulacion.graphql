@@ -17,10 +17,13 @@ type PostuladoAgrupadoCarrera {
   nombre: String!
   apellido: String!
   fepostulacion: String!
+  observacion: String!
   estatus: String!
   periodo: String!
   tperiodo: String!
   carrera: String!
+  sede: String!
+  estado: String!
 }
 
 type ResultPostuladoAgrupadoCarrera {
