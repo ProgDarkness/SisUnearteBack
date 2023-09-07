@@ -22,6 +22,7 @@ type Query {
   obtenerTrayectosPorCarrera(carrera: Int!): ResultTraCarre
   obtenerSedeCarreras: [ResultSedeCarrera]
   obtenerCrudSede: ResultCrudSede
+  obtenerCrudEstados: ResultCrudEstados
 }
 
 type ResultCrudSede {
@@ -29,6 +30,18 @@ type ResultCrudSede {
   message: String!
   type: String!
   response: [sede]
+}
+
+type ResultCrudEstados {
+  status: Int!
+  message: String!
+  type: String!
+  response: [estadosCrud]
+}
+
+type estadosCrud {
+  id: Int!
+  nombre: Int!
 }
 
 type sede {

@@ -199,6 +199,23 @@ export default {
       } catch (e) {
         return { status: 500, message: e.message, type: 'error' }
       }
+    },
+    obtenerCrudEstados: async () => {
+      try {
+        const estados = await dbp.manyOrNone(
+          `SELECT id_estado as id, nb_estado as nombre
+          FROM public.m001t_estados order by id_estado asc;`
+        )
+
+        return {
+          status: 200,
+          message: 'Sedes encontradas',
+          type: 'success',
+          response: estados
+        }
+      } catch (e) {
+        return { status: 500, message: e.message, type: 'error' }
+      }
     }
   },
   Mutation: {
