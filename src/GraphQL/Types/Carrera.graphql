@@ -41,7 +41,7 @@ type ResultCrudEstados {
 
 type estadosCrud {
   id: Int!
-  nombre: Int!
+  nombre: String!
 }
 
 type sede {
