@@ -12,6 +12,7 @@ type ResultEstatuPostulacion {
 
 type PostuladoAgrupadoCarrera {
   id: ID!
+  idusuario: Int!
   nacionalidad: String!
   cedula: Int!
   nombre: String!

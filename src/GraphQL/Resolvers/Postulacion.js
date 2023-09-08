@@ -22,6 +22,22 @@ export default {
         const postulados = await dbp.manyOrNone(
           `SELECT * FROM v003_info_postulados;`
         )
+
+        for (let i = 0; i < postulados.length; i++) {
+          for (const key in postulados[i]) {
+            const object = postulados[i]
+            if (key.startsWith('fe')) {
+              postulados[i][key] = new Date(object[key]).toLocaleDateString(
+                'es-ES',
+                {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: 'numeric'
+                }
+              )
+            }
+          }
+        }
         return {
           status: 200,
           message: 'Postulados encontrados',
