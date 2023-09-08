@@ -563,7 +563,15 @@ export default {
           type: 'success'
         }
       } catch (e) {
-        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+        if (e.message.includes('r007t')) {
+          return {
+            status: 500,
+            message: `Error: La sede se encuentra relacionada con otros datos`,
+            type: 'error'
+          }
+        } else {
+          return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+        }
       }
     }
   }

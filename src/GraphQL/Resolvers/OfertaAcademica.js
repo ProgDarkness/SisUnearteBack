@@ -2,6 +2,99 @@ import { dbp } from '../../postgresdb'
 
 export default {
   Query: {
+    obtenerDetalleMalla: async (_, { carrera }) => {
+
+      try {
+        const detalleCarrerasInit = []
+
+        const trayectosCarrera = await dbp.manyOrNone(
+          `SELECT t.id_trayecto, t.nb_trayecto
+          FROM public.r008t_carrera_trayecto ct, public.m017t_trayectos t
+            WHERE ct.id_trayecto = t.id_trayecto AND ct.id_carrera = $1;`,
+          [carrera]
+        )
+
+        const materiasCarrera = await dbp.manyOrNone(
+          `SELECT  cm.id_carrema, cm.id_carrera, c.nb_carrera, cm.id_materia, m.nb_materia, cm.id_trayecto,
+          dm.id_personal, CONCAT(p.nb_personal, ' ', p.ape_personal) personal
+          FROM public.r002t_carrera_materia cm 
+          LEFT JOIN public.m006t_carreras c ON c.id_carrera = cm.id_carrera 
+          LEFT JOIN public.m005t_materias m ON m.id_materia = cm.id_materia
+          LEFT JOIN public.r001t_docente_materia dm ON dm.id_materia = cm.id_materia
+          LEFT JOIN public.t003t_personal p ON dm.id_personal = p.id_personal
+          WHERE cm.id_carrera = $1`,
+          [carrera]
+        )
+
+        for (let i = 0; i < materiasCarrera.length; i++) {
+          const {
+            id_materia,
+            id_trayecto: idTrayectoMateria,
+            nb_materia,
+            id_carrema,
+            id_personal,
+            personal
+          } = materiasCarrera[i]
+
+          for (let i = 0; i < trayectosCarrera.length; i++) {
+            const { id_trayecto: idTrayectoCarrera, nb_trayecto } =
+              trayectosCarrera[i]
+            if (idTrayectoCarrera === idTrayectoMateria) {
+              detalleCarrerasInit.push({
+                id_carrema,
+                idTrayectoCarrera,
+                nb_trayecto,
+                id_materia,
+                nb_materia,
+                id_personal,
+                personal
+              })
+            } else {
+              detalleCarrerasInit.push({
+                id_carrema,
+                idTrayectoCarrera,
+                nb_trayecto
+              })
+            }
+          }
+        }
+
+        const trayecto0 = detalleCarrerasInit.filter(
+          (t) => t.nb_trayecto === 'Trayecto Inicial'
+        )
+        const trayecto1 = detalleCarrerasInit.filter(
+          (t) => t.nb_trayecto === 'Trayecto I'
+        )
+        const trayecto2 = detalleCarrerasInit.filter(
+          (t) => t.nb_trayecto === 'Trayecto II'
+        )
+        const trayecto3 = detalleCarrerasInit.filter(
+          (t) => t.nb_trayecto === 'Trayecto III'
+        )
+        const trayecto4 = detalleCarrerasInit.filter(
+          (t) => t.nb_trayecto === 'Trayecto IV'
+        )
+
+        const detalleCarreraEnd = trayecto0
+          .concat(trayecto1)
+          .concat(trayecto2)
+          .concat(trayecto3)
+          .concat(trayecto4)
+
+        const detalleCarreraEndNotNull = detalleCarreraEnd.filter(
+          (t) => t.id_materia > 0
+        )
+
+        return {
+          status: 200,
+          message: 'Carreras encontrado',
+          type: 'success',
+          response: detalleCarreraEndNotNull
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
     obtenerOfertaAcademica: async () => {
       try {
         const ofertas = await dbp.manyOrNone(
@@ -31,7 +124,7 @@ export default {
       try {
         const estatus = 1
         const visible = true
-        
+
         const idofertas = await dbp.oneOrNone(
           `INSERT INTO public.t008t_oferta_academica(
                     id_periodo, id_carrera, nu_cupos, nu_seccion, id_sede, visible, id_estatus_oferta)

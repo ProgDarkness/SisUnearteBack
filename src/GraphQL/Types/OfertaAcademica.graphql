@@ -21,6 +21,24 @@ type ResultadOferta {
 
 type Query {
   obtenerOfertaAcademica: ResultOferta
+  obtenerDetalleMalla(carrera: Int!): ResultMallaDetalle
+}
+
+type DetalleMalla {
+  id_carrema: Int!
+  idTrayectoCarrera: Int!
+  nb_trayecto: String!
+  id_materia: Int
+  nb_materia: String
+  id_personal: Int
+  personal: String
+}
+
+type ResultMallaDetalle {
+  status: Int!
+  message: String!
+  type: String!
+  response: [DetalleMalla]
 }
 
 type Oferta {
