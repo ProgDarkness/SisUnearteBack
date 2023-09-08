@@ -2,8 +2,24 @@ import { dbp } from '../../postgresdb'
 
 export default {
   Query: {
-    obtenerDetalleMalla: async (_, { carrera }) => {
+    obtenerPeridosOferta: async () => {
+      try {
+        const periodos = await dbp.manyOrNone(
+          `SELECT id_periodo as id, CONCAT(co_periodo, ' - ', anio_periodo, ' - ', tx_mensaje) as nombre	
+         FROM public.t006t_periodo_lectivo;`
+        )
 
+        return {
+          status: 200,
+          message: 'Periodos encontrados',
+          type: 'success',
+          response: periodos
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
+    obtenerDetalleMalla: async (_, { carrera }) => {
       try {
         const detalleCarrerasInit = []
 
