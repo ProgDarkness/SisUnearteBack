@@ -5,7 +5,7 @@ export default {
     obtenerPersonal: async () => {
       try {
         const personal = await dbp.manyOrNone(
-          `SELECT * FROM public.v002_info_personal;`
+          `SELECT * FROM public.info_personal;`
         )
         return {
           status: 200,
@@ -20,13 +20,13 @@ export default {
     getInfoPersonal: async (_, { idpersonal }) => {
       try {
         const estatusPersonalReg = await dbp.oneOrNone(
-          `SELECT bl_registro FROM public.t003t_personal WHERE id_personal = $1;`,
+          `SELECT bl_registro FROM public.personal WHERE id_personal = $1;`,
           [idpersonal]
         )
 
         if (estatusPersonalReg?.bl_registro) {
           const infoPersonal = await dbp.oneOrNone(
-            `SELECT * FROM public.v002_info_personal ip WHERE ip.id_personal = $1;`,
+            `SELECT * FROM public.info_personal ip WHERE ip.id_personal = $1;`,
             [idpersonal]
           )
 
@@ -117,7 +117,7 @@ export default {
         blregistro = true
 
         await dbp.none(
-          `INSERT INTO public.t003t_personal(
+          `INSERT INTO public.personal(
                       id_nacionalidad, ced_personal, nb_personal, ape_personal, tlf_fijo, tlf_movil, correo, id_estatus_personal, id_tp_personal, carga_horaria, id_profesion, id_tp_sexo, id_civil, id_usuario, bl_registro)
                       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);`,
           [
@@ -167,7 +167,7 @@ export default {
 
       try {
         await dbp.none(
-          `UPDATE public.t003t_personal
+          `UPDATE public.personal
                SET id_nacionalidad = $1, ced_personal = $2, nb_personal = $3, ape_personal = $4, tlf_fijo = $5, tlf_movil = $6, 
                correo = $7, id_estatus_personal = $8, id_tp_personal = $9, carga_horaria = $10, id_profesion = $11, id_tp_sexo = $12, 
                id_civil = $13 WHERE id_personal =$14;`,
@@ -202,7 +202,7 @@ export default {
 
       try {
         const personalmateria = await dbp.manyOrNone(
-          `SELECT id_personal FROM r001t_docente_materia WHERE id_personal = $1;`,
+          `SELECT id_personal FROM docente_materia WHERE id_personal = $1;`,
           [idpersonal]
         )
 
@@ -214,7 +214,7 @@ export default {
           }
         } else {
           await dbp.none(
-            `DELETE FROM public.t003t_personal WHERE id_personal = $1;`,
+            `DELETE FROM public.personal WHERE id_personal = $1;`,
             [idpersonal]
           )
 

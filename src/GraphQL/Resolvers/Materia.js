@@ -7,8 +7,8 @@ export default {
         const materias = await dbp.manyOrNone(
           `SELECT m.id_materia as id, m.co_materia as codigo, m.nb_materia as nombre, m.nu_credito as credito, 
             m.hr_semanal as hora, em.nb_estatus_materia as estatus, tm.nb_tp_materia as tipo, tm.id_tp_materia as idtipo
-              FROM public.m005t_materias as m, public.m037t_estatus_materia as em, public.m012t_tipo_materia as tm
-                where m.id_estatus_materia = em.id_estatus_materia and m.id_tp_materia = tm.id_tp_materia;`
+              FROM public.materias as m, public.estatus_materia as em, public.tipo_materia as tm
+                WHERE m.id_estatus_materia = em.id_estatus_materia and m.id_tp_materia = tm.id_tp_materia;`
         )
 
         return {
@@ -28,7 +28,7 @@ export default {
 
       try {
         await dbp.none(
-          `INSERT INTO public.m005t_materias(
+          `INSERT INTO public.materias(
                       co_materia, nb_materia, nu_credito, id_tp_materia, hr_semanal, id_estatus_materia, bl_prelacion, created_at, updated_at)
                       VALUES ($1, $2, $3, $4, $5, $6, $7, now(), now());`,
           [codigo, nombre, credito, tipo, hora, 4, true]
@@ -48,7 +48,7 @@ export default {
 
       try {
         await dbp.none(
-          `UPDATE public.m005t_materias
+          `UPDATE public.materias
                     SET co_materia = $1, nb_materia = $2, nu_credito = $3, id_tp_materia = $4, hr_semanal = $5
                     WHERE id_materia = $6;`,
           [codigo, nombre, credito, tipo, hora, idmateria]
@@ -68,17 +68,17 @@ export default {
 
       try {
         const materiadocente = await dbp.manyOrNone(
-          `SELECT id_materia FROM r001t_docente_materia as dm WHERE dm.id_materia = $1;`,
+          `SELECT id_materia FROM docente_materia as dm WHERE dm.id_materia = $1;`,
           [idmateria]
         )
 
         const materiainscripcion = await dbp.manyOrNone(
-          `SELECT id_materia FROM r003t_inscripcion_materia as im WHERE im.id_materia = $1;`,
+          `SELECT id_materia FROM inscripcion_materia as im WHERE im.id_materia = $1;`,
           [idmateria]
         )
 
         const materiacarrera = await dbp.manyOrNone(
-          `SELECT id_materia FROM public.r002t_carrera_materia WHERE id_materia = $1;`,
+          `SELECT id_materia FROM public.carrera_materia WHERE id_materia = $1;`,
           [idmateria]
         )
 
@@ -95,14 +95,13 @@ export default {
           }
         } else {
           await dbp.none(
-            `DELETE FROM public.r002t_carrera_materia WHERE id_materia = $1;`,
+            `DELETE FROM public.carrera_materia WHERE id_materia = $1;`,
             [idmateria]
           )
 
-          await dbp.none(
-            `DELETE FROM public.m005t_materias WHERE id_materia = $1;`,
-            [idmateria]
-          )
+          await dbp.none(`DELETE FROM public.materias WHERE id_materia = $1;`, [
+            idmateria
+          ])
 
           return {
             status: 200,

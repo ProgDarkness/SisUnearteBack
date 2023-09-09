@@ -327,6 +327,18 @@ type TipoPersonal {
   nombre: String!
 }
 
+type ResultTipoDepartamento {
+  status: Int!
+  message: String!
+  type: String!
+  response: [TipoDepartamento]
+}
+
+type TipoDepartamento {
+  id: ID!
+  nombre: String!
+}
+
 type Query {
   obtenerMaterias: ResultMaterias
   obtenerCarreras: ResultCarreras
@@ -355,6 +367,7 @@ type Query {
   obtenerMes: ResultMes
   obtenerProfesion: ResultProfesion
   obtenerTipoPersonal: ResultTipoPersonal
+  obtenerTipoDepartamento: ResultTipoDepartamento
 }
 
 type Mutation {

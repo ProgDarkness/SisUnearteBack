@@ -13,8 +13,8 @@ export default {
           p.fe_inicio_inscripcion as feinsc, fe_fin_inscripcion as fefinsc, p.fe_inicio_oferta as feioferta, p.fe_fin_oferta as fefoferta, 
           p.fe_inicio_retiro as feiretiro, p.fe_fin_retiro as fefretiro, p.fe_inicio_notas as feinota, p.fe_fin_notas as fefnota, 
           estatus.nb_estatus_periodo as estatus, p.fe_inicio_postulacion as feipostulacion, p.fe_fin_postulacion as fefpostulacion
-          FROM public.t006t_periodo_lectivo as p, public.m007t_tipo_periodo as tp,
-          public.m044t_estatus_periodo as estatus, public.m050t_meses as mes, public.m050t_meses as mes1
+          FROM public.periodo_lectivo as p, public.tipo_periodo as tp,
+          public.estatus_periodo as estatus, public.meses as mes, public.meses as mes1
           WHERE p.id_tp_periodo = tp.id_tp_periodo and
           p.id_estatus_periodo = estatus.id_estatus_periodo and p.id_mes_inicio = mes.id_mes and p.id_mes_fin = mes1.id_mes;`
         )
@@ -82,7 +82,7 @@ export default {
         visible = true
         estatus = 1
         await dbp.none(
-          `INSERT INTO public.t006t_periodo_lectivo(
+          `INSERT INTO public.periodo_lectivo(
             co_periodo, id_tp_periodo, anio_periodo, id_mes_inicio, id_mes_fin, nu_semana_interperido, 
             tx_mensaje, fe_inicio, fe_fin, fe_ult_entrega_acta, fe_ult_solic_documento, fe_pre_solic_grado, 
             fe_modificacion, fe_inicio_preinscripcion, fe_fin_preinscripcion, fe_inicio_inscripcion, fe_fin_inscripcion, 
@@ -160,7 +160,7 @@ export default {
 
       try {
         await dbp.none(
-          `UPDATE public.t006t_periodo_lectivo
+          `UPDATE public.periodo_lectivo
             SET co_periodo = $1, id_tp_periodo = $2, anio_periodo = $3, id_mes_inicio = $4, id_mes_fin = $5, 
             nu_semana_interperido = $6, tx_mensaje = $7, fe_inicio = $8, fe_fin = $9, fe_ult_entrega_acta = $10, fe_ult_solic_documento = $11, 
             fe_pre_solic_grado = $12, fe_modificacion = $13, fe_inicio_preinscripcion = $14, fe_fin_preinscripcion = $15, fe_inicio_inscripcion = $16, 
@@ -210,12 +210,12 @@ export default {
 
       try {
         const ofertaacademica = await dbp.manyOrNone(
-          `SELECT id_periodo FROM t008t_oferta_academica WHERE id_periodo = $1;`,
+          `SELECT id_periodo FROM oferta_academica WHERE id_periodo = $1;`,
           [idperiodo]
         )
 
         const ofertamateria = await dbp.manyOrNone(
-          `SELECT id_periodo FROM t005t_inscripcion WHERE id_periodo = $1;`,
+          `SELECT id_periodo FROM inscripcion WHERE id_periodo = $1;`,
           [idperiodo]
         )
 
@@ -227,7 +227,7 @@ export default {
           }
         } else {
           await dbp.none(
-            `DELETE FROM public.t006t_periodo_lectivo WHERE id_periodo = $1;`,
+            `DELETE FROM public.periodo_lectivo WHERE id_periodo = $1;`,
             [idperiodo]
           )
 

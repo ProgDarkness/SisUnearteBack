@@ -5,7 +5,7 @@ export default {
     obtenerEstatusPostulacion: async () => {
       try {
         const estatus = await dbp.manyOrNone(
-          `SELECT id_estatus_postulacion as id, nb_estatus_postulacion as nombre FROM m046t_estatus_postulacion;`
+          `SELECT id_estatus_postulacion as id, nb_estatus_postulacion as nombre FROM estatus_postulacion;`
         )
         return {
           status: 200,
@@ -20,7 +20,7 @@ export default {
     obtenerListadoPostuladoCarrera: async () => {
       try {
         const postulados = await dbp.manyOrNone(
-          `SELECT * FROM v003_info_postulados;`
+          `SELECT * FROM info_postulados;`
         )
 
         for (let i = 0; i < postulados.length; i++) {
@@ -60,14 +60,14 @@ export default {
         activo = true
 
         const idperiodo = await dbp.oneOrNone(
-          `SELECT id_periodo FROM r006t_periodo_trayecto as pt WHERE pt.id_carrera = $1 AND pt.id_trayecto = 1;`,
+          `SELECT id_periodo FROM periodo_trayecto as pt WHERE pt.id_carrera = $1 AND pt.id_trayecto = 1;`,
           [carrera]
         )
 
         console.log(input)
 
         await dbp.none(
-          `INSERT INTO public.t013t_postulacion(
+          `INSERT INTO public.postulacion(
                       id_usuario, id_carrera, id_periodo, id_sede, fe_postulacion, id_estatus_postulacion, st_activo)
                       VALUES ( $1, $2, $3, $4, $5, $6, $7);`,
           [
@@ -95,7 +95,7 @@ export default {
 
       try {
         await dbp.none(
-          `UPDATE public.t013t_postulacion
+          `UPDATE public.postulacion
                     SET id_estatus_postulacion = $1, id_usuario_aprobacion = $2, fe_aprobacion = $3, tx_observacion = $4
                     WHERE id_postulacion = $5;`,
           [estatus, usuario, feaprobacion, observacion, idpostulacion]

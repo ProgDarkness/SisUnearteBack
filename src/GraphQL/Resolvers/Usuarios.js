@@ -12,7 +12,7 @@ export default {
 
       try {
         return await dbp.manyOrNone(`SELECT u.id_usuario, u.user_name, u.bl_status, r.nb_rol as rol, u.ced_usuario, u.nb_usuario, u.ape_usuario, u.created_at, u.updated_at
-                                      FROM public.t001t_usuarios u, public.t002t_roles r
+                                      FROM public.usuarios u, public.roles r
                                         WHERE u.id_rol = r.id_rol;`)
       } catch (e) {
         throw new ApolloError(e.message)
@@ -31,13 +31,13 @@ export default {
     getInfoUsuario: async (_, { id_usuario }) => {
       try {
         const estatusUserReg = await dbp.oneOrNone(
-          `SELECT bl_registro FROM public.t001t_usuarios WHERE id_usuario = $1;`,
+          `SELECT bl_registro FROM public.usuarios WHERE id_usuario = $1;`,
           [id_usuario]
         )
 
         if (estatusUserReg?.bl_registro) {
           const infoUser = await dbp.oneOrNone(
-            `SELECT * FROM public.v001_info_usuario iu WHERE iu.id_usuario = $1;`,
+            `SELECT * FROM public.info_usuario iu WHERE iu.id_usuario = $1;`,
             [id_usuario]
           )
 
@@ -164,7 +164,7 @@ export default {
 
         try {
           await dbp.none(
-            `INSERT INTO public.t001t_usuarios(
+            `INSERT INTO public.usuarios(
               tx_clave, user_name, bl_status, id_rol, ced_usuario, nb_usuario, ape_usuario, id_nacionalidad)
               VALUES ( $1, $2, $3, $4, $5, $6, $7, $8);`,
             [
@@ -211,7 +211,7 @@ export default {
 
       try {
         await dbp.none(
-          `DELETE FROM public.t001t_usuarios
+          `DELETE FROM public.usuarios
           WHERE id_usuario =$1`,
           [id_usuario]
         )
@@ -229,7 +229,7 @@ export default {
         let changeStatus = null
         const status = await dbp.oneOrNone(
           `SELECT bl_status
-          FROM public.t001t_usuarios
+          FROM public.usuarios
           WHERE id_usuario=$1;`,
           [id_usuario]
         )
@@ -241,7 +241,7 @@ export default {
         }
 
         await dbp.none(
-          `UPDATE public.t001t_usuarios
+          `UPDATE public.usuarios
           SET  bl_status=$2, updated_at=now()
           WHERE id_usuario =$1`,
           [id_usuario, changeStatus]
@@ -279,7 +279,7 @@ export default {
 
       try {
         await dbp.none(
-          `INSERT INTO public.t001t_usuarios(
+          `INSERT INTO public.usuarios(
                 id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_tp_sexo, fe_nac_usuario, id_pais, id_civil, correo_usuario, id_tp_via, nb_via, id_tp_zona, nb_zona, id_tp_vivienda, nu_vivienda, id_ciudad, id_estado, id_municipio, id_parroquia, id_zona, bl_registro)
                 VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21);`,
           [
@@ -351,7 +351,7 @@ export default {
 
       try {
         await dbp.none(
-          `UPDATE public.t001t_usuarios
+          `UPDATE public.usuarios
                SET id_nacionalidad = $1, ced_usuario = $2, nb_usuario = $3, ape_usuario = $4, id_tp_sexo = $5, fe_nac_usuario = $6, 
                id_pais_nac = $7, id_civil = $8, correo_usuario = $9, id_tp_via = $10, nb_via = $11, id_tp_zona = $12, 
                nb_zona = $13, id_tp_vivienda = $14, nu_vivienda = $15, id_ciudad = $16, id_estado = $17, id_municipio = $18, id_parroquia = $19, 
@@ -409,9 +409,9 @@ export default {
               ts.co_tp_sexo as sexo, u.fe_nac_usuario as fenac, pais.nb_pais as pais, ec.nb_civil as civil, u.correo_usuario as correo, tvia.nb_tp_via as nbtpbia, u.nb_via as nbvia, 
               tzona.nb_tp_zona as nbtpzona, u.nb_zona as nbzona, tvivienda.nb_tp_vivienda as nbtpvivienda, u.nu_vivienda as nuvivienda,
               c.nb_ciudad as ciudad, e.nb_estado as estado, m.nb_municipio as municipio, p.nb_parroquia as parroquia
-              FROM t001t_usuarios as u, m028t_tipo_nacionalidad as tn, m026t_tipo_sexo as ts, m027t_estado_civil as ec, m022t_paises as pais,
-              m025t_tipo_via as tvia, m024t_tipo_zona as tzona, m021t_tipo_vivienda as tvivienda, 
-              m020t_ciudades as c, m001t_estados as e, m002t_municipios as m, m003t_parroquias as p
+              FROM usuarios as u, tipo_nacionalidad as tn, tipo_sexo as ts, tipo_estado_civil as ec, paises as pais,
+              tipo_via as tvia, tipo_zona as tzona, tipo_vivienda as tvivienda, 
+              ciudades as c, estados as e, municipios as m, parroquias as p
               WHERE u.id_nacionalidad = tn.id_nacionalidad
               and u.id_tp_sexo = ts.id_tp_sexo
               and u.id_civil = ec.id_civil

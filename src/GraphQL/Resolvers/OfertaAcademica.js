@@ -6,7 +6,7 @@ export default {
       try {
         const periodos = await dbp.manyOrNone(
           `SELECT id_periodo as id, CONCAT(co_periodo, ' - ', anio_periodo, ' - ', tx_mensaje) as nombre	
-         FROM public.t006t_periodo_lectivo;`
+         FROM public.periodo_lectivo;`
         )
 
         return {
@@ -25,7 +25,7 @@ export default {
 
         const trayectosCarrera = await dbp.manyOrNone(
           `SELECT t.id_trayecto, t.nb_trayecto
-          FROM public.r008t_carrera_trayecto ct, public.m017t_trayectos t
+          FROM public.carrera_trayecto ct, public.trayectos t
             WHERE ct.id_trayecto = t.id_trayecto AND ct.id_carrera = $1;`,
           [carrera]
         )
@@ -34,10 +34,10 @@ export default {
           `SELECT  cm.id_carrema, cm.id_carrera, c.nb_carrera, cm.id_materia, m.nb_materia, cm.id_trayecto,
           dm.id_personal, CONCAT(p.nb_personal, ' ', p.ape_personal) personal
           FROM public.r002t_carrera_materia cm 
-          LEFT JOIN public.m006t_carreras c ON c.id_carrera = cm.id_carrera 
-          LEFT JOIN public.m005t_materias m ON m.id_materia = cm.id_materia
-          LEFT JOIN public.r001t_docente_materia dm ON dm.id_materia = cm.id_materia
-          LEFT JOIN public.t003t_personal p ON dm.id_personal = p.id_personal
+          LEFT JOIN public.carreras c ON c.id_carrera = cm.id_carrera 
+          LEFT JOIN public.materias m ON m.id_materia = cm.id_materia
+          LEFT JOIN public.docente_materia dm ON dm.id_materia = cm.id_materia
+          LEFT JOIN public.personal p ON dm.id_personal = p.id_personal
           WHERE cm.id_carrera = $1`,
           [carrera]
         )
@@ -116,8 +116,8 @@ export default {
         const ofertas = await dbp.manyOrNone(
           `SELECT oa.id_oferta, oa.co_oferta, oa.id_periodo, p.tx_mensaje, oa.id_carrera, c.nb_carrera, tp.nb_tp_carrera,
           ci.nb_ciclo, oa.nu_cupos, oa.nu_seccion, oa.id_sede, s.nb_sede, oa.id_estatus_oferta, eo.nb_estatus_oferta
-          FROM public.t008t_oferta_academica oa, public.m006t_carreras c, public.t011t_sedes s,
-          public.t006t_periodo_lectivo p, public.m042t_estatus_oferta eo, public.m036t_tipo_carrera tp, public.m043t_ciclos ci
+          FROM public.oferta_academica oa, public.carreras c, public.sedes s,
+          public.periodo_lectivo p, public.estatus_oferta eo, public.tipo_carrera tp, public.ciclos ci
           WHERE oa.id_periodo = p.id_periodo AND oa.id_carrera = c.id_carrera AND oa.id_sede = s.id_sede
           AND oa.id_estatus_oferta = eo.id_estatus_oferta AND c.id_tp_carrera = tp.id_tp_carrera AND c.id_ciclo = ci.id_ciclo;`
         )
@@ -142,14 +142,14 @@ export default {
         const visible = true
 
         const idofertas = await dbp.oneOrNone(
-          `INSERT INTO public.t008t_oferta_academica(
+          `INSERT INTO public.oferta_academica(
                     id_periodo, id_carrera, nu_cupos, nu_seccion, id_sede, visible, id_estatus_oferta)
                     VALUES ( $1, $2, $3, $4, $5, $6, $7) RETURNING id_oferta;`,
           [periodo, carrera, cupos, seccion, sede, visible, estatus]
         )
 
         await dbp.none(
-          `INSERT INTO public.r008t_oferta_materia_carrera(
+          `INSERT INTO public.oferta_materia_carrera(
                         id_oferta, id_carrera, id_materia, id_trayecto)
                         VALUES ( $1, $2, $3, $4);`,
           [idofertas.id_oferta, carrera, materia, trayecto]
@@ -167,7 +167,7 @@ export default {
     eliminarOferta: async (_, { idOferta }) => {
       try {
         await dbp.none(
-          `DELETE FROM public.t008t_oferta_academica
+          `DELETE FROM public.oferta_academica
                WHERE id_oferta = $1;`,
           [idOferta]
         )

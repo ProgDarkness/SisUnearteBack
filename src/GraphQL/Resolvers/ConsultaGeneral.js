@@ -5,7 +5,7 @@ export default {
     obtenerMaterias: async () => {
       try {
         const materias = await dbp.manyOrNone(
-          `SELECT id_materia as id, nb_materia as nombre FROM m005t_materias;`
+          `SELECT id_materia as id, nb_materia as nombre FROM materias;`
         )
         return {
           status: 200,
@@ -20,7 +20,7 @@ export default {
     obtenerCarreras: async () => {
       try {
         const carreras = await dbp.manyOrNone(
-          `SELECT id_carrera as id, nb_carrera as nombre FROM m006t_carreras;`
+          `SELECT id_carrera as id, nb_carrera as nombre FROM carreras;`
         )
         return {
           status: 200,
@@ -35,7 +35,7 @@ export default {
     obtenerTipoCarrera: async () => {
       try {
         const tiposcarreras = await dbp.manyOrNone(
-          `SELECT id_tp_carrera as id, nb_tp_carrera as nombre FROM m036t_tipo_carrera;`
+          `SELECT id_tp_carrera as id, nb_tp_carrera as nombre FROM tipo_carrera;`
         )
         return {
           status: 200,
@@ -50,7 +50,7 @@ export default {
     obtenerEstatusCarrera: async () => {
       try {
         const estatuscarreras = await dbp.manyOrNone(
-          `SELECT id_estatus_carrera as id, nb_estatus_carrera as nombre FROM m045t_estatus_carrera;`
+          `SELECT id_estatus_carrera as id, nb_estatus_carrera as nombre FROM estatus_carrera;`
         )
         return {
           status: 200,
@@ -65,7 +65,7 @@ export default {
     obtenerNacionalidades: async () => {
       try {
         const nacionalidades = await dbp.manyOrNone(
-          `SELECT id_nacionalidad as id, co_nacionalidad as codigo, nb_nacionalidad as nombre FROM m028t_tipo_nacionalidad;`
+          `SELECT id_nacionalidad as id, co_nacionalidad as codigo, nb_nacionalidad as nombre FROM tipo_nacionalidad;`
         )
         return {
           status: 200,
@@ -80,7 +80,7 @@ export default {
     obtenerSexos: async () => {
       try {
         const sexos = await dbp.manyOrNone(
-          `SELECT id_tp_sexo as id, nb_tp_sexo as nombre FROM m026t_tipo_sexo;`
+          `SELECT id_tp_sexo as id, nb_tp_sexo as nombre FROM tipo_sexo;`
         )
         return {
           status: 200,
@@ -95,7 +95,7 @@ export default {
     obtenerDiscapacidades: async () => {
       try {
         const discapacidades = await dbp.manyOrNone(
-          `SELECT id_tp_discapacidad as id, nb_tp_discapacidad as nombre FROM m009t_tipo_discapacidad;`
+          `SELECT id_tp_discapacidad as id, nb_tp_discapacidad as nombre FROM tipo_discapacidad;`
         )
         return {
           status: 200,
@@ -110,7 +110,7 @@ export default {
     obtenerCiudades: async () => {
       try {
         const estados = await dbp.manyOrNone(
-          `SELECT id_ciudad as id, nb_ciudad as nombre FROM m020t_ciudades;`
+          `SELECT id_ciudad as id, nb_ciudad as nombre FROM ciudades;`
         )
         return {
           status: 200,
@@ -125,7 +125,7 @@ export default {
     obtenerEstados: async () => {
       try {
         const estados = await dbp.manyOrNone(
-          `SELECT id_estado as id, nb_estado as nombre FROM m001t_estados;`
+          `SELECT id_estado as id, nb_estado as nombre FROM estados;`
         )
         return {
           status: 200,
@@ -140,7 +140,7 @@ export default {
     obtenerMunicipios: async () => {
       try {
         const municipios = await dbp.manyOrNone(
-          `SELECT id_municipio as id, nb_municipio as nombre FROM m002t_municipios;`
+          `SELECT id_municipio as id, nb_municipio as nombre FROM municipios;`
         )
         return {
           status: 200,
@@ -155,7 +155,7 @@ export default {
     obtenerParroquias: async () => {
       try {
         const parroquias = await dbp.manyOrNone(
-          `SELECT id_parroquia as id, nb_parroquia as nombre FROM m003t_parroquias;`
+          `SELECT id_parroquia as id, nb_parroquia as nombre FROM parroquias;`
         )
         return {
           status: 200,
@@ -170,7 +170,7 @@ export default {
     obtenerTipoVia: async () => {
       try {
         const vias = await dbp.manyOrNone(
-          `SELECT id_tp_via as id, nb_tp_via as nombre FROM m025t_tipo_via;`
+          `SELECT id_tp_via as id, nb_tp_via as nombre FROM tipo_via;`
         )
         return {
           status: 200,
@@ -185,7 +185,7 @@ export default {
     obtenerTipoZona: async () => {
       try {
         const zonas = await dbp.manyOrNone(
-          `SELECT id_tp_zona as id, nb_tp_zona as nombre FROM m024t_tipo_zona;`
+          `SELECT id_tp_zona as id, nb_tp_zona as nombre FROM tipo_zona;`
         )
         return {
           status: 200,
@@ -200,7 +200,7 @@ export default {
     obtenerTipoVivienda: async () => {
       try {
         const viviendas = await dbp.manyOrNone(
-          `SELECT id_tp_vivienda as id, nb_tp_vivienda as nombre FROM m021t_tipo_vivienda;`
+          `SELECT id_tp_vivienda as id, nb_tp_vivienda as nombre FROM tipo_vivienda;`
         )
         return {
           status: 200,
@@ -215,7 +215,7 @@ export default {
     obtenerPaises: async () => {
       try {
         const paises = await dbp.manyOrNone(
-          `SELECT id_pais as id, nb_pais as nombre FROM m022t_paises;`
+          `SELECT id_pais as id, nb_pais as nombre FROM paises;`
         )
         return {
           status: 200,
@@ -230,7 +230,7 @@ export default {
     obtenerCodigoPostal: async () => {
       try {
         const postales = await dbp.manyOrNone(
-          `SELECT id_zona as id, id_parroquia as parroquia, nb_zona as nombre, codigo_postal as codigo FROM m023t_zona;`
+          `SELECT id_zona as id, id_parroquia as parroquia, nb_zona as nombre, codigo_postal as codigo FROM zona;`
         )
         return {
           status: 200,
@@ -245,7 +245,7 @@ export default {
     obtenerTipoDocumento: async () => {
       try {
         const tiposdocumentos = await dbp.manyOrNone(
-          `SELECT id_tp_documento as id, nb_tp_documento as nombre FROM m047t_tipo_documento;`
+          `SELECT id_tp_documento as id, nb_tp_documento as nombre FROM tipo_documento;`
         )
         return {
           status: 200,
@@ -260,7 +260,7 @@ export default {
     obtenerEstadoCivil: async () => {
       try {
         const estadosciviles = await dbp.manyOrNone(
-          `SELECT id_civil as id, nb_civil as nombre FROM public.m027t_estado_civil;`
+          `SELECT id_civil as id, nb_civil as nombre FROM public.tipo_estado_civil;`
         )
         return {
           status: 200,
@@ -275,7 +275,7 @@ export default {
     obtenerEtnia: async () => {
       try {
         const etnias = await dbp.manyOrNone(
-          `SELECT id_etnia as id, nb_etnia as nombre FROM public.m051t_tipo_etnia;`
+          `SELECT id_etnia as id, nb_etnia as nombre FROM public.tipo_etnia;`
         )
         return {
           status: 200,
@@ -290,7 +290,7 @@ export default {
     obtenerCiclos: async () => {
       try {
         const tpciclos = await dbp.manyOrNone(
-          `SELECT id_ciclo as id, nb_ciclo as nombre FROM public.m043t_ciclos;`
+          `SELECT id_ciclo as id, nb_ciclo as nombre FROM public.ciclos;`
         )
         return {
           status: 200,
@@ -305,7 +305,7 @@ export default {
     obtenerTipoMateria: async () => {
       try {
         const tpmateria = await dbp.manyOrNone(
-          `SELECT id_tp_materia as id, nb_tp_materia as nombre FROM public.m012t_tipo_materia;`
+          `SELECT id_tp_materia as id, nb_tp_materia as nombre FROM public.tipo_materia;`
         )
         return {
           status: 200,
@@ -320,7 +320,7 @@ export default {
     obtenerSedes: async () => {
       try {
         const sedes = await dbp.manyOrNone(
-          `SELECT id_sede as id, nb_sede as nombre FROM public.t011t_sedes;`
+          `SELECT id_sede as id, nb_sede as nombre FROM public.sedes;`
         )
         return {
           status: 200,
@@ -336,7 +336,7 @@ export default {
       try {
         const sedesCarrera = await dbp.manyOrNone(
           `SELECT sc.id_sede as id, s.nb_sede as nombre
-          FROM public.r007t_sede_carrera sc, public.t011t_sedes s
+          FROM public.sede_carrera sc, public.sedes s
             WHERE s.id_sede = sc.id_sede
               AND sc.id_carrera = $1;`,
           [carrera]
@@ -355,7 +355,7 @@ export default {
     obtenerTipoTitulo: async () => {
       try {
         const titulos = await dbp.manyOrNone(
-          `SELECT id_titulo as id, nb_titulo as nombre FROM public.m052t_tipo_titulo;`
+          `SELECT id_titulo as id, nb_titulo as nombre FROM public.tipo_titulo;`
         )
         return {
           status: 200,
@@ -370,7 +370,7 @@ export default {
     obtenerMes: async () => {
       try {
         const meses = await dbp.manyOrNone(
-          `SELECT id_mes as id, nb_mes as nombre FROM public.m050t_meses;`
+          `SELECT id_mes as id, nb_mes as nombre FROM public.meses;`
         )
         return {
           status: 200,
@@ -385,7 +385,7 @@ export default {
     obtenerProfesion: async () => {
       try {
         const profesiones = await dbp.manyOrNone(
-          `SELECT id_profesion as id, nb_profesion as nombre FROM public.m011t_profesion;`
+          `SELECT id_profesion as id, nb_profesion as nombre FROM public.profesion;`
         )
         return {
           status: 200,
@@ -400,7 +400,7 @@ export default {
     obtenerTipoPersonal: async () => {
       try {
         const tipopersonal = await dbp.manyOrNone(
-          `SELECT id_tp_personal as id, nb_tp_personal as nombre FROM public.m008t_tipo_personal;`
+          `SELECT id_tp_personal as id, nb_tp_personal as nombre FROM public.tipo_personal;`
         )
         return {
           status: 200,
@@ -411,6 +411,22 @@ export default {
       } catch (e) {
         return { status: 500, message: e.message, type: 'error' }
       }
+    },
+    obtenerTipoDepartamento: async () => {
+      try {
+        const departamentos = await dbp.manyOrNone(
+          `SELECT id_departamento as id, nb_departamento as nombre
+                FROM public.departamentos;`
+        )
+        return {
+          status: 200,
+          message: 'Departamentos encontrados',
+          type: 'success',
+          response: departamentos
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
     }
   },
   Mutation: {
@@ -418,7 +434,7 @@ export default {
       const { estado } = input
       try {
         const ciudades = await dbp.manyOrNone(
-          `SELECT id_ciudad as id, nb_ciudad as nombre FROM m020t_ciudades WHERE id_estado = $1;`,
+          `SELECT id_ciudad as id, nb_ciudad as nombre FROM ciudades WHERE id_estado = $1;`,
           [estado]
         )
         return {
@@ -436,7 +452,7 @@ export default {
       try {
         if (pais === 239) {
           const paises = await dbp.manyOrNone(
-            `SELECT cod_estado as id, nb_estado as nombre FROM public.m001t_estados WHERE cod_pais = $1`,
+            `SELECT cod_estado as id, nb_estado as nombre FROM public.estados WHERE cod_pais = $1`,
             [pais]
           )
           return {
@@ -447,7 +463,7 @@ export default {
           }
         } else {
           const paises = await dbp.manyOrNone(
-            `SELECT id_estado_mundo as id, nb_estado_mundo as nombre FROM m049t_estado_mundo WHERE id_pais = $1;`,
+            `SELECT id_estado_mundo as id, nb_estado_mundo as nombre FROM estado_mundo WHERE id_pais = $1;`,
             [pais]
           )
 
@@ -466,7 +482,7 @@ export default {
       const { estado } = input
       try {
         const municipioestados = await dbp.manyOrNone(
-          `SELECT id_municipio as id, nb_municipio as nombre FROM m002t_municipios WHERE id_estado = $1;`,
+          `SELECT id_municipio as id, nb_municipio as nombre FROM municipios WHERE id_estado = $1;`,
           [estado]
         )
 
@@ -484,7 +500,7 @@ export default {
       const { municipio } = input
       try {
         const parroquiamunicipios = await dbp.manyOrNone(
-          `SELECT id_parroquia as id, nb_parroquia as nombre FROM m003t_parroquias WHERE id_municipio = $1;`,
+          `SELECT id_parroquia as id, nb_parroquia as nombre FROM parroquias WHERE id_municipio = $1;`,
           [municipio]
         )
 
@@ -504,7 +520,7 @@ export default {
       try {
         const zonasporparroquia = await dbp.manyOrNone(
           `SELECT id_zona as id, nb_zona as nombre, codigo_postal
-                FROM public.m023t_zona WHERE id_parroquia = $1;`,
+                FROM public.zona WHERE id_parroquia = $1;`,
           parroquia
         )
         return {
