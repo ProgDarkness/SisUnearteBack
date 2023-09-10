@@ -114,7 +114,7 @@ input InputCarrera {
 
 type DetalleCarrera {
   id_carrema: Int!
-  idTrayectoCarrera: Int!
+  idtrayectocarrera: Int!
   nb_trayecto: String!
   id_materia: Int
   nb_materia: String

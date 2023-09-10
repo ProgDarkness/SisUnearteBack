@@ -2,6 +2,47 @@ import { dbp } from '../../postgresdb'
 
 export default {
   Query: {
+    obtenerMateriasMalla: async (_, { carrera, trayecto }) => {
+      try {
+        const materias = await dbp.manyOrNone(
+          `SELECT cm.id_carrema, cm.id_trayecto as idtrayectocarrera, t.nb_trayecto, cm.id_materia, m.nb_materia,
+          dm.id_personal, CONCAT(p.nb_personal, ' ', p.ape_personal) personal
+          FROM public.carrera_materia cm
+            LEFT JOIN public.docente_materia dm ON dm.id_materia = cm.id_materia
+            LEFT JOIN public.trayectos t ON t.id_trayecto = cm.id_trayecto
+            LEFT JOIN public.materias m ON m.id_materia = cm.id_materia
+            LEFT JOIN public.personal p ON p.id_personal = dm.id_personal
+          WHERE cm.id_carrera = $1 AND cm.id_trayecto = $2;`,
+          [carrera, trayecto]
+        )
+
+        return {
+          status: 200,
+          message: 'materias encontradas',
+          type: 'success',
+          response: materias
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
+    obtenerPersonalOferta: async () => {
+      try {
+        const personal = await dbp.manyOrNone(
+          `SELECT id_personal as id, CONCAT(nb_personal, ' ', ape_personal) as nombre
+            FROM public.personal WHERE id_tp_personal = 1;`
+        )
+
+        return {
+          status: 200,
+          message: 'Personal encontrado',
+          type: 'success',
+          response: personal
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
     obtenerPeridosOferta: async () => {
       try {
         const periodos = await dbp.manyOrNone(
@@ -33,7 +74,7 @@ export default {
         const materiasCarrera = await dbp.manyOrNone(
           `SELECT  cm.id_carrema, cm.id_carrera, c.nb_carrera, cm.id_materia, m.nb_materia, cm.id_trayecto,
           dm.id_personal, CONCAT(p.nb_personal, ' ', p.ape_personal) personal
-          FROM public.r002t_carrera_materia cm 
+          FROM public.carrera_materia cm 
           LEFT JOIN public.carreras c ON c.id_carrera = cm.id_carrera 
           LEFT JOIN public.materias m ON m.id_materia = cm.id_materia
           LEFT JOIN public.docente_materia dm ON dm.id_materia = cm.id_materia
@@ -53,12 +94,12 @@ export default {
           } = materiasCarrera[i]
 
           for (let i = 0; i < trayectosCarrera.length; i++) {
-            const { id_trayecto: idTrayectoCarrera, nb_trayecto } =
+            const { id_trayecto: idtrayectocarrera, nb_trayecto } =
               trayectosCarrera[i]
-            if (idTrayectoCarrera === idTrayectoMateria) {
+            if (idtrayectocarrera === idTrayectoMateria) {
               detalleCarrerasInit.push({
                 id_carrema,
-                idTrayectoCarrera,
+                idtrayectocarrera,
                 nb_trayecto,
                 id_materia,
                 nb_materia,
@@ -68,7 +109,7 @@ export default {
             } else {
               detalleCarrerasInit.push({
                 id_carrema,
-                idTrayectoCarrera,
+                idtrayectocarrera,
                 nb_trayecto
               })
             }

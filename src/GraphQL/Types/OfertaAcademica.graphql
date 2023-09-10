@@ -23,6 +23,25 @@ type Query {
   obtenerOfertaAcademica: ResultOferta
   obtenerDetalleMalla(carrera: Int!): ResultMallaDetalle
   obtenerPeridosOferta: ResultPeridosOferta
+  obtenerPersonalOferta: ResultPeridosOferta
+  obtenerMateriasMalla(carrera: Int!, trayecto: Int!): ResultMateriasOfertaMalla
+}
+
+type ResultMateriasOfertaMalla {
+  status: Int!
+  message: String!
+  type: String!
+  response: [materiasOfert]
+}
+
+type materiasOfert {
+  id_carrema: Int
+  idtrayectocarrera: Int
+  nb_trayecto: String
+  id_materia: Int
+  nb_materia: String
+  id_personal: Int
+  personal: String
 }
 
 type ResultPeridosOferta {
@@ -39,7 +58,7 @@ type PeriodosOfer {
 
 type DetalleMalla {
   id_carrema: Int!
-  idTrayectoCarrera: Int!
+  idtrayectocarrera: Int!
   nb_trayecto: String!
   id_materia: Int
   nb_materia: String

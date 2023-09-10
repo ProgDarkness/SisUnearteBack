@@ -88,12 +88,12 @@ export default {
           } = materiasCarrera[i]
 
           for (let i = 0; i < trayectosCarrera.length; i++) {
-            const { id_trayecto: idTrayectoCarrera, nb_trayecto } =
+            const { id_trayecto: idtrayectocarrera, nb_trayecto } =
               trayectosCarrera[i]
-            if (idTrayectoCarrera === idTrayectoMateria) {
+            if (idtrayectocarrera === idTrayectoMateria) {
               detalleCarrerasInit.push({
                 id_carrema,
-                idTrayectoCarrera,
+                idtrayectocarrera,
                 nb_trayecto,
                 id_materia,
                 nb_materia
@@ -101,7 +101,7 @@ export default {
             } else {
               detalleCarrerasInit.push({
                 id_carrema,
-                idTrayectoCarrera,
+                idtrayectocarrera,
                 nb_trayecto
               })
             }
