@@ -156,12 +156,13 @@ export default {
       try {
         const ofertas = await dbp.manyOrNone(
           `SELECT oa.id_oferta, oa.co_oferta, oa.id_periodo, p.tx_mensaje, oa.id_carrera, c.nb_carrera, tp.nb_tp_carrera,
-          ci.nb_ciclo, oa.nu_cupos, oa.nu_seccion, oa.id_sede, s.nb_sede, oa.id_estatus_oferta, eo.nb_estatus_oferta
+          ci.nb_ciclo, oa.nu_cupos, oa.id_sede, s.nb_sede, oa.id_estatus_oferta, eo.nb_estatus_oferta
           FROM public.oferta_academica oa, public.carreras c, public.sedes s,
           public.periodo_lectivo p, public.estatus_oferta eo, public.tipo_carrera tp, public.ciclos ci
           WHERE oa.id_periodo = p.id_periodo AND oa.id_carrera = c.id_carrera AND oa.id_sede = s.id_sede
           AND oa.id_estatus_oferta = eo.id_estatus_oferta AND c.id_tp_carrera = tp.id_tp_carrera AND c.id_ciclo = ci.id_ciclo;`
         )
+
         return {
           status: 200,
           message: 'Ofertas encontradas',
@@ -175,26 +176,43 @@ export default {
   },
   Mutation: {
     crearOferta: async (_, { input }) => {
-      const { periodo, carrera, cupos, seccion, sede, materia, trayecto } =
-        input
+      const {
+        codOferta,
+        sedeOferta,
+        cantidadCupos,
+        idCarrera,
+        periodoOfer,
+        objectOferta
+      } = input
 
       try {
-        const estatus = 1
-        const visible = true
-
         const idofertas = await dbp.oneOrNone(
           `INSERT INTO public.oferta_academica(
-                    id_periodo, id_carrera, nu_cupos, nu_seccion, id_sede, visible, id_estatus_oferta)
-                    VALUES ( $1, $2, $3, $4, $5, $6, $7) RETURNING id_oferta;`,
-          [periodo, carrera, cupos, seccion, sede, visible, estatus]
+            id_periodo, id_carrera, nu_cupos, visible, id_estatus_oferta, created_at, updated_at, co_oferta, id_sede)
+            VALUES ($1, $2, $3, TRUE, 1, now(), now(), $4, $5) RETURNING id_oferta;`,
+          [periodoOfer, idCarrera, cantidadCupos, codOferta, sedeOferta]
         )
 
-        await dbp.none(
-          `INSERT INTO public.oferta_materia_carrera(
-                        id_oferta, id_carrera, id_materia, id_trayecto)
-                        VALUES ( $1, $2, $3, $4);`,
-          [idofertas.id_oferta, carrera, materia, trayecto]
-        )
+        Object.entries(objectOferta).forEach(async ([index, item]) => {
+          await dbp.none(
+            `INSERT INTO public.docente_materia(
+              id_materia, id_personal, id_estatus, created_at, updated_at)
+              VALUES ($1, $2, TRUE, now(), now());`,
+            [item.id_materia, item.id_personal]
+          )
+
+          await dbp.none(
+            `INSERT INTO public.oferta_materia_carrera(
+              id_oferta, id_materia, created_at, updated_at, id_carrera, id_trayecto)
+              VALUES ($1, $2, now(), now(), $3, $4);`,
+            [
+              idofertas.id_oferta,
+              item.id_materia,
+              idCarrera,
+              item.idtrayectocarrera
+            ]
+          )
+        })
 
         return {
           status: 200,

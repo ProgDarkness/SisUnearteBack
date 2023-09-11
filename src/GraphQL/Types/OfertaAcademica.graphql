@@ -4,13 +4,22 @@ type Mutation {
 }
 
 input InputOferta {
-  periodo: Int!
-  carrera: Int!
-  cupos: Int!
-  seccion: Int!
-  sede: Int!
-  materia: Int!
-  trayecto: Int!
+  codOferta: String!
+  sedeOferta: Int!
+  cantidadCupos: Int!
+  idCarrera: Int!
+  periodoOfer: Int!
+  objectOferta: [ObjectOfertaNew]
+}
+
+input ObjectOfertaNew {
+  id_carrema: Int!
+  idtrayectocarrera: Int!
+  nb_trayecto: String!
+  id_materia: Int!
+  nb_materia: String!
+  id_personal: Int!
+  personal: String!
 }
 
 type ResultadOferta {
@@ -76,13 +85,13 @@ type ResultMallaDetalle {
 type Oferta {
   id_oferta: Int!
   co_oferta: String!
+  id_periodo: Int!
   tx_mensaje: String!
   id_carrera: Int!
   nb_carrera: String!
   nb_tp_carrera: String!
   nb_ciclo: String!
   nu_cupos: Int!
-  nu_seccion: Int!
   id_sede: Int!
   nb_sede: String!
   id_estatus_oferta: Int!
