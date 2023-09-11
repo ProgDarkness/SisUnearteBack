@@ -42,6 +42,9 @@ type Query {
 type Mutation {
   crearPostulacion(input: InputPostulacion): ResultPostulacion!
   aprobarPostulacion(input: InputAprobarPostulacion): ResultAprobarPostulacion!
+  rechazarPostulacion(
+    input: InputRechazarPostulacion
+  ): ResultAprobarPostulacion!
 }
 
 input InputPostulacion {
@@ -58,9 +61,10 @@ type ResultPostulacion {
 }
 
 input InputAprobarPostulacion {
-  estatus: Int!
-  usuario: Int!
-  feaprobacion: String!
+  idpostulacion: Int!
+}
+
+input InputRechazarPostulacion {
   observacion: String!
   idpostulacion: Int!
 }

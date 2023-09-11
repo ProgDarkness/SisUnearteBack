@@ -93,6 +93,7 @@ input InputPersonal {
   profesion: Int!
   sexo: Int!
   civil: Int!
+  departamento: Int!
 }
 
 input InputActualizarPersonal {

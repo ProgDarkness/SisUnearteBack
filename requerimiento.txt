@@ -1,3 +1,14 @@
+=================== 11/09/2023 ==========================
+mutation rechazarpostulacion {
+  rechazarPostulacion (
+    input:{
+      observacion: "FALTA DE DOCUMENTOS"
+      idpostulacion: 5
+    }){
+    message
+    }
+}
+
 =================== 09/09/2023 ==========================
 query obtenerdepartamento {
   obtenerTipoDepartamento {
@@ -552,10 +563,7 @@ mutation detalleusuario {
 mutation aprobarpostulacion {
   aprobarPostulacion (
     input:{
-      estatus: 2
-      usuario: 13
-      feaprobacion: "2023-08-15"
-      observacion: "Aprobado"
+      usuario: 16
       idpostulacion: 2
     }){
     message
