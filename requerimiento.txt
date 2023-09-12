@@ -1,3 +1,22 @@
+=================== 12/09/2023 ==========================
+
+query obtenerusuarios {
+  obtenerUsuarioDocente {
+    response {
+      id
+      nombre
+    }
+  }
+}
+
+query obtenerroles {
+  obtenerRoles {
+    response {
+      id
+      nombre
+    }
+  }
+}
 =================== 11/09/2023 ==========================
 mutation rechazarpostulacion {
   rechazarPostulacion (

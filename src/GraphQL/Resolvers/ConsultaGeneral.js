@@ -427,6 +427,38 @@ export default {
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
       }
+    },
+    obtenerUsuarioDocente: async () => {
+      try {
+        const usuarios = await dbp.manyOrNone(
+          `SELECT id_usuario as id, CONCAT(nb_usuario, ' ', ape_usuario) nombre 
+                FROM public.usuarios WHERE id_rol = 6;`
+        )
+        return {
+          status: 200,
+          message: 'Usuarios encontrados',
+          type: 'success',
+          response: usuarios
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
+    obtenerRoles: async () => {
+      try {
+        const roles = await dbp.manyOrNone(
+          `SELECT id_rol as id, nb_rol as nombre 
+                FROM public.roles WHERE id_rol IN (2, 4, 5, 6);`
+        )
+        return {
+          status: 200,
+          message: 'Usuarios encontrados',
+          type: 'success',
+          response: roles
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
     }
   },
   Mutation: {

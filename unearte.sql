@@ -5,7 +5,7 @@
 -- Dumped from database version 14.8
 -- Dumped by pg_dump version 14.8
 
--- Started on 2023-09-12 09:05:03
+-- Started on 2023-09-12 14:23:32
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -364,7 +364,7 @@ CREATE TABLE public.clase_materia (
 ALTER TABLE public.clase_materia OWNER TO postgres;
 
 --
--- TOC entry 356 (class 1259 OID 34781)
+-- TOC entry 355 (class 1259 OID 34781)
 -- Name: departamentos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -380,7 +380,7 @@ CREATE SEQUENCE public.departamentos_id_seq
 ALTER TABLE public.departamentos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 357 (class 1259 OID 34782)
+-- TOC entry 356 (class 1259 OID 34782)
 -- Name: departamentos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -624,7 +624,7 @@ CREATE TABLE public.estatus_carrera (
 ALTER TABLE public.estatus_carrera OWNER TO postgres;
 
 --
--- TOC entry 358 (class 1259 OID 34788)
+-- TOC entry 357 (class 1259 OID 34788)
 -- Name: estatus_departamentos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -640,7 +640,7 @@ CREATE SEQUENCE public.estatus_departamentos_id_seq
 ALTER TABLE public.estatus_departamentos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 359 (class 1259 OID 34789)
+-- TOC entry 358 (class 1259 OID 34789)
 -- Name: estatus_departamento; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1668,7 +1668,7 @@ CREATE TABLE public.usuarios (
 ALTER TABLE public.usuarios OWNER TO postgres;
 
 --
--- TOC entry 355 (class 1259 OID 34405)
+-- TOC entry 360 (class 1259 OID 34862)
 -- Name: info_postulados; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -1681,6 +1681,7 @@ CREATE VIEW public.info_postulados AS
     u.ape_usuario AS apellido,
     p.fe_postulacion AS fepostulacion,
     p.tx_observacion AS observacion,
+    p.id_estatus_postulacion AS idestatus,
     ep.nb_estatus_postulacion AS estatus,
     pl.anio_periodo AS periodo,
     tp.nb_tp_periodo AS tperiodo,
@@ -1931,7 +1932,7 @@ CREATE TABLE public.tipo_zona (
 ALTER TABLE public.tipo_zona OWNER TO postgres;
 
 --
--- TOC entry 360 (class 1259 OID 34805)
+-- TOC entry 359 (class 1259 OID 34805)
 -- Name: info_usuario; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3862,7 +3863,7 @@ COPY public.clase_materia (id_clase_materia, co_clase_materia, nb_clase_materia,
 
 --
 -- TOC entry 4161 (class 0 OID 34782)
--- Dependencies: 357
+-- Dependencies: 356
 -- Data for Name: departamentos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -8848,7 +8849,7 @@ COPY public.estatus_carrera (id_estatus_carrera, nb_estatus_carrera, tx_descripc
 
 --
 -- TOC entry 4163 (class 0 OID 34789)
--- Dependencies: 359
+-- Dependencies: 358
 -- Data for Name: estatus_departamento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11130,8 +11131,8 @@ COPY public.roles (id_rol, nb_rol, created_at, updated_at) FROM stdin;
 3	Estudiante	2023-07-27 15:26:56	2023-07-27 15:26:56
 4	Control Estudio	2023-09-09 15:26:56	2023-09-09 15:26:56
 5	Coordinador	2023-09-09 15:26:56	2023-09-09 15:26:56
-6	Estudiante	2023-09-09 15:26:56	2023-09-09 15:26:56
 7	Usuario General	2023-09-09 15:26:56	2023-09-09 15:26:56
+6	Profesor	2023-09-09 15:26:56	2023-09-09 15:26:56
 \.
 
 
@@ -46592,7 +46593,7 @@ SELECT pg_catalog.setval('public.clase_materia_id_seq', 1, false);
 
 --
 -- TOC entry 4179 (class 0 OID 0)
--- Dependencies: 356
+-- Dependencies: 355
 -- Name: departamentos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46673,7 +46674,7 @@ SELECT pg_catalog.setval('public.estatus_carrera_id_seq', 4, true);
 
 --
 -- TOC entry 4188 (class 0 OID 0)
--- Dependencies: 358
+-- Dependencies: 357
 -- Name: estatus_departamentos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -48792,7 +48793,7 @@ ALTER TABLE ONLY public.usuarios
     ADD CONSTRAINT zona_fk_5 FOREIGN KEY (id_tp_zona) REFERENCES public.tipo_zona(id_tp_zona);
 
 
--- Completed on 2023-09-12 09:05:04
+-- Completed on 2023-09-12 14:23:33
 
 --
 -- PostgreSQL database dump complete

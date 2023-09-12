@@ -81,6 +81,9 @@ type Mutation {
 }
 
 input InputPersonal {
+  clave: String!
+  username: String!
+  rol: Int!
   nacionalidad: Int!
   cedula: Int!
   nombre: String!

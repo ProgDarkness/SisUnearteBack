@@ -94,6 +94,9 @@ export default {
   Mutation: {
     crearPersonal: async (_, { input }) => {
       const {
+        clave,
+        username,
+        rol,
         nacionalidad,
         cedula,
         nombre,
@@ -116,6 +119,23 @@ export default {
         estatus = 1
         usuario = 16
         blregistro = true
+
+        await dbp.none(
+          `INSERT INTO public.usuarios(
+                      tx_clave, user_name, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_tp_sexo, correo_usuario)
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`,
+          [
+            clave,
+            username,
+            rol,
+            nacionalidad,
+            cedula,
+            nombre,
+            apellido,
+            sexo,
+            correo
+          ]
+        )
 
         await dbp.none(
           `INSERT INTO public.personal(

@@ -339,6 +339,30 @@ type TipoDepartamento {
   nombre: String!
 }
 
+type ResultUsuarioDocente {
+  status: Int!
+  message: String!
+  type: String!
+  response: [UsuarioDocente]
+}
+
+type UsuarioDocente {
+  id: ID!
+  nombre: String!
+}
+
+type ResultRoles {
+  status: Int!
+  message: String!
+  type: String!
+  response: [Roles]
+}
+
+type Roles {
+  id: ID!
+  nombre: String!
+}
+
 type Query {
   obtenerMaterias: ResultMaterias
   obtenerCarreras: ResultCarreras
@@ -368,6 +392,8 @@ type Query {
   obtenerProfesion: ResultProfesion
   obtenerTipoPersonal: ResultTipoPersonal
   obtenerTipoDepartamento: ResultTipoDepartamento
+  obtenerUsuarioDocente: ResultUsuarioDocente
+  obtenerRoles: ResultRoles
 }
 
 type Mutation {
