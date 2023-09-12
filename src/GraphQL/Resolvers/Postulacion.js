@@ -2,6 +2,25 @@ import { dbp } from '../../postgresdb'
 
 export default {
   Query: {
+    obtenerOfertaPostu: async (_, { carrera }) => {
+      try {
+        const ofertas = await dbp.manyOrNone(
+          `SELECT ofe.id_oferta, ofe.id_carrera, c.nb_carrera, ofe.id_sede, s.nb_sede
+          FROM public.oferta_academica ofe, public.carreras c, public.sedes s 
+            WHERE ofe.id_carrera = c.id_carrera AND ofe.id_sede = s.id_sede;`,
+          [carrera]
+        )
+
+        return {
+          status: 200,
+          message: 'Carreras encontrado',
+          type: 'success',
+          response: ofertas
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
     obtenerEstatusPostulacion: async () => {
       try {
         const estatus = await dbp.manyOrNone(
@@ -51,17 +70,15 @@ export default {
   },
   Mutation: {
     crearPostulacion: async (_, { input }) => {
-      const { usuario, carrera, sede } = input
+      const { usuario, carrera, sede, fepostulacion, idOferta } = input
 
       try {
         let estatus = null
         let activo = null
         let observacion = null
-        let fepostulacion = null
         estatus = 4
         activo = true
         observacion = 'CREADA'
-        fepostulacion = '2023-09-11'
 
         const idperiodo = await dbp.oneOrNone(
           `SELECT id_periodo FROM periodo_trayecto as pt WHERE pt.id_carrera = $1 AND pt.id_trayecto = 1;`,
@@ -70,8 +87,8 @@ export default {
 
         await dbp.none(
           `INSERT INTO public.postulacion(
-                      id_usuario, id_carrera, id_periodo, id_sede, fe_postulacion, id_estatus_postulacion, st_activo, tx_observacion)
-                      VALUES ( $1, $2, $3, $4, $5, $6, $7, $8);`,
+                      id_usuario, id_carrera, id_periodo, id_sede, fe_postulacion, id_estatus_postulacion, st_activo, tx_observacion, id_oferta, created_at)
+                      VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, now());`,
           [
             usuario,
             carrera,
@@ -80,7 +97,8 @@ export default {
             fepostulacion,
             estatus,
             activo,
-            observacion
+            observacion,
+            idOferta
           ]
         )
         return {
@@ -107,11 +125,22 @@ export default {
       observacion = 'APROBADA'
 
       try {
+        const idPersonal = await dbp.oneOrNone(
+          `SELECT id_personal FROM public.personal WHERE id_usuario = $1;`,
+          [usuario]
+        )
+
         await dbp.none(
           `UPDATE public.postulacion
-                    SET id_estatus_postulacion = $1, id_personal_aprobacion = $2, fe_aprobacion = $3, tx_observacion = $4
+                    SET id_estatus_postulacion = $1, id_personal_aprobacion = $2, fe_aprobacion = $3, tx_observacion = $4, updated_at = now()
                     WHERE id_postulacion = $5;`,
-          [estatus, usuario, feaprobacion, observacion, idpostulacion]
+          [
+            estatus,
+            idPersonal.id_personal,
+            feaprobacion,
+            observacion,
+            idpostulacion
+          ]
         )
         return {
           status: 200,

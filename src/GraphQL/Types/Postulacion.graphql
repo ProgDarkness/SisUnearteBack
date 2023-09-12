@@ -37,6 +37,22 @@ type ResultPostuladoAgrupadoCarrera {
 type Query {
   obtenerEstatusPostulacion: ResultEstatuPostulacion
   obtenerListadoPostuladoCarrera: ResultPostuladoAgrupadoCarrera
+  obtenerOfertaPostu: ResultOfertaPostu
+}
+
+type ResultOfertaPostu {
+  status: Int!
+  message: String!
+  type: String!
+  response: [OfertaPostu]
+}
+
+type OfertaPostu {
+  id_oferta: Int!
+  id_carrera: Int!
+  nb_carrera: String!
+  id_sede: Int!
+  nb_sede: String!
 }
 
 type Mutation {
@@ -52,6 +68,7 @@ input InputPostulacion {
   carrera: Int!
   sede: Int!
   fepostulacion: String!
+  idOferta: Int!
 }
 
 type ResultPostulacion {
