@@ -49,11 +49,19 @@ export default {
           and sc.id_sede = s.id_sede
 		      and c.id_titulo = tt.id_titulo
           and c.id_estatus_carrera = 3;`)
+
+        const materias = await dbp.manyOrNone(
+          `SELECT c.id_carrera as id, c.nb_carrera as nombre 
+          FROM public.carreras as c, public.estatus_carrera as e
+                  WHERE c.id_estatus_carrera = e.id_estatus_carrera
+                   and c.id_estatus_carrera = 3;`
+        )
+
         return {
           status: 200,
           message: 'Listado de mallas curriculares encontradas',
           type: 'success',
-          response: mallas
+          response: { mallas, materias }
         }
       } catch (e) {
         return { status: 500, message: e.message, type: 'error' }

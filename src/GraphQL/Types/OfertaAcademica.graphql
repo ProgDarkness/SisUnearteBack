@@ -1,6 +1,7 @@
 type Mutation {
   crearOferta(input: InputOferta!): ResultadOferta!
   eliminarOferta(idOferta: Int!): ResultadOferta!
+  editarOferta(idOferta: Int!, input: InputOferta!): ResultadOferta!
 }
 
 input InputOferta {

@@ -33,7 +33,7 @@ input InputRegSede {
 
 type Query {
   obtenerTodasCarreras: ResultTodasCarreras
-  obtenerTodasMallas: ResultTodasCarreras
+  obtenerTodasMallas: ResultTodasCarrerasMateriasOfr
   obtenerDetalleCarrera(input: InputCarrera!): ResultCarrera
   obtenerMateriasPorCarrera(carrera: Int!): ResultMateCarre
   obtenerTrayectosPorCarrera(carrera: Int!): ResultTraCarre
@@ -176,4 +176,21 @@ type ResultTodasCarreras {
   message: String!
   type: String!
   response: [Carreras]
+}
+
+type ResultTodasCarrerasMateriasOfr {
+  status: Int!
+  message: String!
+  type: String!
+  response: UnionObjectMateriaCarrera
+}
+
+type UnionObjectMateriaCarrera {
+  mallas: [Carreras]
+  materias: [materiaDropDown]
+}
+
+type materiaDropDown {
+  id: Int!
+  nombre: String!
 }

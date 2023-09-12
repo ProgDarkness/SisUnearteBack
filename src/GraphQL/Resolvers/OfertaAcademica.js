@@ -186,38 +186,58 @@ export default {
       } = input
 
       try {
-        const idofertas = await dbp.oneOrNone(
-          `INSERT INTO public.oferta_academica(
-            id_periodo, id_carrera, nu_cupos, visible, id_estatus_oferta, created_at, updated_at, co_oferta, id_sede)
-            VALUES ($1, $2, $3, TRUE, 1, now(), now(), $4, $5) RETURNING id_oferta;`,
-          [periodoOfer, idCarrera, cantidadCupos, codOferta, sedeOferta]
+        const validateOferta = await dbp.oneOrNone(
+          `SELECT id_oferta
+          FROM public.oferta_academica 
+            WHERE id_carrera = $1 AND id_sede = $2;`,
+          [idCarrera, sedeOferta]
         )
 
-        Object.entries(objectOferta).forEach(async ([index, item]) => {
-          await dbp.none(
-            `INSERT INTO public.docente_materia(
-              id_materia, id_personal, id_estatus, created_at, updated_at)
-              VALUES ($1, $2, TRUE, now(), now());`,
-            [item.id_materia, item.id_personal]
+        if (validateOferta) {
+          return {
+            status: 202,
+            message: 'La oferta ya se encuentra registrada',
+            type: 'warn'
+          }
+        } else {
+          const idofertas = await dbp.oneOrNone(
+            `INSERT INTO public.oferta_academica(
+              id_periodo, id_carrera, nu_cupos, visible, id_estatus_oferta, created_at, updated_at, co_oferta, id_sede)
+              VALUES ($1, $2, $3, TRUE, 1, now(), now(), $4, $5) RETURNING id_oferta;`,
+            [periodoOfer, idCarrera, cantidadCupos, codOferta, sedeOferta]
           )
 
-          await dbp.none(
-            `INSERT INTO public.oferta_materia_carrera(
-              id_oferta, id_materia, created_at, updated_at, id_carrera, id_trayecto)
-              VALUES ($1, $2, now(), now(), $3, $4);`,
-            [
-              idofertas.id_oferta,
-              item.id_materia,
-              idCarrera,
-              item.idtrayectocarrera
-            ]
-          )
-        })
+          Object.entries(objectOferta).forEach(async ([index, item]) => {
+            await dbp.none(
+              `INSERT INTO public.docente_materia(
+                id_materia, id_personal, id_carrera, id_oferta, id_estatus, created_at, updated_at)
+                VALUES ($1, $2, $3, $4, TRUE, now(), now());`,
+              [
+                item.id_materia,
+                item.id_personal,
+                idCarrera,
+                idofertas.id_oferta
+              ]
+            )
 
-        return {
-          status: 200,
-          message: 'Oferta registrada exitosamente',
-          type: 'success'
+            await dbp.none(
+              `INSERT INTO public.oferta_materia_carrera(
+                id_oferta, id_materia, created_at, updated_at, id_carrera, id_trayecto)
+                VALUES ($1, $2, now(), now(), $3, $4);`,
+              [
+                idofertas.id_oferta,
+                item.id_materia,
+                idCarrera,
+                item.idtrayectocarrera
+              ]
+            )
+          })
+
+          return {
+            status: 200,
+            message: 'Oferta registrada exitosamente',
+            type: 'success'
+          }
         }
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
@@ -225,6 +245,18 @@ export default {
     },
     eliminarOferta: async (_, { idOferta }) => {
       try {
+        await dbp.none(
+          `DELETE FROM public.docente_materia
+            WHERE id_oferta = $1;`,
+          [idOferta]
+        )
+
+        await dbp.none(
+          `DELETE FROM public.oferta_materia_carrera
+          WHERE id_oferta = $1;`,
+          [idOferta]
+        )
+
         await dbp.none(
           `DELETE FROM public.oferta_academica
                WHERE id_oferta = $1;`,
@@ -234,6 +266,74 @@ export default {
         return {
           status: 200,
           message: 'Oferta eliminada exitosamente',
+          type: 'success'
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
+    editarOferta: async (_, { idOferta, input }) => {
+      const {
+        codOferta,
+        sedeOferta,
+        cantidadCupos,
+        idCarrera,
+        periodoOfer,
+        objectOferta
+      } = input
+
+      try {
+        await dbp.none(
+          `DELETE FROM public.docente_materia
+            WHERE id_oferta = $1;`,
+          [idOferta]
+        )
+
+        await dbp.none(
+          `DELETE FROM public.oferta_materia_carrera
+          WHERE id_oferta = $1;`,
+          [idOferta]
+        )
+
+        await dbp.none(
+          `DELETE FROM public.oferta_academica
+               WHERE id_oferta = $1;`,
+          [idOferta]
+        )
+
+        await dbp.none(
+          `INSERT INTO public.oferta_academica(
+            id_periodo, id_carrera, nu_cupos, visible, id_estatus_oferta, created_at, updated_at, co_oferta, id_sede, id_oferta)
+            VALUES ($1, $2, $3, TRUE, 1, now(), now(), $4, $5, $6);`,
+          [
+            periodoOfer,
+            idCarrera,
+            cantidadCupos,
+            codOferta,
+            sedeOferta,
+            idOferta
+          ]
+        )
+
+        Object.entries(objectOferta).forEach(async ([index, item]) => {
+          await dbp.none(
+            `INSERT INTO public.docente_materia(
+              id_materia, id_personal, id_carrera, id_oferta, id_estatus, created_at, updated_at)
+              VALUES ($1, $2, $3, $4, TRUE, now(), now());`,
+            [item.id_materia, item.id_personal, idCarrera, idOferta]
+          )
+
+          await dbp.none(
+            `INSERT INTO public.oferta_materia_carrera(
+              id_oferta, id_materia, created_at, updated_at, id_carrera, id_trayecto)
+              VALUES ($1, $2, now(), now(), $3, $4);`,
+            [idOferta, item.id_materia, idCarrera, item.idtrayectocarrera]
+          )
+        })
+
+        return {
+          status: 200,
+          message: 'Oferta editada exitosamente',
           type: 'success'
         }
       } catch (e) {
