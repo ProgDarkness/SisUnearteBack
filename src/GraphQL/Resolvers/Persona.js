@@ -1,4 +1,8 @@
 import { dbp } from '../../postgresdb'
+import CryptoJS from 'crypto-js'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 export default {
   Query: {
@@ -111,6 +115,13 @@ export default {
         civil,
         departamento
       } = input
+      const { SECRET_KEY } = process.env
+
+      const claveDesencriptada = CryptoJS.AES.decrypt(
+        clave,
+        SECRET_KEY
+      ).toString(CryptoJS.enc.Utf8)
+      const hashClave = CryptoJS.SHA256(claveDesencriptada).toString()
 
       try {
         let estatus = null
@@ -122,10 +133,10 @@ export default {
 
         await dbp.none(
           `INSERT INTO public.usuarios(
-                      tx_clave, user_name, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_tp_sexo, correo_usuario)
-                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`,
+                      tx_clave, user_name, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_tp_sexo, correo_usuario, bl_status)
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, true);`,
           [
-            clave,
+            hashClave,
             username,
             rol,
             nacionalidad,

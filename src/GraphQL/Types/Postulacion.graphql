@@ -38,6 +38,7 @@ type Query {
   obtenerEstatusPostulacion: ResultEstatuPostulacion
   obtenerListadoPostuladoCarrera: ResultPostuladoAgrupadoCarrera
   obtenerOfertaPostu: ResultOfertaPostu
+  obtenerPermisoPostulacion(idUser: Int): ResultPermisoPostu
 }
 
 type ResultOfertaPostu {
@@ -45,6 +46,13 @@ type ResultOfertaPostu {
   message: String!
   type: String!
   response: [OfertaPostu]
+}
+
+type ResultPermisoPostu {
+  status: Int!
+  message: String!
+  type: String!
+  response: Boolean!
 }
 
 type OfertaPostu {

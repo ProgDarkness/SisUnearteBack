@@ -2,6 +2,28 @@ import { dbp } from '../../postgresdb'
 
 export default {
   Query: {
+    obtenerPermisoPostulacion: async (_, { idUser }) => {
+      try {
+        let permiso = true
+        const ofertas = await dbp.manyOrNone(
+          `SELECT id_postulacion FROM public.postulacion WHERE id_usuario = $1;`,
+          [idUser]
+        )
+
+        if (ofertas.length >= 2) {
+          permiso = false
+        }
+
+        return {
+          status: 200,
+          message: 'Permiso encontrado',
+          type: 'success',
+          response: permiso
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
     obtenerOfertaPostu: async (_, { carrera }) => {
       try {
         const ofertas = await dbp.manyOrNone(
@@ -39,7 +61,7 @@ export default {
     obtenerListadoPostuladoCarrera: async () => {
       try {
         const postulados = await dbp.manyOrNone(
-          `SELECT * FROM info_postulados;`
+          `SELECT * FROM info_postulados order by idestatus;`
         )
 
         for (let i = 0; i < postulados.length; i++) {
