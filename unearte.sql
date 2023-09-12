@@ -5,7 +5,7 @@
 -- Dumped from database version 14.8
 -- Dumped by pg_dump version 14.8
 
--- Started on 2023-09-11 19:53:52
+-- Started on 2023-09-11 20:34:31
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1527,7 +1527,8 @@ CREATE TABLE public.postulacion (
     tx_observacion character varying(50),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id_sede integer
+    id_sede integer,
+    id_oferta integer
 );
 
 
@@ -10865,11 +10866,11 @@ COPY public.personal (id_personal, id_nacionalidad, ced_personal, nb_personal, a
 -- Data for Name: postulacion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.postulacion (id_postulacion, id_usuario, id_carrera, id_periodo, fe_postulacion, id_estatus_postulacion, id_personal_aprobacion, fe_aprobacion, st_activo, tx_observacion, created_at, updated_at, id_sede) FROM stdin;
-1	16	1	7	2023-09-07 00:00:00	4	\N	\N	t	fdsff	\N	\N	1
-4	16	1	7	2023-09-08 00:00:00	4	\N	\N	t	adsa	\N	\N	1
-2	17	1	7	2023-09-08 00:00:00	2	16	2023-09-11 00:00:00	t	APROBADA	\N	\N	1
-5	16	1	7	2023-09-11 00:00:00	3	\N	\N	t	FALTA DE DOCUMENTOS	\N	\N	1
+COPY public.postulacion (id_postulacion, id_usuario, id_carrera, id_periodo, fe_postulacion, id_estatus_postulacion, id_personal_aprobacion, fe_aprobacion, st_activo, tx_observacion, created_at, updated_at, id_sede, id_oferta) FROM stdin;
+1	16	1	7	2023-09-07 00:00:00	4	\N	\N	t	fdsff	\N	\N	1	\N
+4	16	1	7	2023-09-08 00:00:00	4	\N	\N	t	adsa	\N	\N	1	\N
+2	17	1	7	2023-09-08 00:00:00	2	16	2023-09-11 00:00:00	t	APROBADA	\N	\N	1	\N
+5	16	1	7	2023-09-11 00:00:00	3	\N	\N	t	FALTA DE DOCUMENTOS	\N	\N	1	\N
 \.
 
 
@@ -48790,7 +48791,7 @@ ALTER TABLE ONLY public.usuarios
     ADD CONSTRAINT zona_fk_5 FOREIGN KEY (id_tp_zona) REFERENCES public.tipo_zona(id_tp_zona);
 
 
--- Completed on 2023-09-11 19:53:54
+-- Completed on 2023-09-11 20:34:33
 
 --
 -- PostgreSQL database dump complete
