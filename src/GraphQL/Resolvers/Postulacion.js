@@ -93,15 +93,17 @@ export default {
       }
     },
     aprobarPostulacion: async (_, { input }) => {
-      const { idpostulacion } = input
+      const { usuario, idpostulacion } = input
 
       let estatus = null
-      let usuario = null
       let feaprobacion = null
       let observacion = null
       estatus = 2
-      usuario = 15
-      feaprobacion = '2023-09-11'
+      feaprobacion = new Date().toLocaleDateString('es-ES', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      })
       observacion = 'APROBADA'
 
       try {

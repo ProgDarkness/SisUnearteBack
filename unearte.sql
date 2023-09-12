@@ -5,7 +5,7 @@
 -- Dumped from database version 14.8
 -- Dumped by pg_dump version 14.8
 
--- Started on 2023-09-11 20:34:31
+-- Started on 2023-09-12 09:05:03
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -472,7 +472,8 @@ CREATE TABLE public.docente_materia (
     id_estatus boolean,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id_carrera integer
+    id_carrera integer,
+    id_oferta integer
 );
 
 
@@ -3893,7 +3894,7 @@ COPY public.dias (id_dia, nb_dia, visible, id_estatus, created_at, updated_at) F
 -- Data for Name: docente_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.docente_materia (id_dicta, id_materia, id_personal, id_estatus, created_at, updated_at, id_carrera) FROM stdin;
+COPY public.docente_materia (id_dicta, id_materia, id_personal, id_estatus, created_at, updated_at, id_carrera, id_oferta) FROM stdin;
 \.
 
 
@@ -10867,10 +10868,10 @@ COPY public.personal (id_personal, id_nacionalidad, ced_personal, nb_personal, a
 --
 
 COPY public.postulacion (id_postulacion, id_usuario, id_carrera, id_periodo, fe_postulacion, id_estatus_postulacion, id_personal_aprobacion, fe_aprobacion, st_activo, tx_observacion, created_at, updated_at, id_sede, id_oferta) FROM stdin;
-1	16	1	7	2023-09-07 00:00:00	4	\N	\N	t	fdsff	\N	\N	1	\N
 4	16	1	7	2023-09-08 00:00:00	4	\N	\N	t	adsa	\N	\N	1	\N
-2	17	1	7	2023-09-08 00:00:00	2	16	2023-09-11 00:00:00	t	APROBADA	\N	\N	1	\N
 5	16	1	7	2023-09-11 00:00:00	3	\N	\N	t	FALTA DE DOCUMENTOS	\N	\N	1	\N
+2	17	1	7	2023-09-08 00:00:00	2	16	2023-09-11 00:00:00	t	APROBADA	\N	\N	1	\N
+1	16	1	7	2023-09-07 00:00:00	3	16	2023-09-11 00:00:00	t	fhgfgf	\N	\N	1	\N
 \.
 
 
@@ -48791,7 +48792,7 @@ ALTER TABLE ONLY public.usuarios
     ADD CONSTRAINT zona_fk_5 FOREIGN KEY (id_tp_zona) REFERENCES public.tipo_zona(id_tp_zona);
 
 
--- Completed on 2023-09-11 20:34:33
+-- Completed on 2023-09-12 09:05:04
 
 --
 -- PostgreSQL database dump complete
