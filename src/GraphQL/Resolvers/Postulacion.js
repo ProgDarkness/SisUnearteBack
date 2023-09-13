@@ -29,7 +29,7 @@ export default {
         const ofertas = await dbp.manyOrNone(
           `SELECT ofe.id_oferta, ofe.id_carrera, c.nb_carrera, ofe.id_sede, s.nb_sede
           FROM public.oferta_academica ofe, public.carreras c, public.sedes s 
-            WHERE ofe.id_carrera = c.id_carrera AND ofe.id_sede = s.id_sede;`,
+            WHERE ofe.id_carrera = c.id_carrera AND ofe.id_sede = s.id_sede AND ofe.id_estatus_oferta = 1;`,
           [carrera]
         )
 

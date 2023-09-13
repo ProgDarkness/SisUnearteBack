@@ -188,14 +188,11 @@ export default {
           [idOferta]
         )
 
-        
         if (statusOferta.id_estatus_oferta === 1) {
           idStatus = 2
         } else if (statusOferta.id_estatus_oferta === 2) {
           idStatus = 1
         }
-        
-        console.log(statusOferta, idStatus)
 
         await dbp.none(
           `UPDATE public.oferta_academica
