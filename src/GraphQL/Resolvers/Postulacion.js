@@ -88,6 +88,32 @@ export default {
       } catch (e) {
         return { status: 500, message: e.message, type: 'error' }
       }
+    },
+    obtenerPostulacionUsuario: async (_, { idUser }) => {
+      try {
+        const postulacionusuarios = await dbp.manyOrNone(
+          `SELECT p.id_postulacion as id, u.nb_usuario as usuario, c.nb_carrera as carrera, pl.anio_periodo as periodo,
+          ep.nb_estatus_postulacion as estatus, s.nb_sede as sede
+          FROM public.postulacion p, public.usuarios u, public.carreras c, public.periodo_lectivo pl,
+          public.estatus_postulacion ep, public.sedes s
+          WHERE p.id_usuario = u.id_usuario AND 
+          p.id_carrera = c.id_carrera AND
+          p.id_periodo = pl.id_periodo AND
+          p.id_estatus_postulacion = ep.id_estatus_postulacion AND
+          p.id_sede = s.id_sede AND
+           p.id_usuario = $1;`,
+          [idUser]
+        )
+
+        return {
+          status: 200,
+          message: 'Postulacion usuario encontrado',
+          type: 'success',
+          response: postulacionusuarios
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
     }
   },
   Mutation: {

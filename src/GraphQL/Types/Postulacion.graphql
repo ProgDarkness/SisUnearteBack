@@ -39,6 +39,23 @@ type Query {
   obtenerListadoPostuladoCarrera: ResultPostuladoAgrupadoCarrera
   obtenerOfertaPostu: ResultOfertaPostu
   obtenerPermisoPostulacion(idUser: Int): ResultPermisoPostu
+  obtenerPostulacionUsuario(idUser: Int): ResultPostulacionUsuario
+}
+
+type PostulacionUsuario {
+  id: Int!
+  usuario: String!
+  carrera: String!
+  periodo: String!
+  estatus: String!
+  sede: String!
+}
+
+type ResultPostulacionUsuario {
+  status: Int!
+  message: String!
+  type: String!
+  response: [PostulacionUsuario]
 }
 
 type ResultOfertaPostu {
