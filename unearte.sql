@@ -5,7 +5,7 @@
 -- Dumped from database version 14.8
 -- Dumped by pg_dump version 14.8
 
--- Started on 2023-09-12 14:23:32
+-- Started on 2023-09-13 18:14:22
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -8929,6 +8929,7 @@ COPY public.estatus_materia (id_estatus_materia, nb_estatus_materia, tx_descripc
 
 COPY public.estatus_oferta (id_estatus_oferta, nb_estatus_oferta, tx_descripcion, visible, created_at, updated_at) FROM stdin;
 1	Abierto	Oferta abierta	t	\N	\N
+2	Cerrado	Oferta cerrada	t	\N	\N
 \.
 
 
@@ -8965,7 +8966,7 @@ COPY public.estatus_personal (id_estatus_personal, nb_estatus_personal, tx_descr
 COPY public.estatus_postulacion (id_estatus_postulacion, nb_estatus_postulacion, tx_descripcion, visible, created_at, updated_at) FROM stdin;
 2	Aprobado	Aprobado	t	\N	\N
 3	Rechazado	Rechazado	t	\N	\N
-4	Pendiente por ser revisado	Pendiente por ser revisado	t	\N	\N
+1	Pendiente por ser revisado	Pendiente por ser revisado	t	\N	\N
 \.
 
 
@@ -10869,7 +10870,6 @@ COPY public.personal (id_personal, id_nacionalidad, ced_personal, nb_personal, a
 --
 
 COPY public.postulacion (id_postulacion, id_usuario, id_carrera, id_periodo, fe_postulacion, id_estatus_postulacion, id_personal_aprobacion, fe_aprobacion, st_activo, tx_observacion, created_at, updated_at, id_sede, id_oferta) FROM stdin;
-4	16	1	7	2023-09-08 00:00:00	4	\N	\N	t	adsa	\N	\N	1	\N
 5	16	1	7	2023-09-11 00:00:00	3	\N	\N	t	FALTA DE DOCUMENTOS	\N	\N	1	\N
 2	17	1	7	2023-09-08 00:00:00	2	16	2023-09-11 00:00:00	t	APROBADA	\N	\N	1	\N
 1	16	1	7	2023-09-07 00:00:00	3	16	2023-09-11 00:00:00	t	fhgfgf	\N	\N	1	\N
@@ -11215,10 +11215,10 @@ COPY public.tipo_documento (id_tp_documento, co_tp_documento, nb_tp_documento, t
 --
 
 COPY public.tipo_estado_civil (id_civil, nb_civil) FROM stdin;
-1	Soltero
-2	Casado
-3	Divorciado
-4	Viudo
+1	SOLTERO
+2	CASADO
+3	DIVORSIADO
+4	VIUDO
 \.
 
 
@@ -46750,7 +46750,7 @@ SELECT pg_catalog.setval('public.estatus_materia_id_seq', 4, true);
 -- Name: estatus_oferta_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.estatus_oferta_id_seq', 1, true);
+SELECT pg_catalog.setval('public.estatus_oferta_id_seq', 2, true);
 
 
 --
@@ -48793,7 +48793,7 @@ ALTER TABLE ONLY public.usuarios
     ADD CONSTRAINT zona_fk_5 FOREIGN KEY (id_tp_zona) REFERENCES public.tipo_zona(id_tp_zona);
 
 
--- Completed on 2023-09-12 14:23:33
+-- Completed on 2023-09-13 18:14:24
 
 --
 -- PostgreSQL database dump complete
