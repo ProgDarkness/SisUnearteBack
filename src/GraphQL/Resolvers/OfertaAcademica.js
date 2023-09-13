@@ -152,7 +152,7 @@ export default {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
       }
     },
-    obtenerOfertaAcademica: async () => {
+    obtenerOfertaAcademica: async (_, { idStatus }) => {
       try {
         const ofertas = await dbp.manyOrNone(
           `SELECT oa.id_oferta, oa.co_oferta, oa.id_periodo, p.tx_mensaje, oa.id_carrera, c.nb_carrera, tp.nb_tp_carrera,
@@ -160,7 +160,9 @@ export default {
           FROM public.oferta_academica oa, public.carreras c, public.sedes s,
           public.periodo_lectivo p, public.estatus_oferta eo, public.tipo_carrera tp, public.ciclos ci
           WHERE oa.id_periodo = p.id_periodo AND oa.id_carrera = c.id_carrera AND oa.id_sede = s.id_sede
-          AND oa.id_estatus_oferta = eo.id_estatus_oferta AND c.id_tp_carrera = tp.id_tp_carrera AND c.id_ciclo = ci.id_ciclo;`
+          AND oa.id_estatus_oferta = eo.id_estatus_oferta AND c.id_tp_carrera = tp.id_tp_carrera AND c.id_ciclo = ci.id_ciclo
+          AND oa.id_estatus_oferta = $1;`,
+          [idStatus]
         )
 
         return {
@@ -175,6 +177,42 @@ export default {
     }
   },
   Mutation: {
+    cambiarStatusOferta: async (_, { idOferta }) => {
+      try {
+        let idStatus = 2
+
+        const statusOferta = await dbp.oneOrNone(
+          `SELECT id_estatus_oferta
+          FROM public.oferta_academica
+            WHERE id_oferta = $1;`,
+          [idOferta]
+        )
+
+        
+        if (statusOferta.id_estatus_oferta === 1) {
+          idStatus = 2
+        } else if (statusOferta.id_estatus_oferta === 2) {
+          idStatus = 1
+        }
+        
+        console.log(statusOferta, idStatus)
+
+        await dbp.none(
+          `UPDATE public.oferta_academica
+            SET id_estatus_oferta=$2
+              WHERE id_oferta = $1;`,
+          [idOferta, idStatus]
+        )
+
+        return {
+          status: 200,
+          message: 'Ofertas actualizada',
+          type: 'success'
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
     crearOferta: async (_, { input }) => {
       const {
         codOferta,
@@ -203,7 +241,7 @@ export default {
           const idofertas = await dbp.oneOrNone(
             `INSERT INTO public.oferta_academica(
               id_periodo, id_carrera, nu_cupos, visible, id_estatus_oferta, created_at, updated_at, co_oferta, id_sede)
-              VALUES ($1, $2, $3, TRUE, 1, now(), now(), $4, $5) RETURNING id_oferta;`,
+              VALUES ($1, $2, $3, TRUE, 2, now(), now(), $4, $5) RETURNING id_oferta;`,
             [periodoOfer, idCarrera, cantidadCupos, codOferta, sedeOferta]
           )
 
