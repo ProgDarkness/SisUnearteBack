@@ -125,16 +125,14 @@ export default {
 
       try {
         let estatus = null
-        let usuario = null
         let blregistro = null
         estatus = 1
-        usuario = 16
         blregistro = true
 
-        await dbp.none(
+        const idUser = await dbp.oneOrNone(
           `INSERT INTO public.usuarios(
                       tx_clave, user_name, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_tp_sexo, correo_usuario, bl_status)
-                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, true);`,
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, true) RETURNING id_usuario;`,
           [
             hashClave,
             username,
@@ -168,7 +166,7 @@ export default {
             profesion,
             sexo,
             civil,
-            usuario,
+            idUser.id_usuario,
             blregistro,
             departamento
           ]
