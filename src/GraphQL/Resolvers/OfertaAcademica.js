@@ -266,6 +266,13 @@ export default {
                 item.idtrayectocarrera
               ]
             )
+
+            await dbp.none(
+              `INSERT INTO public.periodo_trayecto(
+              id_periodo, id_trayecto, created_at, updated_at, id_carrera)
+              VALUES ($1, $2, now(), now(), $3);`,
+              [periodoOfer, item.idtrayectocarrera, idCarrera]
+            )
           })
 
           return {
