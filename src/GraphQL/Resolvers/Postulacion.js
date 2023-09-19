@@ -124,7 +124,7 @@ export default {
         let estatus = null
         let activo = null
         let observacion = null
-        estatus = 4
+        estatus = 1
         activo = true
         observacion = 'CREADA'
 

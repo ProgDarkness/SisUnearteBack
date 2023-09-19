@@ -11,9 +11,9 @@ export default {
       if (!auth) throw new ApolloError('Sesión no Válida')
 
       try {
-        return await dbp.manyOrNone(`SELECT u.id_usuario, u.user_name, u.bl_status, r.nb_rol as rol, u.ced_usuario, u.nb_usuario, u.ape_usuario, u.created_at, u.updated_at
-                                      FROM public.usuarios u, public.roles r
-                                        WHERE u.id_rol = r.id_rol;`)
+        return await dbp.manyOrNone(`SELECT u.id_usuario, u.user_name, u.bl_status, r.nb_rol as rol, 
+                                      u.ced_usuario, u.nb_usuario, u.ape_usuario, u.created_at, u.updated_at
+                                      FROM public.usuarios u, public.roles r WHERE u.id_rol = r.id_rol;`)
       } catch (e) {
         throw new ApolloError(e.message)
       }
