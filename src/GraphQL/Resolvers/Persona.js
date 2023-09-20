@@ -150,8 +150,8 @@ export default {
           `INSERT INTO public.personal(
                       id_nacionalidad, ced_personal, nb_personal, ape_personal, tlf_fijo, tlf_movil, correo, 
                       id_estatus_personal, id_tp_personal, carga_horaria, id_profesion, id_tp_sexo, id_civil, 
-                      id_usuario, bl_registro, id_departamento)
-                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16);`,
+                      id_usuario, bl_registro, id_departamento, created_at)
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, now());`,
           [
             nacionalidad,
             cedula,
@@ -203,7 +203,7 @@ export default {
           `UPDATE public.personal
                SET id_nacionalidad = $1, ced_personal = $2, nb_personal = $3, ape_personal = $4, tlf_fijo = $5, tlf_movil = $6, 
                correo = $7, id_estatus_personal = $8, id_tp_personal = $9, carga_horaria = $10, id_profesion = $11, id_tp_sexo = $12, 
-               id_civil = $13 WHERE id_personal =$14;`,
+               id_civil = $13, updated_at = now() WHERE id_personal =$14;`,
           [
             nacionalidad,
             cedula,

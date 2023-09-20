@@ -20,8 +20,10 @@ type PostuladoAgrupadoCarrera {
   fepostulacion: String!
   observacion: String!
   estatus: String!
+  idperiodo: Int!
   periodo: String!
   tperiodo: String!
+  idcarrera: Int!
   carrera: String!
   sede: String!
   estado: String!
@@ -104,6 +106,9 @@ type ResultPostulacion {
 
 input InputAprobarPostulacion {
   usuario: Int!
+  idpostulado: Int!
+  idcarrera: Int!
+  idperiodo: Int!
   idpostulacion: Int!
 }
 

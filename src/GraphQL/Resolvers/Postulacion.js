@@ -159,11 +159,17 @@ export default {
       }
     },
     aprobarPostulacion: async (_, { input }) => {
-      const { usuario, idpostulacion } = input
+      const { usuario, idpostulado, idcarrera, idperiodo, idpostulacion } =
+        input
 
       let estatus = null
       let feaprobacion = null
       let observacion = null
+      let discapacidad = null
+      let tpingreso = null
+      let estatusestudiante = null
+      let estatusInscripcion = null
+      let trayecto = null
       estatus = 2
       feaprobacion = new Date().toLocaleDateString('es-ES', {
         day: '2-digit',
@@ -171,12 +177,122 @@ export default {
         year: 'numeric'
       })
       observacion = 'APROBADA'
+      discapacidad = true
+      tpingreso = 2
+      estatusestudiante = 1
+      estatusInscripcion = 2
+      trayecto = 1
 
       try {
         const idPersonal = await dbp.oneOrNone(
           `SELECT id_personal FROM public.personal WHERE id_usuario = $1;`,
           [usuario]
         )
+
+        const datos = await dbp.oneOrNone(
+          `SELECT * FROM usuarios WHERE id_usuario = $1;`,
+          [idpostulado]
+        )
+
+        const {
+          id_nacionalidad,
+          ced_usuario,
+          nb_usuario,
+          ape_usuario,
+          nb2_usuario,
+          ape2_usuario,
+          id_tp_sexo,
+          fe_nac_usuario,
+          id_civil,
+          correo_usuario,
+          id_tp_via,
+          nb_via,
+          id_tp_zona,
+          nb_zona,
+          id_tp_vivienda,
+          nu_vivienda,
+          id_zona,
+          cod_zona_postal,
+          id_pais,
+          id_ciudad,
+          id_estado,
+          id_municipio,
+          id_parroquia,
+          id_pais_nac,
+          id_estado_nac,
+          id_ciudad_nac,
+          id_tp_discapacidad,
+          id_etnia
+        } = datos
+
+        const idEstudiante = await dbp.oneOrNone(
+          `INSERT INTO public.estudiantes(
+            id_nacionalidad, ced_estudiante, nb_estudiante, ape_estudiante, nb2_estudiante, ape2_estudiante, id_tp_sexo, 
+            fe_nac_estudiante, id_civil, correo_estudiante, id_tp_via, nb_via, id_tp_zona, nb_zona, id_tp_vivienda, 
+            nu_vivienda, id_zona, cod_zona_postal, id_pais, id_ciudad, id_estado, id_municipio, id_parroquia, 
+            id_pais_nac, id_estado_nac, id_ciudad_nac, discapacidad, id_tp_discapacidad, id_tp_ingreso, id_etnia, id_estatus_estudiante, created_at)
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, now()) RETURNING id_estudiante;`,
+          [
+            id_nacionalidad,
+            ced_usuario,
+            nb_usuario,
+            ape_usuario,
+            nb2_usuario,
+            ape2_usuario,
+            id_tp_sexo,
+            fe_nac_usuario,
+            id_civil,
+            correo_usuario,
+            id_tp_via,
+            nb_via,
+            id_tp_zona,
+            nb_zona,
+            id_tp_vivienda,
+            nu_vivienda,
+            id_zona,
+            cod_zona_postal,
+            id_pais,
+            id_ciudad,
+            id_estado,
+            id_municipio,
+            id_parroquia,
+            id_pais_nac,
+            id_estado_nac,
+            id_ciudad_nac,
+            discapacidad,
+            id_tp_discapacidad,
+            tpingreso,
+            id_etnia,
+            estatusestudiante
+          ]
+        )
+
+        const idInscripcion = await dbp.oneOrNone(
+          `INSERT INTO public.inscripcion(
+            id_estudiante, id_periodo, id_estatus_inscripcion, id_carrera, id_trayecto, fe_ingreso, created_at)
+                      VALUES ($1, $2, $3, $4, $5, now(), now()) RETURNING id_inscripcion;`,
+          [
+            idEstudiante.id_estudiante,
+            idperiodo,
+            estatusInscripcion,
+            idcarrera,
+            trayecto
+          ]
+        )
+
+        const idmateriatrayecto = await dbp.manyOrNone(
+          `SELECT * FROM public.carrera_materia WHERE id_carrera = $1;`,
+          [idcarrera]
+        )
+
+        for (let i = 0; i < idmateriatrayecto.length; i++) {
+          await dbp.oneOrNone(
+            `INSERT INTO public.inscripcion_materia(
+              id_inscripcion, id_materia, id_horario, id_estatus_inscripto_materia, id_seccion, created_at)
+                        VALUES ($1, $2, $3, $4, $5, now());`,
+            [idInscripcion.id_inscripcion, 1, 1, 1, 1]
+          )
+        }
 
         await dbp.none(
           `UPDATE public.postulacion
