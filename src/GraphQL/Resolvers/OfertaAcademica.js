@@ -273,6 +273,26 @@ export default {
               VALUES ($1, $2, now(), now(), $3);`,
               [periodoOfer, item.idtrayectocarrera, idCarrera]
             )
+
+            const nbSeccion =
+              'SEC-' +
+              sedeOferta.toString() +
+              idCarrera.toString() +
+              item.idtrayectocarrera.toString()
+
+            await dbp.none(
+              `INSERT INTO public.secciones(
+	              nb_seccion, id_estatus_seccion, id_carrera, id_trayecto, id_sede, id_oferta, created_at, updated_at)
+	              VALUES ($1, $2, $3, $4, $5, $6, now(), now());`,
+              [
+                nbSeccion,
+                1,
+                idCarrera,
+                item.idtrayectocarrera,
+                sedeOferta,
+                idofertas.id_oferta
+              ]
+            )
           })
 
           return {
@@ -301,6 +321,12 @@ export default {
 
         await dbp.none(
           `DELETE FROM public.oferta_academica
+               WHERE id_oferta = $1;`,
+          [idOferta]
+        )
+
+        await dbp.none(
+          `DELETE FROM public.secciones
                WHERE id_oferta = $1;`,
           [idOferta]
         )

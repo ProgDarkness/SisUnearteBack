@@ -5,7 +5,7 @@
 -- Dumped from database version 14.5
 -- Dumped by pg_dump version 14.5
 
--- Started on 2023-09-20 10:25:29
+-- Started on 2023-09-20 15:37:41
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -2496,12 +2496,13 @@ ALTER TABLE public.secciones_id_seq OWNER TO postgres;
 
 CREATE TABLE public.secciones (
     id_seccion integer DEFAULT nextval('public.secciones_id_seq'::regclass) NOT NULL,
-    nb_seccion character varying(5) NOT NULL,
-    cap_seccion integer NOT NULL,
+    nb_seccion character varying NOT NULL,
+    cap_seccion integer,
     id_estatus_seccion integer,
     id_carrera integer,
     id_trayecto integer,
     id_sede integer,
+    id_oferta integer,
     created_at timestamp with time zone,
     updated_at timestamp with time zone
 );
@@ -2922,7 +2923,7 @@ COPY public.carrera_electiva (id_carrelec, id_carrera, id_electiva, visible, id_
 --
 
 COPY public.carrera_materia (id_carrema, id_carrera, id_materia, visible, id_trayecto, created_at, updated_at) FROM stdin;
-6	1	1	t	1	2023-09-18 14:58:48.634526	2023-09-18 14:58:48.634526
+7	3	3	t	1	2023-09-20 14:14:20.583009	2023-09-20 14:14:20.583009
 \.
 
 
@@ -2933,12 +2934,9 @@ COPY public.carrera_materia (id_carrema, id_carrera, id_materia, visible, id_tra
 --
 
 COPY public.carrera_trayecto (id_carrera_trayecto, id_carrera, id_trayecto) FROM stdin;
-15	1	1
-16	1	2
-17	1	3
-18	2	1
-19	2	2
-20	2	3
+21	3	1
+22	3	2
+23	3	3
 \.
 
 
@@ -2949,8 +2947,7 @@ COPY public.carrera_trayecto (id_carrera_trayecto, id_carrera, id_trayecto) FROM
 --
 
 COPY public.carreras (id_carrera, co_carrera, nb_carrera, id_tp_carrera, id_ciclo, visible, created_at, updated_at, id_estatus_carrera, id_titulo) FROM stdin;
-2	C-ART	ARTE	1	2	t	2023-09-18 14:59:37.803785	2023-09-18 14:59:37.803785	4	2
-1	C-DANZA	DANZA	1	2	t	2023-09-18 14:58:34.466007	2023-09-18 14:58:34.466007	3	2
+3	DAN-1	DANZA	1	2	t	2023-09-20 14:14:12.366348	2023-09-20 14:14:12.366348	3	2
 \.
 
 
@@ -4018,7 +4015,7 @@ COPY public.dias (id_dia, nb_dia, visible, id_estatus, created_at, updated_at) F
 --
 
 COPY public.docente_materia (id_dicta, id_materia, id_personal, id_estatus, created_at, updated_at, id_carrera, id_oferta) FROM stdin;
-8	1	3	t	2023-09-18 15:50:07.288209	2023-09-18 15:50:07.288209	1	2
+12	3	4	t	2023-09-20 14:56:52.868726	2023-09-20 14:56:52.868726	3	6
 \.
 
 
@@ -9143,6 +9140,7 @@ COPY public.fecha_estatus_postulacion (id_estatus_fe_postulacion, id_postulacion
 
 COPY public.geografico_sede (id_geografico_sede, id_tp_via, nb_via, id_tp_zona, nb_zona, tx_direccion, id_zona_postal, id_ciudad, id_estado, id_municipio, id_parroquia, created_at, updated_at) FROM stdin;
 1	1	jlkj	1	oiuiu	iuoiu	1	1	1	1	1	\N	\N
+3	2	URDANETA	3	Sector La Concordia	CALLE N°1	1014	1	1	1	11	2023-09-20 14:15:29.798575	2023-09-20 14:15:29.798575
 \.
 
 
@@ -9183,8 +9181,7 @@ COPY public.inscripcion_materia (id_inscrito, id_inscripcion, id_materia, id_hor
 --
 
 COPY public.materias (id_materia, co_materia, nb_materia, nu_credito, id_tp_materia, hr_semanal, bl_prelacion, id_estatus_materia, created_at, updated_at, id_clase_materia, id_area_materia, id_departamento) FROM stdin;
-1	DAN-1	DANZA	12	12	24	t	4	2023-09-18 14:57:03.641426	2023-09-18 14:57:03.641426	\N	\N	\N
-2	ART-1	ARTE	12	12	24	t	4	2023-09-18 14:57:46.361651	2023-09-18 14:57:46.361651	\N	\N	\N
+3	TD-1	TEORIA DE LA DANZA	12	12	24	t	4	2023-09-20 14:13:40.62236	2023-09-20 14:13:40.62236	\N	\N	\N
 \.
 
 
@@ -9572,7 +9569,7 @@ COPY public.notas (id_nota, id_inscrito, nu_nota, created_at, updated_at) FROM s
 --
 
 COPY public.oferta_academica (id_oferta, id_periodo, id_carrera, nu_cupos, nu_seccion, visible, id_estatus_oferta, created_at, updated_at, co_oferta, id_sede) FROM stdin;
-2	1	1	34	\N	t	1	2023-09-18 15:50:07.278393	2023-09-18 15:50:07.278393	O-DANZA	1
+6	2	3	340	\N	t	2	2023-09-20 14:56:52.864322	2023-09-20 14:56:52.864322	ODAN-1	2
 \.
 
 
@@ -9593,7 +9590,7 @@ COPY public.oferta_horario (id_horaoferta, id_oferta, id_bloque, id_personal, id
 --
 
 COPY public.oferta_materia_carrera (id_oferta_materia, id_oferta, id_materia, created_at, updated_at, id_carrera, id_trayecto) FROM stdin;
-2	2	1	2023-09-18 15:50:07.290743	2023-09-18 15:50:07.290743	1	1
+6	6	3	2023-09-20 14:56:52.869476	2023-09-20 14:56:52.869476	3	1
 \.
 
 
@@ -10960,7 +10957,7 @@ COPY public.parroquias (id_parroquia, nb_parroquia, cod_parroquia, id_municipio)
 --
 
 COPY public.periodo_lectivo (id_periodo, co_periodo, id_tp_periodo, anio_periodo, id_mes_inicio, id_mes_fin, nu_semana_interperido, tx_mensaje, fe_inicio, fe_fin, fe_ult_entrega_acta, fe_ult_solic_documento, fe_pre_solic_grado, fe_modificacion, fe_inicio_preinscripcion, fe_fin_preinscripcion, fe_inicio_inscripcion, fe_fin_inscripcion, fe_inicio_oferta, fe_fin_oferta, fe_inicio_retiro, fe_fin_retiro, fe_inicio_notas, fe_fin_notas, visible, id_estatus_periodo, created_at, updated_at, fe_inicio_postulacion, fe_fin_postulacion) FROM stdin;
-1	PER-1	1	2024	1	3	8	PERIODO 1	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	t	1	\N	\N	2023-09-28 00:00:00	2023-09-28 00:00:00
+2	PER-1	1	2023	1	4	12	PERIODO ENERO	2023-09-24 00:00:00	2023-09-24 00:00:00	2023-09-24 00:00:00	2023-09-24 00:00:00	2023-09-24 00:00:00	2023-09-24 00:00:00	2023-09-24 00:00:00	2023-09-24 00:00:00	2023-09-24 00:00:00	2023-09-24 00:00:00	2023-09-24 00:00:00	2023-09-24 00:00:00	2023-09-24 00:00:00	2023-09-24 00:00:00	2023-09-24 00:00:00	2023-09-24 00:00:00	t	1	\N	\N	2023-09-24 00:00:00	2023-09-24 00:00:00
 \.
 
 
@@ -10971,7 +10968,10 @@ COPY public.periodo_lectivo (id_periodo, co_periodo, id_tp_periodo, anio_periodo
 --
 
 COPY public.periodo_trayecto (id_ptrayecto, id_periodo, id_trayecto, created_at, updated_at, id_carrera) FROM stdin;
-3	1	1	2023-09-18 15:50:07.292813	2023-09-18 15:50:07.292813	1
+4	2	1	2023-09-20 14:19:05.248478	2023-09-20 14:19:05.248478	3
+5	2	1	2023-09-20 14:21:48.675376	2023-09-20 14:21:48.675376	3
+6	2	1	2023-09-20 14:52:54.79864	2023-09-20 14:52:54.79864	3
+7	2	1	2023-09-20 14:56:52.870631	2023-09-20 14:56:52.870631	3
 \.
 
 
@@ -10982,7 +10982,7 @@ COPY public.periodo_trayecto (id_ptrayecto, id_periodo, id_trayecto, created_at,
 --
 
 COPY public.personal (id_personal, id_nacionalidad, ced_personal, nb_personal, ape_personal, tlf_fijo, tlf_movil, correo, id_estatus_personal, id_tp_personal, carga_horaria, id_profesion, created_at, updated_at, id_tp_sexo, id_civil, id_usuario, bl_registro, id_departamento) FROM stdin;
-3	1	65765765	ANA	TORRE	33342245	65322344	a@gmail.com	1	1	76	2	\N	\N	1	1	23	t	1
+4	1	15689358	MANUEL	GONZALEZ	04687953245	04126594989	g@ff.cc	1	1	24	3	\N	\N	2	1	24	t	3
 \.
 
 
@@ -11003,7 +11003,6 @@ COPY public.personal_seccion (id_personalsecc, id_personal, id_seccion, created_
 --
 
 COPY public.postulacion (id_postulacion, id_usuario, id_carrera, id_periodo, fe_postulacion, id_estatus_postulacion, id_personal_aprobacion, fe_aprobacion, st_activo, tx_observacion, created_at, updated_at, id_sede, id_oferta) FROM stdin;
-6	19	1	1	2023-09-18 00:00:00	4	\N	\N	t	CREADA	2023-09-18 15:53:15.960679	\N	1	2
 \.
 
 
@@ -11273,8 +11272,9 @@ COPY public.roles (id_rol, nb_rol, created_at, updated_at) FROM stdin;
 -- Data for Name: secciones; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.secciones (id_seccion, nb_seccion, cap_seccion, id_estatus_seccion, id_carrera, id_trayecto, id_sede, created_at, updated_at) FROM stdin;
-2	A	30	1	\N	\N	\N	\N	\N
+COPY public.secciones (id_seccion, nb_seccion, cap_seccion, id_estatus_seccion, id_carrera, id_trayecto, id_sede, id_oferta, created_at, updated_at) FROM stdin;
+2	A	30	1	\N	\N	\N	\N	\N	\N
+5	SEC-231	\N	1	3	1	2	6	2023-09-20 14:56:52.87166-04	2023-09-20 14:56:52.87166-04
 \.
 
 
@@ -11285,8 +11285,7 @@ COPY public.secciones (id_seccion, nb_seccion, cap_seccion, id_estatus_seccion, 
 --
 
 COPY public.sede_carrera (id_scarrera, id_sede, id_carrera, created_at, updated_at) FROM stdin;
-4	1	1	2023-09-18 15:01:30.207762	2023-09-18 15:01:30.207762
-5	1	2	2023-09-18 15:01:36.022335	2023-09-18 15:01:36.022335
+6	2	3	2023-09-20 14:15:54.655912	2023-09-20 14:15:54.655912
 \.
 
 
@@ -11297,7 +11296,7 @@ COPY public.sede_carrera (id_scarrera, id_sede, id_carrera, created_at, updated_
 --
 
 COPY public.sedes (id_sede, co_sede, nb_sede, id_geografico_sede, id_estatus, created_at, updated_at) FROM stdin;
-1	CCS-1	CARACAS	1	1	\N	\N
+2	CSS-1	CARACAS	3	1	2023-09-20 14:15:29.802404	2023-09-20 14:15:29.802404
 \.
 
 
@@ -11553,6 +11552,7 @@ COPY public.usuarios (id_usuario, tx_clave, user_name, bl_status, id_rol, id_nac
 19	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	aspiranteuno	t	3	1	12345670	ASPIRANTE	UNO	2	1989-12-09 00:00:00	1	a@gmail.com	1	OESTE	1	Casco Central de Altagracia	3	34	1	1	\N	2023-09-18 14:08:02.717723-04	2023-09-18 14:10:13.765824-04	1	4	t	GILO	GIL	319	239	5	4	239	1	1	1010
 21	ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f	GABRIEL	t	6	1	12345678	GABRIEL	MARCANO	2	\N	\N	gabriel@gmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-18 15:08:35.451924-04	2023-09-18 15:08:35.451924-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 22	ff79e2cb03e5d82522a03d8fbe536059664ec9b3e52ed7073ce9915c1f4447a3	GABRIEL	t	6	1	12321311	GABRIEL	MARCANO	2	\N	\N	g@hotmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-18 15:09:43.655347-04	2023-09-18 15:09:43.655347-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+24	4deb52476d710297639f217a1c9246f1079a7fd4f5eccc60b1cefaf4afad09d1	MANUEL	t	6	1	15689358	MANUEL	GONZALEZ	2	\N	\N	g@ff.cc	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-20 14:13:02.879851-04	2023-09-20 14:13:02.879851-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 \.
 
 
@@ -46695,7 +46695,7 @@ SELECT pg_catalog.setval('public.carrera_electiva_id_seq', 1, false);
 -- Name: carrera_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.carrera_materia_id_seq', 6, true);
+SELECT pg_catalog.setval('public.carrera_materia_id_seq', 7, true);
 
 
 --
@@ -46704,7 +46704,7 @@ SELECT pg_catalog.setval('public.carrera_materia_id_seq', 6, true);
 -- Name: carrera_trayecto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.carrera_trayecto_id_seq', 20, true);
+SELECT pg_catalog.setval('public.carrera_trayecto_id_seq', 23, true);
 
 
 --
@@ -46713,7 +46713,7 @@ SELECT pg_catalog.setval('public.carrera_trayecto_id_seq', 20, true);
 -- Name: carreras_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.carreras_id_seq', 2, true);
+SELECT pg_catalog.setval('public.carreras_id_seq', 3, true);
 
 
 --
@@ -46776,7 +46776,7 @@ SELECT pg_catalog.setval('public.discapacidad_id_seq', 5, true);
 -- Name: docente_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.docente_materia_id_seq', 8, true);
+SELECT pg_catalog.setval('public.docente_materia_id_seq', 12, true);
 
 
 --
@@ -46974,7 +46974,7 @@ SELECT pg_catalog.setval('public.geografico_id_seq', 1, false);
 -- Name: geografico_sede_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.geografico_sede_id_seq', 2, true);
+SELECT pg_catalog.setval('public.geografico_sede_id_seq', 3, true);
 
 
 --
@@ -47010,7 +47010,7 @@ SELECT pg_catalog.setval('public.inscripcion_materia_id_seq', 1, false);
 -- Name: materias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.materias_id_seq', 2, true);
+SELECT pg_catalog.setval('public.materias_id_seq', 3, true);
 
 
 --
@@ -47046,7 +47046,7 @@ SELECT pg_catalog.setval('public.notas_id_seq', 1, false);
 -- Name: oferta_academica_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.oferta_academica_id_seq', 2, true);
+SELECT pg_catalog.setval('public.oferta_academica_id_seq', 6, true);
 
 
 --
@@ -47073,7 +47073,7 @@ SELECT pg_catalog.setval('public.oferta_materia_carrera_id_seq', 3, true);
 -- Name: oferta_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.oferta_materia_id_seq', 2, true);
+SELECT pg_catalog.setval('public.oferta_materia_id_seq', 6, true);
 
 
 --
@@ -47109,7 +47109,7 @@ SELECT pg_catalog.setval('public.periodo_carrera_id_seq', 1, true);
 -- Name: periodo_trayecto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.periodo_trayecto_id_seq', 3, true);
+SELECT pg_catalog.setval('public.periodo_trayecto_id_seq', 7, true);
 
 
 --
@@ -47118,7 +47118,7 @@ SELECT pg_catalog.setval('public.periodo_trayecto_id_seq', 3, true);
 -- Name: periodos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.periodos_id_seq', 1, true);
+SELECT pg_catalog.setval('public.periodos_id_seq', 2, true);
 
 
 --
@@ -47127,7 +47127,7 @@ SELECT pg_catalog.setval('public.periodos_id_seq', 1, true);
 -- Name: personal_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.personal_id_seq', 3, true);
+SELECT pg_catalog.setval('public.personal_id_seq', 4, true);
 
 
 --
@@ -47172,7 +47172,7 @@ SELECT pg_catalog.setval('public.roles_id_seq', 7, true);
 -- Name: secciones_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.secciones_id_seq', 2, true);
+SELECT pg_catalog.setval('public.secciones_id_seq', 5, true);
 
 
 --
@@ -47181,7 +47181,7 @@ SELECT pg_catalog.setval('public.secciones_id_seq', 2, true);
 -- Name: sede_carrera_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sede_carrera_id_seq', 5, true);
+SELECT pg_catalog.setval('public.sede_carrera_id_seq', 6, true);
 
 
 --
@@ -47190,7 +47190,7 @@ SELECT pg_catalog.setval('public.sede_carrera_id_seq', 5, true);
 -- Name: sedes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sedes_id_seq', 1, true);
+SELECT pg_catalog.setval('public.sedes_id_seq', 2, true);
 
 
 --
@@ -47352,7 +47352,7 @@ SELECT pg_catalog.setval('public.turnos_id_seq', 1, false);
 -- Name: usuarios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.usuarios_id_seq', 23, true);
+SELECT pg_catalog.setval('public.usuarios_id_seq', 24, true);
 
 
 --
@@ -49071,7 +49071,7 @@ ALTER TABLE ONLY public.usuarios
     ADD CONSTRAINT zona_fk_5 FOREIGN KEY (id_tp_zona) REFERENCES public.tipo_zona(id_tp_zona);
 
 
--- Completed on 2023-09-20 10:25:30
+-- Completed on 2023-09-20 15:37:42
 
 --
 -- PostgreSQL database dump complete
