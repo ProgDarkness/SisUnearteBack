@@ -5,7 +5,7 @@
 -- Dumped from database version 14.8
 -- Dumped by pg_dump version 14.8
 
--- Started on 2023-09-18 09:01:52
+-- Started on 2023-09-19 20:40:31
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -29,7 +29,7 @@ CREATE SCHEMA public;
 ALTER SCHEMA public OWNER TO postgres;
 
 --
--- TOC entry 4199 (class 0 OID 0)
+-- TOC entry 4210 (class 0 OID 0)
 -- Dependencies: 3
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
 --
@@ -38,7 +38,7 @@ COMMENT ON SCHEMA public IS 'standard public schema';
 
 
 --
--- TOC entry 378 (class 1255 OID 33079)
+-- TOC entry 379 (class 1255 OID 33079)
 -- Name: insertar_estudiante(integer, integer, character varying, character varying, integer, integer, text); Type: PROCEDURE; Schema: public; Owner: postgres
 --
 
@@ -113,7 +113,7 @@ CREATE SEQUENCE public.aulas_id_seq
 ALTER TABLE public.aulas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 317 (class 1259 OID 25918)
+-- TOC entry 316 (class 1259 OID 25918)
 -- Name: aulas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -165,7 +165,7 @@ CREATE TABLE public.bloque_horario (
 ALTER TABLE public.bloque_horario OWNER TO postgres;
 
 --
--- TOC entry 365 (class 1259 OID 34887)
+-- TOC entry 363 (class 1259 OID 34887)
 -- Name: carrera_electiva_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -181,7 +181,7 @@ CREATE SEQUENCE public.carrera_electiva_id_seq
 ALTER TABLE public.carrera_electiva_id_seq OWNER TO postgres;
 
 --
--- TOC entry 366 (class 1259 OID 34888)
+-- TOC entry 364 (class 1259 OID 34888)
 -- Name: carrera_electiva; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -233,7 +233,7 @@ CREATE TABLE public.carrera_materia (
 ALTER TABLE public.carrera_materia OWNER TO postgres;
 
 --
--- TOC entry 346 (class 1259 OID 33000)
+-- TOC entry 344 (class 1259 OID 33000)
 -- Name: carrera_trayecto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -249,7 +249,7 @@ CREATE SEQUENCE public.carrera_trayecto_id_seq
 ALTER TABLE public.carrera_trayecto_id_seq OWNER TO postgres;
 
 --
--- TOC entry 347 (class 1259 OID 33001)
+-- TOC entry 345 (class 1259 OID 33001)
 -- Name: carrera_trayecto; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -300,7 +300,7 @@ CREATE TABLE public.carreras (
 ALTER TABLE public.carreras OWNER TO postgres;
 
 --
--- TOC entry 313 (class 1259 OID 25890)
+-- TOC entry 312 (class 1259 OID 25890)
 -- Name: ciclos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -316,7 +316,7 @@ CREATE SEQUENCE public.ciclos_id_seq
 ALTER TABLE public.ciclos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 314 (class 1259 OID 25891)
+-- TOC entry 313 (class 1259 OID 25891)
 -- Name: ciclos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -398,7 +398,7 @@ CREATE TABLE public.clase_materia (
 ALTER TABLE public.clase_materia OWNER TO postgres;
 
 --
--- TOC entry 355 (class 1259 OID 34781)
+-- TOC entry 353 (class 1259 OID 34781)
 -- Name: departamentos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -414,7 +414,7 @@ CREATE SEQUENCE public.departamentos_id_seq
 ALTER TABLE public.departamentos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 356 (class 1259 OID 34782)
+-- TOC entry 354 (class 1259 OID 34782)
 -- Name: departamentos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -514,7 +514,7 @@ CREATE TABLE public.docente_materia (
 ALTER TABLE public.docente_materia OWNER TO postgres;
 
 --
--- TOC entry 363 (class 1259 OID 34880)
+-- TOC entry 361 (class 1259 OID 34880)
 -- Name: electiva_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -530,7 +530,7 @@ CREATE SEQUENCE public.electiva_id_seq
 ALTER TABLE public.electiva_id_seq OWNER TO postgres;
 
 --
--- TOC entry 364 (class 1259 OID 34881)
+-- TOC entry 362 (class 1259 OID 34881)
 -- Name: electiva; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -566,7 +566,7 @@ CREATE SEQUENCE public.estado_civil_id_seq
 ALTER TABLE public.estado_civil_id_seq OWNER TO postgres;
 
 --
--- TOC entry 335 (class 1259 OID 32868)
+-- TOC entry 333 (class 1259 OID 32868)
 -- Name: estado_mundo_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -582,7 +582,7 @@ CREATE SEQUENCE public.estado_mundo_id_seq
 ALTER TABLE public.estado_mundo_id_seq OWNER TO postgres;
 
 --
--- TOC entry 336 (class 1259 OID 32888)
+-- TOC entry 334 (class 1259 OID 32888)
 -- Name: estado_mundo; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -628,7 +628,7 @@ CREATE TABLE public.estados (
 ALTER TABLE public.estados OWNER TO postgres;
 
 --
--- TOC entry 306 (class 1259 OID 25734)
+-- TOC entry 305 (class 1259 OID 25734)
 -- Name: estatus_aula_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -644,7 +644,7 @@ CREATE SEQUENCE public.estatus_aula_id_seq
 ALTER TABLE public.estatus_aula_id_seq OWNER TO postgres;
 
 --
--- TOC entry 307 (class 1259 OID 25735)
+-- TOC entry 306 (class 1259 OID 25735)
 -- Name: estatus_aula; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -661,7 +661,7 @@ CREATE TABLE public.estatus_aula (
 ALTER TABLE public.estatus_aula OWNER TO postgres;
 
 --
--- TOC entry 321 (class 1259 OID 26048)
+-- TOC entry 320 (class 1259 OID 26048)
 -- Name: estatus_carrera_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -677,7 +677,7 @@ CREATE SEQUENCE public.estatus_carrera_id_seq
 ALTER TABLE public.estatus_carrera_id_seq OWNER TO postgres;
 
 --
--- TOC entry 322 (class 1259 OID 26049)
+-- TOC entry 321 (class 1259 OID 26049)
 -- Name: estatus_carrera; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -694,7 +694,7 @@ CREATE TABLE public.estatus_carrera (
 ALTER TABLE public.estatus_carrera OWNER TO postgres;
 
 --
--- TOC entry 357 (class 1259 OID 34788)
+-- TOC entry 355 (class 1259 OID 34788)
 -- Name: estatus_departamentos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -710,7 +710,7 @@ CREATE SEQUENCE public.estatus_departamentos_id_seq
 ALTER TABLE public.estatus_departamentos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 358 (class 1259 OID 34789)
+-- TOC entry 356 (class 1259 OID 34789)
 -- Name: estatus_departamento; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -725,7 +725,7 @@ CREATE TABLE public.estatus_departamento (
 ALTER TABLE public.estatus_departamento OWNER TO postgres;
 
 --
--- TOC entry 292 (class 1259 OID 25657)
+-- TOC entry 291 (class 1259 OID 25657)
 -- Name: estatus_docente_materia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -741,7 +741,7 @@ CREATE SEQUENCE public.estatus_docente_materia_id_seq
 ALTER TABLE public.estatus_docente_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 293 (class 1259 OID 25658)
+-- TOC entry 292 (class 1259 OID 25658)
 -- Name: estatus_docente_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -789,7 +789,7 @@ CREATE TABLE public.estatus_estudiante (
 ALTER TABLE public.estatus_estudiante OWNER TO postgres;
 
 --
--- TOC entry 302 (class 1259 OID 25719)
+-- TOC entry 301 (class 1259 OID 25719)
 -- Name: estatus_horario_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -805,7 +805,7 @@ CREATE SEQUENCE public.estatus_horario_id_seq
 ALTER TABLE public.estatus_horario_id_seq OWNER TO postgres;
 
 --
--- TOC entry 303 (class 1259 OID 25720)
+-- TOC entry 302 (class 1259 OID 25720)
 -- Name: estatus_horario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -838,7 +838,7 @@ CREATE SEQUENCE public.estatus_id_seq
 ALTER TABLE public.estatus_id_seq OWNER TO postgres;
 
 --
--- TOC entry 287 (class 1259 OID 25621)
+-- TOC entry 286 (class 1259 OID 25621)
 -- Name: estatus_inscripcion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -854,7 +854,7 @@ CREATE SEQUENCE public.estatus_inscripcion_id_seq
 ALTER TABLE public.estatus_inscripcion_id_seq OWNER TO postgres;
 
 --
--- TOC entry 289 (class 1259 OID 25638)
+-- TOC entry 288 (class 1259 OID 25638)
 -- Name: estatus_inscripcion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -870,7 +870,7 @@ CREATE TABLE public.estatus_inscripcion (
 ALTER TABLE public.estatus_inscripcion OWNER TO postgres;
 
 --
--- TOC entry 288 (class 1259 OID 25631)
+-- TOC entry 287 (class 1259 OID 25631)
 -- Name: estatus_inscripto_materia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -886,7 +886,7 @@ CREATE SEQUENCE public.estatus_inscripto_materia_id_seq
 ALTER TABLE public.estatus_inscripto_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 294 (class 1259 OID 25664)
+-- TOC entry 293 (class 1259 OID 25664)
 -- Name: estatus_inscripto_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -902,7 +902,7 @@ CREATE TABLE public.estatus_inscripto_materia (
 ALTER TABLE public.estatus_inscripto_materia OWNER TO postgres;
 
 --
--- TOC entry 297 (class 1259 OID 25687)
+-- TOC entry 296 (class 1259 OID 25687)
 -- Name: estatus_materia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -918,7 +918,7 @@ CREATE SEQUENCE public.estatus_materia_id_seq
 ALTER TABLE public.estatus_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 298 (class 1259 OID 25688)
+-- TOC entry 297 (class 1259 OID 25688)
 -- Name: estatus_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -935,7 +935,7 @@ CREATE TABLE public.estatus_materia (
 ALTER TABLE public.estatus_materia OWNER TO postgres;
 
 --
--- TOC entry 308 (class 1259 OID 25741)
+-- TOC entry 307 (class 1259 OID 25741)
 -- Name: estatus_oferta_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -951,7 +951,7 @@ CREATE SEQUENCE public.estatus_oferta_id_seq
 ALTER TABLE public.estatus_oferta_id_seq OWNER TO postgres;
 
 --
--- TOC entry 309 (class 1259 OID 25742)
+-- TOC entry 308 (class 1259 OID 25742)
 -- Name: estatus_oferta; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -968,7 +968,7 @@ CREATE TABLE public.estatus_oferta (
 ALTER TABLE public.estatus_oferta OWNER TO postgres;
 
 --
--- TOC entry 315 (class 1259 OID 25911)
+-- TOC entry 314 (class 1259 OID 25911)
 -- Name: estatus_periodo_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -984,7 +984,7 @@ CREATE SEQUENCE public.estatus_periodo_id_seq
 ALTER TABLE public.estatus_periodo_id_seq OWNER TO postgres;
 
 --
--- TOC entry 316 (class 1259 OID 25912)
+-- TOC entry 315 (class 1259 OID 25912)
 -- Name: estatus_periodo; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1001,7 +1001,7 @@ CREATE TABLE public.estatus_periodo (
 ALTER TABLE public.estatus_periodo OWNER TO postgres;
 
 --
--- TOC entry 290 (class 1259 OID 25644)
+-- TOC entry 289 (class 1259 OID 25644)
 -- Name: estatus_personal; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1017,7 +1017,7 @@ CREATE TABLE public.estatus_personal (
 ALTER TABLE public.estatus_personal OWNER TO postgres;
 
 --
--- TOC entry 323 (class 1259 OID 32772)
+-- TOC entry 322 (class 1259 OID 32772)
 -- Name: estatus_postulacion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1033,7 +1033,7 @@ CREATE SEQUENCE public.estatus_postulacion_id_seq
 ALTER TABLE public.estatus_postulacion_id_seq OWNER TO postgres;
 
 --
--- TOC entry 324 (class 1259 OID 32773)
+-- TOC entry 323 (class 1259 OID 32773)
 -- Name: estatus_postulacion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1050,7 +1050,7 @@ CREATE TABLE public.estatus_postulacion (
 ALTER TABLE public.estatus_postulacion OWNER TO postgres;
 
 --
--- TOC entry 304 (class 1259 OID 25727)
+-- TOC entry 303 (class 1259 OID 25727)
 -- Name: estatus_seccion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1066,7 +1066,7 @@ CREATE SEQUENCE public.estatus_seccion_id_seq
 ALTER TABLE public.estatus_seccion_id_seq OWNER TO postgres;
 
 --
--- TOC entry 305 (class 1259 OID 25728)
+-- TOC entry 304 (class 1259 OID 25728)
 -- Name: estatus_seccion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1099,7 +1099,7 @@ CREATE SEQUENCE public.estudiantes_id_seq
 ALTER TABLE public.estudiantes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 286 (class 1259 OID 25615)
+-- TOC entry 365 (class 1259 OID 34943)
 -- Name: estudiantes; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1109,26 +1109,43 @@ CREATE TABLE public.estudiantes (
     ced_estudiante integer NOT NULL,
     nb_estudiante character varying(100) NOT NULL,
     ape_estudiante character varying(100) NOT NULL,
+    nb2_estudiante character varying(100) NOT NULL,
+    ape2_estudiante character varying(100) NOT NULL,
     id_tp_sexo integer,
-    id_civil integer,
     fe_nac_estudiante timestamp without time zone,
-    id_ciudad_nac integer,
-    id_estado_nac integer,
+    id_civil integer,
+    correo_estudiante character varying(50),
+    id_tp_via integer,
+    nb_via character varying(50),
+    id_tp_zona integer,
+    nb_zona character varying(50),
+    id_tp_vivienda integer,
+    nu_vivienda character varying(50),
+    id_zona integer,
+    cod_zona_postal integer,
+    id_pais integer,
+    id_ciudad integer,
+    id_estado integer,
+    id_municipio integer,
+    id_parroquia integer,
     id_pais_nac integer,
+    id_estado_nac integer,
+    id_ciudad_nac integer,
     discapacidad boolean,
     id_tp_discapacidad integer,
     id_tp_ingreso integer,
+    id_etnia integer,
     id_estatus_estudiante integer,
+    bl_registro boolean,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    id_geografico_estudiante integer
+    updated_at timestamp without time zone
 );
 
 
 ALTER TABLE public.estudiantes OWNER TO postgres;
 
 --
--- TOC entry 331 (class 1259 OID 32833)
+-- TOC entry 330 (class 1259 OID 32833)
 -- Name: fecha_estatus_postulacion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1144,7 +1161,7 @@ CREATE SEQUENCE public.fecha_estatus_postulacion_id_seq
 ALTER TABLE public.fecha_estatus_postulacion_id_seq OWNER TO postgres;
 
 --
--- TOC entry 332 (class 1259 OID 32834)
+-- TOC entry 331 (class 1259 OID 32834)
 -- Name: fecha_estatus_postulacion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1180,33 +1197,7 @@ CREATE SEQUENCE public.geografico_id_seq
 ALTER TABLE public.geografico_id_seq OWNER TO postgres;
 
 --
--- TOC entry 333 (class 1259 OID 32856)
--- Name: geografico_estudiante; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.geografico_estudiante (
-    id_geografico_estudiante integer DEFAULT nextval('public.geografico_id_seq'::regclass) NOT NULL,
-    id_tp_via integer,
-    nb_via character varying(50),
-    id_tp_zona integer,
-    nb_zona character varying(50),
-    id_tp_vivienda integer,
-    nu_vivienda integer NOT NULL,
-    tx_direccion character varying(50) NOT NULL,
-    id_zona_postal integer,
-    id_ciudad integer,
-    id_estado integer NOT NULL,
-    id_municipio integer NOT NULL,
-    id_parroquia integer NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
-ALTER TABLE public.geografico_estudiante OWNER TO postgres;
-
---
--- TOC entry 300 (class 1259 OID 25700)
+-- TOC entry 299 (class 1259 OID 25700)
 -- Name: geografico_sede_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1222,7 +1213,7 @@ CREATE SEQUENCE public.geografico_sede_id_seq
 ALTER TABLE public.geografico_sede_id_seq OWNER TO postgres;
 
 --
--- TOC entry 334 (class 1259 OID 32862)
+-- TOC entry 332 (class 1259 OID 32862)
 -- Name: geografico_sede; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1421,7 +1412,7 @@ CREATE SEQUENCE public.tipopersonal_id_seq
 ALTER TABLE public.tipopersonal_id_seq OWNER TO postgres;
 
 --
--- TOC entry 291 (class 1259 OID 25650)
+-- TOC entry 290 (class 1259 OID 25650)
 -- Name: tipo_personal; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1470,7 +1461,7 @@ CREATE TABLE public.tipo_sexo (
 ALTER TABLE public.tipo_sexo OWNER TO postgres;
 
 --
--- TOC entry 354 (class 1259 OID 34395)
+-- TOC entry 352 (class 1259 OID 34395)
 -- Name: info_personal; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -1565,7 +1556,7 @@ CREATE TABLE public.periodo_lectivo (
 ALTER TABLE public.periodo_lectivo OWNER TO postgres;
 
 --
--- TOC entry 325 (class 1259 OID 32784)
+-- TOC entry 324 (class 1259 OID 32784)
 -- Name: postulacion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1581,7 +1572,7 @@ CREATE SEQUENCE public.postulacion_id_seq
 ALTER TABLE public.postulacion_id_seq OWNER TO postgres;
 
 --
--- TOC entry 337 (class 1259 OID 32894)
+-- TOC entry 335 (class 1259 OID 32894)
 -- Name: postulacion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1656,7 +1647,7 @@ CREATE SEQUENCE public.tipo_periodo_id_seq
 ALTER TABLE public.tipo_periodo_id_seq OWNER TO postgres;
 
 --
--- TOC entry 301 (class 1259 OID 25713)
+-- TOC entry 300 (class 1259 OID 25713)
 -- Name: tipo_periodo; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1690,7 +1681,7 @@ CREATE SEQUENCE public.usuarios_id_seq
 ALTER TABLE public.usuarios_id_seq OWNER TO postgres;
 
 --
--- TOC entry 310 (class 1259 OID 25753)
+-- TOC entry 309 (class 1259 OID 25753)
 -- Name: usuarios; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1738,7 +1729,7 @@ CREATE TABLE public.usuarios (
 ALTER TABLE public.usuarios OWNER TO postgres;
 
 --
--- TOC entry 360 (class 1259 OID 34862)
+-- TOC entry 358 (class 1259 OID 34862)
 -- Name: info_postulados; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -1865,7 +1856,7 @@ CREATE TABLE public.parroquias (
 ALTER TABLE public.parroquias OWNER TO postgres;
 
 --
--- TOC entry 311 (class 1259 OID 25787)
+-- TOC entry 310 (class 1259 OID 25787)
 -- Name: tipo_discapacidad; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1882,7 +1873,7 @@ CREATE TABLE public.tipo_discapacidad (
 ALTER TABLE public.tipo_discapacidad OWNER TO postgres;
 
 --
--- TOC entry 348 (class 1259 OID 33011)
+-- TOC entry 346 (class 1259 OID 33011)
 -- Name: tipo_etnia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1898,7 +1889,7 @@ CREATE SEQUENCE public.tipo_etnia_id_seq
 ALTER TABLE public.tipo_etnia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 349 (class 1259 OID 33012)
+-- TOC entry 347 (class 1259 OID 33012)
 -- Name: tipo_etnia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2002,7 +1993,7 @@ CREATE TABLE public.tipo_zona (
 ALTER TABLE public.tipo_zona OWNER TO postgres;
 
 --
--- TOC entry 359 (class 1259 OID 34805)
+-- TOC entry 357 (class 1259 OID 34805)
 -- Name: info_usuario; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -2105,7 +2096,6 @@ CREATE TABLE public.inscripcion (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     id_carrera integer,
-    id_seccion integer,
     fe_ingreso timestamp without time zone,
     id_trayecto integer
 );
@@ -2130,7 +2120,7 @@ CREATE SEQUENCE public.inscripcion_materia_id_seq
 ALTER TABLE public.inscripcion_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 312 (class 1259 OID 25839)
+-- TOC entry 311 (class 1259 OID 25839)
 -- Name: inscripcion_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2141,7 +2131,8 @@ CREATE TABLE public.inscripcion_materia (
     id_horario integer NOT NULL,
     id_estatus_inscripto_materia integer NOT NULL,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    id_seccion integer
 );
 
 
@@ -2188,7 +2179,7 @@ CREATE TABLE public.materias (
 ALTER TABLE public.materias OWNER TO postgres;
 
 --
--- TOC entry 343 (class 1259 OID 32981)
+-- TOC entry 341 (class 1259 OID 32981)
 -- Name: meses_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2204,7 +2195,7 @@ CREATE SEQUENCE public.meses_id_seq
 ALTER TABLE public.meses_id_seq OWNER TO postgres;
 
 --
--- TOC entry 344 (class 1259 OID 32982)
+-- TOC entry 342 (class 1259 OID 32982)
 -- Name: meses; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2268,7 +2259,7 @@ CREATE SEQUENCE public.oferta_academica_id_seq
 ALTER TABLE public.oferta_academica_id_seq OWNER TO postgres;
 
 --
--- TOC entry 318 (class 1259 OID 25924)
+-- TOC entry 317 (class 1259 OID 25924)
 -- Name: oferta_academica; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2290,7 +2281,7 @@ CREATE TABLE public.oferta_academica (
 ALTER TABLE public.oferta_academica OWNER TO postgres;
 
 --
--- TOC entry 342 (class 1259 OID 32956)
+-- TOC entry 340 (class 1259 OID 32956)
 -- Name: oferta_horario_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2306,7 +2297,7 @@ CREATE SEQUENCE public.oferta_horario_id_seq
 ALTER TABLE public.oferta_horario_id_seq OWNER TO postgres;
 
 --
--- TOC entry 345 (class 1259 OID 32990)
+-- TOC entry 343 (class 1259 OID 32990)
 -- Name: oferta_horario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2327,7 +2318,7 @@ CREATE TABLE public.oferta_horario (
 ALTER TABLE public.oferta_horario OWNER TO postgres;
 
 --
--- TOC entry 319 (class 1259 OID 26018)
+-- TOC entry 318 (class 1259 OID 26018)
 -- Name: oferta_materia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2343,7 +2334,7 @@ CREATE SEQUENCE public.oferta_materia_id_seq
 ALTER TABLE public.oferta_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 320 (class 1259 OID 26019)
+-- TOC entry 319 (class 1259 OID 26019)
 -- Name: oferta_materia_carrera; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2361,7 +2352,7 @@ CREATE TABLE public.oferta_materia_carrera (
 ALTER TABLE public.oferta_materia_carrera OWNER TO postgres;
 
 --
--- TOC entry 341 (class 1259 OID 32923)
+-- TOC entry 339 (class 1259 OID 32923)
 -- Name: oferta_materia_carrera_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2377,7 +2368,7 @@ CREATE SEQUENCE public.oferta_materia_carrera_id_seq
 ALTER TABLE public.oferta_materia_carrera_id_seq OWNER TO postgres;
 
 --
--- TOC entry 338 (class 1259 OID 32900)
+-- TOC entry 336 (class 1259 OID 32900)
 -- Name: periodo_carrera_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2393,7 +2384,7 @@ CREATE SEQUENCE public.periodo_carrera_id_seq
 ALTER TABLE public.periodo_carrera_id_seq OWNER TO postgres;
 
 --
--- TOC entry 352 (class 1259 OID 33365)
+-- TOC entry 350 (class 1259 OID 33365)
 -- Name: periodo_trayecto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2409,7 +2400,7 @@ CREATE SEQUENCE public.periodo_trayecto_id_seq
 ALTER TABLE public.periodo_trayecto_id_seq OWNER TO postgres;
 
 --
--- TOC entry 353 (class 1259 OID 33366)
+-- TOC entry 351 (class 1259 OID 33366)
 -- Name: periodo_trayecto; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2424,6 +2415,38 @@ CREATE TABLE public.periodo_trayecto (
 
 
 ALTER TABLE public.periodo_trayecto OWNER TO postgres;
+
+--
+-- TOC entry 366 (class 1259 OID 35029)
+-- Name: personal_seccion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.personal_seccion_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.personal_seccion_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 367 (class 1259 OID 35030)
+-- Name: personal_seccion; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.personal_seccion (
+    id_personalsecc integer DEFAULT nextval('public.personal_seccion_id_seq'::regclass) NOT NULL,
+    id_personal integer NOT NULL,
+    id_seccion integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.personal_seccion OWNER TO postgres;
 
 --
 -- TOC entry 223 (class 1259 OID 24811)
@@ -2503,7 +2526,7 @@ CREATE TABLE public.secciones (
 ALTER TABLE public.secciones OWNER TO postgres;
 
 --
--- TOC entry 339 (class 1259 OID 32908)
+-- TOC entry 337 (class 1259 OID 32908)
 -- Name: sede_carrera_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2519,7 +2542,7 @@ CREATE SEQUENCE public.sede_carrera_id_seq
 ALTER TABLE public.sede_carrera_id_seq OWNER TO postgres;
 
 --
--- TOC entry 340 (class 1259 OID 32909)
+-- TOC entry 338 (class 1259 OID 32909)
 -- Name: sede_carrera; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2535,7 +2558,7 @@ CREATE TABLE public.sede_carrera (
 ALTER TABLE public.sede_carrera OWNER TO postgres;
 
 --
--- TOC entry 361 (class 1259 OID 34873)
+-- TOC entry 359 (class 1259 OID 34873)
 -- Name: suplente_materia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2551,7 +2574,7 @@ CREATE SEQUENCE public.suplente_materia_id_seq
 ALTER TABLE public.suplente_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 362 (class 1259 OID 34874)
+-- TOC entry 360 (class 1259 OID 34874)
 -- Name: suplente_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2567,7 +2590,7 @@ CREATE TABLE public.suplente_materia (
 ALTER TABLE public.suplente_materia OWNER TO postgres;
 
 --
--- TOC entry 295 (class 1259 OID 25675)
+-- TOC entry 294 (class 1259 OID 25675)
 -- Name: tipo_carrera_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2583,7 +2606,7 @@ CREATE SEQUENCE public.tipo_carrera_id_seq
 ALTER TABLE public.tipo_carrera_id_seq OWNER TO postgres;
 
 --
--- TOC entry 296 (class 1259 OID 25676)
+-- TOC entry 295 (class 1259 OID 25676)
 -- Name: tipo_carrera; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2600,7 +2623,7 @@ CREATE TABLE public.tipo_carrera (
 ALTER TABLE public.tipo_carrera OWNER TO postgres;
 
 --
--- TOC entry 326 (class 1259 OID 32791)
+-- TOC entry 325 (class 1259 OID 32791)
 -- Name: tipo_documento_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2616,7 +2639,7 @@ CREATE SEQUENCE public.tipo_documento_id_seq
 ALTER TABLE public.tipo_documento_id_seq OWNER TO postgres;
 
 --
--- TOC entry 327 (class 1259 OID 32798)
+-- TOC entry 326 (class 1259 OID 32798)
 -- Name: tipo_documento; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2634,7 +2657,7 @@ CREATE TABLE public.tipo_documento (
 ALTER TABLE public.tipo_documento OWNER TO postgres;
 
 --
--- TOC entry 329 (class 1259 OID 32820)
+-- TOC entry 328 (class 1259 OID 32820)
 -- Name: tipo_estudio_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2650,7 +2673,7 @@ CREATE SEQUENCE public.tipo_estudio_id_seq
 ALTER TABLE public.tipo_estudio_id_seq OWNER TO postgres;
 
 --
--- TOC entry 330 (class 1259 OID 32821)
+-- TOC entry 329 (class 1259 OID 32821)
 -- Name: tipo_estudio; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2714,7 +2737,7 @@ CREATE SEQUENCE public.tipo_materia_id_seq
 ALTER TABLE public.tipo_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 299 (class 1259 OID 25694)
+-- TOC entry 298 (class 1259 OID 25694)
 -- Name: tipo_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2733,7 +2756,7 @@ CREATE TABLE public.tipo_materia (
 ALTER TABLE public.tipo_materia OWNER TO postgres;
 
 --
--- TOC entry 350 (class 1259 OID 33080)
+-- TOC entry 348 (class 1259 OID 33080)
 -- Name: tipo_titulo_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2749,7 +2772,7 @@ CREATE SEQUENCE public.tipo_titulo_id_seq
 ALTER TABLE public.tipo_titulo_id_seq OWNER TO postgres;
 
 --
--- TOC entry 351 (class 1259 OID 33081)
+-- TOC entry 349 (class 1259 OID 33081)
 -- Name: tipo_titulo; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2782,7 +2805,7 @@ CREATE SEQUENCE public.trayectos_id_seq
 ALTER TABLE public.trayectos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 328 (class 1259 OID 32808)
+-- TOC entry 327 (class 1259 OID 32808)
 -- Name: trayectos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2863,7 +2886,7 @@ CREATE TABLE public.zona (
 ALTER TABLE public.zona OWNER TO postgres;
 
 --
--- TOC entry 4081 (class 0 OID 25343)
+-- TOC entry 4091 (class 0 OID 25343)
 -- Dependencies: 251
 -- Data for Name: area_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2873,8 +2896,8 @@ COPY public.area_materia (id_area_materia, co_area_materia, nb_area_materia, vis
 
 
 --
--- TOC entry 4147 (class 0 OID 25918)
--- Dependencies: 317
+-- TOC entry 4156 (class 0 OID 25918)
+-- Dependencies: 316
 -- Data for Name: aulas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2883,7 +2906,7 @@ COPY public.aulas (id_aula, co_aula, nb_aula, cap_aula, id_estatus_aula, created
 
 
 --
--- TOC entry 4106 (class 0 OID 25526)
+-- TOC entry 4116 (class 0 OID 25526)
 -- Dependencies: 276
 -- Data for Name: bloque_horario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2899,8 +2922,8 @@ COPY public.bloque_horario (id_bloque, nu_bloque, hr_inicio, hr_fin, id_turno, c
 
 
 --
--- TOC entry 4193 (class 0 OID 34888)
--- Dependencies: 366
+-- TOC entry 4201 (class 0 OID 34888)
+-- Dependencies: 364
 -- Data for Name: carrera_electiva; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2909,44 +2932,47 @@ COPY public.carrera_electiva (id_carrelec, id_carrera, id_electiva, visible, id_
 
 
 --
--- TOC entry 4078 (class 0 OID 25306)
+-- TOC entry 4088 (class 0 OID 25306)
 -- Dependencies: 248
 -- Data for Name: carrera_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.carrera_materia (id_carrema, id_carrera, id_materia, visible, id_trayecto, created_at, updated_at) FROM stdin;
-4	1	1	t	1	2023-09-06 08:58:44.671438	2023-09-06 08:58:44.671438
-5	1	3	t	2	2023-09-08 17:05:53.427547	2023-09-08 17:05:53.427547
+6	1	1	t	1	2023-09-18 14:58:48.634526	2023-09-18 14:58:48.634526
 \.
 
 
 --
--- TOC entry 4177 (class 0 OID 33001)
--- Dependencies: 347
+-- TOC entry 4185 (class 0 OID 33001)
+-- Dependencies: 345
 -- Data for Name: carrera_trayecto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.carrera_trayecto (id_carrera_trayecto, id_carrera, id_trayecto) FROM stdin;
-12	1	1
-13	1	2
-14	1	3
+15	1	1
+16	1	2
+17	1	3
+18	2	1
+19	2	2
+20	2	3
 \.
 
 
 --
--- TOC entry 4076 (class 0 OID 25293)
+-- TOC entry 4086 (class 0 OID 25293)
 -- Dependencies: 246
 -- Data for Name: carreras; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.carreras (id_carrera, co_carrera, nb_carrera, id_tp_carrera, id_ciclo, visible, created_at, updated_at, id_estatus_carrera, id_titulo) FROM stdin;
-1	D001	DANZA	1	1	t	2023-09-06 08:54:47.630219	2023-09-06 08:54:47.630219	3	1
+2	C-ART	ARTE	1	2	t	2023-09-18 14:59:37.803785	2023-09-18 14:59:37.803785	4	2
+1	C-DANZA	DANZA	1	2	t	2023-09-18 14:58:34.466007	2023-09-18 14:58:34.466007	3	2
 \.
 
 
 --
--- TOC entry 4144 (class 0 OID 25891)
--- Dependencies: 314
+-- TOC entry 4153 (class 0 OID 25891)
+-- Dependencies: 313
 -- Data for Name: ciclos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2957,7 +2983,7 @@ COPY public.ciclos (id_ciclo, nb_ciclo, tx_descripcion, visible, created_at, upd
 
 
 --
--- TOC entry 4088 (class 0 OID 25402)
+-- TOC entry 4098 (class 0 OID 25402)
 -- Dependencies: 258
 -- Data for Name: ciudades; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3964,7 +3990,7 @@ COPY public.ciudades (id_ciudad, id_estado, id_municipio, nb_ciudad) FROM stdin;
 
 
 --
--- TOC entry 4083 (class 0 OID 25350)
+-- TOC entry 4093 (class 0 OID 25350)
 -- Dependencies: 253
 -- Data for Name: clase_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3974,8 +4000,8 @@ COPY public.clase_materia (id_clase_materia, co_clase_materia, nb_clase_materia,
 
 
 --
--- TOC entry 4185 (class 0 OID 34782)
--- Dependencies: 356
+-- TOC entry 4193 (class 0 OID 34782)
+-- Dependencies: 354
 -- Data for Name: departamentos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3987,7 +4013,7 @@ COPY public.departamentos (id_departamento, nb_departamento, id_estatus_departam
 
 
 --
--- TOC entry 4110 (class 0 OID 25546)
+-- TOC entry 4120 (class 0 OID 25546)
 -- Dependencies: 280
 -- Data for Name: dias; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -4002,18 +4028,19 @@ COPY public.dias (id_dia, nb_dia, visible, id_estatus, created_at, updated_at) F
 
 
 --
--- TOC entry 4062 (class 0 OID 25088)
+-- TOC entry 4072 (class 0 OID 25088)
 -- Dependencies: 232
 -- Data for Name: docente_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.docente_materia (id_dicta, id_materia, id_personal, id_estatus, created_at, updated_at, id_carrera, id_oferta) FROM stdin;
+8	1	3	t	2023-09-18 15:50:07.288209	2023-09-18 15:50:07.288209	1	2
 \.
 
 
 --
--- TOC entry 4191 (class 0 OID 34881)
--- Dependencies: 364
+-- TOC entry 4199 (class 0 OID 34881)
+-- Dependencies: 362
 -- Data for Name: electiva; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -4022,8 +4049,8 @@ COPY public.electiva (id_electiva, co_electiva, nb_electiva, nu_credito, hr_sema
 
 
 --
--- TOC entry 4166 (class 0 OID 32888)
--- Dependencies: 336
+-- TOC entry 4174 (class 0 OID 32888)
+-- Dependencies: 334
 -- Data for Name: estado_mundo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -8911,7 +8938,7 @@ COPY public.estado_mundo (id_estado_mundo, nb_estado_mundo, id_pais) FROM stdin;
 
 
 --
--- TOC entry 4058 (class 0 OID 25024)
+-- TOC entry 4068 (class 0 OID 25024)
 -- Dependencies: 228
 -- Data for Name: estados; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -8946,8 +8973,8 @@ COPY public.estados (id_estado, id_region, nb_estado, cod_estado, cod_pais) FROM
 
 
 --
--- TOC entry 4137 (class 0 OID 25735)
--- Dependencies: 307
+-- TOC entry 4146 (class 0 OID 25735)
+-- Dependencies: 306
 -- Data for Name: estatus_aula; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -8956,8 +8983,8 @@ COPY public.estatus_aula (id_estatus_aula, nb_estatus_aula, tx_descripcion, visi
 
 
 --
--- TOC entry 4152 (class 0 OID 26049)
--- Dependencies: 322
+-- TOC entry 4161 (class 0 OID 26049)
+-- Dependencies: 321
 -- Data for Name: estatus_carrera; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -8970,8 +8997,8 @@ COPY public.estatus_carrera (id_estatus_carrera, nb_estatus_carrera, tx_descripc
 
 
 --
--- TOC entry 4187 (class 0 OID 34789)
--- Dependencies: 358
+-- TOC entry 4195 (class 0 OID 34789)
+-- Dependencies: 356
 -- Data for Name: estatus_departamento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -8982,8 +9009,8 @@ COPY public.estatus_departamento (id_estatus_departamento, nb_estatus_departamen
 
 
 --
--- TOC entry 4123 (class 0 OID 25658)
--- Dependencies: 293
+-- TOC entry 4132 (class 0 OID 25658)
+-- Dependencies: 292
 -- Data for Name: estatus_docente_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -8992,7 +9019,7 @@ COPY public.estatus_docente_materia (id_estatus_docente_materia, nb_estatus_doce
 
 
 --
--- TOC entry 4115 (class 0 OID 25609)
+-- TOC entry 4125 (class 0 OID 25609)
 -- Dependencies: 285
 -- Data for Name: estatus_estudiante; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -9003,8 +9030,8 @@ COPY public.estatus_estudiante (id_estatus_estudiante, nb_activo, tx_descripcion
 
 
 --
--- TOC entry 4133 (class 0 OID 25720)
--- Dependencies: 303
+-- TOC entry 4142 (class 0 OID 25720)
+-- Dependencies: 302
 -- Data for Name: estatus_horario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -9013,8 +9040,8 @@ COPY public.estatus_horario (id_estatus_horario, nb_estatus_horario, tx_descripc
 
 
 --
--- TOC entry 4119 (class 0 OID 25638)
--- Dependencies: 289
+-- TOC entry 4128 (class 0 OID 25638)
+-- Dependencies: 288
 -- Data for Name: estatus_inscripcion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -9023,8 +9050,8 @@ COPY public.estatus_inscripcion (id_estatus_inscripcion, nb_estatus_inscripcion,
 
 
 --
--- TOC entry 4124 (class 0 OID 25664)
--- Dependencies: 294
+-- TOC entry 4133 (class 0 OID 25664)
+-- Dependencies: 293
 -- Data for Name: estatus_inscripto_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -9033,8 +9060,8 @@ COPY public.estatus_inscripto_materia (id_estatus_inscripto_materia, nb_estatus_
 
 
 --
--- TOC entry 4128 (class 0 OID 25688)
--- Dependencies: 298
+-- TOC entry 4137 (class 0 OID 25688)
+-- Dependencies: 297
 -- Data for Name: estatus_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -9044,8 +9071,8 @@ COPY public.estatus_materia (id_estatus_materia, nb_estatus_materia, tx_descripc
 
 
 --
--- TOC entry 4139 (class 0 OID 25742)
--- Dependencies: 309
+-- TOC entry 4148 (class 0 OID 25742)
+-- Dependencies: 308
 -- Data for Name: estatus_oferta; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -9056,8 +9083,8 @@ COPY public.estatus_oferta (id_estatus_oferta, nb_estatus_oferta, tx_descripcion
 
 
 --
--- TOC entry 4146 (class 0 OID 25912)
--- Dependencies: 316
+-- TOC entry 4155 (class 0 OID 25912)
+-- Dependencies: 315
 -- Data for Name: estatus_periodo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -9068,8 +9095,8 @@ COPY public.estatus_periodo (id_estatus_periodo, nb_estatus_periodo, tx_descripc
 
 
 --
--- TOC entry 4120 (class 0 OID 25644)
--- Dependencies: 290
+-- TOC entry 4129 (class 0 OID 25644)
+-- Dependencies: 289
 -- Data for Name: estatus_personal; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -9080,21 +9107,21 @@ COPY public.estatus_personal (id_estatus_personal, nb_estatus_personal, tx_descr
 
 
 --
--- TOC entry 4154 (class 0 OID 32773)
--- Dependencies: 324
+-- TOC entry 4163 (class 0 OID 32773)
+-- Dependencies: 323
 -- Data for Name: estatus_postulacion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.estatus_postulacion (id_estatus_postulacion, nb_estatus_postulacion, tx_descripcion, visible, created_at, updated_at) FROM stdin;
 2	Aprobado	Aprobado	t	\N	\N
 3	Rechazado	Rechazado	t	\N	\N
-1	Pendiente por ser revisado	Pendiente por ser revisado	t	\N	\N
+4	Pendiente por ser revisado	Pendiente por ser revisado	t	\N	\N
 \.
 
 
 --
--- TOC entry 4135 (class 0 OID 25728)
--- Dependencies: 305
+-- TOC entry 4144 (class 0 OID 25728)
+-- Dependencies: 304
 -- Data for Name: estatus_seccion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -9104,19 +9131,18 @@ COPY public.estatus_seccion (id_estatus_seccion, nb_estatus_seccion, tx_descripc
 
 
 --
--- TOC entry 4116 (class 0 OID 25615)
--- Dependencies: 286
+-- TOC entry 4202 (class 0 OID 34943)
+-- Dependencies: 365
 -- Data for Name: estudiantes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.estudiantes (id_estudiante, id_nacionalidad, ced_estudiante, nb_estudiante, ape_estudiante, id_tp_sexo, id_civil, fe_nac_estudiante, id_ciudad_nac, id_estado_nac, id_pais_nac, discapacidad, id_tp_discapacidad, id_tp_ingreso, id_estatus_estudiante, created_at, updated_at, id_geografico_estudiante) FROM stdin;
-1	1	12345600	ANA	TORRE	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+COPY public.estudiantes (id_estudiante, id_nacionalidad, ced_estudiante, nb_estudiante, ape_estudiante, nb2_estudiante, ape2_estudiante, id_tp_sexo, fe_nac_estudiante, id_civil, correo_estudiante, id_tp_via, nb_via, id_tp_zona, nb_zona, id_tp_vivienda, nu_vivienda, id_zona, cod_zona_postal, id_pais, id_ciudad, id_estado, id_municipio, id_parroquia, id_pais_nac, id_estado_nac, id_ciudad_nac, discapacidad, id_tp_discapacidad, id_tp_ingreso, id_etnia, id_estatus_estudiante, bl_registro, created_at, updated_at) FROM stdin;
 \.
 
 
 --
--- TOC entry 4162 (class 0 OID 32834)
--- Dependencies: 332
+-- TOC entry 4171 (class 0 OID 32834)
+-- Dependencies: 331
 -- Data for Name: fecha_estatus_postulacion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -9126,18 +9152,8 @@ COPY public.fecha_estatus_postulacion (id_estatus_fe_postulacion, id_postulacion
 
 
 --
--- TOC entry 4163 (class 0 OID 32856)
--- Dependencies: 333
--- Data for Name: geografico_estudiante; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.geografico_estudiante (id_geografico_estudiante, id_tp_via, nb_via, id_tp_zona, nb_zona, id_tp_vivienda, nu_vivienda, tx_direccion, id_zona_postal, id_ciudad, id_estado, id_municipio, id_parroquia, created_at, updated_at) FROM stdin;
-\.
-
-
---
--- TOC entry 4164 (class 0 OID 32862)
--- Dependencies: 334
+-- TOC entry 4172 (class 0 OID 32862)
+-- Dependencies: 332
 -- Data for Name: geografico_sede; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -9147,7 +9163,7 @@ COPY public.geografico_sede (id_geografico_sede, id_tp_via, nb_via, id_tp_zona, 
 
 
 --
--- TOC entry 4109 (class 0 OID 25540)
+-- TOC entry 4119 (class 0 OID 25540)
 -- Dependencies: 279
 -- Data for Name: horario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -9157,41 +9173,40 @@ COPY public.horario (id_horario, id_personal, id_materia, id_periodo, id_dia, id
 
 
 --
--- TOC entry 4071 (class 0 OID 25195)
+-- TOC entry 4081 (class 0 OID 25195)
 -- Dependencies: 241
 -- Data for Name: inscripcion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.inscripcion (id_inscripcion, id_estudiante, id_periodo, id_estatus_inscripcion, created_at, updated_at, id_carrera, id_seccion, fe_ingreso, id_trayecto) FROM stdin;
+COPY public.inscripcion (id_inscripcion, id_estudiante, id_periodo, id_estatus_inscripcion, created_at, updated_at, id_carrera, fe_ingreso, id_trayecto) FROM stdin;
 \.
 
 
 --
--- TOC entry 4142 (class 0 OID 25839)
--- Dependencies: 312
+-- TOC entry 4151 (class 0 OID 25839)
+-- Dependencies: 311
 -- Data for Name: inscripcion_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.inscripcion_materia (id_inscrito, id_inscripcion, id_materia, id_horario, id_estatus_inscripto_materia, created_at, updated_at) FROM stdin;
+COPY public.inscripcion_materia (id_inscrito, id_inscripcion, id_materia, id_horario, id_estatus_inscripto_materia, created_at, updated_at, id_seccion) FROM stdin;
 \.
 
 
 --
--- TOC entry 4075 (class 0 OID 25269)
+-- TOC entry 4085 (class 0 OID 25269)
 -- Dependencies: 245
 -- Data for Name: materias; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.materias (id_materia, co_materia, nb_materia, nu_credito, id_tp_materia, hr_semanal, bl_prelacion, id_estatus_materia, created_at, updated_at, id_clase_materia, id_area_materia, id_departamento) FROM stdin;
-1	MD001	DANZA I	3	12	10	t	4	2023-09-06 08:58:28.169533	2023-09-06 08:58:28.169533	\N	\N	\N
-2	MD002	ARTE	12	12	24	t	4	2023-09-08 15:29:30.776837	2023-09-08 15:29:30.776837	\N	\N	\N
-3	CXW-2	CCOSTURA	23	12	24	t	4	2023-09-08 17:04:01.894147	2023-09-08 17:04:01.894147	\N	\N	\N
+1	DAN-1	DANZA	12	12	24	t	4	2023-09-18 14:57:03.641426	2023-09-18 14:57:03.641426	\N	\N	\N
+2	ART-1	ARTE	12	12	24	t	4	2023-09-18 14:57:46.361651	2023-09-18 14:57:46.361651	\N	\N	\N
 \.
 
 
 --
--- TOC entry 4174 (class 0 OID 32982)
--- Dependencies: 344
+-- TOC entry 4182 (class 0 OID 32982)
+-- Dependencies: 342
 -- Data for Name: meses; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -9212,7 +9227,7 @@ COPY public.meses (id_mes, nb_mes, visible, created_at, updated_at) FROM stdin;
 
 
 --
--- TOC entry 4059 (class 0 OID 25036)
+-- TOC entry 4069 (class 0 OID 25036)
 -- Dependencies: 229
 -- Data for Name: municipios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -9557,7 +9572,7 @@ COPY public.municipios (id_municipio, id_estado, nb_municipio, cod_municipio) FR
 
 
 --
--- TOC entry 4085 (class 0 OID 25371)
+-- TOC entry 4095 (class 0 OID 25371)
 -- Dependencies: 255
 -- Data for Name: notas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -9567,18 +9582,19 @@ COPY public.notas (id_nota, id_inscrito, nu_nota, created_at, updated_at) FROM s
 
 
 --
--- TOC entry 4148 (class 0 OID 25924)
--- Dependencies: 318
+-- TOC entry 4157 (class 0 OID 25924)
+-- Dependencies: 317
 -- Data for Name: oferta_academica; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.oferta_academica (id_oferta, id_periodo, id_carrera, nu_cupos, nu_seccion, visible, id_estatus_oferta, created_at, updated_at, co_oferta, id_sede) FROM stdin;
+2	1	1	34	\N	t	1	2023-09-18 15:50:07.278393	2023-09-18 15:50:07.278393	O-DANZA	1
 \.
 
 
 --
--- TOC entry 4175 (class 0 OID 32990)
--- Dependencies: 345
+-- TOC entry 4183 (class 0 OID 32990)
+-- Dependencies: 343
 -- Data for Name: oferta_horario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -9587,17 +9603,18 @@ COPY public.oferta_horario (id_horaoferta, id_oferta, id_bloque, id_personal, id
 
 
 --
--- TOC entry 4150 (class 0 OID 26019)
--- Dependencies: 320
+-- TOC entry 4159 (class 0 OID 26019)
+-- Dependencies: 319
 -- Data for Name: oferta_materia_carrera; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.oferta_materia_carrera (id_oferta_materia, id_oferta, id_materia, created_at, updated_at, id_carrera, id_trayecto) FROM stdin;
+2	2	1	2023-09-18 15:50:07.290743	2023-09-18 15:50:07.290743	1	1
 \.
 
 
 --
--- TOC entry 4090 (class 0 OID 25412)
+-- TOC entry 4100 (class 0 OID 25412)
 -- Dependencies: 260
 -- Data for Name: paises; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -9810,7 +9827,7 @@ COPY public.paises (id_pais, nb_pais) FROM stdin;
 
 
 --
--- TOC entry 4060 (class 0 OID 25048)
+-- TOC entry 4070 (class 0 OID 25048)
 -- Dependencies: 230
 -- Data for Name: parroquias; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10953,53 +10970,61 @@ COPY public.parroquias (id_parroquia, nb_parroquia, cod_parroquia, id_municipio)
 
 
 --
--- TOC entry 4079 (class 0 OID 25328)
+-- TOC entry 4089 (class 0 OID 25328)
 -- Dependencies: 249
 -- Data for Name: periodo_lectivo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.periodo_lectivo (id_periodo, co_periodo, id_tp_periodo, anio_periodo, id_mes_inicio, id_mes_fin, nu_semana_interperido, tx_mensaje, fe_inicio, fe_fin, fe_ult_entrega_acta, fe_ult_solic_documento, fe_pre_solic_grado, fe_modificacion, fe_inicio_preinscripcion, fe_fin_preinscripcion, fe_inicio_inscripcion, fe_fin_inscripcion, fe_inicio_oferta, fe_fin_oferta, fe_inicio_retiro, fe_fin_retiro, fe_inicio_notas, fe_fin_notas, visible, id_estatus_periodo, created_at, updated_at, fe_inicio_postulacion, fe_fin_postulacion) FROM stdin;
-7	P001	1	2023	9	11	8	INICIO	2023-09-10 00:00:00	2023-09-30 00:00:00	2023-09-11 00:00:00	2023-09-12 00:00:00	2023-09-13 00:00:00	2023-09-14 00:00:00	2023-09-15 00:00:00	2023-09-16 00:00:00	2023-09-16 00:00:00	2023-09-17 00:00:00	2023-09-18 00:00:00	2023-09-19 00:00:00	2023-09-20 00:00:00	2023-09-23 00:00:00	2023-09-24 00:00:00	2023-09-25 00:00:00	t	1	\N	\N	2023-09-21 00:00:00	2023-09-22 00:00:00
+1	PER-1	1	2024	1	3	8	PERIODO 1	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	2023-09-28 00:00:00	t	1	\N	\N	2023-09-28 00:00:00	2023-09-28 00:00:00
 \.
 
 
 --
--- TOC entry 4183 (class 0 OID 33366)
--- Dependencies: 353
+-- TOC entry 4191 (class 0 OID 33366)
+-- Dependencies: 351
 -- Data for Name: periodo_trayecto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.periodo_trayecto (id_ptrayecto, id_periodo, id_trayecto, created_at, updated_at, id_carrera) FROM stdin;
-2	7	1	\N	\N	1
+3	1	1	2023-09-18 15:50:07.292813	2023-09-18 15:50:07.292813	1
 \.
 
 
 --
--- TOC entry 4064 (class 0 OID 25114)
+-- TOC entry 4074 (class 0 OID 25114)
 -- Dependencies: 234
 -- Data for Name: personal; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.personal (id_personal, id_nacionalidad, ced_personal, nb_personal, ape_personal, tlf_fijo, tlf_movil, correo, id_estatus_personal, id_tp_personal, carga_horaria, id_profesion, created_at, updated_at, id_tp_sexo, id_civil, id_usuario, bl_registro, id_departamento) FROM stdin;
-16	1	76786	GHJGHG	HKJHJ	68767	896	g@ff.cc	1	1	77	3	\N	\N	1	1	16	t	1
+3	1	65765765	ANA	TORRE	33342245	65322344	a@gmail.com	1	1	76	2	\N	\N	1	1	23	t	1
 \.
 
 
 --
--- TOC entry 4167 (class 0 OID 32894)
--- Dependencies: 337
+-- TOC entry 4204 (class 0 OID 35030)
+-- Dependencies: 367
+-- Data for Name: personal_seccion; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.personal_seccion (id_personalsecc, id_personal, id_seccion, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 4175 (class 0 OID 32894)
+-- Dependencies: 335
 -- Data for Name: postulacion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.postulacion (id_postulacion, id_usuario, id_carrera, id_periodo, fe_postulacion, id_estatus_postulacion, id_personal_aprobacion, fe_aprobacion, st_activo, tx_observacion, created_at, updated_at, id_sede, id_oferta) FROM stdin;
-5	16	1	7	2023-09-11 00:00:00	3	\N	\N	t	FALTA DE DOCUMENTOS	\N	\N	1	\N
-2	17	1	7	2023-09-08 00:00:00	2	16	2023-09-11 00:00:00	t	APROBADA	\N	\N	1	\N
-1	16	1	7	2023-09-07 00:00:00	3	16	2023-09-11 00:00:00	t	fhgfgf	\N	\N	1	\N
+6	19	1	1	2023-09-18 00:00:00	4	\N	\N	t	CREADA	2023-09-18 15:53:15.960679	\N	1	2
 \.
 
 
 --
--- TOC entry 4098 (class 0 OID 25446)
+-- TOC entry 4108 (class 0 OID 25446)
 -- Dependencies: 268
 -- Data for Name: profesion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11225,7 +11250,7 @@ COPY public.profesion (id_profesion, nb_profesion) FROM stdin;
 
 
 --
--- TOC entry 4053 (class 0 OID 24811)
+-- TOC entry 4063 (class 0 OID 24811)
 -- Dependencies: 223
 -- Data for Name: regiones; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11243,7 +11268,7 @@ COPY public.regiones (id_region, nb_region) FROM stdin;
 
 
 --
--- TOC entry 4054 (class 0 OID 24877)
+-- TOC entry 4064 (class 0 OID 24877)
 -- Dependencies: 224
 -- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11259,7 +11284,7 @@ COPY public.roles (id_rol, nb_rol, created_at, updated_at) FROM stdin;
 
 
 --
--- TOC entry 4074 (class 0 OID 25231)
+-- TOC entry 4084 (class 0 OID 25231)
 -- Dependencies: 244
 -- Data for Name: secciones; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11270,30 +11295,31 @@ COPY public.secciones (id_seccion, nb_seccion, cap_seccion, id_estatus_seccion, 
 
 
 --
--- TOC entry 4170 (class 0 OID 32909)
--- Dependencies: 340
+-- TOC entry 4178 (class 0 OID 32909)
+-- Dependencies: 338
 -- Data for Name: sede_carrera; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.sede_carrera (id_scarrera, id_sede, id_carrera, created_at, updated_at) FROM stdin;
-3	1	1	2023-09-06 08:56:39.635675	2023-09-06 08:56:39.635675
+4	1	1	2023-09-18 15:01:30.207762	2023-09-18 15:01:30.207762
+5	1	2	2023-09-18 15:01:36.022335	2023-09-18 15:01:36.022335
 \.
 
 
 --
--- TOC entry 4111 (class 0 OID 25556)
+-- TOC entry 4121 (class 0 OID 25556)
 -- Dependencies: 281
 -- Data for Name: sedes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.sedes (id_sede, co_sede, nb_sede, id_geografico_sede, id_estatus, created_at, updated_at) FROM stdin;
-1	S001	CARACAS	1	1	\N	\N
+1	CCS-1	CARACAS	1	1	\N	\N
 \.
 
 
 --
--- TOC entry 4189 (class 0 OID 34874)
--- Dependencies: 362
+-- TOC entry 4197 (class 0 OID 34874)
+-- Dependencies: 360
 -- Data for Name: suplente_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11302,8 +11328,8 @@ COPY public.suplente_materia (id_suplente, id_dicta, id_personal, created_at, up
 
 
 --
--- TOC entry 4126 (class 0 OID 25676)
--- Dependencies: 296
+-- TOC entry 4135 (class 0 OID 25676)
+-- Dependencies: 295
 -- Data for Name: tipo_carrera; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11314,8 +11340,8 @@ COPY public.tipo_carrera (id_tp_carrera, nb_tp_carrera, tx_descripcion, visible,
 
 
 --
--- TOC entry 4141 (class 0 OID 25787)
--- Dependencies: 311
+-- TOC entry 4150 (class 0 OID 25787)
+-- Dependencies: 310
 -- Data for Name: tipo_discapacidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11328,8 +11354,8 @@ COPY public.tipo_discapacidad (id_tp_discapacidad, nb_tp_discapacidad, tx_descri
 
 
 --
--- TOC entry 4157 (class 0 OID 32798)
--- Dependencies: 327
+-- TOC entry 4166 (class 0 OID 32798)
+-- Dependencies: 326
 -- Data for Name: tipo_documento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11341,7 +11367,7 @@ COPY public.tipo_documento (id_tp_documento, co_tp_documento, nb_tp_documento, t
 
 
 --
--- TOC entry 4102 (class 0 OID 25472)
+-- TOC entry 4112 (class 0 OID 25472)
 -- Dependencies: 272
 -- Data for Name: tipo_estado_civil; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11355,8 +11381,8 @@ COPY public.tipo_estado_civil (id_civil, nb_civil) FROM stdin;
 
 
 --
--- TOC entry 4160 (class 0 OID 32821)
--- Dependencies: 330
+-- TOC entry 4169 (class 0 OID 32821)
+-- Dependencies: 329
 -- Data for Name: tipo_estudio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11367,8 +11393,8 @@ COPY public.tipo_estudio (id_tp_estudio, nb_tp_estudio, tx_descripcion, visible,
 
 
 --
--- TOC entry 4179 (class 0 OID 33012)
--- Dependencies: 349
+-- TOC entry 4187 (class 0 OID 33012)
+-- Dependencies: 347
 -- Data for Name: tipo_etnia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11381,7 +11407,7 @@ COPY public.tipo_etnia (id_etnia, nb_etnia, tx_descripcion, visible, created_at,
 
 
 --
--- TOC entry 4113 (class 0 OID 25572)
+-- TOC entry 4123 (class 0 OID 25572)
 -- Dependencies: 283
 -- Data for Name: tipo_ingreso; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11393,8 +11419,8 @@ COPY public.tipo_ingreso (id_tp_ingreso, nb_tp_ingreso, created_at, updated_at) 
 
 
 --
--- TOC entry 4129 (class 0 OID 25694)
--- Dependencies: 299
+-- TOC entry 4138 (class 0 OID 25694)
+-- Dependencies: 298
 -- Data for Name: tipo_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11405,7 +11431,7 @@ COPY public.tipo_materia (id_tp_materia, co_tp_materia, nb_tp_materia, tx_descri
 
 
 --
--- TOC entry 4104 (class 0 OID 25486)
+-- TOC entry 4114 (class 0 OID 25486)
 -- Dependencies: 274
 -- Data for Name: tipo_nacionalidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11417,8 +11443,8 @@ COPY public.tipo_nacionalidad (id_nacionalidad, co_nacionalidad, nb_nacionalidad
 
 
 --
--- TOC entry 4131 (class 0 OID 25713)
--- Dependencies: 301
+-- TOC entry 4140 (class 0 OID 25713)
+-- Dependencies: 300
 -- Data for Name: tipo_periodo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11428,8 +11454,8 @@ COPY public.tipo_periodo (id_tp_periodo, co_tp_periodo, nb_tp_periodo, tx_descri
 
 
 --
--- TOC entry 4121 (class 0 OID 25650)
--- Dependencies: 291
+-- TOC entry 4130 (class 0 OID 25650)
+-- Dependencies: 290
 -- Data for Name: tipo_personal; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11439,7 +11465,7 @@ COPY public.tipo_personal (id_tp_personal, co_tp_personal, nb_tp_personal, tx_de
 
 
 --
--- TOC entry 4100 (class 0 OID 25465)
+-- TOC entry 4110 (class 0 OID 25465)
 -- Dependencies: 270
 -- Data for Name: tipo_sexo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11451,8 +11477,8 @@ COPY public.tipo_sexo (id_tp_sexo, co_tp_sexo, nb_tp_sexo) FROM stdin;
 
 
 --
--- TOC entry 4181 (class 0 OID 33081)
--- Dependencies: 351
+-- TOC entry 4189 (class 0 OID 33081)
+-- Dependencies: 349
 -- Data for Name: tipo_titulo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11463,7 +11489,7 @@ COPY public.tipo_titulo (id_titulo, nb_titulo, tx_descripcion, visible, created_
 
 
 --
--- TOC entry 4096 (class 0 OID 25434)
+-- TOC entry 4106 (class 0 OID 25434)
 -- Dependencies: 266
 -- Data for Name: tipo_via; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11478,7 +11504,7 @@ COPY public.tipo_via (id_tp_via, nb_tp_via) FROM stdin;
 
 
 --
--- TOC entry 4097 (class 0 OID 25440)
+-- TOC entry 4107 (class 0 OID 25440)
 -- Dependencies: 267
 -- Data for Name: tipo_vivienda; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11491,7 +11517,7 @@ COPY public.tipo_vivienda (id_tp_vivienda, nb_tp_vivienda) FROM stdin;
 
 
 --
--- TOC entry 4094 (class 0 OID 25427)
+-- TOC entry 4104 (class 0 OID 25427)
 -- Dependencies: 264
 -- Data for Name: tipo_zona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11507,8 +11533,8 @@ COPY public.tipo_zona (id_tp_zona, nb_tp_zona) FROM stdin;
 
 
 --
--- TOC entry 4158 (class 0 OID 32808)
--- Dependencies: 328
+-- TOC entry 4167 (class 0 OID 32808)
+-- Dependencies: 327
 -- Data for Name: trayectos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11522,7 +11548,7 @@ COPY public.trayectos (id_trayecto, nb_trayecto, tx_descripcion, mes_duracion, v
 
 
 --
--- TOC entry 4108 (class 0 OID 25534)
+-- TOC entry 4118 (class 0 OID 25534)
 -- Dependencies: 278
 -- Data for Name: turnos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11532,21 +11558,22 @@ COPY public.turnos (id_turno, nb_turno, id_estatus, created_at, updated_at) FROM
 
 
 --
--- TOC entry 4140 (class 0 OID 25753)
--- Dependencies: 310
+-- TOC entry 4149 (class 0 OID 25753)
+-- Dependencies: 309
 -- Data for Name: usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.usuarios (id_usuario, tx_clave, user_name, bl_status, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_tp_sexo, fe_nac_usuario, id_civil, correo_usuario, id_tp_via, nb_via, id_tp_zona, nb_zona, id_tp_vivienda, nu_vivienda, id_ciudad, id_estado, www_preinscripcion, created_at, updated_at, id_municipio, id_parroquia, bl_registro, nb2_usuario, ape2_usuario, id_zona, id_pais, id_tp_discapacidad, id_etnia, id_pais_nac, id_estado_nac, id_ciudad_nac, cod_zona_postal) FROM stdin;
-15	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	hvalor	t	2	1	12345678	HILDEMAR	VALOR	2	1976-02-09 00:00:00	1	h@gmail.com	3	LA CALLE	3	Casco de la Ciudad	3	02	604	14	\N	2023-09-05 19:37:47.114275-04	2023-09-05 20:55:51.469204-04	181	605	t	LUIS	TORRES	19576	239	5	4	239	14	604	2101
+23	a24c6e5f081eb8c1ac780c7ceab547c29d050d626d5755122f6ebeedd49e997e	ANA	t	2	1	65765765	ANA	TORRE	1	\N	\N	a@gmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-18 15:24:30.311885-04	2023-09-18 15:24:30.311885-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 9	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	gmarcano	t	2	1	28484689	GABRIEL	MARCANO	2	2001-11-19 00:00:00	1	gabrielmarcano141@gmail.com	3	LA ESPERANZA	5	Barrio El Guarataro	3	34	1	1	\N	2023-08-11 14:39:27.398252-04	2023-09-07 04:05:32.861813-04	1	12	t	FABIAN	REQUENA	559	239	5	4	239	1	1	\N
-16	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	ana	t	3	1	12345600	ANA	TORRE	1	1990-01-09 00:00:00	1	ana@gmail.com	4	AZUL	3	Sector África	3	12	581	13	\N	2023-09-06 08:59:30.451816-04	2023-09-08 08:47:08.007328-04	177	591	t	CARTA	SIMON	19018	239	5	4	239	2	24	7005
-17	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	petra	t	3	1	79877	PETRA	ORO	1	1987-08-09 00:00:00	1	p@gmail.com	4	GGG	5	Barrio Guayabita	3	9	613	14	\N	2023-09-08 14:03:26.186562-04	2023-09-08 14:05:30.931572-04	184	618	t	GILMA	GIL	19951	239	5	4	239	14	604	2115
+19	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	aspiranteuno	t	3	1	12345670	ASPIRANTE	UNO	2	1989-12-09 00:00:00	1	a@gmail.com	1	OESTE	1	Casco Central de Altagracia	3	34	1	1	\N	2023-09-18 14:08:02.717723-04	2023-09-18 14:10:13.765824-04	1	4	t	GILO	GIL	319	239	5	4	239	1	1	1010
+21	ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f	GABRIEL	t	6	1	12345678	GABRIEL	MARCANO	2	\N	\N	gabriel@gmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-18 15:08:35.451924-04	2023-09-18 15:08:35.451924-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+22	ff79e2cb03e5d82522a03d8fbe536059664ec9b3e52ed7073ce9915c1f4447a3	GABRIEL	t	6	1	12321311	GABRIEL	MARCANO	2	\N	\N	g@hotmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-18 15:09:43.655347-04	2023-09-18 15:09:43.655347-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 \.
 
 
 --
--- TOC entry 4092 (class 0 OID 25419)
+-- TOC entry 4102 (class 0 OID 25419)
 -- Dependencies: 262
 -- Data for Name: zona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -46643,7 +46670,7 @@ COPY public.zona (id_zona, id_parroquia, nb_zona, codigo_postal) FROM stdin;
 
 
 --
--- TOC entry 4200 (class 0 OID 0)
+-- TOC entry 4211 (class 0 OID 0)
 -- Dependencies: 250
 -- Name: area_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -46652,7 +46679,7 @@ SELECT pg_catalog.setval('public.area_materia_id_seq', 1, false);
 
 
 --
--- TOC entry 4201 (class 0 OID 0)
+-- TOC entry 4212 (class 0 OID 0)
 -- Dependencies: 243
 -- Name: aulas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -46661,7 +46688,7 @@ SELECT pg_catalog.setval('public.aulas_id_seq', 1, false);
 
 
 --
--- TOC entry 4202 (class 0 OID 0)
+-- TOC entry 4213 (class 0 OID 0)
 -- Dependencies: 275
 -- Name: bloque_horario_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -46670,8 +46697,8 @@ SELECT pg_catalog.setval('public.bloque_horario_id_seq', 6, true);
 
 
 --
--- TOC entry 4203 (class 0 OID 0)
--- Dependencies: 365
+-- TOC entry 4214 (class 0 OID 0)
+-- Dependencies: 363
 -- Name: carrera_electiva_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46679,35 +46706,35 @@ SELECT pg_catalog.setval('public.carrera_electiva_id_seq', 1, false);
 
 
 --
--- TOC entry 4204 (class 0 OID 0)
+-- TOC entry 4215 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: carrera_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.carrera_materia_id_seq', 5, true);
+SELECT pg_catalog.setval('public.carrera_materia_id_seq', 6, true);
 
 
 --
--- TOC entry 4205 (class 0 OID 0)
--- Dependencies: 346
+-- TOC entry 4216 (class 0 OID 0)
+-- Dependencies: 344
 -- Name: carrera_trayecto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.carrera_trayecto_id_seq', 14, true);
+SELECT pg_catalog.setval('public.carrera_trayecto_id_seq', 20, true);
 
 
 --
--- TOC entry 4206 (class 0 OID 0)
+-- TOC entry 4217 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: carreras_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.carreras_id_seq', 1, true);
+SELECT pg_catalog.setval('public.carreras_id_seq', 2, true);
 
 
 --
--- TOC entry 4207 (class 0 OID 0)
--- Dependencies: 313
+-- TOC entry 4218 (class 0 OID 0)
+-- Dependencies: 312
 -- Name: ciclos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46715,7 +46742,7 @@ SELECT pg_catalog.setval('public.ciclos_id_seq', 2, true);
 
 
 --
--- TOC entry 4208 (class 0 OID 0)
+-- TOC entry 4219 (class 0 OID 0)
 -- Dependencies: 256
 -- Name: ciudades_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -46724,7 +46751,7 @@ SELECT pg_catalog.setval('public.ciudades_id_seq', 1, false);
 
 
 --
--- TOC entry 4209 (class 0 OID 0)
+-- TOC entry 4220 (class 0 OID 0)
 -- Dependencies: 252
 -- Name: clase_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -46733,8 +46760,8 @@ SELECT pg_catalog.setval('public.clase_materia_id_seq', 1, false);
 
 
 --
--- TOC entry 4210 (class 0 OID 0)
--- Dependencies: 355
+-- TOC entry 4221 (class 0 OID 0)
+-- Dependencies: 353
 -- Name: departamentos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46742,7 +46769,7 @@ SELECT pg_catalog.setval('public.departamentos_id_seq', 3, true);
 
 
 --
--- TOC entry 4211 (class 0 OID 0)
+-- TOC entry 4222 (class 0 OID 0)
 -- Dependencies: 237
 -- Name: dias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -46751,7 +46778,7 @@ SELECT pg_catalog.setval('public.dias_id_seq', 6, true);
 
 
 --
--- TOC entry 4212 (class 0 OID 0)
+-- TOC entry 4223 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: discapacidad_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -46760,17 +46787,17 @@ SELECT pg_catalog.setval('public.discapacidad_id_seq', 5, true);
 
 
 --
--- TOC entry 4213 (class 0 OID 0)
+-- TOC entry 4224 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: docente_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.docente_materia_id_seq', 6, true);
+SELECT pg_catalog.setval('public.docente_materia_id_seq', 8, true);
 
 
 --
--- TOC entry 4214 (class 0 OID 0)
--- Dependencies: 363
+-- TOC entry 4225 (class 0 OID 0)
+-- Dependencies: 361
 -- Name: electiva_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46778,7 +46805,7 @@ SELECT pg_catalog.setval('public.electiva_id_seq', 1, false);
 
 
 --
--- TOC entry 4215 (class 0 OID 0)
+-- TOC entry 4226 (class 0 OID 0)
 -- Dependencies: 271
 -- Name: estado_civil_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -46787,8 +46814,8 @@ SELECT pg_catalog.setval('public.estado_civil_id_seq', 4, true);
 
 
 --
--- TOC entry 4216 (class 0 OID 0)
--- Dependencies: 335
+-- TOC entry 4227 (class 0 OID 0)
+-- Dependencies: 333
 -- Name: estado_mundo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46796,7 +46823,7 @@ SELECT pg_catalog.setval('public.estado_mundo_id_seq', 822, true);
 
 
 --
--- TOC entry 4217 (class 0 OID 0)
+-- TOC entry 4228 (class 0 OID 0)
 -- Dependencies: 213
 -- Name: estados_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -46805,8 +46832,8 @@ SELECT pg_catalog.setval('public.estados_id_seq', 1, false);
 
 
 --
--- TOC entry 4218 (class 0 OID 0)
--- Dependencies: 306
+-- TOC entry 4229 (class 0 OID 0)
+-- Dependencies: 305
 -- Name: estatus_aula_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46814,8 +46841,8 @@ SELECT pg_catalog.setval('public.estatus_aula_id_seq', 1, false);
 
 
 --
--- TOC entry 4219 (class 0 OID 0)
--- Dependencies: 321
+-- TOC entry 4230 (class 0 OID 0)
+-- Dependencies: 320
 -- Name: estatus_carrera_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46823,8 +46850,8 @@ SELECT pg_catalog.setval('public.estatus_carrera_id_seq', 4, true);
 
 
 --
--- TOC entry 4220 (class 0 OID 0)
--- Dependencies: 357
+-- TOC entry 4231 (class 0 OID 0)
+-- Dependencies: 355
 -- Name: estatus_departamentos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46832,8 +46859,8 @@ SELECT pg_catalog.setval('public.estatus_departamentos_id_seq', 2, true);
 
 
 --
--- TOC entry 4221 (class 0 OID 0)
--- Dependencies: 292
+-- TOC entry 4232 (class 0 OID 0)
+-- Dependencies: 291
 -- Name: estatus_docente_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46841,7 +46868,7 @@ SELECT pg_catalog.setval('public.estatus_docente_materia_id_seq', 1, false);
 
 
 --
--- TOC entry 4222 (class 0 OID 0)
+-- TOC entry 4233 (class 0 OID 0)
 -- Dependencies: 238
 -- Name: estatus_estudiante_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -46850,8 +46877,8 @@ SELECT pg_catalog.setval('public.estatus_estudiante_id_seq', 1, true);
 
 
 --
--- TOC entry 4223 (class 0 OID 0)
--- Dependencies: 302
+-- TOC entry 4234 (class 0 OID 0)
+-- Dependencies: 301
 -- Name: estatus_horario_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46859,7 +46886,7 @@ SELECT pg_catalog.setval('public.estatus_horario_id_seq', 1, false);
 
 
 --
--- TOC entry 4224 (class 0 OID 0)
+-- TOC entry 4235 (class 0 OID 0)
 -- Dependencies: 222
 -- Name: estatus_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -46868,8 +46895,8 @@ SELECT pg_catalog.setval('public.estatus_id_seq', 2, true);
 
 
 --
--- TOC entry 4225 (class 0 OID 0)
--- Dependencies: 287
+-- TOC entry 4236 (class 0 OID 0)
+-- Dependencies: 286
 -- Name: estatus_inscripcion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46877,8 +46904,8 @@ SELECT pg_catalog.setval('public.estatus_inscripcion_id_seq', 1, false);
 
 
 --
--- TOC entry 4226 (class 0 OID 0)
--- Dependencies: 288
+-- TOC entry 4237 (class 0 OID 0)
+-- Dependencies: 287
 -- Name: estatus_inscripto_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46886,8 +46913,8 @@ SELECT pg_catalog.setval('public.estatus_inscripto_materia_id_seq', 1, false);
 
 
 --
--- TOC entry 4227 (class 0 OID 0)
--- Dependencies: 297
+-- TOC entry 4238 (class 0 OID 0)
+-- Dependencies: 296
 -- Name: estatus_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46895,8 +46922,8 @@ SELECT pg_catalog.setval('public.estatus_materia_id_seq', 4, true);
 
 
 --
--- TOC entry 4228 (class 0 OID 0)
--- Dependencies: 308
+-- TOC entry 4239 (class 0 OID 0)
+-- Dependencies: 307
 -- Name: estatus_oferta_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46904,8 +46931,8 @@ SELECT pg_catalog.setval('public.estatus_oferta_id_seq', 2, true);
 
 
 --
--- TOC entry 4229 (class 0 OID 0)
--- Dependencies: 315
+-- TOC entry 4240 (class 0 OID 0)
+-- Dependencies: 314
 -- Name: estatus_periodo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46913,8 +46940,8 @@ SELECT pg_catalog.setval('public.estatus_periodo_id_seq', 2, true);
 
 
 --
--- TOC entry 4230 (class 0 OID 0)
--- Dependencies: 323
+-- TOC entry 4241 (class 0 OID 0)
+-- Dependencies: 322
 -- Name: estatus_postulacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46922,8 +46949,8 @@ SELECT pg_catalog.setval('public.estatus_postulacion_id_seq', 4, true);
 
 
 --
--- TOC entry 4231 (class 0 OID 0)
--- Dependencies: 304
+-- TOC entry 4242 (class 0 OID 0)
+-- Dependencies: 303
 -- Name: estatus_seccion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46931,17 +46958,17 @@ SELECT pg_catalog.setval('public.estatus_seccion_id_seq', 1, true);
 
 
 --
--- TOC entry 4232 (class 0 OID 0)
+-- TOC entry 4243 (class 0 OID 0)
 -- Dependencies: 211
 -- Name: estudiantes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.estudiantes_id_seq', 1, true);
+SELECT pg_catalog.setval('public.estudiantes_id_seq', 1, false);
 
 
 --
--- TOC entry 4233 (class 0 OID 0)
--- Dependencies: 331
+-- TOC entry 4244 (class 0 OID 0)
+-- Dependencies: 330
 -- Name: fecha_estatus_postulacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46949,7 +46976,7 @@ SELECT pg_catalog.setval('public.fecha_estatus_postulacion_id_seq', 1, true);
 
 
 --
--- TOC entry 4234 (class 0 OID 0)
+-- TOC entry 4245 (class 0 OID 0)
 -- Dependencies: 284
 -- Name: geografico_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -46958,8 +46985,8 @@ SELECT pg_catalog.setval('public.geografico_id_seq', 1, false);
 
 
 --
--- TOC entry 4235 (class 0 OID 0)
--- Dependencies: 300
+-- TOC entry 4246 (class 0 OID 0)
+-- Dependencies: 299
 -- Name: geografico_sede_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -46967,7 +46994,7 @@ SELECT pg_catalog.setval('public.geografico_sede_id_seq', 2, true);
 
 
 --
--- TOC entry 4236 (class 0 OID 0)
+-- TOC entry 4247 (class 0 OID 0)
 -- Dependencies: 239
 -- Name: horario_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -46976,7 +47003,7 @@ SELECT pg_catalog.setval('public.horario_id_seq', 1, false);
 
 
 --
--- TOC entry 4237 (class 0 OID 0)
+-- TOC entry 4248 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: inscripcion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -46985,7 +47012,7 @@ SELECT pg_catalog.setval('public.inscripcion_id_seq', 1, false);
 
 
 --
--- TOC entry 4238 (class 0 OID 0)
+-- TOC entry 4249 (class 0 OID 0)
 -- Dependencies: 235
 -- Name: inscripcion_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -46994,17 +47021,17 @@ SELECT pg_catalog.setval('public.inscripcion_materia_id_seq', 1, false);
 
 
 --
--- TOC entry 4239 (class 0 OID 0)
+-- TOC entry 4250 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: materias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.materias_id_seq', 3, true);
+SELECT pg_catalog.setval('public.materias_id_seq', 2, true);
 
 
 --
--- TOC entry 4240 (class 0 OID 0)
--- Dependencies: 343
+-- TOC entry 4251 (class 0 OID 0)
+-- Dependencies: 341
 -- Name: meses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47012,7 +47039,7 @@ SELECT pg_catalog.setval('public.meses_id_seq', 12, true);
 
 
 --
--- TOC entry 4241 (class 0 OID 0)
+-- TOC entry 4252 (class 0 OID 0)
 -- Dependencies: 214
 -- Name: municipios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47021,7 +47048,7 @@ SELECT pg_catalog.setval('public.municipios_id_seq', 1, false);
 
 
 --
--- TOC entry 4242 (class 0 OID 0)
+-- TOC entry 4253 (class 0 OID 0)
 -- Dependencies: 254
 -- Name: notas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47030,17 +47057,17 @@ SELECT pg_catalog.setval('public.notas_id_seq', 1, false);
 
 
 --
--- TOC entry 4243 (class 0 OID 0)
+-- TOC entry 4254 (class 0 OID 0)
 -- Dependencies: 240
 -- Name: oferta_academica_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.oferta_academica_id_seq', 1, false);
+SELECT pg_catalog.setval('public.oferta_academica_id_seq', 2, true);
 
 
 --
--- TOC entry 4244 (class 0 OID 0)
--- Dependencies: 342
+-- TOC entry 4255 (class 0 OID 0)
+-- Dependencies: 340
 -- Name: oferta_horario_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47048,8 +47075,8 @@ SELECT pg_catalog.setval('public.oferta_horario_id_seq', 1, false);
 
 
 --
--- TOC entry 4245 (class 0 OID 0)
--- Dependencies: 341
+-- TOC entry 4256 (class 0 OID 0)
+-- Dependencies: 339
 -- Name: oferta_materia_carrera_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47057,16 +47084,16 @@ SELECT pg_catalog.setval('public.oferta_materia_carrera_id_seq', 3, true);
 
 
 --
--- TOC entry 4246 (class 0 OID 0)
--- Dependencies: 319
+-- TOC entry 4257 (class 0 OID 0)
+-- Dependencies: 318
 -- Name: oferta_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.oferta_materia_id_seq', 1, false);
+SELECT pg_catalog.setval('public.oferta_materia_id_seq', 2, true);
 
 
 --
--- TOC entry 4247 (class 0 OID 0)
+-- TOC entry 4258 (class 0 OID 0)
 -- Dependencies: 259
 -- Name: paises_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47075,7 +47102,7 @@ SELECT pg_catalog.setval('public.paises_id_seq', 1, false);
 
 
 --
--- TOC entry 4248 (class 0 OID 0)
+-- TOC entry 4259 (class 0 OID 0)
 -- Dependencies: 215
 -- Name: parroquias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47084,8 +47111,8 @@ SELECT pg_catalog.setval('public.parroquias_id_seq', 1, false);
 
 
 --
--- TOC entry 4249 (class 0 OID 0)
--- Dependencies: 338
+-- TOC entry 4260 (class 0 OID 0)
+-- Dependencies: 336
 -- Name: periodo_carrera_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47093,43 +47120,52 @@ SELECT pg_catalog.setval('public.periodo_carrera_id_seq', 1, true);
 
 
 --
--- TOC entry 4250 (class 0 OID 0)
--- Dependencies: 352
+-- TOC entry 4261 (class 0 OID 0)
+-- Dependencies: 350
 -- Name: periodo_trayecto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.periodo_trayecto_id_seq', 2, true);
+SELECT pg_catalog.setval('public.periodo_trayecto_id_seq', 3, true);
 
 
 --
--- TOC entry 4251 (class 0 OID 0)
+-- TOC entry 4262 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: periodos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.periodos_id_seq', 7, true);
+SELECT pg_catalog.setval('public.periodos_id_seq', 1, true);
 
 
 --
--- TOC entry 4252 (class 0 OID 0)
+-- TOC entry 4263 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: personal_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.personal_id_seq', 16, true);
+SELECT pg_catalog.setval('public.personal_id_seq', 3, true);
 
 
 --
--- TOC entry 4253 (class 0 OID 0)
--- Dependencies: 325
+-- TOC entry 4264 (class 0 OID 0)
+-- Dependencies: 366
+-- Name: personal_seccion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.personal_seccion_id_seq', 1, false);
+
+
+--
+-- TOC entry 4265 (class 0 OID 0)
+-- Dependencies: 324
 -- Name: postulacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.postulacion_id_seq', 5, true);
+SELECT pg_catalog.setval('public.postulacion_id_seq', 6, true);
 
 
 --
--- TOC entry 4254 (class 0 OID 0)
+-- TOC entry 4266 (class 0 OID 0)
 -- Dependencies: 233
 -- Name: profesion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47138,7 +47174,7 @@ SELECT pg_catalog.setval('public.profesion_id_seq', 1, false);
 
 
 --
--- TOC entry 4255 (class 0 OID 0)
+-- TOC entry 4267 (class 0 OID 0)
 -- Dependencies: 210
 -- Name: roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47147,7 +47183,7 @@ SELECT pg_catalog.setval('public.roles_id_seq', 7, true);
 
 
 --
--- TOC entry 4256 (class 0 OID 0)
+-- TOC entry 4268 (class 0 OID 0)
 -- Dependencies: 242
 -- Name: secciones_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47156,26 +47192,26 @@ SELECT pg_catalog.setval('public.secciones_id_seq', 2, true);
 
 
 --
--- TOC entry 4257 (class 0 OID 0)
--- Dependencies: 339
+-- TOC entry 4269 (class 0 OID 0)
+-- Dependencies: 337
 -- Name: sede_carrera_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sede_carrera_id_seq', 3, true);
+SELECT pg_catalog.setval('public.sede_carrera_id_seq', 5, true);
 
 
 --
--- TOC entry 4258 (class 0 OID 0)
+-- TOC entry 4270 (class 0 OID 0)
 -- Dependencies: 226
 -- Name: sedes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sedes_id_seq', 2, true);
+SELECT pg_catalog.setval('public.sedes_id_seq', 1, true);
 
 
 --
--- TOC entry 4259 (class 0 OID 0)
--- Dependencies: 361
+-- TOC entry 4271 (class 0 OID 0)
+-- Dependencies: 359
 -- Name: suplente_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47183,8 +47219,8 @@ SELECT pg_catalog.setval('public.suplente_materia_id_seq', 1, false);
 
 
 --
--- TOC entry 4260 (class 0 OID 0)
--- Dependencies: 295
+-- TOC entry 4272 (class 0 OID 0)
+-- Dependencies: 294
 -- Name: tipo_carrera_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47192,8 +47228,8 @@ SELECT pg_catalog.setval('public.tipo_carrera_id_seq', 2, true);
 
 
 --
--- TOC entry 4261 (class 0 OID 0)
--- Dependencies: 326
+-- TOC entry 4273 (class 0 OID 0)
+-- Dependencies: 325
 -- Name: tipo_documento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47201,8 +47237,8 @@ SELECT pg_catalog.setval('public.tipo_documento_id_seq', 3, true);
 
 
 --
--- TOC entry 4262 (class 0 OID 0)
--- Dependencies: 329
+-- TOC entry 4274 (class 0 OID 0)
+-- Dependencies: 328
 -- Name: tipo_estudio_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47210,8 +47246,8 @@ SELECT pg_catalog.setval('public.tipo_estudio_id_seq', 2, true);
 
 
 --
--- TOC entry 4263 (class 0 OID 0)
--- Dependencies: 348
+-- TOC entry 4275 (class 0 OID 0)
+-- Dependencies: 346
 -- Name: tipo_etnia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47219,7 +47255,7 @@ SELECT pg_catalog.setval('public.tipo_etnia_id_seq', 4, true);
 
 
 --
--- TOC entry 4264 (class 0 OID 0)
+-- TOC entry 4276 (class 0 OID 0)
 -- Dependencies: 282
 -- Name: tipo_ingreso_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47228,7 +47264,7 @@ SELECT pg_catalog.setval('public.tipo_ingreso_id_seq', 2, true);
 
 
 --
--- TOC entry 4265 (class 0 OID 0)
+-- TOC entry 4277 (class 0 OID 0)
 -- Dependencies: 236
 -- Name: tipo_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47237,7 +47273,7 @@ SELECT pg_catalog.setval('public.tipo_materia_id_seq', 12, true);
 
 
 --
--- TOC entry 4266 (class 0 OID 0)
+-- TOC entry 4278 (class 0 OID 0)
 -- Dependencies: 273
 -- Name: tipo_nacionalidad_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47246,7 +47282,7 @@ SELECT pg_catalog.setval('public.tipo_nacionalidad_id_seq', 2, true);
 
 
 --
--- TOC entry 4267 (class 0 OID 0)
+-- TOC entry 4279 (class 0 OID 0)
 -- Dependencies: 220
 -- Name: tipo_periodo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47255,7 +47291,7 @@ SELECT pg_catalog.setval('public.tipo_periodo_id_seq', 1, true);
 
 
 --
--- TOC entry 4268 (class 0 OID 0)
+-- TOC entry 4280 (class 0 OID 0)
 -- Dependencies: 269
 -- Name: tipo_sexo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47264,8 +47300,8 @@ SELECT pg_catalog.setval('public.tipo_sexo_id_seq', 2, true);
 
 
 --
--- TOC entry 4269 (class 0 OID 0)
--- Dependencies: 350
+-- TOC entry 4281 (class 0 OID 0)
+-- Dependencies: 348
 -- Name: tipo_titulo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47273,7 +47309,7 @@ SELECT pg_catalog.setval('public.tipo_titulo_id_seq', 2, true);
 
 
 --
--- TOC entry 4270 (class 0 OID 0)
+-- TOC entry 4282 (class 0 OID 0)
 -- Dependencies: 265
 -- Name: tipo_via_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47282,7 +47318,7 @@ SELECT pg_catalog.setval('public.tipo_via_id_seq', 1, false);
 
 
 --
--- TOC entry 4271 (class 0 OID 0)
+-- TOC entry 4283 (class 0 OID 0)
 -- Dependencies: 257
 -- Name: tipo_vivienda_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47291,7 +47327,7 @@ SELECT pg_catalog.setval('public.tipo_vivienda_id_seq', 1, false);
 
 
 --
--- TOC entry 4272 (class 0 OID 0)
+-- TOC entry 4284 (class 0 OID 0)
 -- Dependencies: 263
 -- Name: tipo_zona_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47300,7 +47336,7 @@ SELECT pg_catalog.setval('public.tipo_zona_id_seq', 1, false);
 
 
 --
--- TOC entry 4273 (class 0 OID 0)
+-- TOC entry 4285 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: tipopersonal_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47309,7 +47345,7 @@ SELECT pg_catalog.setval('public.tipopersonal_id_seq', 1, true);
 
 
 --
--- TOC entry 4274 (class 0 OID 0)
+-- TOC entry 4286 (class 0 OID 0)
 -- Dependencies: 247
 -- Name: trayectos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47318,7 +47354,7 @@ SELECT pg_catalog.setval('public.trayectos_id_seq', 5, true);
 
 
 --
--- TOC entry 4275 (class 0 OID 0)
+-- TOC entry 4287 (class 0 OID 0)
 -- Dependencies: 277
 -- Name: turnos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47327,16 +47363,16 @@ SELECT pg_catalog.setval('public.turnos_id_seq', 1, false);
 
 
 --
--- TOC entry 4276 (class 0 OID 0)
+-- TOC entry 4288 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: usuarios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.usuarios_id_seq', 17, true);
+SELECT pg_catalog.setval('public.usuarios_id_seq', 23, true);
 
 
 --
--- TOC entry 4277 (class 0 OID 0)
+-- TOC entry 4289 (class 0 OID 0)
 -- Dependencies: 261
 -- Name: zona_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -47345,7 +47381,7 @@ SELECT pg_catalog.setval('public.zona_id_seq', 1, false);
 
 
 --
--- TOC entry 3667 (class 2606 OID 25348)
+-- TOC entry 3668 (class 2606 OID 25348)
 -- Name: area_materia area_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47354,7 +47390,7 @@ ALTER TABLE ONLY public.area_materia
 
 
 --
--- TOC entry 3747 (class 2606 OID 25923)
+-- TOC entry 3746 (class 2606 OID 25923)
 -- Name: aulas aulas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47363,7 +47399,7 @@ ALTER TABLE ONLY public.aulas
 
 
 --
--- TOC entry 3693 (class 2606 OID 25531)
+-- TOC entry 3694 (class 2606 OID 25531)
 -- Name: bloque_horario bloque_horario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47372,7 +47408,7 @@ ALTER TABLE ONLY public.bloque_horario
 
 
 --
--- TOC entry 3795 (class 2606 OID 34893)
+-- TOC entry 3792 (class 2606 OID 34893)
 -- Name: carrera_electiva carrera_electiva_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47381,7 +47417,7 @@ ALTER TABLE ONLY public.carrera_electiva
 
 
 --
--- TOC entry 3663 (class 2606 OID 25311)
+-- TOC entry 3664 (class 2606 OID 25311)
 -- Name: carrera_materia carrera_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47390,7 +47426,7 @@ ALTER TABLE ONLY public.carrera_materia
 
 
 --
--- TOC entry 3779 (class 2606 OID 33006)
+-- TOC entry 3776 (class 2606 OID 33006)
 -- Name: carrera_trayecto carrera_trayecto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47399,7 +47435,7 @@ ALTER TABLE ONLY public.carrera_trayecto
 
 
 --
--- TOC entry 3661 (class 2606 OID 25298)
+-- TOC entry 3662 (class 2606 OID 25298)
 -- Name: carreras carreras_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47408,7 +47444,16 @@ ALTER TABLE ONLY public.carreras
 
 
 --
--- TOC entry 3735 (class 2606 OID 25765)
+-- TOC entry 3794 (class 2606 OID 34952)
+-- Name: estudiantes ced_estudiante_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estudiantes
+    ADD CONSTRAINT ced_estudiante_unique UNIQUE (ced_estudiante);
+
+
+--
+-- TOC entry 3734 (class 2606 OID 25765)
 -- Name: usuarios ced_user_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47417,7 +47462,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3743 (class 2606 OID 25896)
+-- TOC entry 3742 (class 2606 OID 25896)
 -- Name: ciclos ciclos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47426,7 +47471,7 @@ ALTER TABLE ONLY public.ciclos
 
 
 --
--- TOC entry 3673 (class 2606 OID 25407)
+-- TOC entry 3674 (class 2606 OID 25407)
 -- Name: ciudades ciudades_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47435,7 +47480,7 @@ ALTER TABLE ONLY public.ciudades
 
 
 --
--- TOC entry 3669 (class 2606 OID 25355)
+-- TOC entry 3670 (class 2606 OID 25355)
 -- Name: clase_materia clase_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47444,7 +47489,7 @@ ALTER TABLE ONLY public.clase_materia
 
 
 --
--- TOC entry 3787 (class 2606 OID 34787)
+-- TOC entry 3784 (class 2606 OID 34787)
 -- Name: departamentos departamentos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47453,7 +47498,7 @@ ALTER TABLE ONLY public.departamentos
 
 
 --
--- TOC entry 3699 (class 2606 OID 25551)
+-- TOC entry 3700 (class 2606 OID 25551)
 -- Name: dias dias_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47462,7 +47507,7 @@ ALTER TABLE ONLY public.dias
 
 
 --
--- TOC entry 3793 (class 2606 OID 34886)
+-- TOC entry 3790 (class 2606 OID 34886)
 -- Name: electiva electiva_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47471,7 +47516,7 @@ ALTER TABLE ONLY public.electiva
 
 
 --
--- TOC entry 3689 (class 2606 OID 25477)
+-- TOC entry 3690 (class 2606 OID 25477)
 -- Name: tipo_estado_civil estado_civil_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47480,7 +47525,7 @@ ALTER TABLE ONLY public.tipo_estado_civil
 
 
 --
--- TOC entry 3769 (class 2606 OID 32893)
+-- TOC entry 3766 (class 2606 OID 32893)
 -- Name: estado_mundo estado_mundo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47489,7 +47534,7 @@ ALTER TABLE ONLY public.estado_mundo
 
 
 --
--- TOC entry 3642 (class 2606 OID 25029)
+-- TOC entry 3643 (class 2606 OID 25029)
 -- Name: estados estados_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47498,7 +47543,7 @@ ALTER TABLE ONLY public.estados
 
 
 --
--- TOC entry 3731 (class 2606 OID 25740)
+-- TOC entry 3730 (class 2606 OID 25740)
 -- Name: estatus_aula estatus_aula_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47507,7 +47552,7 @@ ALTER TABLE ONLY public.estatus_aula
 
 
 --
--- TOC entry 3753 (class 2606 OID 26054)
+-- TOC entry 3752 (class 2606 OID 26054)
 -- Name: estatus_carrera estatus_carrera_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47516,7 +47561,7 @@ ALTER TABLE ONLY public.estatus_carrera
 
 
 --
--- TOC entry 3789 (class 2606 OID 34794)
+-- TOC entry 3786 (class 2606 OID 34794)
 -- Name: estatus_departamento estatus_departamentos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47525,7 +47570,7 @@ ALTER TABLE ONLY public.estatus_departamento
 
 
 --
--- TOC entry 3715 (class 2606 OID 25663)
+-- TOC entry 3714 (class 2606 OID 25663)
 -- Name: estatus_docente_materia estatus_docente_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47534,7 +47579,7 @@ ALTER TABLE ONLY public.estatus_docente_materia
 
 
 --
--- TOC entry 3705 (class 2606 OID 25614)
+-- TOC entry 3706 (class 2606 OID 25614)
 -- Name: estatus_estudiante estatus_estudiante_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47543,7 +47588,7 @@ ALTER TABLE ONLY public.estatus_estudiante
 
 
 --
--- TOC entry 3727 (class 2606 OID 25725)
+-- TOC entry 3726 (class 2606 OID 25725)
 -- Name: estatus_horario estatus_horario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47552,7 +47597,7 @@ ALTER TABLE ONLY public.estatus_horario
 
 
 --
--- TOC entry 3709 (class 2606 OID 25643)
+-- TOC entry 3708 (class 2606 OID 25643)
 -- Name: estatus_inscripcion estatus_inscripcion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47561,7 +47606,7 @@ ALTER TABLE ONLY public.estatus_inscripcion
 
 
 --
--- TOC entry 3717 (class 2606 OID 25669)
+-- TOC entry 3716 (class 2606 OID 25669)
 -- Name: estatus_inscripto_materia estatus_inscripto_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47570,7 +47615,7 @@ ALTER TABLE ONLY public.estatus_inscripto_materia
 
 
 --
--- TOC entry 3721 (class 2606 OID 25693)
+-- TOC entry 3720 (class 2606 OID 25693)
 -- Name: estatus_materia estatus_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47579,7 +47624,7 @@ ALTER TABLE ONLY public.estatus_materia
 
 
 --
--- TOC entry 3733 (class 2606 OID 25747)
+-- TOC entry 3732 (class 2606 OID 25747)
 -- Name: estatus_oferta estatus_oferta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47588,7 +47633,7 @@ ALTER TABLE ONLY public.estatus_oferta
 
 
 --
--- TOC entry 3745 (class 2606 OID 25917)
+-- TOC entry 3744 (class 2606 OID 25917)
 -- Name: estatus_periodo estatus_periodo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47597,7 +47642,7 @@ ALTER TABLE ONLY public.estatus_periodo
 
 
 --
--- TOC entry 3711 (class 2606 OID 25649)
+-- TOC entry 3710 (class 2606 OID 25649)
 -- Name: estatus_personal estatus_personal_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47606,7 +47651,7 @@ ALTER TABLE ONLY public.estatus_personal
 
 
 --
--- TOC entry 3755 (class 2606 OID 32778)
+-- TOC entry 3754 (class 2606 OID 32778)
 -- Name: estatus_postulacion estatus_postulacion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47615,7 +47660,7 @@ ALTER TABLE ONLY public.estatus_postulacion
 
 
 --
--- TOC entry 3729 (class 2606 OID 25733)
+-- TOC entry 3728 (class 2606 OID 25733)
 -- Name: estatus_seccion estatus_seccion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47624,7 +47669,7 @@ ALTER TABLE ONLY public.estatus_seccion
 
 
 --
--- TOC entry 3707 (class 2606 OID 25620)
+-- TOC entry 3796 (class 2606 OID 34950)
 -- Name: estudiantes estudiantes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47633,7 +47678,7 @@ ALTER TABLE ONLY public.estudiantes
 
 
 --
--- TOC entry 3763 (class 2606 OID 32839)
+-- TOC entry 3762 (class 2606 OID 32839)
 -- Name: fecha_estatus_postulacion fecha_estatus_postulacion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47642,16 +47687,7 @@ ALTER TABLE ONLY public.fecha_estatus_postulacion
 
 
 --
--- TOC entry 3765 (class 2606 OID 32861)
--- Name: geografico_estudiante geografico_estudiante_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.geografico_estudiante
-    ADD CONSTRAINT geografico_estudiante_pkey PRIMARY KEY (id_geografico_estudiante);
-
-
---
--- TOC entry 3767 (class 2606 OID 32867)
+-- TOC entry 3764 (class 2606 OID 32867)
 -- Name: geografico_sede geografico_sede_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47660,7 +47696,7 @@ ALTER TABLE ONLY public.geografico_sede
 
 
 --
--- TOC entry 3697 (class 2606 OID 25545)
+-- TOC entry 3698 (class 2606 OID 25545)
 -- Name: horario horario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47669,7 +47705,7 @@ ALTER TABLE ONLY public.horario
 
 
 --
--- TOC entry 3741 (class 2606 OID 25844)
+-- TOC entry 3740 (class 2606 OID 25844)
 -- Name: inscripcion_materia inscripcion_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47678,7 +47714,7 @@ ALTER TABLE ONLY public.inscripcion_materia
 
 
 --
--- TOC entry 3655 (class 2606 OID 25200)
+-- TOC entry 3656 (class 2606 OID 25200)
 -- Name: inscripcion inscripcion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47687,7 +47723,7 @@ ALTER TABLE ONLY public.inscripcion
 
 
 --
--- TOC entry 3651 (class 2606 OID 25093)
+-- TOC entry 3652 (class 2606 OID 25093)
 -- Name: docente_materia materia_personal_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47696,7 +47732,7 @@ ALTER TABLE ONLY public.docente_materia
 
 
 --
--- TOC entry 3659 (class 2606 OID 25274)
+-- TOC entry 3660 (class 2606 OID 25274)
 -- Name: materias materias_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47705,7 +47741,7 @@ ALTER TABLE ONLY public.materias
 
 
 --
--- TOC entry 3775 (class 2606 OID 32987)
+-- TOC entry 3772 (class 2606 OID 32987)
 -- Name: meses meses_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47714,7 +47750,7 @@ ALTER TABLE ONLY public.meses
 
 
 --
--- TOC entry 3646 (class 2606 OID 25041)
+-- TOC entry 3647 (class 2606 OID 25041)
 -- Name: municipios municipio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47723,7 +47759,7 @@ ALTER TABLE ONLY public.municipios
 
 
 --
--- TOC entry 3671 (class 2606 OID 25376)
+-- TOC entry 3672 (class 2606 OID 25376)
 -- Name: notas notas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47732,7 +47768,7 @@ ALTER TABLE ONLY public.notas
 
 
 --
--- TOC entry 3749 (class 2606 OID 25929)
+-- TOC entry 3748 (class 2606 OID 25929)
 -- Name: oferta_academica oferta_academica_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47741,7 +47777,7 @@ ALTER TABLE ONLY public.oferta_academica
 
 
 --
--- TOC entry 3777 (class 2606 OID 32995)
+-- TOC entry 3774 (class 2606 OID 32995)
 -- Name: oferta_horario oferta_horario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47750,7 +47786,7 @@ ALTER TABLE ONLY public.oferta_horario
 
 
 --
--- TOC entry 3751 (class 2606 OID 26024)
+-- TOC entry 3750 (class 2606 OID 26024)
 -- Name: oferta_materia_carrera oferta_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47759,7 +47795,7 @@ ALTER TABLE ONLY public.oferta_materia_carrera
 
 
 --
--- TOC entry 3675 (class 2606 OID 25417)
+-- TOC entry 3676 (class 2606 OID 25417)
 -- Name: paises paises_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47768,7 +47804,7 @@ ALTER TABLE ONLY public.paises
 
 
 --
--- TOC entry 3649 (class 2606 OID 25053)
+-- TOC entry 3650 (class 2606 OID 25053)
 -- Name: parroquias parroquia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47777,7 +47813,7 @@ ALTER TABLE ONLY public.parroquias
 
 
 --
--- TOC entry 3785 (class 2606 OID 33371)
+-- TOC entry 3782 (class 2606 OID 33371)
 -- Name: periodo_trayecto periodo_trayecto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47786,7 +47822,7 @@ ALTER TABLE ONLY public.periodo_trayecto
 
 
 --
--- TOC entry 3665 (class 2606 OID 25333)
+-- TOC entry 3666 (class 2606 OID 25333)
 -- Name: periodo_lectivo periodos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47795,7 +47831,7 @@ ALTER TABLE ONLY public.periodo_lectivo
 
 
 --
--- TOC entry 3653 (class 2606 OID 25119)
+-- TOC entry 3654 (class 2606 OID 25119)
 -- Name: personal personal_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47804,7 +47840,16 @@ ALTER TABLE ONLY public.personal
 
 
 --
--- TOC entry 3771 (class 2606 OID 32899)
+-- TOC entry 3798 (class 2606 OID 35035)
+-- Name: personal_seccion personal_seccion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.personal_seccion
+    ADD CONSTRAINT personal_seccion_pkey PRIMARY KEY (id_personalsecc);
+
+
+--
+-- TOC entry 3768 (class 2606 OID 32899)
 -- Name: postulacion postulacion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47813,7 +47858,7 @@ ALTER TABLE ONLY public.postulacion
 
 
 --
--- TOC entry 3685 (class 2606 OID 25451)
+-- TOC entry 3686 (class 2606 OID 25451)
 -- Name: profesion profesion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47822,7 +47867,7 @@ ALTER TABLE ONLY public.profesion
 
 
 --
--- TOC entry 3638 (class 2606 OID 24815)
+-- TOC entry 3639 (class 2606 OID 24815)
 -- Name: regiones regiones_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47831,7 +47876,7 @@ ALTER TABLE ONLY public.regiones
 
 
 --
--- TOC entry 3640 (class 2606 OID 24882)
+-- TOC entry 3641 (class 2606 OID 24882)
 -- Name: roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47840,7 +47885,7 @@ ALTER TABLE ONLY public.roles
 
 
 --
--- TOC entry 3657 (class 2606 OID 25236)
+-- TOC entry 3658 (class 2606 OID 25236)
 -- Name: secciones secciones_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47849,7 +47894,7 @@ ALTER TABLE ONLY public.secciones
 
 
 --
--- TOC entry 3773 (class 2606 OID 32914)
+-- TOC entry 3770 (class 2606 OID 32914)
 -- Name: sede_carrera sede_carrera_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47858,7 +47903,7 @@ ALTER TABLE ONLY public.sede_carrera
 
 
 --
--- TOC entry 3701 (class 2606 OID 25561)
+-- TOC entry 3702 (class 2606 OID 25561)
 -- Name: sedes sedes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47867,7 +47912,7 @@ ALTER TABLE ONLY public.sedes
 
 
 --
--- TOC entry 3791 (class 2606 OID 34879)
+-- TOC entry 3788 (class 2606 OID 34879)
 -- Name: suplente_materia suplente_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47876,7 +47921,7 @@ ALTER TABLE ONLY public.suplente_materia
 
 
 --
--- TOC entry 3719 (class 2606 OID 25681)
+-- TOC entry 3718 (class 2606 OID 25681)
 -- Name: tipo_carrera tipo_carrera_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47885,7 +47930,7 @@ ALTER TABLE ONLY public.tipo_carrera
 
 
 --
--- TOC entry 3739 (class 2606 OID 25792)
+-- TOC entry 3738 (class 2606 OID 25792)
 -- Name: tipo_discapacidad tipo_discapacidades_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47894,7 +47939,7 @@ ALTER TABLE ONLY public.tipo_discapacidad
 
 
 --
--- TOC entry 3757 (class 2606 OID 32803)
+-- TOC entry 3756 (class 2606 OID 32803)
 -- Name: tipo_documento tipo_documento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47903,7 +47948,7 @@ ALTER TABLE ONLY public.tipo_documento
 
 
 --
--- TOC entry 3761 (class 2606 OID 32826)
+-- TOC entry 3760 (class 2606 OID 32826)
 -- Name: tipo_estudio tipo_estudio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47912,7 +47957,7 @@ ALTER TABLE ONLY public.tipo_estudio
 
 
 --
--- TOC entry 3781 (class 2606 OID 33017)
+-- TOC entry 3778 (class 2606 OID 33017)
 -- Name: tipo_etnia tipo_etnia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47921,7 +47966,7 @@ ALTER TABLE ONLY public.tipo_etnia
 
 
 --
--- TOC entry 3703 (class 2606 OID 25577)
+-- TOC entry 3704 (class 2606 OID 25577)
 -- Name: tipo_ingreso tipo_ingreso_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47930,7 +47975,7 @@ ALTER TABLE ONLY public.tipo_ingreso
 
 
 --
--- TOC entry 3723 (class 2606 OID 25699)
+-- TOC entry 3722 (class 2606 OID 25699)
 -- Name: tipo_materia tipo_materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47939,7 +47984,7 @@ ALTER TABLE ONLY public.tipo_materia
 
 
 --
--- TOC entry 3691 (class 2606 OID 25491)
+-- TOC entry 3692 (class 2606 OID 25491)
 -- Name: tipo_nacionalidad tipo_nacionalidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47948,7 +47993,7 @@ ALTER TABLE ONLY public.tipo_nacionalidad
 
 
 --
--- TOC entry 3725 (class 2606 OID 25718)
+-- TOC entry 3724 (class 2606 OID 25718)
 -- Name: tipo_periodo tipo_periodo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47957,7 +48002,7 @@ ALTER TABLE ONLY public.tipo_periodo
 
 
 --
--- TOC entry 3713 (class 2606 OID 25655)
+-- TOC entry 3712 (class 2606 OID 25655)
 -- Name: tipo_personal tipo_personal_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47966,7 +48011,7 @@ ALTER TABLE ONLY public.tipo_personal
 
 
 --
--- TOC entry 3687 (class 2606 OID 25470)
+-- TOC entry 3688 (class 2606 OID 25470)
 -- Name: tipo_sexo tipo_sexo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47975,7 +48020,7 @@ ALTER TABLE ONLY public.tipo_sexo
 
 
 --
--- TOC entry 3783 (class 2606 OID 33086)
+-- TOC entry 3780 (class 2606 OID 33086)
 -- Name: tipo_titulo tipo_titulo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47984,7 +48029,7 @@ ALTER TABLE ONLY public.tipo_titulo
 
 
 --
--- TOC entry 3681 (class 2606 OID 25439)
+-- TOC entry 3682 (class 2606 OID 25439)
 -- Name: tipo_via tipo_via_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -47993,7 +48038,7 @@ ALTER TABLE ONLY public.tipo_via
 
 
 --
--- TOC entry 3683 (class 2606 OID 25445)
+-- TOC entry 3684 (class 2606 OID 25445)
 -- Name: tipo_vivienda tipo_vivienda_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48002,7 +48047,7 @@ ALTER TABLE ONLY public.tipo_vivienda
 
 
 --
--- TOC entry 3679 (class 2606 OID 25432)
+-- TOC entry 3680 (class 2606 OID 25432)
 -- Name: tipo_zona tipo_zona_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48011,7 +48056,7 @@ ALTER TABLE ONLY public.tipo_zona
 
 
 --
--- TOC entry 3759 (class 2606 OID 32813)
+-- TOC entry 3758 (class 2606 OID 32813)
 -- Name: trayectos trayectos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48020,7 +48065,7 @@ ALTER TABLE ONLY public.trayectos
 
 
 --
--- TOC entry 3695 (class 2606 OID 25539)
+-- TOC entry 3696 (class 2606 OID 25539)
 -- Name: turnos turnos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48029,7 +48074,7 @@ ALTER TABLE ONLY public.turnos
 
 
 --
--- TOC entry 3737 (class 2606 OID 25763)
+-- TOC entry 3736 (class 2606 OID 25763)
 -- Name: usuarios usuarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48038,7 +48083,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3677 (class 2606 OID 25424)
+-- TOC entry 3678 (class 2606 OID 25424)
 -- Name: zona zona_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48047,7 +48092,7 @@ ALTER TABLE ONLY public.zona
 
 
 --
--- TOC entry 3644 (class 1259 OID 25047)
+-- TOC entry 3645 (class 1259 OID 25047)
 -- Name: fki_FK_estado_munucipio_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -48055,7 +48100,7 @@ CREATE INDEX "fki_FK_estado_munucipio_id" ON public.municipios USING btree (id_e
 
 
 --
--- TOC entry 3643 (class 1259 OID 25035)
+-- TOC entry 3644 (class 1259 OID 25035)
 -- Name: fki_FK_estado_regiones_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -48063,7 +48108,7 @@ CREATE INDEX "fki_FK_estado_regiones_id" ON public.estados USING btree (id_regio
 
 
 --
--- TOC entry 3647 (class 1259 OID 25059)
+-- TOC entry 3648 (class 1259 OID 25059)
 -- Name: fki_FK_municipio_parroquia_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -48071,7 +48116,7 @@ CREATE INDEX "fki_FK_municipio_parroquia_id" ON public.parroquias USING btree (i
 
 
 --
--- TOC entry 3796 (class 2606 OID 25030)
+-- TOC entry 3799 (class 2606 OID 25030)
 -- Name: estados FK_estado_regiones_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48080,7 +48125,7 @@ ALTER TABLE ONLY public.estados
 
 
 --
--- TOC entry 3818 (class 2606 OID 34655)
+-- TOC entry 3820 (class 2606 OID 34655)
 -- Name: materias area_fk_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48089,7 +48134,7 @@ ALTER TABLE ONLY public.materias
 
 
 --
--- TOC entry 3891 (class 2606 OID 33248)
+-- TOC entry 3884 (class 2606 OID 33248)
 -- Name: carrera_trayecto carrera_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48098,7 +48143,7 @@ ALTER TABLE ONLY public.carrera_trayecto
 
 
 --
--- TOC entry 3824 (class 2606 OID 33258)
+-- TOC entry 3826 (class 2606 OID 33258)
 -- Name: carrera_materia carrera_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48107,7 +48152,7 @@ ALTER TABLE ONLY public.carrera_materia
 
 
 --
--- TOC entry 3877 (class 2606 OID 34675)
+-- TOC entry 3870 (class 2606 OID 34675)
 -- Name: postulacion carrera_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48116,7 +48161,7 @@ ALTER TABLE ONLY public.postulacion
 
 
 --
--- TOC entry 3869 (class 2606 OID 34740)
+-- TOC entry 3862 (class 2606 OID 34740)
 -- Name: oferta_academica carrera_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48125,7 +48170,7 @@ ALTER TABLE ONLY public.oferta_academica
 
 
 --
--- TOC entry 3895 (class 2606 OID 34585)
+-- TOC entry 3888 (class 2606 OID 34585)
 -- Name: periodo_trayecto carrera_fk_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48134,7 +48179,7 @@ ALTER TABLE ONLY public.periodo_trayecto
 
 
 --
--- TOC entry 3874 (class 2606 OID 34765)
+-- TOC entry 3867 (class 2606 OID 34765)
 -- Name: oferta_materia_carrera carrera_fk_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48143,7 +48188,7 @@ ALTER TABLE ONLY public.oferta_materia_carrera
 
 
 --
--- TOC entry 3811 (class 2606 OID 34605)
+-- TOC entry 3813 (class 2606 OID 34605)
 -- Name: inscripcion carrera_fk_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48152,7 +48197,7 @@ ALTER TABLE ONLY public.inscripcion
 
 
 --
--- TOC entry 3820 (class 2606 OID 34410)
+-- TOC entry 3822 (class 2606 OID 34410)
 -- Name: carreras carreras_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48161,7 +48206,7 @@ ALTER TABLE ONLY public.carreras
 
 
 --
--- TOC entry 3821 (class 2606 OID 34415)
+-- TOC entry 3823 (class 2606 OID 34415)
 -- Name: carreras carreras_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48170,7 +48215,7 @@ ALTER TABLE ONLY public.carreras
 
 
 --
--- TOC entry 3822 (class 2606 OID 34420)
+-- TOC entry 3824 (class 2606 OID 34420)
 -- Name: carreras carreras_fk_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48179,7 +48224,7 @@ ALTER TABLE ONLY public.carreras
 
 
 --
--- TOC entry 3823 (class 2606 OID 34425)
+-- TOC entry 3825 (class 2606 OID 34425)
 -- Name: carreras carreras_fk_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48188,7 +48233,16 @@ ALTER TABLE ONLY public.carreras
 
 
 --
--- TOC entry 3853 (class 2606 OID 34520)
+-- TOC entry 3890 (class 2606 OID 34989)
+-- Name: estudiantes ciudad_hab_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estudiantes
+    ADD CONSTRAINT ciudad_hab_fk FOREIGN KEY (id_ciudad) REFERENCES public.ciudades(id_ciudad);
+
+
+--
+-- TOC entry 3846 (class 2606 OID 34520)
 -- Name: usuarios ciudad_hab_fk_7; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48197,7 +48251,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3863 (class 2606 OID 34570)
+-- TOC entry 3856 (class 2606 OID 34570)
 -- Name: usuarios ciudad_nac_fk_17; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48206,16 +48260,16 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3842 (class 2606 OID 34445)
--- Name: estudiantes ciudad_nac_fk_5; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 3891 (class 2606 OID 34964)
+-- Name: estudiantes civil_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.estudiantes
-    ADD CONSTRAINT ciudad_nac_fk_5 FOREIGN KEY (id_ciudad_nac) REFERENCES public.ciudades(id_ciudad);
+    ADD CONSTRAINT civil_fk FOREIGN KEY (id_civil) REFERENCES public.tipo_estado_civil(id_civil);
 
 
 --
--- TOC entry 3849 (class 2606 OID 34500)
+-- TOC entry 3842 (class 2606 OID 34500)
 -- Name: usuarios civil_fk_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48224,16 +48278,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3841 (class 2606 OID 34440)
--- Name: estudiantes civil_fk_4; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiantes
-    ADD CONSTRAINT civil_fk_4 FOREIGN KEY (id_civil) REFERENCES public.tipo_estado_civil(id_civil);
-
-
---
--- TOC entry 3817 (class 2606 OID 34650)
+-- TOC entry 3819 (class 2606 OID 34650)
 -- Name: materias clase_fk_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48242,7 +48287,7 @@ ALTER TABLE ONLY public.materias
 
 
 --
--- TOC entry 3819 (class 2606 OID 34800)
+-- TOC entry 3821 (class 2606 OID 34800)
 -- Name: materias departamento_fk_4; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48251,16 +48296,16 @@ ALTER TABLE ONLY public.materias
 
 
 --
--- TOC entry 3837 (class 2606 OID 25793)
+-- TOC entry 3892 (class 2606 OID 35009)
 -- Name: estudiantes discapacidad_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.estudiantes
-    ADD CONSTRAINT discapacidad_fk FOREIGN KEY (id_tp_discapacidad) REFERENCES public.tipo_discapacidad(id_tp_discapacidad) NOT VALID;
+    ADD CONSTRAINT discapacidad_fk FOREIGN KEY (id_tp_discapacidad) REFERENCES public.tipo_discapacidad(id_tp_discapacidad);
 
 
 --
--- TOC entry 3859 (class 2606 OID 34550)
+-- TOC entry 3852 (class 2606 OID 34550)
 -- Name: usuarios discapacidad_fk_13; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48269,7 +48314,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3797 (class 2606 OID 34660)
+-- TOC entry 3800 (class 2606 OID 34660)
 -- Name: municipios estado_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48278,7 +48323,16 @@ ALTER TABLE ONLY public.municipios
 
 
 --
--- TOC entry 3854 (class 2606 OID 34525)
+-- TOC entry 3893 (class 2606 OID 34994)
+-- Name: estudiantes estado_hab_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estudiantes
+    ADD CONSTRAINT estado_hab_fk FOREIGN KEY (id_estado) REFERENCES public.estados(id_estado);
+
+
+--
+-- TOC entry 3847 (class 2606 OID 34525)
 -- Name: usuarios estado_hab_fk_8; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48287,7 +48341,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3862 (class 2606 OID 34565)
+-- TOC entry 3855 (class 2606 OID 34565)
 -- Name: usuarios estado_nac_fk_16; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48296,16 +48350,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3843 (class 2606 OID 34450)
--- Name: estudiantes estado_nac_fk_7; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiantes
-    ADD CONSTRAINT estado_nac_fk_7 FOREIGN KEY (id_estado_nac) REFERENCES public.estados(id_estado);
-
-
---
--- TOC entry 3896 (class 2606 OID 34795)
+-- TOC entry 3889 (class 2606 OID 34795)
 -- Name: departamentos estatus_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48314,16 +48359,16 @@ ALTER TABLE ONLY public.departamentos
 
 
 --
--- TOC entry 3838 (class 2606 OID 25798)
--- Name: estudiantes estatus_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 3894 (class 2606 OID 35024)
+-- Name: estudiantes estatus_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.estudiantes
-    ADD CONSTRAINT estatus_fk_1 FOREIGN KEY (id_estatus_estudiante) REFERENCES public.estatus_estudiante(id_estatus_estudiante) NOT VALID;
+    ADD CONSTRAINT estatus_fk FOREIGN KEY (id_estatus_estudiante) REFERENCES public.estatus_estudiante(id_estatus_estudiante);
 
 
 --
--- TOC entry 3816 (class 2606 OID 34645)
+-- TOC entry 3818 (class 2606 OID 34645)
 -- Name: materias estatus_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48332,7 +48377,7 @@ ALTER TABLE ONLY public.materias
 
 
 --
--- TOC entry 3810 (class 2606 OID 34600)
+-- TOC entry 3812 (class 2606 OID 34600)
 -- Name: inscripcion estatus_fk_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48341,7 +48386,7 @@ ALTER TABLE ONLY public.inscripcion
 
 
 --
--- TOC entry 3870 (class 2606 OID 34745)
+-- TOC entry 3863 (class 2606 OID 34745)
 -- Name: oferta_academica estatus_fk_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48350,7 +48395,7 @@ ALTER TABLE ONLY public.oferta_academica
 
 
 --
--- TOC entry 3830 (class 2606 OID 34480)
+-- TOC entry 3832 (class 2606 OID 34480)
 -- Name: periodo_lectivo estatus_fk_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48359,7 +48404,7 @@ ALTER TABLE ONLY public.periodo_lectivo
 
 
 --
--- TOC entry 3867 (class 2606 OID 34635)
+-- TOC entry 3860 (class 2606 OID 34635)
 -- Name: inscripcion_materia estatus_fk_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48368,7 +48413,7 @@ ALTER TABLE ONLY public.inscripcion_materia
 
 
 --
--- TOC entry 3879 (class 2606 OID 34685)
+-- TOC entry 3872 (class 2606 OID 34685)
 -- Name: postulacion estatus_fk_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48377,7 +48422,7 @@ ALTER TABLE ONLY public.postulacion
 
 
 --
--- TOC entry 3808 (class 2606 OID 34590)
+-- TOC entry 3815 (class 2606 OID 35046)
 -- Name: inscripcion estudiante_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48386,7 +48431,16 @@ ALTER TABLE ONLY public.inscripcion
 
 
 --
--- TOC entry 3860 (class 2606 OID 34555)
+-- TOC entry 3895 (class 2606 OID 35019)
+-- Name: estudiantes etnia_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estudiantes
+    ADD CONSTRAINT etnia_fk FOREIGN KEY (id_etnia) REFERENCES public.tipo_etnia(id_etnia);
+
+
+--
+-- TOC entry 3853 (class 2606 OID 34555)
 -- Name: usuarios etnia_fk_14; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48395,7 +48449,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3866 (class 2606 OID 34630)
+-- TOC entry 3859 (class 2606 OID 34630)
 -- Name: inscripcion_materia horario_fk_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48404,16 +48458,7 @@ ALTER TABLE ONLY public.inscripcion_materia
 
 
 --
--- TOC entry 3845 (class 2606 OID 34460)
--- Name: estudiantes ingreso_fk_8; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiantes
-    ADD CONSTRAINT ingreso_fk_8 FOREIGN KEY (id_tp_ingreso) REFERENCES public.tipo_ingreso(id_tp_ingreso);
-
-
---
--- TOC entry 3864 (class 2606 OID 34620)
+-- TOC entry 3857 (class 2606 OID 34620)
 -- Name: inscripcion_materia inscripcion_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48422,7 +48467,7 @@ ALTER TABLE ONLY public.inscripcion_materia
 
 
 --
--- TOC entry 3814 (class 2606 OID 26002)
+-- TOC entry 3816 (class 2606 OID 26002)
 -- Name: secciones m015t_secciones_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48431,7 +48476,7 @@ ALTER TABLE ONLY public.secciones
 
 
 --
--- TOC entry 3799 (class 2606 OID 25958)
+-- TOC entry 3802 (class 2606 OID 25958)
 -- Name: docente_materia materia_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48440,7 +48485,7 @@ ALTER TABLE ONLY public.docente_materia
 
 
 --
--- TOC entry 3826 (class 2606 OID 33263)
+-- TOC entry 3828 (class 2606 OID 33263)
 -- Name: carrera_materia materia_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48449,7 +48494,7 @@ ALTER TABLE ONLY public.carrera_materia
 
 
 --
--- TOC entry 3865 (class 2606 OID 34625)
+-- TOC entry 3858 (class 2606 OID 34625)
 -- Name: inscripcion_materia materia_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48458,7 +48503,7 @@ ALTER TABLE ONLY public.inscripcion_materia
 
 
 --
--- TOC entry 3873 (class 2606 OID 34760)
+-- TOC entry 3866 (class 2606 OID 34760)
 -- Name: oferta_materia_carrera materia_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48467,7 +48512,7 @@ ALTER TABLE ONLY public.oferta_materia_carrera
 
 
 --
--- TOC entry 3829 (class 2606 OID 34475)
+-- TOC entry 3831 (class 2606 OID 34475)
 -- Name: periodo_lectivo mes_fin_fk_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48476,7 +48521,7 @@ ALTER TABLE ONLY public.periodo_lectivo
 
 
 --
--- TOC entry 3828 (class 2606 OID 34470)
+-- TOC entry 3830 (class 2606 OID 34470)
 -- Name: periodo_lectivo mes_inicio_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48485,7 +48530,7 @@ ALTER TABLE ONLY public.periodo_lectivo
 
 
 --
--- TOC entry 3798 (class 2606 OID 34665)
+-- TOC entry 3801 (class 2606 OID 34665)
 -- Name: parroquias municipio_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48494,7 +48539,16 @@ ALTER TABLE ONLY public.parroquias
 
 
 --
--- TOC entry 3855 (class 2606 OID 34530)
+-- TOC entry 3896 (class 2606 OID 34999)
+-- Name: estudiantes municipio_hab_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estudiantes
+    ADD CONSTRAINT municipio_hab_fk FOREIGN KEY (id_municipio) REFERENCES public.municipios(id_municipio);
+
+
+--
+-- TOC entry 3848 (class 2606 OID 34530)
 -- Name: usuarios municipio_hab_fk_9; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48503,7 +48557,16 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3847 (class 2606 OID 34490)
+-- TOC entry 3897 (class 2606 OID 34954)
+-- Name: estudiantes nacionalidad_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estudiantes
+    ADD CONSTRAINT nacionalidad_fk FOREIGN KEY (id_nacionalidad) REFERENCES public.tipo_nacionalidad(id_nacionalidad);
+
+
+--
+-- TOC entry 3840 (class 2606 OID 34490)
 -- Name: usuarios nacionalidad_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48512,16 +48575,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3839 (class 2606 OID 34430)
--- Name: estudiantes nacionalidad_fk_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiantes
-    ADD CONSTRAINT nacionalidad_fk_2 FOREIGN KEY (id_nacionalidad) REFERENCES public.tipo_nacionalidad(id_nacionalidad);
-
-
---
--- TOC entry 3872 (class 2606 OID 34755)
+-- TOC entry 3865 (class 2606 OID 34755)
 -- Name: oferta_materia_carrera oferta_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48530,7 +48584,16 @@ ALTER TABLE ONLY public.oferta_materia_carrera
 
 
 --
--- TOC entry 3858 (class 2606 OID 34545)
+-- TOC entry 3898 (class 2606 OID 34984)
+-- Name: estudiantes pais_hab_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estudiantes
+    ADD CONSTRAINT pais_hab_fk FOREIGN KEY (id_pais) REFERENCES public.paises(id_pais);
+
+
+--
+-- TOC entry 3851 (class 2606 OID 34545)
 -- Name: usuarios pais_hab_fk_12; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48539,7 +48602,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3861 (class 2606 OID 34560)
+-- TOC entry 3854 (class 2606 OID 34560)
 -- Name: usuarios pais_nac_fk_15; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48548,16 +48611,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3844 (class 2606 OID 34455)
--- Name: estudiantes pais_nac_fk_7; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiantes
-    ADD CONSTRAINT pais_nac_fk_7 FOREIGN KEY (id_pais_nac) REFERENCES public.paises(id_pais);
-
-
---
--- TOC entry 3831 (class 2606 OID 34775)
+-- TOC entry 3833 (class 2606 OID 34775)
 -- Name: zona parroquia_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48566,7 +48620,7 @@ ALTER TABLE ONLY public.zona
 
 
 --
--- TOC entry 3856 (class 2606 OID 34535)
+-- TOC entry 3849 (class 2606 OID 34535)
 -- Name: usuarios parroquia_fk_10; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48575,7 +48629,16 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3893 (class 2606 OID 34575)
+-- TOC entry 3899 (class 2606 OID 35004)
+-- Name: estudiantes parroquia_hab_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estudiantes
+    ADD CONSTRAINT parroquia_hab_fk FOREIGN KEY (id_parroquia) REFERENCES public.parroquias(id_parroquia);
+
+
+--
+-- TOC entry 3886 (class 2606 OID 34575)
 -- Name: periodo_trayecto periodo_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48584,7 +48647,7 @@ ALTER TABLE ONLY public.periodo_trayecto
 
 
 --
--- TOC entry 3868 (class 2606 OID 34735)
+-- TOC entry 3861 (class 2606 OID 34735)
 -- Name: oferta_academica periodo_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48593,7 +48656,7 @@ ALTER TABLE ONLY public.oferta_academica
 
 
 --
--- TOC entry 3809 (class 2606 OID 34595)
+-- TOC entry 3811 (class 2606 OID 34595)
 -- Name: inscripcion periodo_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48602,7 +48665,7 @@ ALTER TABLE ONLY public.inscripcion
 
 
 --
--- TOC entry 3878 (class 2606 OID 34680)
+-- TOC entry 3871 (class 2606 OID 34680)
 -- Name: postulacion periodo_fk_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48611,7 +48674,7 @@ ALTER TABLE ONLY public.postulacion
 
 
 --
--- TOC entry 3805 (class 2606 OID 34847)
+-- TOC entry 3808 (class 2606 OID 34847)
 -- Name: personal personal_civil_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48620,7 +48683,7 @@ ALTER TABLE ONLY public.personal
 
 
 --
--- TOC entry 3807 (class 2606 OID 34857)
+-- TOC entry 3810 (class 2606 OID 34857)
 -- Name: personal personal_depto_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48629,7 +48692,7 @@ ALTER TABLE ONLY public.personal
 
 
 --
--- TOC entry 3802 (class 2606 OID 34832)
+-- TOC entry 3805 (class 2606 OID 34832)
 -- Name: personal personal_estatus_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48638,7 +48701,7 @@ ALTER TABLE ONLY public.personal
 
 
 --
--- TOC entry 3800 (class 2606 OID 25885)
+-- TOC entry 3803 (class 2606 OID 25885)
 -- Name: docente_materia personal_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48647,7 +48710,16 @@ ALTER TABLE ONLY public.docente_materia
 
 
 --
--- TOC entry 3880 (class 2606 OID 34690)
+-- TOC entry 3905 (class 2606 OID 35036)
+-- Name: personal_seccion personal_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.personal_seccion
+    ADD CONSTRAINT personal_fk FOREIGN KEY (id_personal) REFERENCES public.personal(id_personal);
+
+
+--
+-- TOC entry 3873 (class 2606 OID 34690)
 -- Name: postulacion personal_fk_4; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48656,7 +48728,7 @@ ALTER TABLE ONLY public.postulacion
 
 
 --
--- TOC entry 3801 (class 2606 OID 34827)
+-- TOC entry 3804 (class 2606 OID 34827)
 -- Name: personal personal_nac_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48665,7 +48737,7 @@ ALTER TABLE ONLY public.personal
 
 
 --
--- TOC entry 3803 (class 2606 OID 34837)
+-- TOC entry 3806 (class 2606 OID 34837)
 -- Name: personal personal_profesion_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48674,7 +48746,7 @@ ALTER TABLE ONLY public.personal
 
 
 --
--- TOC entry 3804 (class 2606 OID 34842)
+-- TOC entry 3807 (class 2606 OID 34842)
 -- Name: personal personal_sexo_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48683,7 +48755,7 @@ ALTER TABLE ONLY public.personal
 
 
 --
--- TOC entry 3806 (class 2606 OID 34852)
+-- TOC entry 3809 (class 2606 OID 34852)
 -- Name: personal personal_usuario_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48692,7 +48764,7 @@ ALTER TABLE ONLY public.personal
 
 
 --
--- TOC entry 3882 (class 2606 OID 33238)
+-- TOC entry 3875 (class 2606 OID 33238)
 -- Name: sede_carrera r007t_sede_carrera_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48701,7 +48773,7 @@ ALTER TABLE ONLY public.sede_carrera
 
 
 --
--- TOC entry 3883 (class 2606 OID 33243)
+-- TOC entry 3876 (class 2606 OID 33243)
 -- Name: sede_carrera r007t_sede_carrera_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48710,7 +48782,7 @@ ALTER TABLE ONLY public.sede_carrera
 
 
 --
--- TOC entry 3846 (class 2606 OID 34485)
+-- TOC entry 3839 (class 2606 OID 34485)
 -- Name: usuarios rol_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48719,16 +48791,16 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3812 (class 2606 OID 34610)
--- Name: inscripcion seccion_fk_4; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 3906 (class 2606 OID 35041)
+-- Name: personal_seccion seccion_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.inscripcion
-    ADD CONSTRAINT seccion_fk_4 FOREIGN KEY (id_seccion) REFERENCES public.secciones(id_seccion);
+ALTER TABLE ONLY public.personal_seccion
+    ADD CONSTRAINT seccion_fk FOREIGN KEY (id_seccion) REFERENCES public.secciones(id_seccion);
 
 
 --
--- TOC entry 3871 (class 2606 OID 34750)
+-- TOC entry 3864 (class 2606 OID 34750)
 -- Name: oferta_academica sede_fk_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48737,7 +48809,7 @@ ALTER TABLE ONLY public.oferta_academica
 
 
 --
--- TOC entry 3881 (class 2606 OID 34695)
+-- TOC entry 3874 (class 2606 OID 34695)
 -- Name: postulacion sede_fk_5; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48746,7 +48818,16 @@ ALTER TABLE ONLY public.postulacion
 
 
 --
--- TOC entry 3848 (class 2606 OID 34495)
+-- TOC entry 3900 (class 2606 OID 34959)
+-- Name: estudiantes sexo_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estudiantes
+    ADD CONSTRAINT sexo_fk FOREIGN KEY (id_tp_sexo) REFERENCES public.tipo_sexo(id_tp_sexo);
+
+
+--
+-- TOC entry 3841 (class 2606 OID 34495)
 -- Name: usuarios sexo_fk_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48755,16 +48836,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3840 (class 2606 OID 34435)
--- Name: estudiantes sexo_fk_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiantes
-    ADD CONSTRAINT sexo_fk_3 FOREIGN KEY (id_tp_sexo) REFERENCES public.tipo_sexo(id_tp_sexo);
-
-
---
--- TOC entry 3832 (class 2606 OID 25973)
+-- TOC entry 3834 (class 2606 OID 25973)
 -- Name: horario t007t_horario_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48773,7 +48845,7 @@ ALTER TABLE ONLY public.horario
 
 
 --
--- TOC entry 3833 (class 2606 OID 25978)
+-- TOC entry 3835 (class 2606 OID 25978)
 -- Name: horario t007t_horario_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48782,7 +48854,7 @@ ALTER TABLE ONLY public.horario
 
 
 --
--- TOC entry 3834 (class 2606 OID 25983)
+-- TOC entry 3836 (class 2606 OID 25983)
 -- Name: horario t007t_horario_fk_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48791,7 +48863,7 @@ ALTER TABLE ONLY public.horario
 
 
 --
--- TOC entry 3835 (class 2606 OID 25988)
+-- TOC entry 3837 (class 2606 OID 25988)
 -- Name: horario t007t_horario_fk_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48800,7 +48872,7 @@ ALTER TABLE ONLY public.horario
 
 
 --
--- TOC entry 3836 (class 2606 OID 25993)
+-- TOC entry 3838 (class 2606 OID 25993)
 -- Name: horario t007t_horario_fk_4; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48809,7 +48881,7 @@ ALTER TABLE ONLY public.horario
 
 
 --
--- TOC entry 3884 (class 2606 OID 33318)
+-- TOC entry 3877 (class 2606 OID 33318)
 -- Name: oferta_horario t014t_oferta_horario_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48818,7 +48890,7 @@ ALTER TABLE ONLY public.oferta_horario
 
 
 --
--- TOC entry 3885 (class 2606 OID 33323)
+-- TOC entry 3878 (class 2606 OID 33323)
 -- Name: oferta_horario t014t_oferta_horario_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48827,7 +48899,7 @@ ALTER TABLE ONLY public.oferta_horario
 
 
 --
--- TOC entry 3886 (class 2606 OID 33328)
+-- TOC entry 3879 (class 2606 OID 33328)
 -- Name: oferta_horario t014t_oferta_horario_fk_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48836,7 +48908,7 @@ ALTER TABLE ONLY public.oferta_horario
 
 
 --
--- TOC entry 3887 (class 2606 OID 33333)
+-- TOC entry 3880 (class 2606 OID 33333)
 -- Name: oferta_horario t014t_oferta_horario_fk_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48845,7 +48917,7 @@ ALTER TABLE ONLY public.oferta_horario
 
 
 --
--- TOC entry 3888 (class 2606 OID 33338)
+-- TOC entry 3881 (class 2606 OID 33338)
 -- Name: oferta_horario t014t_oferta_horario_fk_4; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48854,7 +48926,7 @@ ALTER TABLE ONLY public.oferta_horario
 
 
 --
--- TOC entry 3889 (class 2606 OID 33343)
+-- TOC entry 3882 (class 2606 OID 33343)
 -- Name: oferta_horario t014t_oferta_horario_fk_5; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48863,7 +48935,7 @@ ALTER TABLE ONLY public.oferta_horario
 
 
 --
--- TOC entry 3890 (class 2606 OID 33397)
+-- TOC entry 3883 (class 2606 OID 33397)
 -- Name: oferta_horario t014t_oferta_horario_fk_6; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48872,7 +48944,7 @@ ALTER TABLE ONLY public.oferta_horario
 
 
 --
--- TOC entry 3827 (class 2606 OID 34465)
+-- TOC entry 3829 (class 2606 OID 34465)
 -- Name: periodo_lectivo tipo_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48881,7 +48953,7 @@ ALTER TABLE ONLY public.periodo_lectivo
 
 
 --
--- TOC entry 3815 (class 2606 OID 34640)
+-- TOC entry 3817 (class 2606 OID 34640)
 -- Name: materias tipo_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48890,7 +48962,25 @@ ALTER TABLE ONLY public.materias
 
 
 --
--- TOC entry 3892 (class 2606 OID 33253)
+-- TOC entry 3901 (class 2606 OID 35014)
+-- Name: estudiantes tp_ingreso_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estudiantes
+    ADD CONSTRAINT tp_ingreso_fk FOREIGN KEY (id_tp_ingreso) REFERENCES public.tipo_ingreso(id_tp_ingreso);
+
+
+--
+-- TOC entry 3902 (class 2606 OID 34974)
+-- Name: estudiantes tp_zona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estudiantes
+    ADD CONSTRAINT tp_zona_fk FOREIGN KEY (id_tp_zona) REFERENCES public.tipo_zona(id_tp_zona);
+
+
+--
+-- TOC entry 3885 (class 2606 OID 33253)
 -- Name: carrera_trayecto trayecto_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48899,7 +48989,7 @@ ALTER TABLE ONLY public.carrera_trayecto
 
 
 --
--- TOC entry 3894 (class 2606 OID 34580)
+-- TOC entry 3887 (class 2606 OID 34580)
 -- Name: periodo_trayecto trayecto_fk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48908,7 +48998,7 @@ ALTER TABLE ONLY public.periodo_trayecto
 
 
 --
--- TOC entry 3825 (class 2606 OID 33273)
+-- TOC entry 3827 (class 2606 OID 33273)
 -- Name: carrera_materia trayecto_fk_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48917,7 +49007,7 @@ ALTER TABLE ONLY public.carrera_materia
 
 
 --
--- TOC entry 3875 (class 2606 OID 34770)
+-- TOC entry 3868 (class 2606 OID 34770)
 -- Name: oferta_materia_carrera trayecto_fk_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48926,7 +49016,7 @@ ALTER TABLE ONLY public.oferta_materia_carrera
 
 
 --
--- TOC entry 3813 (class 2606 OID 34615)
+-- TOC entry 3814 (class 2606 OID 34615)
 -- Name: inscripcion trayecto_fk_5; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48935,7 +49025,7 @@ ALTER TABLE ONLY public.inscripcion
 
 
 --
--- TOC entry 3876 (class 2606 OID 34670)
+-- TOC entry 3869 (class 2606 OID 34670)
 -- Name: postulacion usuario_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48944,7 +49034,16 @@ ALTER TABLE ONLY public.postulacion
 
 
 --
--- TOC entry 3850 (class 2606 OID 34505)
+-- TOC entry 3903 (class 2606 OID 34969)
+-- Name: estudiantes via_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estudiantes
+    ADD CONSTRAINT via_fk FOREIGN KEY (id_tp_via) REFERENCES public.tipo_via(id_tp_via);
+
+
+--
+-- TOC entry 3843 (class 2606 OID 34505)
 -- Name: usuarios via_fk_4; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48953,7 +49052,16 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3852 (class 2606 OID 34515)
+-- TOC entry 3904 (class 2606 OID 34979)
+-- Name: estudiantes vivienda_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estudiantes
+    ADD CONSTRAINT vivienda_fk FOREIGN KEY (id_tp_vivienda) REFERENCES public.tipo_vivienda(id_tp_vivienda);
+
+
+--
+-- TOC entry 3845 (class 2606 OID 34515)
 -- Name: usuarios vivienda_fk_6; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48962,7 +49070,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3857 (class 2606 OID 34540)
+-- TOC entry 3850 (class 2606 OID 34540)
 -- Name: usuarios zona_fk_11; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48971,7 +49079,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 3851 (class 2606 OID 34510)
+-- TOC entry 3844 (class 2606 OID 34510)
 -- Name: usuarios zona_fk_5; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -48979,7 +49087,7 @@ ALTER TABLE ONLY public.usuarios
     ADD CONSTRAINT zona_fk_5 FOREIGN KEY (id_tp_zona) REFERENCES public.tipo_zona(id_tp_zona);
 
 
--- Completed on 2023-09-18 09:01:54
+-- Completed on 2023-09-19 20:40:32
 
 --
 -- PostgreSQL database dump complete
