@@ -121,7 +121,8 @@ export default {
   },
   Mutation: {
     crearPostulacion: async (_, { input }) => {
-      const { usuario, carrera, sede, fepostulacion, idOferta, idSeccion } = input
+      const { usuario, carrera, sede, fepostulacion, idOferta, idSeccion } =
+        input
 
       try {
         let estatus = null
@@ -298,18 +299,29 @@ export default {
         )
 
         const idmateriatrayecto = await dbp.manyOrNone(
-          `SELECT * FROM public.carrera_materia WHERE id_carrera = $1;`,
+          `SELECT id_materia FROM public.carrera_materia WHERE id_carrera = $1 AND id_trayecto = 1;`,
           [idcarrera]
         )
 
-        for (let i = 0; i < idmateriatrayecto.length; i++) {
+        const idSeccionPostu = await dbp.oneOrNone(
+          `SELECT id_seccion FROM public.postulacion WHERE id_postulacion = $1;`,
+          [idpostulacion]
+        )
+
+        Object.entries(idmateriatrayecto).forEach(async ([index, item]) => {
           await dbp.oneOrNone(
             `INSERT INTO public.inscripcion_materia(
               id_inscripcion, id_materia, id_horario, id_estatus_inscripto_materia, id_seccion, created_at)
                         VALUES ($1, $2, $3, $4, $5, now());`,
-            [idInscripcion.id_inscripcion, 3, 4, 1, 2]
+            [
+              idInscripcion.id_inscripcion,
+              item.id_materia,
+              null,
+              1,
+              idSeccionPostu.id_seccion
+            ]
           )
-        }
+        })
 
         return {
           status: 200,
