@@ -276,6 +276,7 @@ export default {
 
             const nbSeccion =
               'SEC-' +
+              idofertas.id_oferta.toString() +
               sedeOferta.toString() +
               idCarrera.toString() +
               item.idtrayectocarrera.toString()

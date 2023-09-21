@@ -80,6 +80,7 @@ type OfertaPostu {
   nb_carrera: String!
   id_sede: Int!
   nb_sede: String!
+  id_seccion: Int!
 }
 
 type Mutation {

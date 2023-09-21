@@ -1,0 +1,32 @@
+type Query {
+  getTodasElectivas: resultElectivas
+}
+
+type Mutation {
+  saveElectiva(inputSaveElectiva: inputSaveElectiva!): resultElectivas
+  deteleElectiva(idElectiva: Int!): resultElectivas
+  updateElectiva(inputSaveElectiva: inputSaveElectiva!): resultElectivas
+}
+
+type resultElectivas {
+  status: Int!
+  message: String!
+  type: String!
+  response: [electiva]
+}
+
+type electiva {
+  id_electiva: Int!
+  co_electiva: String!
+  nb_electiva: String!
+  nu_credito: Int!
+  hr_semanal: Int!
+}
+
+input inputSaveElectiva {
+  id_electiva: Int
+  co_electiva: String!
+  nb_electiva: String!
+  nu_credito: Int!
+  hr_semanal: Int!
+}

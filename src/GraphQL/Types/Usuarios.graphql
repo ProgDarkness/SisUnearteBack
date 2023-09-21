@@ -27,8 +27,8 @@ type Tnacionalidad {
 }
 
 type TnombZona {
-  nombre: String!
   id: Int!
+  nombre: String!
   codigo_postal: String!
 }
 
