@@ -42,7 +42,7 @@ export default {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
       }
     },
-    deteleElectiva: async (_, { idElectiva }) => {
+    deleteElectiva: async (_, { idElectiva }) => {
       try {
         await dbp.none(
           `DELETE FROM public.electiva
