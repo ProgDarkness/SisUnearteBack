@@ -103,7 +103,7 @@ export default {
       try {
         await dbp.none(
           `UPDATE public.electiva
-          SET co_electiva=$1, nb_electiva=$2, nu_credito=$3, hr_semanal=$4 updated_at=now()
+          SET co_electiva=$1, nb_electiva=$2, nu_credito=$3, hr_semanal=$4, updated_at=now()
           WHERE id_electiva = $5;`,
           [co_electiva, nb_electiva, nu_credito, hr_semanal, id_electiva]
         )
