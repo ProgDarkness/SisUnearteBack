@@ -1,11 +1,15 @@
 type Query {
   getTodasElectivas: resultElectivas
+  getTodasElectivasDropDown: resultElectivas
+  getElectivasAsignadas: resultElectivasAsignadas
 }
 
 type Mutation {
   saveElectiva(inputSaveElectiva: inputSaveElectiva!): resultElectivas
   deleteElectiva(idElectiva: Int!): resultElectivas
   updateElectiva(inputSaveElectiva: inputSaveElectiva!): resultElectivas
+  asignarElectiva(inputAsigElectiva: inputAsigElectiva!): resultElectivas
+  deleteAsignarElectiva(idAsigElectiva: Int!): resultElectivas
 }
 
 type resultElectivas {
@@ -15,12 +19,31 @@ type resultElectivas {
   response: [electiva]
 }
 
-type electiva {
+type resultElectivasAsignadas {
+  status: Int!
+  message: String!
+  type: String!
+  response: [electivaAsig]
+}
+
+type electivaAsig {
+  id_carrelec: Int!
+  id_carrera: Int!
+  nb_carrera: String!
   id_electiva: Int!
-  co_electiva: String!
   nb_electiva: String!
-  nu_credito: Int!
-  hr_semanal: Int!
+  id_trayecto: Int!
+  nb_trayecto: String!
+}
+
+type electiva {
+  id_electiva: Int
+  co_electiva: String
+  nb_electiva: String
+  nu_credito: Int
+  hr_semanal: Int
+  id: Int
+  nombre: String
 }
 
 input inputSaveElectiva {
@@ -29,4 +52,10 @@ input inputSaveElectiva {
   nb_electiva: String!
   nu_credito: Int!
   hr_semanal: Int!
+}
+
+input inputAsigElectiva {
+  idCarrera: Int!
+  idTrayecto: Int!
+  idElectiva: Int!
 }
