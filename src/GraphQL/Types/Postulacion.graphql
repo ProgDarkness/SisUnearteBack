@@ -97,6 +97,7 @@ input InputPostulacion {
   sede: Int!
   fepostulacion: String!
   idOferta: Int!
+  idSeccion: Int!
 }
 
 type ResultPostulacion {

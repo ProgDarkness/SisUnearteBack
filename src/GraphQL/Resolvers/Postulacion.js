@@ -121,7 +121,7 @@ export default {
   },
   Mutation: {
     crearPostulacion: async (_, { input }) => {
-      const { usuario, carrera, sede, fepostulacion, idOferta } = input
+      const { usuario, carrera, sede, fepostulacion, idOferta, idSeccion } = input
 
       try {
         let estatus = null
@@ -138,8 +138,8 @@ export default {
 
         await dbp.none(
           `INSERT INTO public.postulacion(
-                      id_usuario, id_carrera, id_periodo, id_sede, fe_postulacion, id_estatus_postulacion, st_activo, tx_observacion, id_oferta, created_at)
-                      VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, now());`,
+                      id_usuario, id_carrera, id_periodo, id_sede, fe_postulacion, id_estatus_postulacion, st_activo, tx_observacion, id_oferta, id_seccion, created_at)
+                      VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, now());`,
           [
             usuario,
             carrera,
@@ -149,7 +149,8 @@ export default {
             estatus,
             activo,
             observacion,
-            idOferta
+            idOferta,
+            idSeccion
           ]
         )
         return {
@@ -183,13 +184,26 @@ export default {
       discapacidad = true
       tpingreso = 2
       estatusestudiante = 1
-      estatusInscripcion = 2
+      estatusInscripcion = 1
       trayecto = 1
 
       try {
         const idPersonal = await dbp.oneOrNone(
           `SELECT id_personal FROM public.personal WHERE id_usuario = $1;`,
           [usuario]
+        )
+
+        await dbp.none(
+          `UPDATE public.postulacion
+                    SET id_estatus_postulacion = $1, id_personal_aprobacion = $2, fe_aprobacion = $3, tx_observacion = $4, updated_at = now()
+                    WHERE id_postulacion = $5;`,
+          [
+            estatus,
+            idPersonal.id_personal,
+            feaprobacion,
+            observacion,
+            idpostulacion
+          ]
         )
 
         const datos = await dbp.oneOrNone(
@@ -293,22 +307,10 @@ export default {
             `INSERT INTO public.inscripcion_materia(
               id_inscripcion, id_materia, id_horario, id_estatus_inscripto_materia, id_seccion, created_at)
                         VALUES ($1, $2, $3, $4, $5, now());`,
-            [idInscripcion.id_inscripcion, 1, 1, 1, 1]
+            [idInscripcion.id_inscripcion, 3, 4, 1, 2]
           )
         }
 
-        await dbp.none(
-          `UPDATE public.postulacion
-                    SET id_estatus_postulacion = $1, id_personal_aprobacion = $2, fe_aprobacion = $3, tx_observacion = $4, updated_at = now()
-                    WHERE id_postulacion = $5;`,
-          [
-            estatus,
-            idPersonal.id_personal,
-            feaprobacion,
-            observacion,
-            idpostulacion
-          ]
-        )
         return {
           status: 200,
           type: 'success',
