@@ -175,6 +175,7 @@ export default {
       let estatusestudiante = null
       let estatusInscripcion = null
       let trayecto = null
+      let blregistro = null
       estatus = 2
       feaprobacion = new Date().toLocaleDateString('es-ES', {
         day: '2-digit',
@@ -187,6 +188,7 @@ export default {
       estatusestudiante = 1
       estatusInscripcion = 1
       trayecto = 1
+      blregistro = true
 
       try {
         const idPersonal = await dbp.oneOrNone(
@@ -248,8 +250,8 @@ export default {
             id_nacionalidad, ced_estudiante, nb_estudiante, ape_estudiante, nb2_estudiante, ape2_estudiante, id_tp_sexo, 
             fe_nac_estudiante, id_civil, correo_estudiante, id_tp_via, nb_via, id_tp_zona, nb_zona, id_tp_vivienda, 
             nu_vivienda, id_zona, cod_zona_postal, id_pais, id_ciudad, id_estado, id_municipio, id_parroquia, 
-            id_pais_nac, id_estado_nac, id_ciudad_nac, discapacidad, id_tp_discapacidad, id_tp_ingreso, id_etnia, id_estatus_estudiante, created_at)
-                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, now()) RETURNING id_estudiante;`,
+            id_pais_nac, id_estado_nac, id_ciudad_nac, discapacidad, id_tp_discapacidad, id_tp_ingreso, id_etnia, id_estatus_estudiante, bl_registro, created_at)
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, now()) RETURNING id_estudiante;`,
           [
             id_nacionalidad,
             ced_usuario,
@@ -281,7 +283,8 @@ export default {
             id_tp_discapacidad,
             tpingreso,
             id_etnia,
-            estatusestudiante
+            estatusestudiante,
+            blregistro
           ]
         )
 
