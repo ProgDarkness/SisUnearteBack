@@ -111,6 +111,7 @@ input InputAprobarPostulacion {
   idpostulado: Int!
   idcarrera: Int!
   idperiodo: Int!
+  idsede: Int!
   idpostulacion: Int!
 }
 

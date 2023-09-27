@@ -164,7 +164,7 @@ export default {
       }
     },
     aprobarPostulacion: async (_, { input }) => {
-      const { usuario, idpostulado, idcarrera, idperiodo, idpostulacion } =
+      const { usuario, idpostulado, idcarrera, idperiodo, idsede, idpostulacion } =
         input
 
       let estatus = null
@@ -290,14 +290,15 @@ export default {
 
         const idInscripcion = await dbp.oneOrNone(
           `INSERT INTO public.inscripcion(
-            id_estudiante, id_periodo, id_estatus_inscripcion, id_carrera, id_trayecto, fe_ingreso, created_at)
+            id_estudiante, id_periodo, id_estatus_inscripcion, id_carrera, id_trayecto, id_sede, fe_ingreso, created_at)
                       VALUES ($1, $2, $3, $4, $5, now(), now()) RETURNING id_inscripcion;`,
           [
             idEstudiante.id_estudiante,
             idperiodo,
             estatusInscripcion,
             idcarrera,
-            trayecto
+            trayecto,
+            idsede
           ]
         )
 
