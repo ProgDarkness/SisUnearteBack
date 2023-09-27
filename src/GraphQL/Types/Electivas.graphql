@@ -31,9 +31,16 @@ type electivaAsig {
   id_carrera: Int!
   nb_carrera: String!
   id_electiva: Int!
+  co_electiva: String!
+  nu_credito: Int!
+  hr_semanal: Int!
   nb_electiva: String!
   id_trayecto: Int!
   nb_trayecto: String!
+  id_personal: Int!
+  nb_personal: String!
+  id_sede: Int!
+  nb_sede: String!
 }
 
 type electiva {
@@ -58,4 +65,6 @@ input inputAsigElectiva {
   idCarrera: Int!
   idTrayecto: Int!
   idElectiva: Int!
+  idPersonal: Int!
+  idSede: Int!
 }

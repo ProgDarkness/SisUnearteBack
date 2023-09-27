@@ -39,11 +39,17 @@ export default {
     getElectivasAsignadas: async () => {
       try {
         const asigElectivas = await dbp.manyOrNone(
-          `SELECT ce.id_carrelec, ce.id_carrera, c.nb_carrera, ce.id_electiva, e.nb_electiva, ce.id_trayecto, t.nb_trayecto
-         FROM public.carrera_electiva ce 
-           LEFT JOIN carreras c ON c.id_carrera = ce.id_carrera
-           LEFT JOIN trayectos t ON t.id_trayecto = ce.id_trayecto
-           LEFT JOIN electiva e ON e.id_electiva = ce.id_electiva;`
+          `SELECT ce.id_carrelec, ce.id_carrera, c.nb_carrera, ce.id_electiva, e.nb_electiva, ce.id_trayecto, t.nb_trayecto,
+          per.id_personal, CONCAT(per.nb_personal, ' ', per.ape_personal) as nb_personal, se.id_sede, se.nb_sede,
+		  	  e.co_electiva, e.nu_credito, e.hr_semanal
+               FROM public.carrera_electiva ce 
+                 LEFT JOIN public.carreras c ON c.id_carrera = ce.id_carrera
+                 LEFT JOIN public.trayectos t ON t.id_trayecto = ce.id_trayecto
+                 LEFT JOIN public.electiva e ON e.id_electiva = ce.id_electiva
+             	   LEFT JOIN public.docente_electiva de ON de.id_electiva = ce.id_electiva
+                 LEFT JOIN public.personal per ON de.id_personal = per.id_personal
+				         LEFT JOIN public.oferta_academica oa ON de.id_oferta = oa.id_oferta
+				         LEFT JOIN public.sedes se ON se.id_sede = oa.id_sede;`
         )
 
         return {
@@ -118,7 +124,8 @@ export default {
       }
     },
     asignarElectiva: async (_, { inputAsigElectiva }) => {
-      const { idCarrera, idTrayecto, idElectiva } = inputAsigElectiva
+      const { idCarrera, idTrayecto, idElectiva, idPersonal, idSede } =
+        inputAsigElectiva
 
       try {
         const validacionElectiva = await dbp.oneOrNone(
@@ -127,12 +134,25 @@ export default {
           [idCarrera, idElectiva, idTrayecto]
         )
 
+        const idOferta = await dbp.oneOrNone(
+          `SELECT id_oferta FROM public.oferta_academica 
+            WHERE id_carrera = $1 AND id_sede = $2 AND id_estatus_oferta = 1;`,
+          [idCarrera, idSede]
+        )
+
         if (!validacionElectiva?.id_carrelec) {
           await dbp.none(
             `INSERT INTO public.carrera_electiva(
               id_carrera, id_electiva, visible, id_trayecto, created_at, updated_at)
               VALUES ($1, $2, TRUE, $3, now(), now());`,
             [idCarrera, idElectiva, idTrayecto]
+          )
+
+          await dbp.none(
+            `INSERT INTO public.docente_electiva(
+              id_electiva, id_personal, id_estatus, id_carrera, id_oferta, created_at, updated_at)
+              VALUES ($1, $2, true, $3, $4, now(), now());`,
+            [idElectiva, idPersonal, idCarrera, idOferta.id_oferta]
           )
         } else {
           return {
@@ -153,10 +173,21 @@ export default {
     },
     deleteAsignarElectiva: async (_, { idAsigElectiva }) => {
       try {
+        const idElectiva = await dbp.oneOrNone(
+          `SELECT id_electiva FROM public.carrera_electiva WHERE id_carrelec = $1;`,
+          [idAsigElectiva]
+        )
+
         await dbp.none(
           `DELETE FROM public.carrera_electiva
           WHERE id_carrelec = $1;`,
           [idAsigElectiva]
+        )
+
+        await dbp.none(
+          `DELETE FROM public.docente_electiva
+          WHERE id_electiva = $1;`,
+          [idElectiva.id_electiva]
         )
 
         return {
