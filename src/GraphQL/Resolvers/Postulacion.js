@@ -126,6 +126,38 @@ export default {
         return { status: 500, message: e.message, type: 'error' }
       }
     },
+    obtenerListadoPostulado: async () => {
+      
+      try {
+        const postulados = await dbp.manyOrNone(
+            `SELECT * FROM info_postulados ORDER BY idestatus;`
+          )
+          
+        for (let i = 0; i < postulados.length; i++) {
+          for (const key in postulados[i]) {
+            const object = postulados[i]
+            if (key.startsWith('fe')) {
+              postulados[i][key] = new Date(object[key]).toLocaleDateString(
+                'es-ES',
+                {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: 'numeric'
+                }
+              )
+            }
+          }
+        }
+        return {
+          status: 200,
+          message: 'Postulados encontrados',
+          type: 'success',
+          response: postulados
+        }
+      } catch (e) {
+        return { status: 500, message: e.message, type: 'error' }
+      }
+    },
     obtenerPostulacionUsuario: async (_, { idUser }) => {
       try {
         const postulacionusuarios = await dbp.manyOrNone(

@@ -25,6 +25,7 @@ type PostuladoAgrupadoCarrera {
   tperiodo: String!
   idcarrera: Int!
   carrera: String!
+  idsede: Int!
   sede: String!
   estado: String!
 }
@@ -47,6 +48,7 @@ type Query {
   obtenerListadoPostuladoCarrera(
     input: InputFiltroPostu
   ): ResultPostuladoAgrupadoCarrera
+  obtenerListadoPostulado: ResultPostuladoAgrupadoCarrera
   obtenerOfertaPostu: ResultOfertaPostu
   obtenerPermisoPostulacion(idUser: Int): ResultPermisoPostu
   obtenerPostulacionUsuario(idUser: Int): ResultPostulacionUsuario

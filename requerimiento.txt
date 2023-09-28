@@ -94,6 +94,26 @@ query postulados {
   }
 }
 
+query obtenerListadoPostulado {
+  obtenerListadoPostulado{
+    response {
+      id
+      nacionalidad
+      cedula
+      nombre
+      apellido
+      fepostulacion
+      observacion
+      estatus
+      periodo
+      tperiodo
+      carrera
+      sede
+      estado
+    }
+  }
+}
+
 =================== 12/09/2023 ==========================
 
 query obtenerusuarios {
