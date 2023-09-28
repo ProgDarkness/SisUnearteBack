@@ -61,10 +61,12 @@ export default {
         return { status: 500, message: e.message, type: 'error' }
       }
     },
-    obtenerListadoPostuladoCarrera: async () => {
+    obtenerListadoPostuladoCarrera: async (_, { input }) => {
+      const { periodo, carrera, sede } = input
       try {
         const postulados = await dbp.manyOrNone(
-          `SELECT * FROM info_postulados order by idestatus;`
+          `SELECT * FROM info_postulados WHERE idperiodo = $1 AND idcarrera = $2 AND idsede = $3 ORDER BY idestatus;`,
+          [periodo, carrera, sede]
         )
 
         for (let i = 0; i < postulados.length; i++) {
@@ -164,8 +166,14 @@ export default {
       }
     },
     aprobarPostulacion: async (_, { input }) => {
-      const { usuario, idpostulado, idcarrera, idperiodo, idsede, idpostulacion } =
-        input
+      const {
+        usuario,
+        idpostulado,
+        idcarrera,
+        idperiodo,
+        idsede,
+        idpostulacion
+      } = input
 
       let estatus = null
       let feaprobacion = null

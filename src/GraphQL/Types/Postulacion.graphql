@@ -36,9 +36,17 @@ type ResultPostuladoAgrupadoCarrera {
   response: [PostuladoAgrupadoCarrera]
 }
 
+input InputFiltroPostu {
+  periodo: Int!
+  carrera: Int!
+  sede: Int!
+}
+
 type Query {
   obtenerEstatusPostulacion: ResultEstatuPostulacion
-  obtenerListadoPostuladoCarrera: ResultPostuladoAgrupadoCarrera
+  obtenerListadoPostuladoCarrera(
+    input: InputFiltro
+  ): ResultPostuladoAgrupadoCarrera
   obtenerOfertaPostu: ResultOfertaPostu
   obtenerPermisoPostulacion(idUser: Int): ResultPermisoPostu
   obtenerPostulacionUsuario(idUser: Int): ResultPostulacionUsuario

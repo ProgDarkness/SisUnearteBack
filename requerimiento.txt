@@ -1,7 +1,12 @@
 =================== 25/09/2023 ==========================
 
 query obtenerinscritos {
-  obtenerListadoInscrito {
+  obtenerListadoInscrito (
+    input:{
+      periodo: 2
+      carrera: 3
+      sede: 2
+    }) {
     response {
     idest
     idnac
@@ -54,6 +59,37 @@ query obtenerinscritos {
     nbetnia
 		nbtpingreso
 		nbestatus
+    idperiodo
+  coperiodo
+  anioperiodo
+  feingreso
+      nbcarrera
+      nbsede
+    }
+  }
+}
+
+query postulados {
+  obtenerListadoPostuladoCarrera(
+    input:{
+      periodo: 2
+      carrera: 3
+      sede: 2
+    }) {
+    response {
+      id
+      nacionalidad
+      cedula
+      nombre
+      apellido
+      fepostulacion
+      observacion
+      estatus
+      periodo
+      tperiodo
+      carrera
+      sede
+      estado
     }
   }
 }
@@ -697,26 +733,6 @@ query tiposcarreras {
     response {
       id
       nombre
-    }
-  }
-}
-
-query postulados {
-  obtenerListadoPostuladoCarrera {
-    response {
-      id
-      nacionalidad
-      cedula
-      nombre
-      apellido
-      fepostulacion
-      observacion
-      estatus
-      periodo
-      tperiodo
-      carrera
-      sede
-      estado
     }
   }
 }

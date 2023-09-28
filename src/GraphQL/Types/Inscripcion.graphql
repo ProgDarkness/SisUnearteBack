@@ -54,6 +54,12 @@ type infoInscrito {
   coperiodo: String!
   anioperiodo: String!
   feingreso: String!
+  idcarrera: Int!
+  nbcarrera: String!
+  idmateria: Int!
+  nbmateria: String!
+  idsede: Int!
+  nbsede: String!
 }
 
 type ResultInscrito {
@@ -64,5 +70,11 @@ type ResultInscrito {
 }
 
 type Query {
-  obtenerListadoInscrito: ResultInscrito
+  obtenerListadoInscrito(input: InputFiltro): ResultInscrito
+}
+
+input InputFiltro {
+  periodo: Int!
+  carrera: Int!
+  sede: Int!
 }
