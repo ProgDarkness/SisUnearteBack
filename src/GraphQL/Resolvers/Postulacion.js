@@ -64,10 +64,42 @@ export default {
     obtenerListadoPostuladoCarrera: async (_, { input }) => {
       const { periodo, carrera, sede } = input
       try {
-        const postulados = await dbp.manyOrNone(
-          `SELECT * FROM info_postulados WHERE idperiodo = $1 AND idcarrera = $2 AND idsede = $3 ORDER BY idestatus;`,
-          [periodo, carrera, sede]
-        )
+        let postulados
+
+        if (periodo && !carrera && !sede) {
+          postulados = await dbp.manyOrNone(
+            `SELECT * FROM info_postulados WHERE idperiodo = $1  ORDER BY idestatus;`,
+            [periodo]
+          )
+        }
+
+        if (!periodo && carrera && !sede) {
+          postulados = await dbp.manyOrNone(
+            `SELECT * FROM info_postulados WHERE idcarrera = $1 ORDER BY idestatus;`,
+            [carrera]
+          )
+        }
+
+        if (!periodo && !carrera && sede) {
+          postulados = await dbp.manyOrNone(
+            `SELECT * FROM info_postulados WHERE idsede = $1 ORDER BY idestatus;`,
+            [sede]
+          )
+        }
+
+        if (!periodo && carrera && sede) {
+          postulados = await dbp.manyOrNone(
+            `SELECT * FROM info_postulados WHERE idcarrera = $1 AND idsede = $2 ORDER BY idestatus;`,
+            [carrera, sede]
+          )
+        }
+
+        if (periodo && carrera && sede) {
+          postulados = await dbp.manyOrNone(
+            `SELECT * FROM info_postulados WHERE idperiodo = $1 AND idcarrera = $2 AND idsede = $3 ORDER BY idestatus;`,
+            [periodo, carrera, sede]
+          )
+        }
 
         for (let i = 0; i < postulados.length; i++) {
           for (const key in postulados[i]) {
