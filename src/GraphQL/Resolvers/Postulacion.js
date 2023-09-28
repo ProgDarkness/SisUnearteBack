@@ -127,12 +127,11 @@ export default {
       }
     },
     obtenerListadoPostulado: async () => {
-      
       try {
         const postulados = await dbp.manyOrNone(
-            `SELECT * FROM info_postulados ORDER BY idestatus;`
-          )
-          
+          `SELECT * FROM info_postulados ORDER BY idestatus;`
+        )
+
         for (let i = 0; i < postulados.length; i++) {
           for (const key in postulados[i]) {
             const object = postulados[i]
@@ -363,7 +362,7 @@ export default {
         const idInscripcion = await dbp.oneOrNone(
           `INSERT INTO public.inscripcion(
             id_estudiante, id_periodo, id_estatus_inscripcion, id_carrera, id_trayecto, id_sede, fe_ingreso, created_at)
-                      VALUES ($1, $2, $3, $4, $5, now(), now()) RETURNING id_inscripcion;`,
+                      VALUES ($1, $2, $3, $4, $5, $6, now(), now()) RETURNING id_inscripcion;`,
           [
             idEstudiante.id_estudiante,
             idperiodo,
