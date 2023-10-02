@@ -70,11 +70,11 @@ type ResultInscrito {
 }
 
 type Query {
-  obtenerListadoInscrito(input: InputFiltro): ResultInscrito
+  obtenerListadoInscrito(input: InputFiltro!): ResultInscrito
 }
 
 input InputFiltro {
-  periodo: Int!
-  carrera: Int!
-  sede: Int!
+  periodo: Int
+  carrera: Int
+  sede: Int
 }
