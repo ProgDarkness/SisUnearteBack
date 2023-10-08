@@ -52,6 +52,19 @@ type Query {
   obtenerOfertaPostu: ResultOfertaPostu
   obtenerPermisoPostulacion(idUser: Int): ResultPermisoPostu
   obtenerPostulacionUsuario(idUser: Int): ResultPostulacionUsuario
+  obtenerDocsEstudiante(idEstudiante: Int): resultDocs
+}
+
+type resultDocs {
+  docs: statusDocs
+}
+
+type statusDocs {
+  cedula: Boolean
+  rif: Boolean
+  tituloBachiller: Boolean
+  notasCertificadas: Boolean
+  fondoNegro: Boolean
 }
 
 type PostulacionUsuario {
@@ -99,6 +112,20 @@ type Mutation {
   rechazarPostulacion(
     input: InputRechazarPostulacion
   ): ResultAprobarPostulacion!
+  guardarDocs(inputDocs: inputDocs!): ResultPostulacion!
+}
+
+input inputDocs {
+  idEstudiante: Int!
+  jsonDocs: jsonDocs!
+}
+
+input jsonDocs {
+  cedula: Boolean
+  rif: Boolean
+  tituloBachiller: Boolean
+  notasCertificadas: Boolean
+  fondoNegro: Boolean
 }
 
 input InputPostulacion {

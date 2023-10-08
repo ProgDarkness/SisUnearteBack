@@ -2,6 +2,18 @@ import { dbp } from '../../postgresdb'
 
 export default {
   Query: {
+    obtenerDocsEstudiante: async (_, { idEstudiante }) => {
+      try {
+        const docsEstudiante = await dbp.oneOrNone(
+          `SELECT json_docs FROM public.docs_estudiante WHERE id_usuario = $1;`,
+          [idEstudiante]
+        )
+
+        return { docs: docsEstudiante.json_docs }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
     obtenerPermisoPostulacion: async (_, { idUser }) => {
       try {
         let permiso = true
@@ -424,6 +436,45 @@ export default {
           status: 200,
           type: 'success',
           message: 'Postulacion rechazada exitosamente'
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
+    guardarDocs: async (_, { inputDocs }) => {
+      const { idEstudiante, jsonDocs } = inputDocs
+
+      try {
+        const docsEstudiante = await dbp.oneOrNone(
+          `SELECT id_documentos FROM public.docs_estudiante WHERE id_usuario = $1;`,
+          [idEstudiante]
+        )
+
+        if (!docsEstudiante?.id_documentos) {
+          await dbp.none(
+            `INSERT INTO public.docs_estudiante(
+              id_usuario, json_docs)
+              VALUES ($1, $2);`,
+            [idEstudiante, jsonDocs]
+          )
+
+          return {
+            status: 200,
+            type: 'success',
+            message: 'Se ha guardado exitosamente'
+          }
+        } else if (docsEstudiante.id_documentos) {
+          await dbp.none(
+            `UPDATE public.docs_estudiante SET json_docs=$2
+            WHERE id_usuario = $1;`,
+            [idEstudiante, jsonDocs]
+          )
+
+          return {
+            status: 200,
+            type: 'success',
+            message: 'Se ha guardado exitosamente'
+          }
         }
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
