@@ -59,5 +59,27 @@ export default {
         return { status: 500, message: e.message, type: 'error' }
       }
     }
+  },
+  Mutation: {
+    crearNotas: async (_, { input }) => {
+      const { estudiante, nota, materia, trayecto, carrera } = input
+
+      try {
+        await dbp.oneOrNone(
+          `INSERT INTO public.notas(
+                      id_estudiante, nu_nota, id_materia, id_trayecto, id_carrera, created_at)
+                      VALUES ($1, $2, $3, $4, $5, now());`,
+          [estudiante, nota, materia, trayecto, carrera]
+        )
+
+        return {
+          status: 200,
+          type: 'success',
+          message: 'Notas registradas exitosamente'
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    }
   }
 }

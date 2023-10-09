@@ -31,3 +31,21 @@ input InputFiltros {
   carrera: Int
   trayecto: Int
 }
+
+type Mutation {
+  crearNotas(input: InputNotas!): ResultadoNotas
+}
+
+input InputNotas {
+  estudiante: Int!
+  nota: Int!
+  materia: Int!
+  trayecto: Int!
+  carrera: Int!
+}
+
+type ResultadoNotas {
+  status: Int!
+  message: String!
+  type: String!
+}
