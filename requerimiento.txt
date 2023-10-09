@@ -1,3 +1,31 @@
+=================== 09/10/2023 ==========================
+query obtenerListadoInscritoMateria {
+  obtenerListadoInscritoMateria (
+    input:{
+      periodo: 2
+      carrera: 3
+      trayecto: 1
+    }) {
+    response {
+     idinscripcion
+  idperiodo
+  idtrayecto
+  idsede
+  idcarrera
+  nbcarrera
+  idestudiante
+  idnacionalidad
+  conacionalidad
+  cedestudiante
+  nbestudiante
+  apeestudiante
+  idmateria
+  nbmateria
+    }
+  }
+}
+
+
 =================== 25/09/2023 ==========================
 
 query obtenerinscritos {

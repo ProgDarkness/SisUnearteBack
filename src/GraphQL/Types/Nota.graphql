@@ -1,0 +1,33 @@
+type infoInscritoMateria {
+  idinscripcion: Int!
+  idperiodo: Int!
+  idtrayecto: Int!
+  idsede: Int!
+  idcarrera: Int!
+  nbcarrera: String!
+  idestudiante: Int!
+  idnacionalidad: Int!
+  conacionalidad: String!
+  cedestudiante: Int!
+  nbestudiante: String!
+  apeestudiante: String!
+  idmateria: Int!
+  nbmateria: String!
+}
+
+type ResultInscritoMateria {
+  status: Int!
+  message: String!
+  type: String!
+  response: [infoInscritoMateria]
+}
+
+type Query {
+  obtenerListadoInscritoMateria(input: InputFiltros!): ResultInscritoMateria
+}
+
+input InputFiltros {
+  periodo: Int
+  carrera: Int
+  trayecto: Int
+}
