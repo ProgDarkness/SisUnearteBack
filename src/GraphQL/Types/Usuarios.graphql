@@ -18,6 +18,13 @@ type Mutation {
   crearUsuario(input: InputUsuario): Result!
   actualizarUsuario(input: InputActualizarUsuario): Result!
   obtenerUsuario(input: InputIdUsuario): ResultUsuario
+  crearClave(input: InputCrearClave!): Result!
+}
+
+input InputCrearClave {
+  token: String!
+  usuario: String!
+  clave: String!
 }
 
 type Tnacionalidad {
@@ -70,7 +77,7 @@ type infoUsuario {
 input InputSaveUser {
   nacionalidad: Int!
   usuario: String!
-  clave: String!
+  correo: String!
   id_rol: Int!
   nombre: String!
   apellido: String!
