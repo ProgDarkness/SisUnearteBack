@@ -82,6 +82,7 @@ input InputSaveUser {
   nombre: String!
   apellido: String!
   cedula: Int!
+  origin: String!
 }
 
 input InputDeleteUser {
