@@ -196,6 +196,7 @@ type ResultCodigoPostal {
 type TipoDocumento {
   id: ID!
   nombre: String!
+  tipocarrera: String!
 }
 
 type ResultTipoDocumento {
