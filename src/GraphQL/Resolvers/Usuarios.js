@@ -88,7 +88,10 @@ export default {
             id_ciudad_nac,
             ciudad_nac,
             id_estado_nac,
-            estado_nac
+            estado_nac, 
+            dir_trabajo,
+            telefono_trabajo,
+            bl_trabajo
           } = infoUser
 
           const RinfoUser = {
@@ -129,7 +132,10 @@ export default {
               id: id_tp_discapacidad,
               nombre: nb_tp_discapacidad
             },
-            etnia: { id: id_etnia, nombre: nb_etnia }
+            etnia: { id: id_etnia, nombre: nb_etnia },
+            dir_trabajo,
+            telefono_trabajo,
+            bl_trabajo
           }
 
           return {
@@ -433,7 +439,8 @@ export default {
                id_pais_nac = $7, id_civil = $8, correo_usuario = $9, id_tp_via = $10, nb_via = $11, id_tp_zona = $12, 
                nb_zona = $13, id_tp_vivienda = $14, nu_vivienda = $15, id_ciudad = $16, id_estado = $17, id_municipio = $18, id_parroquia = $19, 
                cod_zona_postal = $20, bl_registro = $21, nb2_usuario = $23, ape2_usuario = $24, id_zona = $25, id_pais = $26, id_tp_discapacidad = $27,
-               id_etnia = $28, id_estado_nac = $29, id_ciudad_nac = $30, updated_at = now()
+               id_etnia = $28, id_estado_nac = $29, id_ciudad_nac = $30, id_pais_trabajo = $31, id_estado_trabajo = $32, id_ciudad_trabajo = $33, id_municipio_trabajo = $34,
+               id_parroquia_trabajo = $35, dir_trabajo = $36, telefono_trabajo = $37, updated_at = now()
                WHERE id_usuario = $22;`,
           [
             idnacionalidad,

@@ -72,6 +72,9 @@ type infoUsuario {
   etnia: simpleDropdown!
   estadoNac: simpleDropdown!
   ciudadNac: simpleDropdown!
+  dir_trabajo: String!
+  telefono_trabajo: Int!
+  bl_trabajo: Boolean!
 }
 
 input InputSaveUser {
@@ -153,6 +156,7 @@ input InputActualizarUsuario {
   idCiudadTrabajo: Int
   dirTrabjo: String
   tlfTrabjo: Int
+  bl_trabajo: Boolean!
 }
 
 input InputIdUsuario {
