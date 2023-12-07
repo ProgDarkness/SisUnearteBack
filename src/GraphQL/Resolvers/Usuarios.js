@@ -416,7 +416,14 @@ export default {
         idDiscapacidad,
         idEtnia,
         idEstadoNac,
-        idCiudadNac
+        idCiudadNac,
+        idPaisTrabajo,
+        idEstadoTrabajo,
+        idMunicipioTrabajo,
+        idParroquiaTrabajo,
+        idCiudadTrabajo,
+        dirTrabjo,
+        tlfTrabjo
       } = input
 
       try {
@@ -427,7 +434,7 @@ export default {
                nb_zona = $13, id_tp_vivienda = $14, nu_vivienda = $15, id_ciudad = $16, id_estado = $17, id_municipio = $18, id_parroquia = $19, 
                cod_zona_postal = $20, bl_registro = $21, nb2_usuario = $23, ape2_usuario = $24, id_zona = $25, id_pais = $26, id_tp_discapacidad = $27,
                id_etnia = $28, id_estado_nac = $29, id_ciudad_nac = $30, updated_at = now()
-               WHERE id_usuario =$22;`,
+               WHERE id_usuario = $22;`,
           [
             idnacionalidad,
             cedula,
@@ -458,7 +465,14 @@ export default {
             idDiscapacidad,
             idEtnia,
             idEstadoNac,
-            idCiudadNac || null
+            idCiudadNac || null,
+            idPaisTrabajo,
+            idEstadoTrabajo,
+            idMunicipioTrabajo,
+            idParroquiaTrabajo,
+            idCiudadTrabajo,
+            dirTrabjo,
+            tlfTrabjo
           ]
         )
         return {

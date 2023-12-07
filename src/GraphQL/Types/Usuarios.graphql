@@ -146,6 +146,13 @@ input InputActualizarUsuario {
   idEtnia: Int
   idEstadoNac: Int!
   idCiudadNac: Int
+  idPaisTrabajo: Int
+  idEstadoTrabajo: Int
+  idMunicipioTrabajo: Int
+  idParroquiaTrabajo: Int
+  idCiudadTrabajo: Int
+  dirTrabjo: String
+  tlfTrabjo: Int
 }
 
 input InputIdUsuario {
