@@ -19,6 +19,7 @@ type Personal {
   tipo: String!
   idprofesion: Int!
   profesion: String!
+  id_usuario: Int!
 }
 
 type ResultPersonal {
@@ -67,6 +68,7 @@ type infoPersonal {
   tipo: simpleDropdownPerso!
   profesion: simpleDropdownPerso!
   bl_registro: Boolean!
+  id_usuario: Int!
 }
 
 type Query {

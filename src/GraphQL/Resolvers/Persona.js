@@ -115,17 +115,17 @@ export default {
         civil,
         departamento,
         pais,
-            estado,
-            municipio,
-            parroquia,
-            zona,
-            nbzona,
-            zonapostal,
-            via,
-            nbvia,
-            vivienda,
-            nbvivienda,
-            ciudad
+        estado,
+        municipio,
+        parroquia,
+        zona,
+        nbzona,
+        zonapostal,
+        via,
+        nbvia,
+        vivienda,
+        nbvivienda,
+        ciudad
       } = input
       const { SECRET_KEY } = process.env
 
@@ -257,7 +257,19 @@ export default {
             profesion,
             sexo,
             civil,
-            idpersonal
+            idpersonal,
+            pais,
+            estado,
+            municipio,
+            parroquia,
+            zona,
+            nbzona,
+            zonapostal,
+            via,
+            nbvia,
+            vivienda,
+            nbvivienda,
+            ciudad
           ]
         )
         return {
