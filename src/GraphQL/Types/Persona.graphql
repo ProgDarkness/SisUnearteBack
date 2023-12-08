@@ -97,6 +97,18 @@ input InputPersonal {
   sexo: Int!
   civil: Int!
   departamento: Int!
+  pais: Int!
+  estado: Int!
+  municipio: Int!
+  parroquia: Int!
+  zona: Int!
+  nbzona: String!
+  zonapostal: Int!
+  via: Int!
+  nbvia: String!
+  vivienda: Int!
+  nbvivienda: String!
+  ciudad: Int!
 }
 
 input InputActualizarPersonal {
@@ -124,4 +136,5 @@ type ResultadoPersonal {
   status: Int!
   message: String!
   type: String!
+  response: Int!
 }

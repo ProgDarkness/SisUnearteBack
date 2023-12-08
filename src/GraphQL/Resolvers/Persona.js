@@ -113,7 +113,19 @@ export default {
         profesion,
         sexo,
         civil,
-        departamento
+        departamento,
+        pais,
+            estado,
+            municipio,
+            parroquia,
+            zona,
+            nbzona,
+            zonapostal,
+            via,
+            nbvia,
+            vivienda,
+            nbvivienda,
+            ciudad
       } = input
       const { SECRET_KEY } = process.env
 
@@ -150,8 +162,10 @@ export default {
           `INSERT INTO public.personal(
                       id_nacionalidad, ced_personal, nb_personal, ape_personal, tlf_fijo, tlf_movil, correo, 
                       id_estatus_personal, id_tp_personal, carga_horaria, id_profesion, id_tp_sexo, id_civil, 
-                      id_usuario, bl_registro, id_departamento, created_at)
-                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, now());`,
+                      id_usuario, bl_registro, id_departamento, id_pais, id_estado, id_municipio, id_parroquia, id_tp_zona,
+                      nb_zona, zona_postal, id_tp_via, nb_via, id_tp_vivienda, nb_vivienda, id_ciudad, created_at)
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16,
+                      $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, now());`,
           [
             nacionalidad,
             cedula,
@@ -168,13 +182,26 @@ export default {
             civil,
             idUser.id_usuario,
             blregistro,
-            departamento
+            departamento,
+            pais,
+            estado,
+            municipio,
+            parroquia,
+            zona,
+            nbzona,
+            zonapostal,
+            via,
+            nbvia,
+            vivienda,
+            nbvivienda,
+            ciudad
           ]
         )
         return {
           status: 200,
           type: 'success',
-          message: 'Personal registrado exitosamente'
+          message: 'Personal registrado exitosamente',
+          response: idUser.id_usuario
         }
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
@@ -195,7 +222,19 @@ export default {
         profesion,
         sexo,
         civil,
-        idpersonal
+        idpersonal,
+        pais,
+        estado,
+        municipio,
+        parroquia,
+        zona,
+        nbzona,
+        zonapostal,
+        via,
+        nbvia,
+        vivienda,
+        nbvivienda,
+        ciudad
       } = input
 
       try {
