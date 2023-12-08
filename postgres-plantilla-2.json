@@ -1,7 +1,7 @@
 {
   "host": "localhost",
   "port": 5432,
-  "database": "prueba",
+  "database": "unearte_archivo",
   "user": "postgres",
   "password": "1234"
 }
