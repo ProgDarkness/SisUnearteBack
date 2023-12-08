@@ -5,7 +5,7 @@
 -- Dumped from database version 14.8
 -- Dumped by pg_dump version 14.8
 
--- Started on 2023-12-07 07:16:06
+-- Started on 2023-12-07 21:18:22
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -598,7 +598,7 @@ ALTER SEQUENCE public.docs_estudiante_id_documentos_seq OWNED BY public.docs_est
 
 
 --
--- TOC entry 379 (class 1259 OID 43479)
+-- TOC entry 378 (class 1259 OID 43479)
 -- Name: documentos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1281,7 +1281,7 @@ CREATE TABLE public.fecha_estatus_postulacion (
 ALTER TABLE public.fecha_estatus_postulacion OWNER TO postgres;
 
 --
--- TOC entry 380 (class 1259 OID 43486)
+-- TOC entry 379 (class 1259 OID 43486)
 -- Name: fotoperfil_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2346,7 +2346,9 @@ CREATE TABLE public.usuarios (
     id_municipio_trabajo integer,
     id_parroquia_trabajo integer,
     dir_trabajo character varying(100),
-    telefono_trabajo character varying(11)
+    telefono_trabajo character varying(11),
+    bl_trabajo boolean,
+    telefono_usuario integer
 );
 
 
@@ -2393,7 +2395,7 @@ CREATE VIEW public.info_postulados AS
 ALTER TABLE public.info_postulados OWNER TO postgres;
 
 --
--- TOC entry 333 (class 1259 OID 42459)
+-- TOC entry 380 (class 1259 OID 43519)
 -- Name: info_usuario; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -2428,6 +2430,10 @@ CREATE VIEW public.info_usuario AS
     u.id_pais_nac,
     u.id_ciudad_nac,
     u.id_estado_nac,
+    u.dir_trabajo,
+    u.telefono_trabajo,
+    u.bl_trabajo,
+    u.telefono_usuario,
     nacionalidad.co_nacionalidad,
     nacionalidad.nb_nacionalidad,
     sex.nb_tp_sexo,
@@ -2468,7 +2474,7 @@ CREATE VIEW public.info_usuario AS
 ALTER TABLE public.info_usuario OWNER TO postgres;
 
 --
--- TOC entry 334 (class 1259 OID 42464)
+-- TOC entry 333 (class 1259 OID 42464)
 -- Name: meses_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2484,7 +2490,7 @@ CREATE SEQUENCE public.meses_id_seq
 ALTER TABLE public.meses_id_seq OWNER TO postgres;
 
 --
--- TOC entry 335 (class 1259 OID 42465)
+-- TOC entry 334 (class 1259 OID 42465)
 -- Name: meses; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2500,7 +2506,7 @@ CREATE TABLE public.meses (
 ALTER TABLE public.meses OWNER TO postgres;
 
 --
--- TOC entry 336 (class 1259 OID 42471)
+-- TOC entry 335 (class 1259 OID 42471)
 -- Name: notas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2516,7 +2522,7 @@ CREATE SEQUENCE public.notas_id_seq
 ALTER TABLE public.notas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 337 (class 1259 OID 42472)
+-- TOC entry 336 (class 1259 OID 42472)
 -- Name: notas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2535,7 +2541,7 @@ CREATE TABLE public.notas (
 ALTER TABLE public.notas OWNER TO postgres;
 
 --
--- TOC entry 338 (class 1259 OID 42476)
+-- TOC entry 337 (class 1259 OID 42476)
 -- Name: oferta_academica_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2551,7 +2557,7 @@ CREATE SEQUENCE public.oferta_academica_id_seq
 ALTER TABLE public.oferta_academica_id_seq OWNER TO postgres;
 
 --
--- TOC entry 339 (class 1259 OID 42477)
+-- TOC entry 338 (class 1259 OID 42477)
 -- Name: oferta_academica; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2573,7 +2579,7 @@ CREATE TABLE public.oferta_academica (
 ALTER TABLE public.oferta_academica OWNER TO postgres;
 
 --
--- TOC entry 340 (class 1259 OID 42483)
+-- TOC entry 339 (class 1259 OID 42483)
 -- Name: oferta_horario_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2589,7 +2595,7 @@ CREATE SEQUENCE public.oferta_horario_id_seq
 ALTER TABLE public.oferta_horario_id_seq OWNER TO postgres;
 
 --
--- TOC entry 341 (class 1259 OID 42484)
+-- TOC entry 340 (class 1259 OID 42484)
 -- Name: oferta_horario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2610,7 +2616,7 @@ CREATE TABLE public.oferta_horario (
 ALTER TABLE public.oferta_horario OWNER TO postgres;
 
 --
--- TOC entry 342 (class 1259 OID 42488)
+-- TOC entry 341 (class 1259 OID 42488)
 -- Name: oferta_materia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2626,7 +2632,7 @@ CREATE SEQUENCE public.oferta_materia_id_seq
 ALTER TABLE public.oferta_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 343 (class 1259 OID 42489)
+-- TOC entry 342 (class 1259 OID 42489)
 -- Name: oferta_materia_carrera; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2644,7 +2650,7 @@ CREATE TABLE public.oferta_materia_carrera (
 ALTER TABLE public.oferta_materia_carrera OWNER TO postgres;
 
 --
--- TOC entry 344 (class 1259 OID 42493)
+-- TOC entry 343 (class 1259 OID 42493)
 -- Name: oferta_materia_carrera_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2660,7 +2666,7 @@ CREATE SEQUENCE public.oferta_materia_carrera_id_seq
 ALTER TABLE public.oferta_materia_carrera_id_seq OWNER TO postgres;
 
 --
--- TOC entry 345 (class 1259 OID 42494)
+-- TOC entry 344 (class 1259 OID 42494)
 -- Name: periodo_carrera_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2676,7 +2682,7 @@ CREATE SEQUENCE public.periodo_carrera_id_seq
 ALTER TABLE public.periodo_carrera_id_seq OWNER TO postgres;
 
 --
--- TOC entry 346 (class 1259 OID 42495)
+-- TOC entry 345 (class 1259 OID 42495)
 -- Name: periodo_trayecto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2692,7 +2698,7 @@ CREATE SEQUENCE public.periodo_trayecto_id_seq
 ALTER TABLE public.periodo_trayecto_id_seq OWNER TO postgres;
 
 --
--- TOC entry 347 (class 1259 OID 42496)
+-- TOC entry 346 (class 1259 OID 42496)
 -- Name: periodo_trayecto; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2709,7 +2715,7 @@ CREATE TABLE public.periodo_trayecto (
 ALTER TABLE public.periodo_trayecto OWNER TO postgres;
 
 --
--- TOC entry 348 (class 1259 OID 42500)
+-- TOC entry 347 (class 1259 OID 42500)
 -- Name: personal_seccion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2725,7 +2731,7 @@ CREATE SEQUENCE public.personal_seccion_id_seq
 ALTER TABLE public.personal_seccion_id_seq OWNER TO postgres;
 
 --
--- TOC entry 349 (class 1259 OID 42501)
+-- TOC entry 348 (class 1259 OID 42501)
 -- Name: personal_seccion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2741,7 +2747,7 @@ CREATE TABLE public.personal_seccion (
 ALTER TABLE public.personal_seccion OWNER TO postgres;
 
 --
--- TOC entry 350 (class 1259 OID 42505)
+-- TOC entry 349 (class 1259 OID 42505)
 -- Name: regiones; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2754,7 +2760,7 @@ CREATE TABLE public.regiones (
 ALTER TABLE public.regiones OWNER TO postgres;
 
 --
--- TOC entry 351 (class 1259 OID 42508)
+-- TOC entry 350 (class 1259 OID 42508)
 -- Name: roles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2770,7 +2776,7 @@ CREATE SEQUENCE public.roles_id_seq
 ALTER TABLE public.roles_id_seq OWNER TO postgres;
 
 --
--- TOC entry 352 (class 1259 OID 42509)
+-- TOC entry 351 (class 1259 OID 42509)
 -- Name: roles; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2785,7 +2791,7 @@ CREATE TABLE public.roles (
 ALTER TABLE public.roles OWNER TO postgres;
 
 --
--- TOC entry 353 (class 1259 OID 42513)
+-- TOC entry 352 (class 1259 OID 42513)
 -- Name: secciones_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2801,7 +2807,7 @@ CREATE SEQUENCE public.secciones_id_seq
 ALTER TABLE public.secciones_id_seq OWNER TO postgres;
 
 --
--- TOC entry 354 (class 1259 OID 42514)
+-- TOC entry 353 (class 1259 OID 42514)
 -- Name: secciones; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2822,7 +2828,7 @@ CREATE TABLE public.secciones (
 ALTER TABLE public.secciones OWNER TO postgres;
 
 --
--- TOC entry 355 (class 1259 OID 42520)
+-- TOC entry 354 (class 1259 OID 42520)
 -- Name: sede_carrera_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2838,7 +2844,7 @@ CREATE SEQUENCE public.sede_carrera_id_seq
 ALTER TABLE public.sede_carrera_id_seq OWNER TO postgres;
 
 --
--- TOC entry 356 (class 1259 OID 42521)
+-- TOC entry 355 (class 1259 OID 42521)
 -- Name: sede_carrera; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2854,7 +2860,7 @@ CREATE TABLE public.sede_carrera (
 ALTER TABLE public.sede_carrera OWNER TO postgres;
 
 --
--- TOC entry 357 (class 1259 OID 42525)
+-- TOC entry 356 (class 1259 OID 42525)
 -- Name: suplente_materia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2870,7 +2876,7 @@ CREATE SEQUENCE public.suplente_materia_id_seq
 ALTER TABLE public.suplente_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 358 (class 1259 OID 42526)
+-- TOC entry 357 (class 1259 OID 42526)
 -- Name: suplente_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2886,7 +2892,7 @@ CREATE TABLE public.suplente_materia (
 ALTER TABLE public.suplente_materia OWNER TO postgres;
 
 --
--- TOC entry 359 (class 1259 OID 42530)
+-- TOC entry 358 (class 1259 OID 42530)
 -- Name: tipo_carrera_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2902,7 +2908,7 @@ CREATE SEQUENCE public.tipo_carrera_id_seq
 ALTER TABLE public.tipo_carrera_id_seq OWNER TO postgres;
 
 --
--- TOC entry 360 (class 1259 OID 42531)
+-- TOC entry 359 (class 1259 OID 42531)
 -- Name: tipo_carrera; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2919,7 +2925,7 @@ CREATE TABLE public.tipo_carrera (
 ALTER TABLE public.tipo_carrera OWNER TO postgres;
 
 --
--- TOC entry 361 (class 1259 OID 42535)
+-- TOC entry 360 (class 1259 OID 42535)
 -- Name: tipo_documento_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2935,7 +2941,7 @@ CREATE SEQUENCE public.tipo_documento_id_seq
 ALTER TABLE public.tipo_documento_id_seq OWNER TO postgres;
 
 --
--- TOC entry 362 (class 1259 OID 42536)
+-- TOC entry 361 (class 1259 OID 42536)
 -- Name: tipo_documento; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2953,7 +2959,7 @@ CREATE TABLE public.tipo_documento (
 ALTER TABLE public.tipo_documento OWNER TO postgres;
 
 --
--- TOC entry 363 (class 1259 OID 42540)
+-- TOC entry 362 (class 1259 OID 42540)
 -- Name: tipo_estudio_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2969,7 +2975,7 @@ CREATE SEQUENCE public.tipo_estudio_id_seq
 ALTER TABLE public.tipo_estudio_id_seq OWNER TO postgres;
 
 --
--- TOC entry 364 (class 1259 OID 42541)
+-- TOC entry 363 (class 1259 OID 42541)
 -- Name: tipo_estudio; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2986,7 +2992,7 @@ CREATE TABLE public.tipo_estudio (
 ALTER TABLE public.tipo_estudio OWNER TO postgres;
 
 --
--- TOC entry 365 (class 1259 OID 42545)
+-- TOC entry 364 (class 1259 OID 42545)
 -- Name: tipo_materia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3002,7 +3008,7 @@ CREATE SEQUENCE public.tipo_materia_id_seq
 ALTER TABLE public.tipo_materia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 366 (class 1259 OID 42546)
+-- TOC entry 365 (class 1259 OID 42546)
 -- Name: tipo_materia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3021,7 +3027,7 @@ CREATE TABLE public.tipo_materia (
 ALTER TABLE public.tipo_materia OWNER TO postgres;
 
 --
--- TOC entry 367 (class 1259 OID 42550)
+-- TOC entry 366 (class 1259 OID 42550)
 -- Name: tipo_titulo_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3037,7 +3043,7 @@ CREATE SEQUENCE public.tipo_titulo_id_seq
 ALTER TABLE public.tipo_titulo_id_seq OWNER TO postgres;
 
 --
--- TOC entry 368 (class 1259 OID 42551)
+-- TOC entry 367 (class 1259 OID 42551)
 -- Name: tipo_titulo; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3054,7 +3060,7 @@ CREATE TABLE public.tipo_titulo (
 ALTER TABLE public.tipo_titulo OWNER TO postgres;
 
 --
--- TOC entry 369 (class 1259 OID 42555)
+-- TOC entry 368 (class 1259 OID 42555)
 -- Name: trayectos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3070,7 +3076,7 @@ CREATE SEQUENCE public.trayectos_id_seq
 ALTER TABLE public.trayectos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 370 (class 1259 OID 42556)
+-- TOC entry 369 (class 1259 OID 42556)
 -- Name: trayectos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3088,7 +3094,7 @@ CREATE TABLE public.trayectos (
 ALTER TABLE public.trayectos OWNER TO postgres;
 
 --
--- TOC entry 371 (class 1259 OID 42560)
+-- TOC entry 370 (class 1259 OID 42560)
 -- Name: turnos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3104,7 +3110,7 @@ CREATE SEQUENCE public.turnos_id_seq
 ALTER TABLE public.turnos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 372 (class 1259 OID 42561)
+-- TOC entry 371 (class 1259 OID 42561)
 -- Name: turnos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3120,7 +3126,7 @@ CREATE TABLE public.turnos (
 ALTER TABLE public.turnos OWNER TO postgres;
 
 --
--- TOC entry 373 (class 1259 OID 42565)
+-- TOC entry 372 (class 1259 OID 42565)
 -- Name: zona_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3136,7 +3142,7 @@ CREATE SEQUENCE public.zona_id_seq
 ALTER TABLE public.zona_id_seq OWNER TO postgres;
 
 --
--- TOC entry 374 (class 1259 OID 42566)
+-- TOC entry 373 (class 1259 OID 42566)
 -- Name: zona; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3151,7 +3157,7 @@ CREATE TABLE public.zona (
 ALTER TABLE public.zona OWNER TO postgres;
 
 --
--- TOC entry 375 (class 1259 OID 42570)
+-- TOC entry 374 (class 1259 OID 42570)
 -- Name: lista_correos; Type: TABLE; Schema: services; Owner: postgres
 --
 
@@ -3168,7 +3174,7 @@ CREATE TABLE services.lista_correos (
 ALTER TABLE services.lista_correos OWNER TO postgres;
 
 --
--- TOC entry 376 (class 1259 OID 42577)
+-- TOC entry 375 (class 1259 OID 42577)
 -- Name: lista_correos_co_id_lista_correos_seq; Type: SEQUENCE; Schema: services; Owner: postgres
 --
 
@@ -3185,7 +3191,7 @@ ALTER TABLE services.lista_correos_co_id_lista_correos_seq OWNER TO postgres;
 
 --
 -- TOC entry 4280 (class 0 OID 0)
--- Dependencies: 376
+-- Dependencies: 375
 -- Name: lista_correos_co_id_lista_correos_seq; Type: SEQUENCE OWNED BY; Schema: services; Owner: postgres
 --
 
@@ -3193,7 +3199,7 @@ ALTER SEQUENCE services.lista_correos_co_id_lista_correos_seq OWNED BY services.
 
 
 --
--- TOC entry 377 (class 1259 OID 42578)
+-- TOC entry 376 (class 1259 OID 42578)
 -- Name: logs_envio_correos; Type: TABLE; Schema: services; Owner: postgres
 --
 
@@ -3209,7 +3215,7 @@ CREATE TABLE services.logs_envio_correos (
 ALTER TABLE services.logs_envio_correos OWNER TO postgres;
 
 --
--- TOC entry 378 (class 1259 OID 42585)
+-- TOC entry 377 (class 1259 OID 42585)
 -- Name: logs_envio_correos_id_error_seq; Type: SEQUENCE; Schema: services; Owner: postgres
 --
 
@@ -3226,7 +3232,7 @@ ALTER TABLE services.logs_envio_correos_id_error_seq OWNER TO postgres;
 
 --
 -- TOC entry 4281 (class 0 OID 0)
--- Dependencies: 378
+-- Dependencies: 377
 -- Name: logs_envio_correos_id_error_seq; Type: SEQUENCE OWNED BY; Schema: services; Owner: postgres
 --
 
@@ -9733,7 +9739,7 @@ COPY public.materias (id_materia, co_materia, nb_materia, nu_credito, id_tp_mate
 
 --
 -- TOC entry 4227 (class 0 OID 42465)
--- Dependencies: 335
+-- Dependencies: 334
 -- Data for Name: meses; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -10100,7 +10106,7 @@ COPY public.municipios (id_municipio, id_estado, nb_municipio, cod_municipio) FR
 
 --
 -- TOC entry 4229 (class 0 OID 42472)
--- Dependencies: 337
+-- Dependencies: 336
 -- Data for Name: notas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -10112,7 +10118,7 @@ COPY public.notas (id_nota, id_estudiante, nu_nota, created_at, updated_at, id_m
 
 --
 -- TOC entry 4231 (class 0 OID 42477)
--- Dependencies: 339
+-- Dependencies: 338
 -- Data for Name: oferta_academica; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -10127,7 +10133,7 @@ COPY public.oferta_academica (id_oferta, id_periodo, id_carrera, nu_cupos, nu_se
 
 --
 -- TOC entry 4233 (class 0 OID 42484)
--- Dependencies: 341
+-- Dependencies: 340
 -- Data for Name: oferta_horario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -10137,7 +10143,7 @@ COPY public.oferta_horario (id_horaoferta, id_oferta, id_bloque, id_personal, id
 
 --
 -- TOC entry 4235 (class 0 OID 42489)
--- Dependencies: 343
+-- Dependencies: 342
 -- Data for Name: oferta_materia_carrera; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11542,7 +11548,7 @@ COPY public.periodo_lectivo (id_periodo, co_periodo, id_tp_periodo, anio_periodo
 
 --
 -- TOC entry 4239 (class 0 OID 42496)
--- Dependencies: 347
+-- Dependencies: 346
 -- Data for Name: periodo_trayecto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11582,7 +11588,7 @@ COPY public.personal (id_personal, id_nacionalidad, ced_personal, nb_personal, a
 
 --
 -- TOC entry 4241 (class 0 OID 42501)
--- Dependencies: 349
+-- Dependencies: 348
 -- Data for Name: personal_seccion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11839,7 +11845,7 @@ COPY public.profesion (id_profesion, nb_profesion) FROM stdin;
 
 --
 -- TOC entry 4242 (class 0 OID 42505)
--- Dependencies: 350
+-- Dependencies: 349
 -- Data for Name: regiones; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11857,7 +11863,7 @@ COPY public.regiones (id_region, nb_region) FROM stdin;
 
 --
 -- TOC entry 4244 (class 0 OID 42509)
--- Dependencies: 352
+-- Dependencies: 351
 -- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11873,7 +11879,7 @@ COPY public.roles (id_rol, nb_rol, created_at, updated_at) FROM stdin;
 
 --
 -- TOC entry 4246 (class 0 OID 42514)
--- Dependencies: 354
+-- Dependencies: 353
 -- Data for Name: secciones; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11899,7 +11905,7 @@ COPY public.secciones (id_seccion, nb_seccion, cap_seccion, id_estatus_seccion, 
 
 --
 -- TOC entry 4248 (class 0 OID 42521)
--- Dependencies: 356
+-- Dependencies: 355
 -- Data for Name: sede_carrera; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11929,7 +11935,7 @@ COPY public.sedes (id_sede, co_sede, nb_sede, id_geografico_sede, id_estatus, cr
 
 --
 -- TOC entry 4250 (class 0 OID 42526)
--- Dependencies: 358
+-- Dependencies: 357
 -- Data for Name: suplente_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11939,7 +11945,7 @@ COPY public.suplente_materia (id_suplente, id_dicta, id_personal, created_at, up
 
 --
 -- TOC entry 4252 (class 0 OID 42531)
--- Dependencies: 360
+-- Dependencies: 359
 -- Data for Name: tipo_carrera; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11965,7 +11971,7 @@ COPY public.tipo_discapacidad (id_tp_discapacidad, nb_tp_discapacidad, tx_descri
 
 --
 -- TOC entry 4254 (class 0 OID 42536)
--- Dependencies: 362
+-- Dependencies: 361
 -- Data for Name: tipo_documento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -11992,7 +11998,7 @@ COPY public.tipo_estado_civil (id_civil, nb_civil) FROM stdin;
 
 --
 -- TOC entry 4256 (class 0 OID 42541)
--- Dependencies: 364
+-- Dependencies: 363
 -- Data for Name: tipo_estudio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -12030,7 +12036,7 @@ COPY public.tipo_ingreso (id_tp_ingreso, nb_tp_ingreso, created_at, updated_at) 
 
 --
 -- TOC entry 4258 (class 0 OID 42546)
--- Dependencies: 366
+-- Dependencies: 365
 -- Data for Name: tipo_materia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -12088,7 +12094,7 @@ COPY public.tipo_sexo (id_tp_sexo, co_tp_sexo, nb_tp_sexo) FROM stdin;
 
 --
 -- TOC entry 4260 (class 0 OID 42551)
--- Dependencies: 368
+-- Dependencies: 367
 -- Data for Name: tipo_titulo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -12144,7 +12150,7 @@ COPY public.tipo_zona (id_tp_zona, nb_tp_zona) FROM stdin;
 
 --
 -- TOC entry 4262 (class 0 OID 42556)
--- Dependencies: 370
+-- Dependencies: 369
 -- Data for Name: trayectos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -12159,7 +12165,7 @@ COPY public.trayectos (id_trayecto, nb_trayecto, tx_descripcion, mes_duracion, v
 
 --
 -- TOC entry 4264 (class 0 OID 42561)
--- Dependencies: 372
+-- Dependencies: 371
 -- Data for Name: turnos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -12173,34 +12179,34 @@ COPY public.turnos (id_turno, nb_turno, id_estatus, created_at, updated_at) FROM
 -- Data for Name: usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.usuarios (id_usuario, tx_clave, user_name, bl_status, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_tp_sexo, fe_nac_usuario, id_civil, correo_usuario, id_tp_via, nb_via, id_tp_zona, nb_zona, id_tp_vivienda, nu_vivienda, id_ciudad, id_estado, www_preinscripcion, created_at, updated_at, id_municipio, id_parroquia, bl_registro, nb2_usuario, ape2_usuario, id_zona, id_pais, id_tp_discapacidad, id_etnia, id_pais_nac, id_estado_nac, id_ciudad_nac, cod_zona_postal, id_pais_trabajo, id_estado_trabajo, id_ciudad_trabajo, id_municipio_trabajo, id_parroquia_trabajo, dir_trabajo, telefono_trabajo) FROM stdin;
-23	a24c6e5f081eb8c1ac780c7ceab547c29d050d626d5755122f6ebeedd49e997e	ANA	t	2	1	65765765	ANA	TORRE	1	\N	\N	a@gmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-18 15:24:30.311885-04	2023-09-18 15:24:30.311885-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-19	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	aspiranteuno	t	3	1	12345670	ASPIRANTE	UNO	2	1989-12-09 00:00:00	1	a@gmail.com	1	OESTE	1	Casco Central de Altagracia	3	34	1	1	\N	2023-09-18 14:08:02.717723-04	2023-09-18 14:10:13.765824-04	1	4	t	GILO	GIL	319	239	5	4	239	1	1	1010	\N	\N	\N	\N	\N	\N	\N
-21	ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f	GABRIEL	t	6	1	12345678	GABRIEL	MARCANO	2	\N	\N	gabriel@gmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-18 15:08:35.451924-04	2023-09-18 15:08:35.451924-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-22	ff79e2cb03e5d82522a03d8fbe536059664ec9b3e52ed7073ce9915c1f4447a3	GABRIEL	t	6	1	12321311	GABRIEL	MARCANO	2	\N	\N	g@hotmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-18 15:09:43.655347-04	2023-09-18 15:09:43.655347-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-24	4deb52476d710297639f217a1c9246f1079a7fd4f5eccc60b1cefaf4afad09d1	MANUEL	t	6	1	15689358	MANUEL	GONZALEZ	2	\N	\N	g@ff.cc	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-20 14:13:02.879851-04	2023-09-20 14:13:02.879851-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-25	b9e925b642a1662ffb6294394d9b1962880f2913d5fb9c3213a49217ad1c3c2b	eduardo	t	6	1	80343391	EDUARDO	LOPEZ	2	\N	\N	usuario@gmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-30 20:41:43.674945-04	2023-09-30 20:41:43.674945-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-26	51c544d7a6b1b4f42feee9e8d63b8e3278ea96da551357fa5a5e8bea34144eff	laura	t	6	1	81091367	LAURA	GOLDBERG	1	\N	\N	arglaura@gmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-30 20:45:36.272845-04	2023-09-30 20:45:36.272845-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-27	130dd00228db9ff7fb489ce2451d2a06b7af3b64c85d34580ceb7757c06bbe33	rubén	t	6	2	81091447	RUBÉN	WISOTZKI	2	\N	\N	usuario2@gmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-30 20:50:13.476349-04	2023-09-30 20:50:13.476349-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-28	64f95eaa878c645844e377d56680d9162a061501cf7cbb5cacd7da0d23a2537c	adhemar	t	6	2	81099507	ADHEMAR	RAVARA	2	\N	\N	tuchoravara@hotmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-30 20:52:00.293813-04	2023-09-30 20:52:00.293813-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-30	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	anaa	t	3	1	12345671	ANA	ACOSTA	1	1984-12-09 00:00:00	1	anaa@gmail.com	3	12	1	Barrio El Arcángel	3	12	1	1	\N	2023-10-01 18:06:49.216842-04	2023-10-01 18:19:57.391804-04	1	4	t	ROSA	DADO	309	239	5	4	239	14	604	1010	\N	\N	\N	\N	\N	\N	\N
-31	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	teresa	t	3	1	12345672	TERESA	CAMPO	1	1985-09-12 00:00:00	1	teresa@gmail.com	3	45	1	Barrio Andrés Bello	2	43	1	1	\N	2023-10-01 18:07:39.492804-04	2023-10-01 18:27:23.37455-04	1	3	t	ROSAURA	VILORIA	227	239	5	4	239	1	1	1000	\N	\N	\N	\N	\N	\N	\N
-32	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	carlos	t	3	1	12345673	CARLOS	BELLORIN	2	1990-02-01 00:00:00	1	carlos@gmail.com	4	02	4	Oficina Postal Telegráfica El Valle	1	12	1	1	\N	2023-10-01 18:09:36.170313-04	2023-10-01 19:05:08.054887-04	1	19	t	LUIS	SANTO	1121	239	5	4	239	1	1	1090	\N	\N	\N	\N	\N	\N	\N
-33	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	andres	t	3	1	12345674	ANDRES	SILLON	2	1985-06-23 00:00:00	1	andres@gmail.com	4	15	3	Barrio El Limón	3	13	1128	24	\N	2023-10-01 18:10:13.461055-04	2023-10-01 19:07:07.161157-04	335	1121	t	ANGEL	PARSE	34624	239	5	4	239	14	612	6168	\N	\N	\N	\N	\N	\N	\N
-34	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	jorge	t	3	1	12345675	JORGE	FRANCO	2	1988-04-15 00:00:00	1	siso@hotmail.com	4	90	3	Capital de  Municipio El Hatillo	3	34	26	2	\N	2023-10-01 18:11:31.944612-04	2023-10-01 19:08:53.327136-04	5	31	t	MANUEL	SISO	1927	239	5	4	239	7	374	1083	\N	\N	\N	\N	\N	\N	\N
-35	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	gilda	t	3	1	12345676	GILDA	FLORES	1	1990-01-23 00:00:00	1	marquez@gmail.com	3	23	3	Barrio Décima Transversal	1	009	25	2	\N	2023-10-01 18:13:09.422018-04	2023-10-01 19:10:43.965668-04	4	28	t	CARMEN	MARQUEZ	1804	239	5	4	239	13	580	1071	\N	\N	\N	\N	\N	\N	\N
-36	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	victoria	t	3	1	12345677	VICTORIA	MARIN	1	1987-12-24 00:00:00	1	vic@hotmail.com	3	23	2	Caserío Cariaquito	3	02	1128	24	\N	2023-10-01 18:13:57.899503-04	2023-10-01 19:12:38.25929-04	335	1120	t	MARIA	MARIN	34578	239	5	4	239	14	604	6167	\N	\N	\N	\N	\N	\N	\N
-38	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	bertha	t	3	2	12345679	BERTHA	MONTANA	1	2001-01-02 00:00:00	1	bertha@gmail.com	4	33	4	Centro Médico Docente La Trinidad	3	400	25	2	\N	2023-10-01 18:15:32.159297-04	2023-10-01 19:14:05.698177-04	5	32	t	JOSEFINA	ACOSTA	1931	239	5	4	239	20	980	1083	\N	\N	\N	\N	\N	\N	\N
-39	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	nilson	t	3	1	12345610	NILSON	VOL	2	1990-04-01 00:00:00	2	nilson@gmail.com	3	09	3	Sector Buena Vista	3	101	24	2	\N	2023-10-01 18:16:59.380911-04	2023-10-01 19:15:51.683243-04	14	53	t	MARCOS	NILO	3227	239	5	4	239	12	559	1215	\N	\N	\N	\N	\N	\N	\N
-9	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	gmarcano	t	2	1	28484789	GABRIEL	MARCANO	2	2001-11-19 00:00:00	1	gabrielmarcano@gmail.com	3	LA ESPERANZA	5	Barrio El Guarataro	3	34	1	1	\N	2023-08-11 14:39:27.398252-04	2023-09-07 04:05:32.861813-04	1	12	t	FABIAN	REQUENA	559	239	5	4	239	1	1	\N	\N	\N	\N	\N	\N	\N	\N
-40	\N	ggmarcano	t	2	1	28484689	Gabriel	Marcano	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-10-29 18:26:41.918195-04	2023-10-29 18:26:41.918195-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-42	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	aspirantedos	t	3	1	12345609	ASPIRANTE	DOS	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-11-17 18:19:15.778293-04	2023-11-17 18:19:15.778293-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+COPY public.usuarios (id_usuario, tx_clave, user_name, bl_status, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_tp_sexo, fe_nac_usuario, id_civil, correo_usuario, id_tp_via, nb_via, id_tp_zona, nb_zona, id_tp_vivienda, nu_vivienda, id_ciudad, id_estado, www_preinscripcion, created_at, updated_at, id_municipio, id_parroquia, bl_registro, nb2_usuario, ape2_usuario, id_zona, id_pais, id_tp_discapacidad, id_etnia, id_pais_nac, id_estado_nac, id_ciudad_nac, cod_zona_postal, id_pais_trabajo, id_estado_trabajo, id_ciudad_trabajo, id_municipio_trabajo, id_parroquia_trabajo, dir_trabajo, telefono_trabajo, bl_trabajo, telefono_usuario) FROM stdin;
+23	a24c6e5f081eb8c1ac780c7ceab547c29d050d626d5755122f6ebeedd49e997e	ANA	t	2	1	65765765	ANA	TORRE	1	\N	\N	a@gmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-18 15:24:30.311885-04	2023-09-18 15:24:30.311885-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+19	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	aspiranteuno	t	3	1	12345670	ASPIRANTE	UNO	2	1989-12-09 00:00:00	1	a@gmail.com	1	OESTE	1	Casco Central de Altagracia	3	34	1	1	\N	2023-09-18 14:08:02.717723-04	2023-09-18 14:10:13.765824-04	1	4	t	GILO	GIL	319	239	5	4	239	1	1	1010	\N	\N	\N	\N	\N	\N	\N	\N	\N
+21	ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f	GABRIEL	t	6	1	12345678	GABRIEL	MARCANO	2	\N	\N	gabriel@gmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-18 15:08:35.451924-04	2023-09-18 15:08:35.451924-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+22	ff79e2cb03e5d82522a03d8fbe536059664ec9b3e52ed7073ce9915c1f4447a3	GABRIEL	t	6	1	12321311	GABRIEL	MARCANO	2	\N	\N	g@hotmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-18 15:09:43.655347-04	2023-09-18 15:09:43.655347-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+24	4deb52476d710297639f217a1c9246f1079a7fd4f5eccc60b1cefaf4afad09d1	MANUEL	t	6	1	15689358	MANUEL	GONZALEZ	2	\N	\N	g@ff.cc	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-20 14:13:02.879851-04	2023-09-20 14:13:02.879851-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+25	b9e925b642a1662ffb6294394d9b1962880f2913d5fb9c3213a49217ad1c3c2b	eduardo	t	6	1	80343391	EDUARDO	LOPEZ	2	\N	\N	usuario@gmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-30 20:41:43.674945-04	2023-09-30 20:41:43.674945-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+26	51c544d7a6b1b4f42feee9e8d63b8e3278ea96da551357fa5a5e8bea34144eff	laura	t	6	1	81091367	LAURA	GOLDBERG	1	\N	\N	arglaura@gmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-30 20:45:36.272845-04	2023-09-30 20:45:36.272845-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+27	130dd00228db9ff7fb489ce2451d2a06b7af3b64c85d34580ceb7757c06bbe33	rubén	t	6	2	81091447	RUBÉN	WISOTZKI	2	\N	\N	usuario2@gmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-30 20:50:13.476349-04	2023-09-30 20:50:13.476349-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+28	64f95eaa878c645844e377d56680d9162a061501cf7cbb5cacd7da0d23a2537c	adhemar	t	6	2	81099507	ADHEMAR	RAVARA	2	\N	\N	tuchoravara@hotmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-09-30 20:52:00.293813-04	2023-09-30 20:52:00.293813-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+30	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	anaa	t	3	1	12345671	ANA	ACOSTA	1	1984-12-09 00:00:00	1	anaa@gmail.com	3	12	1	Barrio El Arcángel	3	12	1	1	\N	2023-10-01 18:06:49.216842-04	2023-10-01 18:19:57.391804-04	1	4	t	ROSA	DADO	309	239	5	4	239	14	604	1010	\N	\N	\N	\N	\N	\N	\N	\N	\N
+31	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	teresa	t	3	1	12345672	TERESA	CAMPO	1	1985-09-12 00:00:00	1	teresa@gmail.com	3	45	1	Barrio Andrés Bello	2	43	1	1	\N	2023-10-01 18:07:39.492804-04	2023-10-01 18:27:23.37455-04	1	3	t	ROSAURA	VILORIA	227	239	5	4	239	1	1	1000	\N	\N	\N	\N	\N	\N	\N	\N	\N
+32	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	carlos	t	3	1	12345673	CARLOS	BELLORIN	2	1990-02-01 00:00:00	1	carlos@gmail.com	4	02	4	Oficina Postal Telegráfica El Valle	1	12	1	1	\N	2023-10-01 18:09:36.170313-04	2023-10-01 19:05:08.054887-04	1	19	t	LUIS	SANTO	1121	239	5	4	239	1	1	1090	\N	\N	\N	\N	\N	\N	\N	\N	\N
+33	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	andres	t	3	1	12345674	ANDRES	SILLON	2	1985-06-23 00:00:00	1	andres@gmail.com	4	15	3	Barrio El Limón	3	13	1128	24	\N	2023-10-01 18:10:13.461055-04	2023-10-01 19:07:07.161157-04	335	1121	t	ANGEL	PARSE	34624	239	5	4	239	14	612	6168	\N	\N	\N	\N	\N	\N	\N	\N	\N
+34	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	jorge	t	3	1	12345675	JORGE	FRANCO	2	1988-04-15 00:00:00	1	siso@hotmail.com	4	90	3	Capital de  Municipio El Hatillo	3	34	26	2	\N	2023-10-01 18:11:31.944612-04	2023-10-01 19:08:53.327136-04	5	31	t	MANUEL	SISO	1927	239	5	4	239	7	374	1083	\N	\N	\N	\N	\N	\N	\N	\N	\N
+35	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	gilda	t	3	1	12345676	GILDA	FLORES	1	1990-01-23 00:00:00	1	marquez@gmail.com	3	23	3	Barrio Décima Transversal	1	009	25	2	\N	2023-10-01 18:13:09.422018-04	2023-10-01 19:10:43.965668-04	4	28	t	CARMEN	MARQUEZ	1804	239	5	4	239	13	580	1071	\N	\N	\N	\N	\N	\N	\N	\N	\N
+36	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	victoria	t	3	1	12345677	VICTORIA	MARIN	1	1987-12-24 00:00:00	1	vic@hotmail.com	3	23	2	Caserío Cariaquito	3	02	1128	24	\N	2023-10-01 18:13:57.899503-04	2023-10-01 19:12:38.25929-04	335	1120	t	MARIA	MARIN	34578	239	5	4	239	14	604	6167	\N	\N	\N	\N	\N	\N	\N	\N	\N
+38	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	bertha	t	3	2	12345679	BERTHA	MONTANA	1	2001-01-02 00:00:00	1	bertha@gmail.com	4	33	4	Centro Médico Docente La Trinidad	3	400	25	2	\N	2023-10-01 18:15:32.159297-04	2023-10-01 19:14:05.698177-04	5	32	t	JOSEFINA	ACOSTA	1931	239	5	4	239	20	980	1083	\N	\N	\N	\N	\N	\N	\N	\N	\N
+39	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	nilson	t	3	1	12345610	NILSON	VOL	2	1990-04-01 00:00:00	2	nilson@gmail.com	3	09	3	Sector Buena Vista	3	101	24	2	\N	2023-10-01 18:16:59.380911-04	2023-10-01 19:15:51.683243-04	14	53	t	MARCOS	NILO	3227	239	5	4	239	12	559	1215	\N	\N	\N	\N	\N	\N	\N	\N	\N
+9	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	gmarcano	t	2	1	28484789	GABRIEL	MARCANO	2	2001-11-19 00:00:00	1	gabrielmarcano@gmail.com	3	LA ESPERANZA	5	Barrio El Guarataro	3	34	1	1	\N	2023-08-11 14:39:27.398252-04	2023-09-07 04:05:32.861813-04	1	12	t	FABIAN	REQUENA	559	239	5	4	239	1	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+40	\N	ggmarcano	t	2	1	28484689	Gabriel	Marcano	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2023-10-29 18:26:41.918195-04	2023-10-29 18:26:41.918195-04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+42	8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92	aspirantedos	t	3	1	12345609	ASPIRANTE	DOS	1	1986-12-09 00:00:00	1	t@gmail.com	3	33	1	Barrio Bucaral	1	55	26	2	\N	2023-11-17 18:19:15.778293-04	2023-12-07 17:48:54.820209-04	2	23	t	HOLA	TORRES	1402	239	5	4	239	2	23	1060	239	14	184	618	613	aaaaaaaa	433	t	42444
 \.
 
 
 --
 -- TOC entry 4266 (class 0 OID 42566)
--- Dependencies: 374
+-- Dependencies: 373
 -- Data for Name: zona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -47297,7 +47303,7 @@ COPY public.zona (id_zona, id_parroquia, nb_zona, codigo_postal) FROM stdin;
 
 --
 -- TOC entry 4267 (class 0 OID 42570)
--- Dependencies: 375
+-- Dependencies: 374
 -- Data for Name: lista_correos; Type: TABLE DATA; Schema: services; Owner: postgres
 --
 
@@ -47307,7 +47313,7 @@ COPY services.lista_correos (co_id_lista_correos, tx_correo, tx_subject, tx_body
 
 --
 -- TOC entry 4269 (class 0 OID 42578)
--- Dependencies: 377
+-- Dependencies: 376
 -- Data for Name: logs_envio_correos; Type: TABLE DATA; Schema: services; Owner: postgres
 --
 
@@ -47461,7 +47467,7 @@ SELECT pg_catalog.setval('public.docs_estudiante_id_documentos_seq', 5, true);
 
 --
 -- TOC entry 4298 (class 0 OID 0)
--- Dependencies: 379
+-- Dependencies: 378
 -- Name: documentos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47650,7 +47656,7 @@ SELECT pg_catalog.setval('public.fecha_estatus_postulacion_id_seq', 1, true);
 
 --
 -- TOC entry 4319 (class 0 OID 0)
--- Dependencies: 380
+-- Dependencies: 379
 -- Name: fotoperfil_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47713,7 +47719,7 @@ SELECT pg_catalog.setval('public.materias_id_seq', 18, true);
 
 --
 -- TOC entry 4326 (class 0 OID 0)
--- Dependencies: 334
+-- Dependencies: 333
 -- Name: meses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47731,7 +47737,7 @@ SELECT pg_catalog.setval('public.municipios_id_seq', 1, false);
 
 --
 -- TOC entry 4328 (class 0 OID 0)
--- Dependencies: 336
+-- Dependencies: 335
 -- Name: notas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47740,7 +47746,7 @@ SELECT pg_catalog.setval('public.notas_id_seq', 2, true);
 
 --
 -- TOC entry 4329 (class 0 OID 0)
--- Dependencies: 338
+-- Dependencies: 337
 -- Name: oferta_academica_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47749,7 +47755,7 @@ SELECT pg_catalog.setval('public.oferta_academica_id_seq', 11, true);
 
 --
 -- TOC entry 4330 (class 0 OID 0)
--- Dependencies: 340
+-- Dependencies: 339
 -- Name: oferta_horario_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47758,7 +47764,7 @@ SELECT pg_catalog.setval('public.oferta_horario_id_seq', 1, false);
 
 --
 -- TOC entry 4331 (class 0 OID 0)
--- Dependencies: 344
+-- Dependencies: 343
 -- Name: oferta_materia_carrera_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47767,7 +47773,7 @@ SELECT pg_catalog.setval('public.oferta_materia_carrera_id_seq', 3, true);
 
 --
 -- TOC entry 4332 (class 0 OID 0)
--- Dependencies: 342
+-- Dependencies: 341
 -- Name: oferta_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47794,7 +47800,7 @@ SELECT pg_catalog.setval('public.parroquias_id_seq', 1, false);
 
 --
 -- TOC entry 4335 (class 0 OID 0)
--- Dependencies: 345
+-- Dependencies: 344
 -- Name: periodo_carrera_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47803,7 +47809,7 @@ SELECT pg_catalog.setval('public.periodo_carrera_id_seq', 1, true);
 
 --
 -- TOC entry 4336 (class 0 OID 0)
--- Dependencies: 346
+-- Dependencies: 345
 -- Name: periodo_trayecto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47830,7 +47836,7 @@ SELECT pg_catalog.setval('public.personal_id_seq', 8, true);
 
 --
 -- TOC entry 4339 (class 0 OID 0)
--- Dependencies: 348
+-- Dependencies: 347
 -- Name: personal_seccion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47857,7 +47863,7 @@ SELECT pg_catalog.setval('public.profesion_id_seq', 1, false);
 
 --
 -- TOC entry 4342 (class 0 OID 0)
--- Dependencies: 351
+-- Dependencies: 350
 -- Name: roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47866,7 +47872,7 @@ SELECT pg_catalog.setval('public.roles_id_seq', 7, true);
 
 --
 -- TOC entry 4343 (class 0 OID 0)
--- Dependencies: 353
+-- Dependencies: 352
 -- Name: secciones_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47875,7 +47881,7 @@ SELECT pg_catalog.setval('public.secciones_id_seq', 22, true);
 
 --
 -- TOC entry 4344 (class 0 OID 0)
--- Dependencies: 355
+-- Dependencies: 354
 -- Name: sede_carrera_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47893,7 +47899,7 @@ SELECT pg_catalog.setval('public.sedes_id_seq', 2, true);
 
 --
 -- TOC entry 4346 (class 0 OID 0)
--- Dependencies: 357
+-- Dependencies: 356
 -- Name: suplente_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47902,7 +47908,7 @@ SELECT pg_catalog.setval('public.suplente_materia_id_seq', 1, false);
 
 --
 -- TOC entry 4347 (class 0 OID 0)
--- Dependencies: 359
+-- Dependencies: 358
 -- Name: tipo_carrera_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47911,7 +47917,7 @@ SELECT pg_catalog.setval('public.tipo_carrera_id_seq', 2, true);
 
 --
 -- TOC entry 4348 (class 0 OID 0)
--- Dependencies: 361
+-- Dependencies: 360
 -- Name: tipo_documento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47920,7 +47926,7 @@ SELECT pg_catalog.setval('public.tipo_documento_id_seq', 3, true);
 
 --
 -- TOC entry 4349 (class 0 OID 0)
--- Dependencies: 363
+-- Dependencies: 362
 -- Name: tipo_estudio_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47947,7 +47953,7 @@ SELECT pg_catalog.setval('public.tipo_ingreso_id_seq', 2, true);
 
 --
 -- TOC entry 4352 (class 0 OID 0)
--- Dependencies: 365
+-- Dependencies: 364
 -- Name: tipo_materia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -47983,7 +47989,7 @@ SELECT pg_catalog.setval('public.tipo_sexo_id_seq', 2, true);
 
 --
 -- TOC entry 4356 (class 0 OID 0)
--- Dependencies: 367
+-- Dependencies: 366
 -- Name: tipo_titulo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -48028,7 +48034,7 @@ SELECT pg_catalog.setval('public.tipopersonal_id_seq', 1, true);
 
 --
 -- TOC entry 4361 (class 0 OID 0)
--- Dependencies: 369
+-- Dependencies: 368
 -- Name: trayectos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -48037,7 +48043,7 @@ SELECT pg_catalog.setval('public.trayectos_id_seq', 5, true);
 
 --
 -- TOC entry 4362 (class 0 OID 0)
--- Dependencies: 371
+-- Dependencies: 370
 -- Name: turnos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -48055,7 +48061,7 @@ SELECT pg_catalog.setval('public.usuarios_id_seq', 42, true);
 
 --
 -- TOC entry 4364 (class 0 OID 0)
--- Dependencies: 373
+-- Dependencies: 372
 -- Name: zona_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -48064,7 +48070,7 @@ SELECT pg_catalog.setval('public.zona_id_seq', 1, false);
 
 --
 -- TOC entry 4365 (class 0 OID 0)
--- Dependencies: 376
+-- Dependencies: 375
 -- Name: lista_correos_co_id_lista_correos_seq; Type: SEQUENCE SET; Schema: services; Owner: postgres
 --
 
@@ -48073,7 +48079,7 @@ SELECT pg_catalog.setval('services.lista_correos_co_id_lista_correos_seq', 3, tr
 
 --
 -- TOC entry 4366 (class 0 OID 0)
--- Dependencies: 378
+-- Dependencies: 377
 -- Name: logs_envio_correos_id_error_seq; Type: SEQUENCE SET; Schema: services; Owner: postgres
 --
 
@@ -49904,7 +49910,7 @@ ALTER TABLE ONLY public.usuarios
     ADD CONSTRAINT zona_fk_5 FOREIGN KEY (id_tp_zona) REFERENCES public.tipo_zona(id_tp_zona);
 
 
--- Completed on 2023-12-07 07:16:09
+-- Completed on 2023-12-07 21:18:24
 
 --
 -- PostgreSQL database dump complete
