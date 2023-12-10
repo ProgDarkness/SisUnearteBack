@@ -245,7 +245,7 @@ export default {
     obtenerTipoDocumento: async () => {
       try {
         const tiposdocumentos = await dbp.manyOrNone(
-          `SELECT td.id_tp_documento as id, td.nb_tp_documento as nombre, tc.nb_tp_carrera as tipocarrera FROM tipo_documento td, tipo_carrera tc WHERE td.id_tp_carrera = tc.id_tp_carrera ORDER BY td.id_tp_carrera;`
+          `SELECT id_tp_documento as id, nb_tp_documento as nombre FROM tipo_documento WHERE visible is true ORDER BY id_tp_documento;`
         )
         return {
           status: 200,

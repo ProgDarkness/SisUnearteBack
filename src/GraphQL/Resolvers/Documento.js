@@ -3,16 +3,88 @@ import { dbp2 } from '../../postgresdb'
 export default {
   Mutation: {
     crearDocumentoPostulacion: async (_, { input }) => {
-      const { archivo } = input
+      const { archivo, extension, idUser, id_tp_documento } = input
       try {
-        await dbp2.none(
-          `INSERT INTO public.documentos(tx_archivo, created_at) VALUES ($1, now());`,
-          [archivo]
+        const archivoCargado = await dbp2.oneOrNone(
+          `SELECT id_documento FROM public.documentos WHERE id_usuario = $1 AND id_requisito_documento = $2;`,
+          [idUser, id_tp_documento]
         )
+
+        if (!archivoCargado?.id_documento) {
+          await dbp2.none(
+            `INSERT INTO public.documentos(id_requisito_documento, tx_archivo, tx_extension, id_estatus_documento, id_usuario, created_at) VALUES ($1, $2, $3, $4, $5, now());`,
+            [id_tp_documento, archivo, extension, 1, idUser]
+          )
+        } else {
+          return {
+            status: 400,
+            type: 'error',
+            message:
+              'Ya se encuentra un documento cargado, si quiere reemplazarlo debe eliminar y volver a cargar el archivo'
+          }
+        }
+
         return {
           status: 200,
           type: 'success',
           message: 'Documento registrado exitosamente'
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
+    obtenerArchivoUsuario: async (_, { inputDatosArchivo }) => {
+      const { idUser, id_tp_documento } = inputDatosArchivo
+      try {
+        const archivoCargado = await dbp2.oneOrNone(
+          `SELECT tx_archivo FROM public.documentos WHERE id_usuario = $1 AND id_requisito_documento = $2;`,
+          [idUser, id_tp_documento]
+        )
+
+        if (archivoCargado?.tx_archivo) {
+          return {
+            status: 200,
+            type: 'success',
+            message: 'Documento encontrado exitosamente',
+            response: archivoCargado.tx_archivo
+          }
+        } else {
+          return {
+            status: 400,
+            type: 'warn',
+            message: 'no posee ningun documento cargado'
+          }
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
+    eliminarArchivoUsuario: async (_, { inputDatosArchivo }) => {
+      const { idUser, id_tp_documento } = inputDatosArchivo
+
+      try {
+        const archivoCargado = await dbp2.oneOrNone(
+          `SELECT id_documento FROM public.documentos WHERE id_usuario = $1 AND id_requisito_documento = $2;`,
+          [idUser, id_tp_documento]
+        )
+
+        if (archivoCargado?.id_documento) {
+          await dbp2.none(
+            `DELETE FROM public.documentos WHERE id_documento = $1 AND id_usuario = $2 AND id_requisito_documento = $3;`,
+            [archivoCargado.id_documento, idUser, id_tp_documento]
+          )
+
+          return {
+            status: 200,
+            type: 'success',
+            message: 'Documento eliminado exitosamente'
+          }
+        } else {
+          return {
+            status: 400,
+            type: 'warn',
+            message: 'No Posee Ningun Documento Cargado'
+          }
         }
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }

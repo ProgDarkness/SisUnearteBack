@@ -1,10 +1,24 @@
 type Mutation {
-  crearDocumentoPostulacion(input: InputDocPostulacion): ResultDocPostulacion!
+  obtenerArchivoUsuario(inputDatosArchivo: inputDatosArchivo!): ResultArchivo!
+  eliminarArchivoUsuario(inputDatosArchivo: inputDatosArchivo!): ResultArchivo!
+  crearDocumentoPostulacion(input: InputDocPostulacion!): ResultDocPostulacion!
   obtenerFotoPerfilUsuario(idUser: Int): ResultFotoPerfilUsuario
   crearFotoEstudiante(input: InputFotoEstudiante): ResultDocPostulacion!
   eliminarFotoEstudiante(
     input: InputEliminarFotoPerfilUsuario
   ): ResultDocPostulacion!
+}
+
+input inputDatosArchivo {
+  idUser: Int!
+  id_tp_documento: Int!
+}
+
+type ResultArchivo {
+  status: Int!
+  message: String!
+  type: String!
+  response: String
 }
 
 type FotoPerfilUsuario {
@@ -20,7 +34,10 @@ type ResultFotoPerfilUsuario {
 }
 
 input InputDocPostulacion {
+  id_tp_documento: String!
   archivo: String!
+  extension: String!
+  idUser: Int!
 }
 
 input InputFotoEstudiante {
