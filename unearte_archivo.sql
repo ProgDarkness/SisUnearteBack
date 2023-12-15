@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 14.5
--- Dumped by pg_dump version 14.5
+-- Dumped from database version 16.0
+-- Dumped by pg_dump version 16.0
 
--- Started on 2023-12-06 12:12:59
+-- Started on 2023-12-15 12:36:16
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,7 +19,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 209 (class 1259 OID 29631)
+-- TOC entry 215 (class 1259 OID 69222)
 -- Name: documentos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -32,25 +32,22 @@ CREATE SEQUENCE public.documentos_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.documentos_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.documentos_id_seq OWNER TO postgres;
 
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- TOC entry 212 (class 1259 OID 29681)
+-- TOC entry 216 (class 1259 OID 69223)
 -- Name: documentos; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.documentos (
     id_documento integer DEFAULT nextval('public.documentos_id_seq'::regclass) NOT NULL,
-    id_requisito_documento integer,
-    tx_archivo text,
-    tx_extension character varying(5),
-    id_estatus_documento integer,
-    id_usuario integer,
-    created_at timestamp without time zone,
+    tx_archivo text NOT NULL,
+    tx_extension character varying(5) NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
     updated_at timestamp without time zone
 );
 
@@ -58,7 +55,7 @@ CREATE TABLE public.documentos (
 ALTER TABLE public.documentos OWNER TO postgres;
 
 --
--- TOC entry 210 (class 1259 OID 29638)
+-- TOC entry 217 (class 1259 OID 69229)
 -- Name: fotoperfil_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -71,10 +68,10 @@ CREATE SEQUENCE public.fotoperfil_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.fotoperfil_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.fotoperfil_id_seq OWNER TO postgres;
 
 --
--- TOC entry 211 (class 1259 OID 29639)
+-- TOC entry 218 (class 1259 OID 69230)
 -- Name: fotoperfil; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -92,18 +89,18 @@ CREATE TABLE public.fotoperfil (
 ALTER TABLE public.fotoperfil OWNER TO postgres;
 
 --
--- TOC entry 3317 (class 0 OID 29681)
--- Dependencies: 212
+-- TOC entry 4790 (class 0 OID 69223)
+-- Dependencies: 216
 -- Data for Name: documentos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.documentos (id_documento, id_requisito_documento, tx_archivo, tx_extension, id_estatus_documento, id_usuario, created_at, updated_at) FROM stdin;
+COPY public.documentos (id_documento, tx_archivo, tx_extension, created_at, updated_at) FROM stdin;
 \.
 
 
 --
--- TOC entry 3316 (class 0 OID 29639)
--- Dependencies: 211
+-- TOC entry 4792 (class 0 OID 69230)
+-- Dependencies: 218
 -- Data for Name: fotoperfil; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -114,17 +111,17 @@ COPY public.fotoperfil (id_fotoperfil, tx_archivo, tx_extension, id_estatus, id_
 
 
 --
--- TOC entry 3323 (class 0 OID 0)
--- Dependencies: 209
+-- TOC entry 4798 (class 0 OID 0)
+-- Dependencies: 215
 -- Name: documentos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.documentos_id_seq', 2, true);
+SELECT pg_catalog.setval('public.documentos_id_seq', 5, true);
 
 
 --
--- TOC entry 3324 (class 0 OID 0)
--- Dependencies: 210
+-- TOC entry 4799 (class 0 OID 0)
+-- Dependencies: 217
 -- Name: fotoperfil_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -132,7 +129,7 @@ SELECT pg_catalog.setval('public.fotoperfil_id_seq', 47, true);
 
 
 --
--- TOC entry 3174 (class 2606 OID 29688)
+-- TOC entry 4643 (class 2606 OID 69239)
 -- Name: documentos documentos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -141,7 +138,7 @@ ALTER TABLE ONLY public.documentos
 
 
 --
--- TOC entry 3172 (class 2606 OID 29666)
+-- TOC entry 4645 (class 2606 OID 69241)
 -- Name: fotoperfil fotoperfil_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -149,7 +146,7 @@ ALTER TABLE ONLY public.fotoperfil
     ADD CONSTRAINT fotoperfil_pkey PRIMARY KEY (id_fotoperfil);
 
 
--- Completed on 2023-12-06 12:12:59
+-- Completed on 2023-12-15 12:36:16
 
 --
 -- PostgreSQL database dump complete
