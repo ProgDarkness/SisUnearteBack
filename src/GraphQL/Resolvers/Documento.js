@@ -1,19 +1,30 @@
-import { dbp2 } from '../../postgresdb'
+import { dbp, dbp2 } from '../../postgresdb'
 
 export default {
   Mutation: {
     crearDocumentoPostulacion: async (_, { input }) => {
       const { archivo, extension, idUser, id_tp_documento } = input
       try {
-        const archivoCargado = await dbp2.oneOrNone(
-          `SELECT id_documento FROM public.documentos WHERE id_usuario = $1 AND id_requisito_documento = $2;`,
+        const archivoCargado = await dbp.oneOrNone(
+          `SELECT id_documento FROM public.documentos_usuario WHERE id_usuario = $1 AND id_tp_documento = $2;`,
           [idUser, id_tp_documento]
         )
 
         if (!archivoCargado?.id_documento) {
-          await dbp2.none(
-            `INSERT INTO public.documentos(id_requisito_documento, tx_archivo, tx_extension, id_estatus_documento, id_usuario, created_at) VALUES ($1, $2, $3, $4, $5, now());`,
-            [id_tp_documento, archivo, extension, 1, idUser]
+          const idDocumento = await dbp2.oneOrNone(
+            `INSERT INTO public.documentos(
+              tx_archivo, tx_extension)
+              VALUES ($1, $2) RETURNING id_documento;`,
+            [archivo, extension]
+          )
+
+          console.log(idDocumento)
+
+          await dbp.none(
+            `INSERT INTO public.documentos_usuario(
+              id_usuario, id_documento, id_tp_documento, id_estatus_doc)
+              VALUES ($1, $2, $3, $4);`,
+            [idUser, idDocumento.id_documento, id_tp_documento, 2]
           )
         } else {
           return {
@@ -36,23 +47,30 @@ export default {
     obtenerArchivoUsuario: async (_, { inputDatosArchivo }) => {
       const { idUser, id_tp_documento } = inputDatosArchivo
       try {
-        const archivoCargado = await dbp2.oneOrNone(
-          `SELECT tx_archivo FROM public.documentos WHERE id_usuario = $1 AND id_requisito_documento = $2;`,
+        const idDocumento = await dbp.oneOrNone(
+          `SELECT id_documento FROM public.documentos_usuario WHERE id_usuario = $1 AND id_tp_documento = $2;`,
           [idUser, id_tp_documento]
         )
 
-        if (archivoCargado?.tx_archivo) {
-          return {
-            status: 200,
-            type: 'success',
-            message: 'Documento encontrado exitosamente',
-            response: archivoCargado.tx_archivo
-          }
-        } else {
-          return {
-            status: 400,
-            type: 'warn',
-            message: 'no posee ningun documento cargado'
+        if (idDocumento?.id_documento) {
+          const archivoCargado = await dbp2.oneOrNone(
+            `SELECT tx_archivo FROM public.documentos WHERE id_documento = $1;`,
+            [idDocumento?.id_documento]
+          )
+
+          if (idDocumento?.id_documento) {
+            return {
+              status: 200,
+              type: 'success',
+              message: 'Documento encontrado exitosamente',
+              response: archivoCargado.tx_archivo
+            }
+          } else {
+            return {
+              status: 400,
+              type: 'warn',
+              message: 'no posee ningun documento cargado'
+            }
           }
         }
       } catch (e) {
@@ -63,15 +81,20 @@ export default {
       const { idUser, id_tp_documento } = inputDatosArchivo
 
       try {
-        const archivoCargado = await dbp2.oneOrNone(
-          `SELECT id_documento FROM public.documentos WHERE id_usuario = $1 AND id_requisito_documento = $2;`,
+        const archivoCargado = await dbp.oneOrNone(
+          `SELECT id_documento FROM public.documentos_usuario WHERE id_usuario = $1 AND id_tp_documento = $2;`,
           [idUser, id_tp_documento]
         )
 
         if (archivoCargado?.id_documento) {
+          await dbp.none(
+            `DELETE FROM public.documentos_usuario WHERE id_documento = $1;`,
+            [archivoCargado?.id_documento]
+          )
+
           await dbp2.none(
-            `DELETE FROM public.documentos WHERE id_documento = $1 AND id_usuario = $2 AND id_requisito_documento = $3;`,
-            [archivoCargado.id_documento, idUser, id_tp_documento]
+            `DELETE FROM public.documentos WHERE id_documento = $1;`,
+            [archivoCargado?.id_documento]
           )
 
           return {
