@@ -72,6 +72,12 @@ export default {
               message: 'no posee ningun documento cargado'
             }
           }
+        } else {
+          return {
+            status: 400,
+            type: 'warn',
+            message: 'no posee ningun documento cargado'
+          }
         }
       } catch (e) {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }

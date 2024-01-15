@@ -242,16 +242,57 @@ export default {
         return { status: 500, message: e.message, type: 'error' }
       }
     },
-    obtenerTipoDocumento: async () => {
+    obtenerTipoDocumento: async (_, { id_usuario }) => {
       try {
         const tiposdocumentos = await dbp.manyOrNone(
           `SELECT id_tp_documento as id, nb_tp_documento as nombre FROM tipo_documento WHERE visible is true ORDER BY id_tp_documento;`
         )
+
+        const documentosUsuario = await dbp.manyOrNone(
+          `SELECT du.id_documento, du.id_estatus_doc, du.id_tp_documento, ed.tx_estatus
+            FROM  documentos_usuario du, estatus_documentos ed
+              WHERE id_usuario = $1 AND du.id_estatus_doc = ed.id_estatus_doc ORDER BY id_tp_documento;`,
+          [id_usuario]
+        )
+
+        const objectDocumentoEstatus = []
+        const recorrido = []
+
+        Object.entries(tiposdocumentos).forEach(([index1, item1]) => {
+          Object.entries(documentosUsuario).forEach(([index2, item2]) => {
+            if (!recorrido.includes(item1.id)) {
+              if (item1.id === item2.id_tp_documento) {
+                recorrido.push(item1.id)
+
+                objectDocumentoEstatus.push({
+                  id: item1.id,
+                  nombre: item1.nombre,
+                  id_documento: item2.id_documento,
+                  id_estatus_doc: item2.id_estatus_doc,
+                  nb_estatus_doc: item2.tx_estatus
+                })
+              }
+            }
+          })
+        })
+
+        Object.entries(tiposdocumentos).forEach(([index1, item]) => {
+          if (!recorrido.includes(item.id)) {
+            objectDocumentoEstatus.push({
+              id: item.id,
+              nombre: item.nombre,
+              id_documento: null,
+              id_estatus_doc: 1,
+              nb_estatus_doc: 'NO CARGADO'
+            })
+          }
+        })
+
         return {
           status: 200,
           message: 'Tipos de Documentos encontrados',
           type: 'success',
-          response: tiposdocumentos
+          response: objectDocumentoEstatus
         }
       } catch (e) {
         return { status: 500, message: e.message, type: 'error' }

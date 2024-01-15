@@ -195,7 +195,10 @@ type ResultCodigoPostal {
 
 type TipoDocumento {
   id: ID!
-  nombre: String!
+  nombre: String!,
+  id_documento: Int,
+  id_estatus_doc: Int,
+  nb_estatus_doc: String
 }
 
 type ResultTipoDocumento {
@@ -380,7 +383,7 @@ type Query {
   obtenerTipoVivienda: ResultViviendas
   obtenerPaises: ResultPaises
   obtenerCodigoPostal: ResultCodigoPostal
-  obtenerTipoDocumento: ResultTipoDocumento
+  obtenerTipoDocumento(id_usuario: Int!): ResultTipoDocumento
   obtenerEstadoCivil: ResultEstadosCiviles
   obtenerEtnia: ResultEtnia
   obtenerCiclos: ResultTipoCiclos
