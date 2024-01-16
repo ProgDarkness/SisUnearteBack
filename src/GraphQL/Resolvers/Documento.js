@@ -119,6 +119,42 @@ export default {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
       }
     },
+    aprobarArchivoUsuario: async (_, { inputDatosArchivo }) => {
+      const { idUser, id_tp_documento } = inputDatosArchivo
+
+      try {
+        await dbp.none(
+          `UPDATE public.documentos_usuario SET id_estatus_doc = 3, updated_at = now() WHERE id_usuario = $1 AND id_tp_documento = $2;`,
+          [idUser, id_tp_documento]
+        )
+
+        return {
+          status: 200,
+          type: 'success',
+          message: 'Documento aprobado exitosamente'
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
+    rechazarArchivoUsuario: async (_, { inputDatosArchivo }) => {
+      const { idUser, id_tp_documento } = inputDatosArchivo
+
+      try {
+        await dbp.none(
+          `UPDATE public.documentos_usuario SET id_estatus_doc = 4, updated_at = now() WHERE id_usuario = $1 AND id_tp_documento = $2;`,
+          [idUser, id_tp_documento]
+        )
+
+        return {
+          status: 200,
+          type: 'success',
+          message: 'Documento rechazado exitosamente'
+        }
+      } catch (e) {
+        return { status: 500, message: `Error: ${e.message}`, type: 'error' }
+      }
+    },
     obtenerFotoPerfilUsuario: async (_, { idUser }) => {
       try {
         const fotoperfilusuario = await dbp2.oneOrNone(
