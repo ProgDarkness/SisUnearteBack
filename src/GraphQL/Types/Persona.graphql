@@ -9,17 +9,17 @@ type Personal {
   sexo: String!
   idcivil: Int!
   civil: String!
-  tlffijo: String!
-  tlfmovil: String!
-  correo: String!
-  idestatus: Int!
-  estatus: String!
-  cargahoraria: Int!
-  idtipo: Int!
-  tipo: String!
+  tlffijo: String
+  tlfmovil: String
+  correo: String
+  idestatus: Int
+  estatus: String
+  cargahoraria: Int
+  idtipo: Int
+  tipo: String
   idprofesion: Int!
   profesion: String!
-  id_usuario: Int!
+  id_usuario: Int
 }
 
 type ResultPersonal {

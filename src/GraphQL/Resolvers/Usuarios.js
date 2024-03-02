@@ -13,7 +13,7 @@ export default {
 
       try {
         return await dbp.manyOrNone(`SELECT u.id_usuario, u.user_name, u.bl_status, r.nb_rol as rol, 
-                                      u.ced_usuario, u.nb_usuario, u.ape_usuario, u.created_at, u.updated_at
+                                      u.nu_docidentidad_usu, u.nb_usuario, u.ape_usuario, u.created_at, u.updated_at
                                       FROM public.usuarios u, public.roles r WHERE u.id_rol = r.id_rol;`)
       } catch (e) {
         throw new ApolloError(e.message)
@@ -46,7 +46,7 @@ export default {
             id_nacionalidad,
             co_nacionalidad,
             nb_nacionalidad,
-            ced_usuario,
+            nu_docidentidad_usu,
             nb_usuario,
             ape_usuario,
             id_tp_sexo,
@@ -101,7 +101,7 @@ export default {
               codigo: co_nacionalidad,
               nombre: nb_nacionalidad
             },
-            ced_usuario,
+            nu_docidentidad_usu,
             nb_usuario,
             ape_usuario,
             sexo: { id: id_tp_sexo, nombre: nb_tp_sexo },
@@ -203,7 +203,7 @@ export default {
 
         await dbp.none(
           `INSERT INTO public.usuarios(
-                user_name, bl_status, id_rol, ced_usuario, nb_usuario, ape_usuario, id_nacionalidad)
+                user_name, bl_status, id_rol, nu_docidentidad_usu, nb_usuario, ape_usuario, id_nacionalidad)
                 VALUES ( $1, $2, $3, $4, $5, $6, $7);`,
           [usuario, true, id_rol, cedula, nombre, apellido, nacionalidad]
         )
@@ -358,7 +358,7 @@ export default {
       try {
         await dbp.none(
           `INSERT INTO public.usuarios(
-                id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_tp_sexo, fe_nac_usuario, id_pais, id_civil, correo_usuario, id_tp_via, nb_via, id_tp_zona, nb_zona, id_tp_vivienda, nu_vivienda, id_ciudad, id_estado, id_municipio, id_parroquia, id_zona, bl_registro)
+                id_nacionalidad, nu_docidentidad_usu, nb_usuario, ape_usuario, id_tp_sexo, fe_nac_usuario, id_pais, id_civil, correo_usuario, id_tp_via, nb_via, id_tp_zona, nb_zona, id_tp_vivienda, nu_vivienda, id_ciudad, id_estado, id_municipio, id_parroquia, id_zona, bl_registro)
                 VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21);`,
           [
             idnacionalidad,
@@ -438,7 +438,7 @@ export default {
       try {
         await dbp.none(
           `UPDATE public.usuarios
-               SET id_nacionalidad = $1, ced_usuario = $2, nb_usuario = $3, ape_usuario = $4, id_tp_sexo = $5, fe_nac_usuario = $6, 
+               SET id_nacionalidad = $1, nu_docidentidad_usu = $2, nb_usuario = $3, ape_usuario = $4, id_tp_sexo = $5, fe_nac_usuario = $6, 
                id_pais_nac = $7, id_civil = $8, correo_usuario = $9, id_tp_via = $10, nb_via = $11, id_tp_zona = $12, 
                nb_zona = $13, id_tp_vivienda = $14, nu_vivienda = $15, id_ciudad = $16, id_estado = $17, id_municipio = $18, id_parroquia = $19, 
                cod_zona_postal = $20, bl_registro = $21, nb2_usuario = $23, ape2_usuario = $24, id_zona = $25, id_pais = $26, id_tp_discapacidad = $27,
@@ -500,7 +500,7 @@ export default {
 
       try {
         const usuario = await dbp.oneOrNone(
-          `SELECT u.id_usuario as id, tn.co_nacionalidad as nacionalidad, u.ced_usuario as cedula, u.nb_usuario as nombre, u.ape_usuario as apellido,
+          `SELECT u.id_usuario as id, tn.co_nacionalidad as nacionalidad, u.nu_docidentidad_usu as cedula, u.nb_usuario as nombre, u.ape_usuario as apellido,
               ts.co_tp_sexo as sexo, u.fe_nac_usuario as fenac, pais.nb_pais as pais, ec.nb_civil as civil, u.correo_usuario as correo, tvia.nb_tp_via as nbtpbia, u.nb_via as nbvia, 
               tzona.nb_tp_zona as nbtpzona, u.nb_zona as nbzona, tvivienda.nb_tp_vivienda as nbtpvivienda, u.nu_vivienda as nuvivienda,
               c.nb_ciudad as ciudad, e.nb_estado as estado, m.nb_municipio as municipio, p.nb_parroquia as parroquia

@@ -137,12 +137,12 @@ export default {
         return { status: 500, message: `Error: ${e.message}`, type: 'error' }
       }
     },
-    rechazarArchivoUsuario: async (_, { inputDatosArchivo }) => {
-      const { idUser, id_tp_documento, observacion } = inputDatosArchivo
+    rechazarArchivoUsuario: async (_, { inputRechazarArchivo }) => {
+      const { idUser, id_tp_documento, observacion } = inputRechazarArchivo
 
       try {
         await dbp.none(
-          `UPDATE public.documentos_usuario SET id_estatus_doc = 4, updated_at = now(), tx_observacion = $1 WHERE id_usuario = $1 AND id_tp_documento = $2;`,
+          `UPDATE public.documentos_usuario SET id_estatus_doc = 4, updated_at = now(), tx_observacion = $3 WHERE id_usuario = $1 AND id_tp_documento = $2;`,
           [idUser, id_tp_documento, observacion]
         )
 

@@ -9,7 +9,7 @@ export default {
     obtenerPersonal: async () => {
       try {
         const personal = await dbp.manyOrNone(
-          `SELECT * FROM public.info_personal;`
+          `SELECT * FROM public.info_personal order by cedula asc;`
         )
         return {
           status: 200,
@@ -143,7 +143,7 @@ export default {
 
         const idUser = await dbp.oneOrNone(
           `INSERT INTO public.usuarios(
-                      tx_clave, user_name, id_rol, id_nacionalidad, ced_usuario, nb_usuario, ape_usuario, id_tp_sexo, correo_usuario, bl_status)
+                      tx_clave, user_name, id_rol, id_nacionalidad, nu_docidentidad_usu, nb_usuario, ape_usuario, id_tp_sexo, correo_usuario, bl_status)
                       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, true) RETURNING id_usuario;`,
           [
             hashClave,
@@ -160,7 +160,7 @@ export default {
 
         await dbp.none(
           `INSERT INTO public.personal(
-                      id_nacionalidad, ced_personal, nb_personal, ape_personal, tlf_fijo, tlf_movil, correo, 
+                      id_nacionalidad, nu_docidentidad_per, nb_personal, ape_personal, tlf_fijo, tlf_movil, correo, 
                       id_estatus_personal, id_tp_personal, carga_horaria, id_profesion, id_tp_sexo, id_civil, 
                       id_usuario, bl_registro, id_departamento, id_pais, id_estado, id_municipio, id_parroquia, id_tp_zona,
                       nb_zona, zona_postal, id_tp_via, nb_via, id_tp_vivienda, nb_vivienda, id_ciudad, created_at)
@@ -240,7 +240,7 @@ export default {
       try {
         await dbp.none(
           `UPDATE public.personal
-               SET id_nacionalidad = $1, ced_personal = $2, nb_personal = $3, ape_personal = $4, tlf_fijo = $5, tlf_movil = $6, 
+               SET id_nacionalidad = $1, nu_docidentidad_per = $2, nb_personal = $3, ape_personal = $4, tlf_fijo = $5, tlf_movil = $6, 
                correo = $7, id_estatus_personal = $8, id_tp_personal = $9, carga_horaria = $10, id_profesion = $11, id_tp_sexo = $12, 
                id_civil = $13, updated_at = now() WHERE id_personal =$14;`,
           [

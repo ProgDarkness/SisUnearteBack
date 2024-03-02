@@ -46,7 +46,7 @@ type simpleDropdown {
 
 type infoUsuario {
   nacionalidad: Tnacionalidad!
-  ced_usuario: String!
+  nu_docidentidad_usu: String!
   nb_usuario: String!
   ape_usuario: String!
   sexo: simpleDropdown!
@@ -201,7 +201,7 @@ type Usuario {
   user_name: String!
   bl_status: Boolean!
   rol: String!
-  ced_usuario: Int!
+  nu_docidentidad_usu: Int!
   nb_usuario: String!
   ape_usuario: String!
   created_at: String!

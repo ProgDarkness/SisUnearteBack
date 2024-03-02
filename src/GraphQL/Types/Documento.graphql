@@ -3,7 +3,7 @@ type Mutation {
   eliminarArchivoUsuario(inputDatosArchivo: inputDatosArchivo!): ResultArchivo!
   aprobarArchivoUsuario(inputDatosArchivo: inputDatosArchivo!): ResultArchivo!
   rechazarArchivoUsuario(
-    inputDatosArchivo: inputRechazarArchivo!
+    inputRechazarArchivo: inputRechazarArchivo!
   ): ResultArchivo!
   crearDocumentoPostulacion(input: InputDocPostulacion!): ResultDocPostulacion!
   obtenerFotoPerfilUsuario(idUser: Int): ResultFotoPerfilUsuario

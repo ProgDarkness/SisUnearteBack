@@ -20,7 +20,7 @@ export default {
         const hashClave = CryptoJS.SHA256(claveDesencriptada).toString()
 
         const login = await dbp.oneOrNone(
-          `SELECT u.id_usuario, u.user_name, u.bl_status, u.id_rol, u.id_nacionalidad, n.co_nacionalidad, n.nb_nacionalidad, u.ced_usuario, u.nb_usuario, u.ape_usuario, u.created_at, u.updated_at
+          `SELECT u.id_usuario, u.user_name, u.bl_status, u.id_rol, u.id_nacionalidad, n.co_nacionalidad, n.nb_nacionalidad, u.nu_docidentidad_usu, u.nb_usuario, u.ape_usuario, u.created_at, u.updated_at
           FROM public.usuarios u, public.tipo_nacionalidad n WHERE user_name = $1 AND tx_clave = $2 AND u.id_nacionalidad = n.id_nacionalidad;`,
           [usuario, hashClave]
         )
@@ -35,7 +35,7 @@ export default {
             id_nacionalidad,
             co_nacionalidad,
             nb_nacionalidad,
-            ced_usuario,
+            nu_docidentidad_usu,
             nb_usuario,
             ape_usuario
           } = login
@@ -53,7 +53,7 @@ export default {
               bl_status,
               id_rol,
               nacionalidad,
-              ced_usuario,
+              nu_docidentidad_usu,
               nb_usuario,
               ape_usuario,
               created_at
@@ -106,7 +106,7 @@ export default {
         bl_status,
         id_rol,
         nacionalidad,
-        ced_usuario,
+        nu_docidentidad_usu,
         nb_usuario,
         ape_usuario,
         created_at
@@ -118,7 +118,7 @@ export default {
           bl_status,
           id_rol,
           nacionalidad,
-          ced_usuario,
+          nu_docidentidad_usu,
           nb_usuario,
           ape_usuario,
           created_at
