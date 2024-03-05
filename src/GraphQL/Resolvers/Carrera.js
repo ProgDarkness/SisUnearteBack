@@ -24,7 +24,7 @@ export default {
           and c.id_ciclo = ciclo.id_ciclo
           and c.id_estatus_carrera = e.id_estatus_carrera
 		      and c.id_titulo = tt.id_titulo
-          and c.id_estatus_carrera = 4;`)
+          and c.id_estatus_carrera = 1;`)
         return {
           status: 200,
           message: 'Listado de carreras encontradas',

@@ -531,6 +531,42 @@ export default {
       } catch (e) {
         return { status: 500, type: 'error', message: `Error: ${e.message}` }
       }
+    },
+    obtenerUsuarioRecuperaCuenta: async (_, { input }) => {
+      const { nacionalidad, cedula } = input
+
+      try {
+        const usuario = await dbp.oneOrNone(
+          `SELECT u.id_usuario as id, u.nu_docidentidad_usu as cedula, u.nb_usuario as primer_nombre, u.nb2_usuario as segundo_nombre, 
+             u.ape_usuario as primer_apellido, u.ape2_usuario as segundo_apellido,
+             u.correo_usuario as correo
+              FROM usuarios as u
+              WHERE u.id_nacionalidad = $1
+              and u.nu_docidentidad_usu = $2;`,
+          [nacionalidad, cedula]
+        )
+
+        return {
+          status: 200,
+          type: 'success',
+          message: 'Usuario encontrado',
+          response: usuario
+        }
+      } catch (e) {
+        return { status: 500, type: 'error', message: `Error: ${e.message}` }
+      }
+    },
+    recuperarCuenta: async (_, { input }) => {
+      const { idUsuario, correoUsuario, nbUsuario } = input
+
+      await dbp.none(
+        `UPDATE public.usuarios
+          SET correo_usuario = $2, user_name = $3, updated_at = now()
+          WHERE id_usuario = $1`,
+        [idUsuario, correoUsuario, nbUsuario]
+      )
+
+      return { status: 200, type: 'success', message: 'completado' }
     }
   }
 }

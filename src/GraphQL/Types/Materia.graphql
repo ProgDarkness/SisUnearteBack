@@ -40,10 +40,10 @@ type Materias {
   codigo: String!
   nombre: String!
   credito: Int!
-  hora: Int!
-  estatus: String!
-  tipo: String!
-  idtipo: Int!
+  hora: Int
+  estatus: String
+  tipo: String
+  idtipo: Int
 }
 
 type ResultTodasMaterias {

@@ -18,6 +18,8 @@ type Mutation {
   crearUsuario(input: InputUsuario): Result!
   actualizarUsuario(input: InputActualizarUsuario): Result!
   obtenerUsuario(input: InputIdUsuario): ResultUsuario
+  obtenerUsuarioRecuperaCuenta(input: InputDatoUsuario): ResultRecuperaCuenta
+  recuperarCuenta(input: InputRecuperaUser): Result!
   crearClave(input: InputCrearClave!): Result!
 }
 
@@ -25,6 +27,11 @@ input InputCrearClave {
   token: String!
   usuario: String!
   clave: String!
+}
+
+input InputDatoUsuario {
+  nacionalidad: Int!
+  cedula: String!
 }
 
 type Tnacionalidad {
@@ -166,6 +173,12 @@ input InputIdUsuario {
   idusuario: Int!
 }
 
+input InputRecuperaUser {
+  idUsuario: Int!
+  correoUsuario: String!
+  nbUsuario: String!
+}
+
 type DetalleUsuario {
   id: ID!
   nacionalidad: String!
@@ -189,11 +202,28 @@ type DetalleUsuario {
   parroquia: String!
 }
 
+type DetalleRecuperaUsuario {
+  id: ID!
+  cedula: String!
+  primer_nombre: String!
+  segundo_nombre: String!
+  primer_apellido: String!
+  segundo_apellido: String!
+  correo: String!
+}
+
 type ResultUsuario {
   status: Int!
   type: String!
   message: String!
   response: DetalleUsuario
+}
+
+type ResultRecuperaCuenta {
+  status: Int!
+  type: String!
+  message: String!
+  response: DetalleRecuperaUsuario
 }
 
 type Usuario {
